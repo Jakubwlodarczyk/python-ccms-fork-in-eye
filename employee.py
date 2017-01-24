@@ -3,7 +3,6 @@ from ui import *
 
 class Employee(User):
     """docs"""
-    Employees = []
 
     def __init__(self, *args, **kwargs):
         super(Employee, self).__init__(*args, **kwargs)
@@ -12,7 +11,7 @@ class Employee(User):
     @staticmethod
     def show_employees():
         """docs"""
-        print(Employee.Employees)
+        print(Employee.Employees_list)
 
 
     def edit_employee_data(self, employee_id):
@@ -31,16 +30,16 @@ class Employee(User):
 
         if option == "1":
             os.system('clear')
-            OBJECT.edit_name()  # REPLACE "OBJECT"
+           # OBJECT.edit_name()  # REPLACE "OBJECT"
         elif option == '2':
             os.system('clear')
-            OBJECT.edit_surname()  # REPLACE "OBJECT"
+           # OBJECT.edit_surname()  # REPLACE "OBJECT"
         elif option == '3':
             os.system('clear')
-            OBJECT.edit_email()  # REPLACE "OBJECT"
+           # OBJECT.edit_email()  # REPLACE "OBJECT"
         elif option == '4':
             os.system('clear')
-            OBJECT.edit_password()  # REPLACE "OBJECT"
+           # OBJECT.edit_password()  # REPLACE "OBJECT"
         elif option == '0':
             os.system('clear')
               # GO BACK method
@@ -60,4 +59,4 @@ class Employee(User):
 
 
 ja = Employee("krzysiek", "dzioba", "skidzioba@interia.pl", "maslo")
-ja.remove_employee()
+ja.edit_employee()
