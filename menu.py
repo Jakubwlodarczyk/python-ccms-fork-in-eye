@@ -1,12 +1,8 @@
 class Menu:
     pass
 
-
-
-    main():
+    def main(self):
         pass
-
-
 
 
 if __name__ == '__main__':
