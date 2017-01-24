@@ -6,8 +6,8 @@ from mentor import *
 from menager import *
 from submission import *
 from assigment import *
-from attendance import *
-from UI import *
+from attendance import Attendace
+from ui import Ui
 
 
 class Menu:
@@ -15,7 +15,7 @@ class Menu:
 
     @staticmethod
     def log_in():
-        UI.print_menu()
+        Ui.print_menu()
         login = UI.get_inputs('your_login')
         user = User.get_inputs(login)
         password = UI.get_inputs('your password')
