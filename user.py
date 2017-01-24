@@ -1,4 +1,8 @@
 class User:
+    '''
+    Parent class for all users to inherit from.
+    '''
+    users_list = []
 
     def __init__(self, name, surname, email, password):
         self.name = name

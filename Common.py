@@ -1,7 +1,7 @@
 class Common:
-    
-    
-        
+
+
+
 
     @staticmethod
     def get_table_from_file(file_name):
@@ -39,5 +39,5 @@ class Common:
         """
         with open(file_name, "w") as file:
             for record in table:
-                row = ';'.join(record)
+                row = ','.join(record)
                 file.write(row + "\n")
