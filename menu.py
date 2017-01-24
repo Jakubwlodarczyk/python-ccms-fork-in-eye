@@ -1,3 +1,4 @@
+import csv
 import sys
 from user import *
 #from student import *
@@ -24,6 +25,7 @@ class Menu:
     def exit_program():  # save csv files
         pass
 
+    @staticmethod
     def loading_data():  # load all data
         pass
 
@@ -35,9 +37,6 @@ class Menu:
             Menu.log_in()
         elif option == "0":
             sys.exit(0)
-        #else:
-            #raise KeyError as error:
-                #ui.print_error_message('There is no such an option')
 
     @classmethod
     def main_menu(cls):
