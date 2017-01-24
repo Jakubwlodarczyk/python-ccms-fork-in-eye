@@ -27,3 +27,4 @@ class ManagerMenu(Menu):
                 sys.exit()
             else:
                 ui.print_error_message('There is no such option.')
+
