@@ -50,7 +50,7 @@ class Menu:
             main_menu()
             try:
                 choose_option()
-            except KeyError as error:
+            except KeyError:
                 ui.print_error_message('unknown error at main!')
 
 
