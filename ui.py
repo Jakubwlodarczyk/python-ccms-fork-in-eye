@@ -2,9 +2,13 @@ class Ui:
     '''
     Handles user interface.
     '''
-    def print_table(self, table, title_list):
+    @staticmethod
+    def print_table(table, title_list):
         '''
         Displays table with data.
+        Args:
+            table: list of lists - table to display created in Common.py.
+            title_list: list containing table headers.
         '''
         len_for_col = []
         for title_iterator in range(len(title_list)):
@@ -36,9 +40,14 @@ class Ui:
             print()
         print('-' * how_wide)
 
-    def print_menu(self, title, list_options, exit_message):
+    @staticmethod
+    def print_menu(title, list_options, exit_message):
         '''
         Handles displaying menu.
+        Args:
+            title (str): menu title
+            list_options (list): list of strings - options that will be shown in menu
+            exit_message (str): the last option with (0) (example: "Back to main menu")
         '''
         n = 1
         print('{}:'.format(title))
@@ -47,9 +56,17 @@ class Ui:
             n += 1
         print('\t(0) {}'.format(exit_message))
 
-    def get_inputs(self, list_labels, title):
+    @staticmethod
+    def get_inputs(list_labels, title):
         '''
         Gets list of inputs from the user.
+        Sample call:
+            get_inputs(["Name","Surname","email"],"Please provide your personal information")
+        Args:
+            list_labels: list of strings - labels of inputs
+            title: title of the "input section".
+        Returns:
+            List of data given by the user.
         '''
         print(title)
 
@@ -57,3 +74,13 @@ class Ui:
         for label in list_labels:
             input_table.append(input(label))
         return input_table
+
+    @staticmethod
+    def print_error_message(cls, message):
+        """
+        Displays an error message.
+        Args:
+            message(str): error message to be displayed.
+        """
+
+        print(message)
