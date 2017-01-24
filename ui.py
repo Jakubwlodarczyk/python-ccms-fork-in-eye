@@ -76,7 +76,7 @@ class Ui:
         return input_table
 
     @staticmethod
-    def print_error_message(cls, message):
+    def print_error_message(message):
         """
         Displays an error message.
         Args:
