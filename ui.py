@@ -1,7 +1,10 @@
 class Ui:
-    def print_table(table, title_list):
+    '''
+    Handles user interface.
+    '''
+    def print_table(self, table, title_list):
         '''
-        Handles displaying table with data.
+        Displays table with data.
         '''
         len_for_col = []
         for title_iterator in range(len(title_list)):
@@ -33,7 +36,7 @@ class Ui:
             print()
         print('-' * how_wide)
 
-    def print_menu(title, list_options, exit_message):
+    def print_menu(self, title, list_options, exit_message):
         '''
         Handles displaying menu.
         '''
@@ -44,7 +47,7 @@ class Ui:
             n += 1
         print('\t(0) {}'.format(exit_message))
 
-    def get_inputs(list_labels, title):
+    def get_inputs(self, list_labels, title):
         '''
         Gets list of inputs from the user.
         '''
