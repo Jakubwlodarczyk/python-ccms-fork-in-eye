@@ -2,6 +2,10 @@ from user import User
 
 
 class Student(User):
+
+    student_list = []
+
+
     def __init__()
     __init__(self, name, surname, email, password)
 
