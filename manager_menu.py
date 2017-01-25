@@ -11,9 +11,11 @@ class ManagerMenu(Menu):
         Allows to choose an action to perform.
         '''
         options = ["View regular employees list",
+                   "Add an employee",
                    "Edit employees' data",
                    "Fire an employee",
                    "View mentors list",
+                   "Add a mentor",
                    "Edit mentors' data",
                    "Fire a mentor",
                    "View students list"]
@@ -25,22 +27,28 @@ class ManagerMenu(Menu):
                 # view regular employees list
                 pass
             elif option == '2':
-                # edit employees data
+                # add an employee
                 pass
             elif option == '3':
-                # fire a employee
-                pass
-            elif option == '4':
-                # view mentors list
-                pass
-            elif option == '5':
                 # edit employees data
                 pass
+            elif option == '4':
+                # fire an employee
+                pass
+            elif option == '5':
+                # view mentors list
+                pass
             elif option == '6':
-                # fire a employee
+                # add mentor
                 pass
             elif option == '7':
-                # fire a employee
+                # edit mentor's data
+                pass
+            elif option == '8':
+                # fire mentor
+                pass
+            elif option == '9':
+                # view student list
                 pass
             elif option == '0':
                 #common.write_table_to_file('Mentors.csv')
