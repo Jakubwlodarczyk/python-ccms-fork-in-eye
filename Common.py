@@ -1,4 +1,6 @@
 class Common:
+
+
     @staticmethod
     def get_table_from_file(file_name):
         """

@@ -29,18 +29,23 @@ class Menu:
 
     @classmethod
     def log_in(cls):
-        title = 'Sign in'
-        list_options = []
-        Ui.print_menu(title, list_options, 'exit')
         login = Ui.get_inputs(['Your email: '], "")
-        password = Ui.get_inputs(['Your password: '], '')
+        password = Ui.get_inputs(['Your password: '], "")
         user = User.user_password_check(login[0], password[0])
 
-        # if user:
-        #     print('USER FOUND YAY')
-        # elif not user:
-        #     print('NO USER')
-
+        if not user:
+            print('User not found!')
+        elif user_password_check(login, password):
+            print('Hello ' + login)
+            if type(user) == Manager:
+                return ManagerMenu()
+            elif type(user) == Employee:
+                return EmployeeMenu()
+            elif type(user) == Mentor:
+                return MentorMenu()
+            elif type(user) == Student:
+                return StudentMenu()
+        return None
 
     def exit_program():  # save csv files
         pass
