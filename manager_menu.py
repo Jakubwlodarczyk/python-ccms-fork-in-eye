@@ -1,3 +1,4 @@
+from menu import *
 from ui import *
 from Common import *
 import sys
@@ -24,23 +25,21 @@ class ManagerMenu(Menu):
             inputs = Ui.get_inputs(["Please enter a number: "], "")
             option = inputs[0]
             if option == '1':
-                # view regular employees list
-                pass
+                title = 'Regular employees list:'
+                Ui.print_staff_list(Employee.employees_list, title)
             elif option == '2':
-                # add an employee
-                pass
+                User.add_person(Employee.employees_list)
             elif option == '3':
                 # edit employees data
                 pass
             elif option == '4':
-                # fire an employee
+                User.remove_person(Employee.employees_list)
                 pass
             elif option == '5':
                 # view mentors list
                 pass
             elif option == '6':
-                # add mentor
-                pass
+                User.add_person(Mentor.mentors_list)
             elif option == '7':
                 # edit mentor's data
                 pass
