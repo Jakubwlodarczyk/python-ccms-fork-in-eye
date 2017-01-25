@@ -44,7 +44,8 @@ class Employee(User):
     @staticmethod
     def show_employees():
         """docs"""
-        print(Employee.employees_list)
+        for employee in Employee.employees_list:
+            print(employee)
 
 
     def edit_employee_data(self): # ADD employee_id ATTRIBUTE
@@ -63,16 +64,16 @@ class Employee(User):
 
         if option == "1":
             os.system('clear')
-           # OBJECT.edit_name()  # REPLACE "OBJECT"
+           # OBJECT.edit_name_employee()  # REPLACE "OBJECT"
         elif option == '2':
             os.system('clear')
-           # OBJECT.edit_surname()  # REPLACE "OBJECT"
+           # OBJECT.edit_surname_employee()  # REPLACE "OBJECT"
         elif option == '3':
             os.system('clear')
-           # OBJECT.edit_email()  # REPLACE "OBJECT"
+           # OBJECT.edit_email_employee()  # REPLACE "OBJECT"
         elif option == '4':
             os.system('clear')
-           # OBJECT.edit_password()  # REPLACE "OBJECT"
+           # OBJECT.edit_password_employee()  # REPLACE "OBJECT"
         elif option == '0':
             os.system('clear')
               # GO BACK method (or nothing)
@@ -96,8 +97,23 @@ class Employee(User):
             Employee.employees_list.remove(self)
 
 
-    def edit_name(self):
-        pass
+    def edit_name_employee(self):
+        new_name = input("Type a new name for chosen employee: ")
+        #self.edit_name(new_name) # UNHASH IT WHEN METHOD CREATED IN USER CLASS
+
+    def edit_surname_employee(self):
+        new_surname = input("Type a new surname for chosen employee: ")
+        #self.edit_surname(new_surname)# UNHASH IT WHEN METHOD CREATED IN USER CLASS
+
+    def edit_email_employee(self):
+        new_email = input("Type a new e-mail for chosen employee: ")
+        #self.edit_email(new_email)#  UNHASH IT WHEN METHOD CREATED IN USER CLASS
+
+    def edit_password_employee(self):
+        new_password = input("Type a new password for chosen employee: ")
+        #self.edit_password(new_password)#  UNHASH IT WHEN METHOD CREATED IN USER CLASS
+
+
 
 
 
@@ -111,3 +127,4 @@ ja.create_staff_list()
 Employee.update_employees_list()
 print(Employee.employees_list)
 print(Employee.employees_list[0])
+Employee.show_employees()

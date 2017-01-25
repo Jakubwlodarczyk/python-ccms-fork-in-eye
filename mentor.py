@@ -29,3 +29,4 @@ class Mentor(Employee):
                 mentor_name = cls(name, surname, email, password, status, id)
                 mentors_object_list.append(mentor_name)
         return mentors_object_list
+
