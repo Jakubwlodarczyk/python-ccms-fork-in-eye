@@ -81,12 +81,15 @@ class User:
         Ui.print_error_message("\nPassword has been changed.\n")
 
     @classmethod
-    def add_person(object_list):
-        data = ui.get_inputs(['Name: ', 'Surname: ', 'email: ', 'Password: ', 'Status: '], "Please provide informations:")
-        id = Common.generate_random_id()
-        new_person = User(data[0], data[1], data[3], data[4], data[5], data[6], id)
+    def add_person(cls, object_list):
+        data = Ui.get_inputs(['Name: ', 'Surname: ', 'email: ', 'Password: ', 'Status: '], "Please provide informations:")
+        id = '11111111' #HAVE TO CHANGE IT TO RANDOMLY GENERATED
+        new_person = User(data[0], data[1], data[2], data[3], data[4], id)
         object_list.append(new_person)
 
     @classmethod
-    def remove_person():
-        pass
+    def remove_person(cls, object_list):
+        to_remove = Ui.get_inputs(['-> '], "Enter ID of person you want to fire:")
+        for person in object_list:
+            if person.id == to_remove[0]:
+                object_list.remove(person)
