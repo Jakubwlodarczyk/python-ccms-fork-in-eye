@@ -21,3 +21,18 @@ class Assignments:
     @classmethod
     def add_an_assignment(cls, assignment_input):
         pass
+
+    @classmethod
+    def create_assignments_list(cls, file_path):
+        assignments_list = []
+        with open(file_path, "r") as f:
+            for line in f:
+                line = line.split(",")
+                length = len(line) - 1
+                line[length] = line[length][:-2]
+                start_date = line[0]
+                end_date = line[1]
+                assignment_name = line[2]
+                full_assignment_name = (start_date, end_date, assignment_name)
+                assignments_list.append(full_assignment_name)
+        return assignments_list

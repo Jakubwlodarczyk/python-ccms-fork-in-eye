@@ -3,6 +3,7 @@ from ui import *
 from Common import *
 import sys
 
+
 class ManagerMenu(Menu):
     '''
     Handles navigating the menu after logging in as Manager.

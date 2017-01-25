@@ -31,8 +31,8 @@ class Menu:
                           Mentor.mentors_list,
                           Student.student_list,
                           Manager.manager_list]
-        Submission.submission_list = User.create_submission_list('Submissions.csv')
-        Assignments.assignments_list = User.create_assignments_list('Assignments.csv')
+        Submission.submission_list = Submission.create_submission_list('Submissions.csv')
+        Assignments.assignments_list = Assignments.create_assignments_list('Assignments.csv')
         # Attendance.attendance_list = User.create_objects_list('Attendance.csv')
 
     @classmethod
@@ -49,7 +49,7 @@ class Menu:
                 ManagerMenu.handle_menu()
             elif user.status == 'employee':
                 EmployeeMenu.handle_menu()
-            elif user.status == 'mentor':
+            elif user.status == 'Mentor':
                 MentorMenu.handle_menu()
             elif user.status == 'student':
                 print('YEEEESSSS')

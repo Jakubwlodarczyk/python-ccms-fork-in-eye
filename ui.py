@@ -101,3 +101,23 @@ class Ui:
                   person.name,
                   person.surname,
                   person.email)
+
+    @staticmethod
+    def print_submissions_list(submission_list, title):
+        """
+        :param submission_list: (list) list of submissions
+        :param title: (string) heading of list
+        :return: print full list of heading and submissions
+        """
+        os.system("clear")
+        print(title)
+        idx = 1
+        for sub in submission_list:
+            print(idx,
+                  sub.start_date,
+                  sub.end_date,
+                  sub.submission_name,
+                  sub.grade,
+                  sub.github_link,
+                  sub.id)
+            idx += 1
