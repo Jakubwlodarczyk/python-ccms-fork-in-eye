@@ -38,7 +38,7 @@ class Menu:
 
         if not user:
             print('User not found!')
-        elif user_password_check(login, password):
+        elif user:
             print('Hello ' + login)
             if type(user) == Manager:
                 return ManagerMenu()
