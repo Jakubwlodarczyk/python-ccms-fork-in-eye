@@ -1,7 +1,11 @@
 class Common:
+
+
+
+
+
     
-    
-        
+
 
     @staticmethod
     def get_table_from_file(file_name):
@@ -17,7 +21,7 @@ class Common:
         """
         with open(file_name, "r") as file:
             lines = file.readlines()
-        table = [element.replace("\n", "").split(";") for element in lines]
+        table = [element.replace("\n", "").split(",") for element in lines]
         return table
 
 
@@ -39,5 +43,20 @@ class Common:
         """
         with open(file_name, "w") as file:
             for record in table:
-                row = ';'.join(record)
+                row = ','.join(record)
                 file.write(row + "\n")
+
+    def user_check(username, password, users_list):
+        '''
+        Args:
+        username(login) from inputs
+        password from inputs
+        1. Checks if given user exists.
+        2. Checks if password for given user is correct.
+        '''
+
+        # loop through users tables checking if it exists
+        # check the password
+        #
+        pass
+
