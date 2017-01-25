@@ -2,7 +2,7 @@ class User:
     '''
     Parent class for all users to inherit from.
     '''
-
+    all_users =[]
     def __init__(self, name, surname, email, password, status, id):
         self.name = name
         self.surname = surname
@@ -24,9 +24,39 @@ class User:
         if id == '':
             raise ValueError('ID can\'t be empty.')
 
-    def get_all_users(staff_object_list, mentors_object_list, students_object_list, manager_object_list):
+
+    @classmethod
+    def create_objects_list(cls, file_path):
+        object_list = []
+        with open (file_path, "r") as f:
+            for line in f:
+                line = line.split(",")
+                lenght = len(line) -1
+                line[lenght] = line[lenght][:-2]
+                name = line[0]
+                surname = line[1]
+                email =line[2]
+                password = line[3]
+                status = line[4]
+                id = line[5]
+                full_name = name + "_" + surname
+                full_name = cls(name, surname, email, password, status, id)
+                object_list.append(full_name)
+        return object_list
+
+    @classmethod
+    def user_password_check(cls, email, password):
         '''
-        Creates a list of all users to loop through for login and password validation.
+        Args:
+        email(login) from inputs.
+        password from inputs.
+        Checks if given user exists.
+        Checks if password for given user is correct.
         '''
-        all_users = [staff_object_list, mentor_object_list, students_list, manager_object_list]
-        return all_users
+        # people as list of objects
+        # all_users is list containing all the objects
+        for people in cls.all_users:
+            # person as single object
+            for person in people:
+                if person.email == email and person.password == password:
+                    return True
