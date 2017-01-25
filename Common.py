@@ -1,6 +1,4 @@
 class Common:
-
-
     @staticmethod
     def get_table_from_file(file_name):
         """
@@ -17,7 +15,6 @@ class Common:
             lines = file.readlines()
         table = [element.replace("\n", "").split(",") for element in lines]
         return table
-
 
     # write a @table into a file
     #
@@ -40,17 +37,18 @@ class Common:
                 row = ','.join(record)
                 file.write(row + "\n")
 
-    def user_check(username, password, users_list):
+    def user_password_check(login, password, users_list):
         '''
         Args:
-        username(login) from inputs
-        password from inputs
-        1. Checks if given user exists.
-        2. Checks if password for given user is correct.
+        email(login) from inputs.
+        password from inputs.
+        Checks if given user exists.
+        Checks if password for given user is correct.
         '''
-
-        # loop through users tables checking if it exists
-        # check the password
-        #
-        pass
-
+        for objects_list in all_users:
+            for person in objects_list:
+                for data in person:
+                    if data[2] == email and data[3] == password:
+                        return True
+                    else:
+                        return False
