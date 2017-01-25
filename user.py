@@ -1,3 +1,6 @@
+from ui import *
+from Common import *
+
 class User:
     '''
     Parent class for all users to inherit from.
@@ -93,7 +96,7 @@ class User:
             # person as single object
             for person in people:
                 if person.email == email and person.password == password:
-                    return True
+                    return person
 
     def edit_name(self, new_name):
         self.name = new_name
@@ -110,3 +113,14 @@ class User:
     def edit_password(self, new_password):
         self.password = new_password
         Ui.print_error_message("\nPassword has been changed.\n")
+
+    @classmethod
+    def add_person(object_list):
+        data = ui.get_inputs(['Name: ', 'Surname: ', 'email: ', 'Password: ', 'Status: '], "Please provide informations:")
+        id = Common.generate_random_id()
+        new_person = User(data[0], data[1], data[3], data[4], data[5], data[6], id)
+        object_list.append(new_person)
+
+    @classmethod
+    def remove_person():
+        pass
