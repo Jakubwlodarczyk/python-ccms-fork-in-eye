@@ -3,7 +3,7 @@ from submission import Submission
 
 class Student(User):
 
-    submission = Submission()
+    student_list = []
 
     def __init__(self, *args, **kwargs):
         super(Student, self).__init__(*args, **kwargs)

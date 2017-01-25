@@ -36,7 +36,7 @@ class EmployeeMenu:
 
             if chose_option[0] == '1':
                 os.system("clear")
-                print(Ui.print_staff_list(Student.student_list, "List of students:"))
+                Ui.print_staff_list(Student.student_list, "List of students:")
                 Ui.get_inputs([""], "")
 
             elif chose_option[0] == '0':
