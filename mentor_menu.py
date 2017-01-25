@@ -57,5 +57,3 @@ class MentorMenu(Menu):
             else:
                 raise ValueError('Wrong input')
 
-
-MentorMenu.choose_option()

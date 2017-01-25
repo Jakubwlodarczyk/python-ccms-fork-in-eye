@@ -1,11 +1,10 @@
 from user import *
 from submission import *
 
+
 class Student(User):
 
-
     student_list = []
-
 
     def __init__(self, *args, **kwargs):
         super(Student, self).__init__(*args, **kwargs)

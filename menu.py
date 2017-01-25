@@ -1,9 +1,10 @@
 import csv
+import getpass
 import sys
 from user import *
 from Common import *
 from student import *
-from employee import *
+#from employee import *
 from mentor import *
 from manager import *
 from submission import *
@@ -30,8 +31,8 @@ class Menu:
                           Mentor.mentors_list,
                           Student.student_list,
                           Manager.manager_list]
-        # Submission.submission_list = User.create_objects_list('Submissions.csv')
-        # Assignments.assignments_list = User.create_objects_list('Assignments.csv')
+        Submission.submission_list = User.create_submission_list('Submissions.csv')
+        Assignments.assignments_list = User.create_assignments_list('Assignments.csv')
         # Attendance.attendance_list = User.create_objects_list('Attendance.csv')
 
     @classmethod
@@ -45,15 +46,14 @@ class Menu:
         elif user:
             print('Hello, ' + user.name)
             if user.status == 'manager':
-                print(user.status)
                 ManagerMenu.handle_menu()
             elif user.status == 'employee':
-                return EmployeeMenu()
+                EmployeeMenu.handle_menu()
             elif user.status == 'mentor':
-                return MentorMenu()
+                MentorMenu.handle_menu()
             elif user.status == 'student':
                 print('YEEEESSSS')
-                return StudentMenu()
+                StudentMenu.handle_menu()
         return None
 
     def exit_program():  # save csv files
