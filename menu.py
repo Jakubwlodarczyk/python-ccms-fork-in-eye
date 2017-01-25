@@ -24,13 +24,25 @@ class Menu:
         #Submission.create_staff_list()
         #Attendance.create_staff_list()
 
-    @staticmethod
-    def log_in():
-        title = 'Sign in'
-        list_options = []
-        Ui.print_menu(title, list_options, 'exit')
-        login = Ui.get_inputs(['Your email: ', 'Your password: '], "")
-        user = Common.user_password_check(login, password, user_list)
+    @classmethod
+    def log_in(cls):
+        login = Ui.get_inputs(['Your email: '], "")
+        password = Ui.get_inputs(['Your password: '], "")
+        user = Common.user_password_check(login, password)
+
+        if not user:
+            print('User not found!')
+        elif user_password_check(login, password):
+            print('Hello' + login)
+            if type(user) == Manager:
+                return ManagerMenu()
+            elif type(user) == Employee:
+                return EmployeeMenu()
+            elif type(user) == Mentor:
+                return MentorMenu()
+            elif type(user) == Student:
+                return StudentMenu()
+        return None
 
     def exit_program():  # save csv files
         pass
@@ -54,7 +66,6 @@ class Menu:
     def main():
         while True:
             Menu.loading_data()
-            #User.get_all_users(staff_object_list, mentors_object_list, students_object_list, manager_object_list)
             Menu.main_menu()
             try:
                 Menu.choose_option()
