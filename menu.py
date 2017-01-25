@@ -10,6 +10,10 @@ from submission import *
 from assignments import *
 from attendance import *
 from ui import *
+from employee_menu import *
+from manager_menu import *
+from student_menu import *
+from mentor_menu import*
 
 
 class Menu:
