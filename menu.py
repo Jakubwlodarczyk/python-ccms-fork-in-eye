@@ -24,16 +24,17 @@ class Menu:
         #Submission.create_staff_list()
         #Attendance.create_staff_list()
 
+
     @classmethod
     def log_in(cls):
         login = Ui.get_inputs(['Your email: '], "")
         password = Ui.get_inputs(['Your password: '], "")
-        user = Common.user_password_check(login, password)
+        user = User.user_password_check(login, password)
 
         if not user:
             print('User not found!')
         elif user_password_check(login, password):
-            print('Hello' + login)
+            print('Hello ' + login)
             if type(user) == Manager:
                 return ManagerMenu()
             elif type(user) == Employee:
