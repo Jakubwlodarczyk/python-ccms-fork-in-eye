@@ -1,3 +1,5 @@
+from user import *
+
 
 class Employee(User):
     """docs"""
