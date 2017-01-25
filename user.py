@@ -33,6 +33,10 @@ class User:
 
     @classmethod
     def create_objects_list(cls, file_path):
+        '''
+        Arg: file_path.
+        Creates list of person objects from csv file.
+        '''
         object_list = []
         with open(file_path, "r") as f:
             for line in f:
@@ -50,7 +54,7 @@ class User:
                 object_list.append(full_name)
         return object_list
 
-    @classmethod
+
     def user_password_check(cls, email, password):
         '''
         Args:
@@ -68,31 +72,53 @@ class User:
                     return person
 
     def edit_name(self, new_name):
+        '''
+        Allows to change person object's attribute.
+        '''
         self.name = new_name
         Ui.print_error_message("\nName has been changed.\n")
 
     def edit_surname(self, new_surname):
+        '''
+        Allows to change person object's attribute.
+        '''
         self.surname = new_surname
         Ui.print_error_message("\nSurname has been changed.\n")
 
     def edit_email(self, new_email):
+        '''
+        Allows to change person object's attribute.
+        '''
         self.email = new_email
         Ui.print_error_message("\nEmail has been changed.\n")
 
     def edit_password(self, new_password):
+        '''
+        Allows to change person object's attribute.
+        '''
         self.password = new_password
         Ui.print_error_message("\nPassword has been changed.\n")
 
     @classmethod
     def add_person(cls, object_list):
-        data = Ui.get_inputs(['Name: ', 'Surname: ', 'email: ', 'Password: ', 'Status: '],
-                             "Please provide informations:")
-        id = '11111111' #HAVE TO CHANGE IT TO RANDOMLY GENERATED
+        '''
+        Arg: object_list - list of objects (students, mentors etc.).
+        Function allows to add new person object to a list of given type of objects.
+        Returns updated list of objects.
+        '''
+        data = Ui.get_inputs(['Name: ', 'Surname: ', 'email: ', 'Password: ', 'Status: '], "Please provide informations:")
+        id = '11111111'  # HAVE TO CHANGE IT TO RANDOMLY GENERATED
+
         new_person = User(data[0], data[1], data[2], data[3], data[4], id)
         object_list.append(new_person)
 
     @classmethod
     def remove_person(cls, object_list):
+        '''
+        Arg: object_list - list of objects (student, mentors etc.).
+        Allows to remove person object from list of given objects.
+        Returns updated list of objects.
+        '''
         to_remove = Ui.get_inputs(['-> '], "Enter ID of person you want to fire:")
         for person in object_list:
             if person.id == to_remove[0]:

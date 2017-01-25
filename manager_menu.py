@@ -26,30 +26,35 @@ class ManagerMenu(Menu):
             inputs = Ui.get_inputs(["Please enter a number: "], "")
             option = inputs[0]
             if option == '1':
+                # show regular employees
                 title = 'Regular employees list:'
                 Ui.print_staff_list(Employee.employees_list, title)
             elif option == '2':
+                # add regular employee
                 User.add_person(Employee.employees_list)
             elif option == '3':
                 # edit employees data
                 pass
             elif option == '4':
+                # fire a regular employee
                 User.remove_person(Employee.employees_list)
-                pass
             elif option == '5':
-                # view mentors list
-                pass
+                # show mentors
+                title = 'Mentors list:'
+                Ui.print_staff_list(Mentor.mentors_list, title)
             elif option == '6':
+                # add mentor
                 User.add_person(Mentor.mentors_list)
             elif option == '7':
                 # edit mentor's data
                 pass
             elif option == '8':
                 # fire mentor
-                pass
+                User.remove_person(Mentor.mentors_list)
             elif option == '9':
                 # view student list
-                pass
+                title = 'Students list:'
+                Ui.print_staff_list(Student.student_list, title)
             elif option == '0':
                 #common.write_table_to_file('Mentors.csv')
                 #common.write_table_to_file('Regular_employees.csv')
