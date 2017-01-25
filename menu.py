@@ -7,7 +7,7 @@ from employee import *
 from mentor import *
 from manager import *
 from submission import *
-from assigment import *
+from assignments import *
 from attendance import *
 from ui import *
 
@@ -26,9 +26,9 @@ class Menu:
                           Mentor.mentors_list,
                           Student.student_list,
                           Manager.manager_list]
-        Submission.submission_list = User.create_objects_list('Submissions.csv')
-        Assignments.assignments_list = User.create_objects_list('Assignments.csv')
-        Attendance.attendance_list = User.create_objects_list('Attendance.csv')
+        # Submission.submission_list = User.create_objects_list('Submissions.csv')
+        # Assignments.assignments_list = User.create_objects_list('Assignments.csv')
+        # Attendance.attendance_list = User.create_objects_list('Attendance.csv')
 
     @classmethod
     def log_in(cls):
