@@ -10,7 +10,7 @@ class ManagerMenu(Menu):
         '''
         Allows to choose an action to perform.
         '''
-        options = ["View all employees list",
+        options = ["View regular employees list",
                    "Edit employees' data",
                    "Fire an employee",
                    "View mentors list",
@@ -22,7 +22,7 @@ class ManagerMenu(Menu):
             inputs = Ui.get_inputs(["Please enter a number: "], "")
             option = inputs[0]
             if option == '1':
-                # view all employees list
+                # view regular employees list
                 pass
             elif option == '2':
                 # edit employees data
