@@ -12,14 +12,16 @@ class Student(User):
     student_list = []
 
 
+     def view_grades(self, grades):
+        pass
 
-
-    def submit an assignment(self, assignment):
+    def submit_assignment(self, assignment):
         pass
         print('Assignment has been submitted')
 
-    def view my grades(self, grades):
-        pass
+   
+
+    
 
 
    
