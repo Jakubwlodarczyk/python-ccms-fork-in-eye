@@ -1,6 +1,3 @@
-from user import User
-from ui import *
-
 
 class Employee(User):
     """docs"""

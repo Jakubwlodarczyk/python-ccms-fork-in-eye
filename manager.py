@@ -6,7 +6,7 @@ class Manager(User):
     Class manager
     parent class: User
     """
-
+    manager_list = []
     def __init__(self, name, surname, email, password, status, manager_id):
         User.__init__(self, name, surname, email, password)
         self.status = status

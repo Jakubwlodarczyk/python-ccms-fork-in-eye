@@ -3,7 +3,7 @@ from Common import *
 
 class Submission:
 
-    # submission_list = []
+    submission_list = []
 
     def __init__(self):
         self.sub_list = []

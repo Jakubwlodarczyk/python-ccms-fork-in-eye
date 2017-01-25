@@ -1,4 +1,4 @@
 
 
 class Attendance:
-    pass
+    attendance_list = []
