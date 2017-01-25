@@ -1,4 +1,3 @@
-from student import *
 
 class Ui:
     '''

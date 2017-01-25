@@ -1,6 +1,7 @@
 from ui import *
 from Common import *
 
+
 class User:
     '''
     Parent class for all users to inherit from.
