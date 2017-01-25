@@ -45,14 +45,14 @@ class Menu:
         elif user:
             print('Hello, ' + user.name)
             if user.status == 'manager':
-                return ManagerMenu()
+                ManagerMenu.handle_menu()
             elif user.status == 'employee':
-                return EmployeeMenu()
+                EmployeeMenu.handle_menu()
             elif user.status == 'mentor':
-                return MentorMenu()
+                MentorMenu.handle_menu()
             elif user.status == 'student':
                 print('YEEEESSSS')
-                return StudentMenu()
+                StudentMenu.handle_menu()
         return None
 
     def exit_program():  # save csv files
