@@ -2,7 +2,8 @@ class User:
     '''
     Parent class for all users to inherit from.
     '''
-    all_users =[]
+    all_users = []
+
     def __init__(self, name, surname, email, password, status, id):
         self.name = name
         self.surname = surname
@@ -24,18 +25,17 @@ class User:
         if id == '':
             raise ValueError('ID can\'t be empty.')
 
-
     @classmethod
     def create_objects_list(cls, file_path):
         object_list = []
-        with open (file_path, "r") as f:
+        with open(file_path, "r") as f:
             for line in f:
                 line = line.split(",")
-                lenght = len(line) -1
+                lenght = len(line) - 1
                 line[lenght] = line[lenght][:-2]
                 name = line[0]
                 surname = line[1]
-                email =line[2]
+                email = line[2]
                 password = line[3]
                 status = line[4]
                 id = line[5]
@@ -60,3 +60,19 @@ class User:
             for person in people:
                 if person.email == email and person.password == password:
                     return True
+
+    def edit_name(self, new_name):
+        self.name = new_name
+        Ui.print_error_message("\nName has been changed.\n")
+
+    def edit_surname(self, new_surname):
+        self.surname = new_surname
+        Ui.print_error_message("\nSurname has been changed.\n")
+
+    def edit_email(self, new_email):
+        self.email = new_email
+        Ui.print_error_message("\nSurname has been changed.\n")
+
+    def edit_password(self, new_password):
+        self.password = new_password
+        Ui.print_error_message("\nPassword has been changed.\n")
