@@ -120,11 +120,11 @@ class Employee(User):
 
 
 
-
-
-ja = Employee("krzysiek", "dzioba", "skidzioba@interia.pl", "maslo", "student", "wegf343")
-ja.create_staff_list()
-Employee.update_employees_list()
-print(Employee.employees_list)
-print(Employee.employees_list[0])
-Employee.show_employees()
+#
+#
+# ja = Employee("krzysiek", "dzioba", "skidzioba@interia.pl", "maslo", "student", "wegf343")
+# ja.create_staff_list()
+# Employee.update_employees_list()
+# print(Employee.employees_list)
+# print(Employee.employees_list[0])
+# Employee.show_employees()
