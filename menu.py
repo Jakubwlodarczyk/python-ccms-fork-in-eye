@@ -1,9 +1,10 @@
 import csv
 import sys
 from user import *
+from Common import *
 #from student import *
-#from employee import *
-#from mentor import *
+from employee import *
+from mentor import *
 #from menager import *
 #from submission import *
 #from assigment import *
@@ -11,23 +12,27 @@ from user import *
 from ui import *
 
 
-
 class Menu:
-    pass
+    @staticmethod
+    def loading_data():
+        #User.create_staff_list()
+        Employee.create_staff_list()
+        #Mentor.create_staff_list()
+        #Student.create_staff_list()
+        #Manager.create_staff_list()
+        #Assigment.create_staff_list()
+        #Submission.create_staff_list()
+        #Attendance.create_staff_list()
 
     @staticmethod
     def log_in():
-        title = ['USER LOGIN']
-        list_options = ['Enter your email']
+        title = 'Sign in'
+        list_options = []
         Ui.print_menu(title, list_options, 'exit')
-        login = Ui.get_inputs(['Your email: '], "")
-        user = User.get_user(login)
+        login = Ui.get_inputs(['Your email: ', 'Your password: '], "")
+        user = Common.user_password_check(login, password, user_list)
 
     def exit_program():  # save csv files
-        pass
-
-    @staticmethod
-    def loading_data():  # load all data
         pass
 
     @classmethod
@@ -48,6 +53,8 @@ class Menu:
     @staticmethod
     def main():
         while True:
+            Menu.loading_data()
+            #User.get_all_users(staff_object_list, mentors_object_list, students_object_list, manager_object_list)
             Menu.main_menu()
             try:
                 Menu.choose_option()
