@@ -26,8 +26,8 @@ class Menu:
                           Mentor.mentors_list,
                           Student.student_list,
                           Manager.manager_list]
-        # Submission.submission_list = User.create_objects_list('Submissions.csv')
-        # Assignments.assignments_list = User.create_objects_list('Assignments.csv')
+        Submission.submission_list = User.create_submission_list('Submissions.csv')
+        Assignments.assignments_list = User.create_assignments_list('Assignments.csv')
         # Attendance.attendance_list = User.create_objects_list('Attendance.csv')
 
     @classmethod

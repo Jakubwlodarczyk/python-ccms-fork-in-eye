@@ -45,6 +45,40 @@ class User:
         return object_list
 
     @classmethod
+    def create_assignments_list(cls, file_path):
+        assignment_list = []
+        with open(file_path, "r") as f:
+            for line in f:
+                line = line.split(",")
+                length = len(line) - 1
+                line[length] = line[length][:-2]
+                start_date = line[0]
+                end_date = line[1]
+                assignment_name = line[2]
+                full_assignment_name = cls(start_date, end_date, assignment_name)
+                assignment_list.append(full_assignment_name)
+        return assignment_list
+
+    @classmethod
+    def create_submission_list(cls, file_path):
+        submission_list = []
+        with open(file_path, "r") as f:
+            for line in f:
+                line = line.split(",")
+                length = len(line) - 1
+                line[length] = line[length][:-2]
+                start_date = line[0]
+                end_date = line[1]
+                submission_name = line[2]
+                grade = line[3]
+                github_link = line[4]
+                id = line[5]
+                full_submission_name = cls(start_date, end_date, submission_name, grade, github_link, id)
+                submission_list.append(full_submission_name)
+        return submission_list
+
+
+    @classmethod
     def user_password_check(cls, email, password):
         '''
         Args:
