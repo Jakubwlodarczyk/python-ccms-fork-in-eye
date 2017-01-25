@@ -23,3 +23,10 @@ class User:
             raise ValueError('Status can\'t be empty.')
         if id == '':
             raise ValueError('ID can\'t be empty.')
+
+    def get_all_users(staff_object_list, mentors_object_list, students_object_list, manager_object_list):
+        '''
+        Creates a list of all users to loop through for login and password validation.
+        '''
+        all_users = [staff_object_list, mentor_object_list, students_list, manager_object_list]
+        return all_users
