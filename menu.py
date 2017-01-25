@@ -39,7 +39,7 @@ class Menu:
         if not user:
             print('User not found!')
         elif user:
-            print('Hello ' + user.name)
+            print('Hello, ' + user.name)
             if user.status == 'manager':
                 return ManagerMenu()
             elif user.status == 'employee':

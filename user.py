@@ -59,7 +59,7 @@ class User:
             # person as single object
             for person in people:
                 if person.email == email and person.password == password:
-                    return True
+                    return person
 
     def edit_name(self, new_name):
         self.name = new_name

@@ -1,6 +1,7 @@
+import random
+import string
+
 class Common:
-
-
     @staticmethod
     def get_table_from_file(file_name):
         """
@@ -18,10 +19,6 @@ class Common:
         table = [element.replace("\n", "").split(",") for element in lines]
         return table
 
-    # write a @table into a file
-    #
-    # @file_name: string
-    # @table: list of lists of strings
     @staticmethod
     def write_table_to_file(file_name, table):
         """
@@ -38,3 +35,30 @@ class Common:
             for record in table:
                 row = ','.join(record)
                 file.write(row + "\n")
+
+    @staticmethod
+    def generate_random_id():
+        """
+        Generates random and unique string. Used for id/key generation.
+        """
+
+        characters = [['!', '@', '#', '$', '%', '^', '&', '*'], [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]]
+        characters.append(list(string.ascii_uppercase))
+        characters.append(list(string.ascii_lowercase))
+        generated = ''
+        is_unique = False
+        id_table = []
+        for element in table:
+            id_table.append(element)
+
+        while not is_unique:
+            is_unique = True
+            for i in range(2):
+                generated += str(characters[0][random.randint(0, len(characters[0])-1)])
+                generated += str(characters[1][random.randint(0, len(characters[1])-1)])
+                generated += str(characters[2][random.randint(0, len(characters[2])-1)])
+                generated += str(characters[3][random.randint(0, len(characters[3])-1)])
+            if generated in id_table:
+                is_unique = False
+
+        return generated
