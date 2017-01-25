@@ -1,20 +1,53 @@
 from user import User
 from ui import *
 
+
 class Employee(User):
     """docs"""
 
+    employees_list = []
+
     def __init__(self, *args, **kwargs):
         super(Employee, self).__init__(*args, **kwargs)
+
+    def __str__(self):
+        return "{} {}, email: {}".format(self.name, self.surname, self.email)
+
+    @classmethod
+    def update_employees_list(cls):
+        cls.employees_list = []
+        #cls.employees_list.extend(Mentor.create_mentors_object_list())
+        cls.employees_list.extend(Employee.create_staff_list())
+
+    @classmethod
+    def create_staff_list(cls):
+        staff_object_list = []
+        with open ("Regular_employees.csv", "r") as staff_file:
+            for line in staff_file:
+                line = line.split(",")
+                lenght = len(line) -1
+                line[lenght] = line[lenght][:-2]
+                name = line[0]
+                surname = line[1]
+                email =line[2]
+                password = line[3]
+                status = line[4]
+                id = line[5]
+                employee_name = name + "_" + surname
+                employee_name = cls(name, surname, email, password, status, id)
+                staff_object_list.append(employee_name)
+        return staff_object_list
+
+
 
 
     @staticmethod
     def show_employees():
         """docs"""
-        print(Employee.Employees_list)
+        print(Employee.employees_list)
 
 
-    def edit_employee_data(self, employee_id):
+    def edit_employee_data(self): # ADD employee_id ATTRIBUTE
         """docs"""
 
         # Here search an employee object with employee_id id
@@ -42,11 +75,26 @@ class Employee(User):
            # OBJECT.edit_password()  # REPLACE "OBJECT"
         elif option == '0':
             os.system('clear')
-              # GO BACK method
+              # GO BACK method (or nothing)
 
-    def remove_employee(self):
+    @staticmethod
+    def remove_employee():
         """"docs"""
-        pass
+        print("Which employee you want to remove?\n\n")
+        for number, employee in enumerate(Employee.employees_list):
+            print("  {}: {}".format(number + 1, employee))
+        print("  0: Go back\n")
+        option = int(input("Number: ")) # add error handling
+        for number, employee in enumerate(Employee.employees_list):
+            if number + 1 == option:
+                employee.remove_employee_now()
+
+    def remove_employee_now(self):
+        # if self in Mentor.mentors_object_list: #  UNHASH IT LATER
+        #     Mentor.mentors_object_list.remove(self)
+        if self in Employee.employees_list:
+            Employee.employees_list.remove(self)
+
 
     def edit_name(self):
         pass
@@ -58,5 +106,8 @@ class Employee(User):
 
 
 
-ja = Employee("krzysiek", "dzioba", "skidzioba@interia.pl", "maslo")
-ja.edit_employee()
+ja = Employee("krzysiek", "dzioba", "skidzioba@interia.pl", "maslo", "student", "wegf343")
+ja.create_staff_list()
+Employee.update_employees_list()
+print(Employee.employees_list)
+print(Employee.employees_list[0])
