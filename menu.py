@@ -2,10 +2,10 @@ import csv
 import sys
 from user import *
 from Common import *
-#from student import *
+from student import *
 from employee import *
 from mentor import *
-#from menager import *
+from manager import *
 #from submission import *
 #from assigment import *
 #from attendance import *
@@ -15,22 +15,32 @@ from ui import *
 class Menu:
     @staticmethod
     def loading_data():
-        #User.create_staff_list()
-        Employee.create_staff_list()
-        #Mentor.create_staff_list()
-        #Student.create_staff_list()
-        #Manager.create_staff_list()
-        #Assigment.create_staff_list()
-        #Submission.create_staff_list()
-        #Attendance.create_staff_list()
+        '''
+        Creates objects from csv and then a list of all users to loop through for login and password validation.
+        '''
+        Employee.employees_list = User.create_objects_list('Regular_employees.csv')
+        Mentor.mentors_list = User.create_objects_list('Mentors.csv')
+        Student.student_list = User.create_objects_list('Student.csv')
+        Manager.manager_list = User.create_objects_list('Manager.csv')
+        User.all_users = [Employee.employees_list,
+                          Mentor.mentors_list,
+                          Student.student_list,
+                          Manager.manager_list]
 
-    @staticmethod
-    def log_in():
+    @classmethod
+    def log_in(cls):
         title = 'Sign in'
         list_options = []
         Ui.print_menu(title, list_options, 'exit')
-        login = Ui.get_inputs(['Your email: ', 'Your password: '], "")
-        user = Common.user_password_check(login, password, user_list)
+        login = Ui.get_inputs(['Your email: '], "")
+        password = Ui.get_inputs(['Your password: '], '')
+        user = User.user_password_check(login[0], password[0])
+
+        # if user:
+        #     print('USER FOUND YAY')
+        # elif not user:
+        #     print('NO USER')
+
 
     def exit_program():  # save csv files
         pass
@@ -54,7 +64,6 @@ class Menu:
     def main():
         while True:
             Menu.loading_data()
-            #User.get_all_users(staff_object_list, mentors_object_list, students_object_list, manager_object_list)
             Menu.main_menu()
             try:
                 Menu.choose_option()
