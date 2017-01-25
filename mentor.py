@@ -2,4 +2,8 @@ from employee import Employee
 
 
 class Mentor(Employee):
-    def __init__(self, self, name, surname, email, password, status?):
+
+    mentor_list = []
+
+    def __init__(self, *args, **kwargs):
+        super(Mentor, self).__init__(*args, **kwargs)

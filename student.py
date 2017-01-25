@@ -5,13 +5,13 @@ class Student(User):
 
     student_list = []
 
+    def __init__(self, *args, **kwargs):
+        super(Student, self).__init__(*args, **kwargs)
 
-    def __init__()
-    __init__(self, name, surname, email, password)
-
-
-    def submit an assignment(self):
+    @staticmethod
+    def submit_an_assignment(self):
         pass
 
-    def view my grades(self):
+    @staticmethod
+    def view_my_grades(self):
         pass
