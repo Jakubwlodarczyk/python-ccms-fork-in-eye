@@ -1,9 +1,10 @@
 import csv
 import sys
 from user import *
+from Common import *
 #from student import *
 from employee import *
-#from mentor import *
+from mentor import *
 #from menager import *
 #from submission import *
 #from assigment import *
@@ -53,6 +54,7 @@ class Menu:
     def main():
         while True:
             Menu.loading_data()
+            #User.get_all_users(staff_object_list, mentors_object_list, students_object_list, manager_object_list)
             Menu.main_menu()
             try:
                 Menu.choose_option()
