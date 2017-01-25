@@ -37,7 +37,7 @@ class Common:
                 file.write(row + "\n")
 
     @staticmethod
-    def generate_random_id():
+    def generate_random_id(table):
         """
         Generates random and unique string. Used for id/key generation.
         """
