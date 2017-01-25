@@ -68,7 +68,7 @@ class Mentor(Employee):
                 full_submission_name = cls(start_date, end_date, submission_name, grade, github_link, id)
                 submission_list.append(full_submission_name)
         return submission_list
-
+"""
     @classmethod
     def user_password_check(cls, email, password):
         '''
@@ -114,7 +114,4 @@ class Mentor(Employee):
         to_remove = Ui.get_inputs(['-> '], "Enter ID of person you want to fire:")
         for person in mentors_list:
             if person.id == to_remove[0]:
-                mentors_list.remove(person)
-
-new = Mentor('ika', 'grabon', 'ika@ika', 'bla', 'mentor', '2222')
-print(Mentor.name)
+                mentors_list.remove(person)"""
