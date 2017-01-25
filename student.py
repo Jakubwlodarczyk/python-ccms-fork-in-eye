@@ -1,12 +1,11 @@
-from user import User
-from submission import Submission
+from user import *
+from submission import *
 
 class Student(User):
 
 
     student_list = []
 
-    submission = Submission()
 
     def __init__(self, *args, **kwargs):
         super(Student, self).__init__(*args, **kwargs)
@@ -20,7 +19,7 @@ class Student(User):
     def view_grades(self):
 
         # must get the submissions list from csv, where are added students submissions
-        grades = self.submission.submission_list('Submissions.csv')
+        grades = Submission.submission_list('Submissions.csv')
         return grades
     def submit_assignment(self, assignment):
 
