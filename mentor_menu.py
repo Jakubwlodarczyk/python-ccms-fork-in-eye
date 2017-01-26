@@ -41,11 +41,11 @@ class MentorMenu(Menu):
 
             elif chose_option[0] == '5':
                 # add a student to a class
-                User.add_person(Student.student_list)
+                Student.add_person(Student.student_list)
 
             elif chose_option[0] == '6':
                 # remove student from class
-                User.remove_person(Student.student_list)
+                Student.remove_person(Student.student_list)
 
             elif chose_option[0] == '7':
                 # edit student's data

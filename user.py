@@ -54,7 +54,7 @@ class User:
                 object_list.append(full_name)
         return object_list
 
-
+    @classmethod
     def user_password_check(cls, email, password):
         '''
         Args:
@@ -109,7 +109,7 @@ class User:
         data = Ui.get_inputs(['Name: ', 'Surname: ', 'email: ', 'Password: ', 'Status: '], "Please provide informations:")
         id = '11111111'  # HAVE TO CHANGE IT TO RANDOMLY GENERATED
 
-        new_person = User(data[0], data[1], data[2], data[3], data[4], id)
+        new_person = cls(data[0], data[1], data[2], data[3], data[4], id)
         object_list.append(new_person)
 
     @classmethod
