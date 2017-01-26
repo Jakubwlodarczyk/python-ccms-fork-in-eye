@@ -54,9 +54,10 @@ class MentorMenu:
                 Student.data_to_change(person)
 
             elif chose_option[0] == '0':
-                # common.write_table_to_file('Attendance.csv')
-                # common.write_table_to_file('Student.csv')
-                # common.write_table_to_file('Submissions.csv')
+                # save data to files, and exit
+                Common.write_submission_to_file('Submissions.csv', Submission.submission_list)
+                Common.write_table_to_file('Student.csv', Student.student_list)
+                Common.write_attendance_to_file('Attendance.csv', Attendance.attendances_list)
                 Common.write_assignment_to_file('Assignments.csv', Assignments.assignments_list)
                 sys.exit()
 

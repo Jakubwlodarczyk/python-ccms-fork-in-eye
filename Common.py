@@ -4,23 +4,6 @@ from ui import *
 
 
 class Common:
-    @staticmethod
-    def get_table_from_file(file_name):
-        """
-        Reads csv file and returns it as a list of lists.
-        Lines are rows columns are separated by ";"
-
-        Args:
-            file_name (str): name of file to read
-
-        Returns:
-            List of lists read from a file.
-        """
-        with open(file_name, "r") as file:
-            lines = file.readlines()
-        table = [element.replace("\n", "").split(",") for element in lines]
-        return table
-
     @classmethod
     def write_table_to_file(cls, file_name, obj_list):  # for persons
         """
@@ -51,6 +34,19 @@ class Common:
             for obj in obj_list:
                 obj_atrr = [obj.start_date, obj.end_date, obj.assignment_name]
                 f.write(','.join(obj_atrr))
+
+    @classmethod
+    def write_attendance_to_file(cls, file_name, obj_list):
+        with open(file_name, "w") as f:
+            for obj in obj_list:
+                obj_atrr = [obj.data, obj.status, obj.id]
+                f.write(','.join(obj_atrr))
+
+    @classmethod
+    def write_submission_to_file(cls, file_name, obj_list):
+        for obj in obj_list:
+            obj_atrr = [obj.start_date, obj.end_date, obj.submission_name, obj.grade, obj.github_link, obj.id]
+            f.write(','.join(obj_atrr))
 
     @staticmethod
     def error_integer_handling(chosen_option, value_of_possible_options):
