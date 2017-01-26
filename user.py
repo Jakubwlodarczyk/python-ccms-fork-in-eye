@@ -2,6 +2,7 @@ from ui import *
 from Common import *
 from assignments import *
 from submission import *
+import time
 
 
 class User:
@@ -75,33 +76,82 @@ class User:
                 if person.email == email and person.password == password:
                     return person
 
-    def edit_name(self, new_name):
+    @classmethod
+    def choose_person_to_change_data(cls, object_list):
+        '''
+        Handles choosing person to change his or her data.
+        '''
+        choosing = True
+        while choosing:
+            option = Ui.get_inputs(['Enter person ID:'], "Whose data you want to change?")
+            for person in object_list:
+                if option[0] == person.id:
+                    return person
+                else:
+                    Ui.print_error_message('No id match.')
+                    break
+
+    @classmethod
+    def data_to_change(cls, person):
+        '''
+        Handles choosing which data to change.
+        '''
+        choosing = True
+        while choosing:
+            Ui.print_data_list('Data list:')
+            choice = Ui.get_inputs(['Enter a number: '], 'Which data you want to edit?')
+            if choice[0] == '1':
+                return cls.edit_name(person)
+            elif choice[0] == '2':
+                return cls.edit_surname(person)
+            elif choice[0] == '3':
+                return cls.edit_email(person)
+            else:
+                Ui.print_error_message('There is no such option.')
+                time.sleep(3)
+
+    @classmethod
+    def edit_name(cls, person):
         '''
         Allows to change person object's attribute.
         '''
-        self.name = new_name
+        new_name = Ui.get_inputs(['Enter new name: '], " ")
+        person.name = new_name[0]
         Ui.print_error_message("\nName has been changed.\n")
 
-    def edit_surname(self, new_surname):
+    @classmethod
+    def edit_surname(cls, person):
         '''
         Allows to change person object's attribute.
         '''
-        self.surname = new_surname
+        new_surname = Ui.get_inputs(['Enter new surname: '], " ")
+        person.surname = new_surname[0]
         Ui.print_error_message("\nSurname has been changed.\n")
 
-    def edit_email(self, new_email):
+    @classmethod
+    def edit_email(cls, person):
         '''
         Allows to change person object's attribute.
         '''
-        self.email = new_email
+        new_email = Ui.get_inputs(['Enter new email: '], " ")
+        person.email = new_email[0]
         Ui.print_error_message("\nEmail has been changed.\n")
 
-    def edit_password(self, new_password):
+    @classmethod
+    def edit_password(cls, person):
         '''
         Allows to change person object's attribute.
         '''
-        self.password = new_password
-        Ui.print_error_message("\nPassword has been changed.\n")
+        choosing = True
+        while choosing:
+            new_password = Ui.get_inputs(['Enter new password: '], " ")
+            confirm_password = Ui.get_inputs(['Enter password again: '], " ")
+
+            if new_password[0] == confirm_password[0]:
+                person.email = new_password[0]
+                Ui.print_error_message("\nPassword has been changed.\n")
+            else:
+                Ui.print_error_message("\nEntered passwords are not identical.\n")
 
     @classmethod
     def add_person(cls, object_list):
@@ -110,7 +160,9 @@ class User:
         Function allows to add new person object to a list of given type of objects.
         Returns updated list of objects.
         '''
-        data = Ui.get_inputs(['Name: ', 'Surname: ', 'email: ', 'Password: ', 'Status: '], "Please provide informations:")
+        data = Ui.get_inputs(['Name: ', 'Surname: ',
+                             'email: ', 'Password: ', 'Status: '],
+                             "Please provide informations:")
         id = '11111111'  # HAVE TO CHANGE IT TO RANDOMLY GENERATED
 
         new_person = cls(data[0], data[1], data[2], data[3], data[4], id)

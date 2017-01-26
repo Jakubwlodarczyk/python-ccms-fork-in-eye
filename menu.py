@@ -23,10 +23,10 @@ class Menu:
         '''
         Creates objects from csv and then a list of all users to loop through for login and password validation.
         '''
-        Employee.employees_list = User.create_objects_list('Regular_employees.csv')
-        Mentor.mentors_list = User.create_objects_list('Mentors.csv')
-        Student.student_list = User.create_objects_list('Student.csv')
-        Manager.manager_list = User.create_objects_list('Manager.csv')
+        Employee.employees_list = Employee.create_objects_list('Regular_employees.csv')
+        Mentor.mentors_list = Mentor.create_objects_list('Mentors.csv')
+        Student.student_list = Student.create_objects_list('Student.csv')
+        Manager.manager_list = Manager.create_objects_list('Manager.csv')
         User.all_users = [Employee.employees_list,
                           Mentor.mentors_list,
                           Student.student_list,

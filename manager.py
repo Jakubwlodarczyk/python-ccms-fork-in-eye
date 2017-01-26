@@ -6,7 +6,6 @@ class Manager(User):
     Class manager
     parent class: User
     """
-
     manager_list = []
 
     def __init__(self, *args, **kwargs):
@@ -14,4 +13,3 @@ class Manager(User):
 
     def __str__(self):
         return "{} {}".format(self.name, self.surname)
-
