@@ -31,26 +31,26 @@ class ManagerMenu(Menu):
                 Ui.print_staff_list(Employee.employees_list, title)
             elif option == '2':
                 # add regular employee
-                User.add_person(Employee.employees_list)
+                Employee.add_person(Employee.employees_list)
             elif option == '3':
                 # edit employees data
                 pass
             elif option == '4':
                 # fire a regular employee
-                User.remove_person(Employee.employees_list)
+                Employee.remove_person(Employee.employees_list)
             elif option == '5':
                 # show mentors
                 title = 'Mentors list:'
                 Ui.print_staff_list(Mentor.mentors_list, title)
             elif option == '6':
                 # add mentor
-                User.add_person(Mentor.mentors_list)
+                Mentor.add_person(Mentor.mentors_list)
             elif option == '7':
                 # edit mentor's data
                 pass
             elif option == '8':
                 # fire mentor
-                User.remove_person(Mentor.mentors_list)
+                Mentor.remove_person(Mentor.mentors_list)
             elif option == '9':
                 # view student list
                 title = 'Students list:'
