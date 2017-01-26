@@ -3,6 +3,7 @@ import sys
 import os
 from student import Student
 
+
 class EmployeeMenu:
 
     @staticmethod
@@ -32,7 +33,6 @@ class EmployeeMenu:
                 print("It must be integer between 1 and " + str(len(list_options)) + " or 0.")
                 m = Ui.get_inputs([""], "")
                 continue
-
 
             if chose_option[0] == '1':
                 os.system("clear")

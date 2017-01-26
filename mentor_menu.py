@@ -1,10 +1,10 @@
-from menu import *
 from student import *
 from user import *
 from submission import *
+import sys
 
 
-class MentorMenu(Menu):
+class MentorMenu:
     """
     Handles navigation menu after logging as mentor
     """

@@ -1,13 +1,12 @@
-from menu import *
-from ui import *
 from Common import *
 import sys
 
 
-class ManagerMenu(Menu):
+class ManagerMenu:
     '''
     Handles navigating the menu after logging in as Manager.
     '''
+    @staticmethod
     def handle_menu():
         '''
         Allows to choose an action to perform.
