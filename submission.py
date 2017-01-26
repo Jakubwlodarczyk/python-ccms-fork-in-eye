@@ -2,6 +2,10 @@ from ui import *
 
 
 class Submission:
+    """
+    class Submission
+    handle submissions objects (submissions list)
+    """
 
     submission_list = []
 
@@ -15,7 +19,9 @@ class Submission:
 
     @classmethod
     def grade_an_submission(cls):
-
+        """
+        method change the argument (grade) of object from submissions list
+        """
         Ui.print_submissions_list(Submission.submission_list, "Submission list:")
         sub_to_grade = Ui.get_inputs(['Submission name: ', 'ID: '],
                                      'Type submission name, and student ID which you want to grade: ')
@@ -39,6 +45,11 @@ class Submission:
 
     @classmethod
     def create_submission_list(cls, file_path):
+        """
+        reads the file with data, and creates the list of objects
+        :param file_path: the path to file
+        :return: (list) list of objects of submissions
+        """
         submission_list = []
         with open(file_path, "r") as f:
             my_lines = f.readlines()

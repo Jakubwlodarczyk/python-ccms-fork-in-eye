@@ -1,6 +1,7 @@
 from student import *
 from user import *
 from submission import *
+from attendance import *
 import sys
 
 
@@ -26,7 +27,7 @@ class MentorMenu:
                 Ui.print_staff_list(Student.student_list, "List of students")
 
             elif chose_option[0] == '2':
-                # add an assignment
+                # add an assignment to assignment list
                 Assignments.add_an_assignment()
 
             elif chose_option[0] == '3':
@@ -36,6 +37,7 @@ class MentorMenu:
             elif chose_option[0] == '4':
                 # check attendance of students
                 pass
+                # Attendance.attendance_mini_menu()
 
             elif chose_option[0] == '5':
                 # add a student to a class
@@ -46,17 +48,13 @@ class MentorMenu:
                 Student.remove_person(Student.student_list)
 
             elif chose_option[0] == '7':
-                title = 'Students:'
-                Ui.print_staff_list(Employee.employees_list, title)
-                person = Employee.choose_person_to_change_data(Employee.employees_list)
-                Employee.data_to_change(person)
+                # edit students data
+                Ui.print_staff_list(Student.student_list, "List of students")
+                person = Student.choose_person_to_change_data(Student.student_list)
+                Student.data_to_change(person)
 
             elif chose_option[0] == '0':
-                # common.write_table_to_file('Assignments.csv')
                 # common.write_table_to_file('Attendance.csv')
-                # common.write_table_to_file('Manager.csv')
-                # common.write_table_to_file('Mentors.csv')
-                # common.write_table_to_file('Regular_employees.csv')
                 # common.write_table_to_file('Student.csv')
                 # common.write_table_to_file('Submissions.csv')
                 Common.write_assignment_to_file('Assignments.csv', Assignments.assignments_list)

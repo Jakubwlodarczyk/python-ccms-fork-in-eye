@@ -2,10 +2,11 @@ from employee import *
 
 
 class Mentor(Employee):
-    '''
-    Class Mentor
-    Parent class: User
-    '''
+    """
+    Class: mentor
+    parent class: Employee
+    """
+
     mentors_list = []
 
     def __init__(self, *args, **kwargs):
