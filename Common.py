@@ -39,7 +39,7 @@ class Common:
                 f.write(','.join(obj_atrr) + '\n')
 
     @classmethod
-    def write_assigment_to_file(cls, file_name, obj_list):
+    def write_assignment_to_file(cls, file_name, obj_list):
         """
       Writes list of lists into a csv file.
         Args:
