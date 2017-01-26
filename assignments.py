@@ -21,9 +21,11 @@ class Assignments:
 
     @classmethod
     def add_an_assignment(cls):
-        add_an_assignment_input = Ui.get_inputs(['start_date (dd-mm-yyyy): ', 'end_date (dd-mm-yyyy): ',
-                                                 'assignment_name: '], "Please provide the assignment: ")
-        Assignments.assignments_list.append(add_an_assignment_input)
+        data = Ui.get_inputs(['start_date (dd-mm-yyyy): ', 'end_date (dd-mm-yyyy): ', 'assignment_name: '],
+                             "Please provide the assignment: ")
+
+        new_assignment = cls(data[0], data[1], data[2])
+        Assignments.assignments_list.append(new_assignment)
 
     @classmethod
     def create_assignments_list(cls, file_path):
@@ -40,6 +42,6 @@ class Assignments:
                 start_date = line[0]
                 end_date = line[1]
                 assignment_name = line[2]
-                full_assignment_name = (start_date, end_date, assignment_name)
+                full_assignment_name = cls(start_date, end_date, assignment_name)
                 assignments_list.append(full_assignment_name)
         return assignments_list
