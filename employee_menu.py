@@ -3,6 +3,7 @@ from Common import *
 import sys
 from student import *
 
+
 class EmployeeMenu:
     '''
     Handles navigating the menu after logging in as regular Employee.

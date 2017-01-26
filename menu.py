@@ -37,6 +37,10 @@ class Menu:
 
     @classmethod
     def log_in(cls):
+        '''
+        Handles logging in as user based on given email and password.
+        Redirects to specific submenu.
+        '''
         login = Ui.get_inputs(['Please enter your email: '], "")
         password = []
         passw = getpass.getpass('Enter pass: ')
@@ -59,6 +63,9 @@ class Menu:
 
     @classmethod
     def choose_option(cls):
+        '''
+        Allows user to log in or exit program.
+        '''
         inputs = Ui.get_inputs(["Please enter a number: "], "")
         option = inputs[0]
         if option == "1":
@@ -70,6 +77,9 @@ class Menu:
 
     @classmethod
     def main_menu(cls):
+        '''
+        Handles redirecting to printing menu options.
+        '''
         options = ["SIGN IN"]
         Ui.print_menu("\tMAIN MENU", options, "EXIT PROGRAM")
 

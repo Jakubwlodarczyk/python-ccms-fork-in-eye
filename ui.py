@@ -9,8 +9,8 @@ class Ui:
         '''
         Displays table with data.
         Args:
-            table: list of lists - table to display created in Common.py.
-            title_list: list containing table headers.
+            object_list: list of objects to unpack into table.
+            title: string containing main table header.
         '''
         os.system("clear")
         print(title)
@@ -79,7 +79,6 @@ class Ui:
             List of data given by the user.
         '''
         print(title)
-
         input_table = []
         for label in list_labels:
             input_table.append(input(label))
