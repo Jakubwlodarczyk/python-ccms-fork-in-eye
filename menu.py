@@ -23,10 +23,10 @@ class Menu:
         '''
         Creates objects from csv and then a list of all users to loop through for login and password validation.
         '''
-        Employee.employees_list = User.create_objects_list('Regular_employees.csv')
-        Mentor.mentors_list = User.create_objects_list('Mentors.csv')
-        Student.student_list = User.create_objects_list('Student.csv')
-        Manager.manager_list = User.create_objects_list('Manager.csv')
+        Employee.employees_list = Employee.create_objects_list('Regular_employees.csv')
+        Mentor.mentors_list = Mentor.create_objects_list('Mentors.csv')
+        Student.student_list = Student.create_objects_list('Student.csv')
+        Manager.manager_list = Manager.create_objects_list('Manager.csv')
         User.all_users = [Employee.employees_list,
                           Mentor.mentors_list,
                           Student.student_list,
@@ -42,7 +42,7 @@ class Menu:
         user = User.user_password_check(login[0], password[0])
 
         if not user:
-            print('User not found!')
+            print('Invalid login or password.')
         elif user:
             print('Hello, ' + user.name)
             if user.status == 'manager':
@@ -52,7 +52,6 @@ class Menu:
             elif user.status == 'Mentor':
                 MentorMenu.handle_menu()
             elif user.status == 'student':
-                print('YEEEESSSS')
                 StudentMenu.handle_menu()
         return None
 
