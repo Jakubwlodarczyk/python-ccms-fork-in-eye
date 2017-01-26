@@ -59,4 +59,6 @@ class Submission:
                 submission_list.append(full_submission_name)
         return submission_list
 
+#sub = Submission.create_submission_list('Submissions.csv')
+#print(sub[1])
 

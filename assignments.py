@@ -40,6 +40,6 @@ class Assignments:
                 start_date = line[0]
                 end_date = line[1]
                 assignment_name = line[2]
-                full_assignment_name = (start_date, end_date, assignment_name)
+                full_assignment_name = cls(start_date, end_date, assignment_name)
                 assignments_list.append(full_assignment_name)
         return assignments_list
