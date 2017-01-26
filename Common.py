@@ -58,14 +58,14 @@ class Common:
             table: list of lists to write to a file
         Returns:
                 None"""
-        for obj in obj_list:
-            obj_atrr = [obj.start_date, obj.end_date, obj.submission_name, obj.grade, obj.github_link, obj.id]
-            f.write(','.join(obj_atrr))
+        with open(file_name, "w") as f:
+            for obj in obj_list:
+                obj_atrr = [obj.start_date, obj.end_date, obj.submission_name, obj.grade, obj.github_link, obj.id]
+                f.write(','.join(obj_atrr))
 
     @staticmethod
     def error_integer_handling(chosen_option, value_of_possible_options):
         """
-
         :param chosen_option: user's input.
         :param value_of_possible_options: how many options users could take? Don't count 0 - exit
         :return: True or False. Will be useful to control while loop in other part of program. If True, continue program.
