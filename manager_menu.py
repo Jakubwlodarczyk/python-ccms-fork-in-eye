@@ -33,8 +33,11 @@ class ManagerMenu(Menu):
                 # add regular employee
                 Employee.add_person(Employee.employees_list)
             elif option == '3':
-                # edit employees data
-                pass
+                # change regular employee data
+                title = 'Regular employees:'
+                Ui.print_staff_list(Employee.employees_list, title)
+                person = Employee.choose_person_to_change_data(Employee.employees_list)
+                Employee.data_to_change(person)
             elif option == '4':
                 # fire a regular employee
                 Employee.remove_person(Employee.employees_list)
@@ -46,8 +49,10 @@ class ManagerMenu(Menu):
                 # add mentor
                 Mentor.add_person(Mentor.mentors_list)
             elif option == '7':
-                # edit mentor's data
-                pass
+                title = 'Mentors:'
+                Ui.print_staff_list(Mentor.mentors_list, title)
+                person = Mentor.choose_person_to_change_data(Mentor.mentors_list)
+                Mentor.data_to_change(person)
             elif option == '8':
                 # fire mentor
                 Mentor.remove_person(Mentor.mentors_list)
