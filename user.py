@@ -179,7 +179,7 @@ class User:
         data = Ui.get_inputs(['Name: ', 'Surname: ',
                              'email: ', 'Password: ', 'Status: '],
                              "Please provide informations:")
-        id = '11111111'  # HAVE TO CHANGE IT TO RANDOMLY GENERATED
+        id = Common.generate_random_id(object_list)
         new_person = cls(data[0], data[1], data[2], data[3], data[4], id)
         object_list.append(new_person)
 
