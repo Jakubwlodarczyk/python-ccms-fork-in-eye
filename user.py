@@ -54,9 +54,8 @@ class User:
                 password = line[3]
                 status = line[4]
                 id = line[5]
-                full_name = name + "_" + surname
-                full_name = cls(name, surname, email, password, status, id)
-                object_list.append(full_name)
+                person = cls(name, surname, email, password, status, id)
+                object_list.append(person)
         return object_list
 
     @classmethod
@@ -87,7 +86,6 @@ class User:
             for person in object_list:
                 if option[0] == person.id:
                     return person
-            print(repr(person.id))
             Ui.print_error_message('No id match.')
             if option[0] == '0':
                 choosing = False
