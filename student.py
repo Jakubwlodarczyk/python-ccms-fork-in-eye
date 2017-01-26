@@ -7,7 +7,7 @@ class Student(User):
 
     def __init__(self, *args, **kwargs):
         super(Student, self).__init__(*args, **kwargs)
-
+        self.status = 'student'
         # self.attendance = attendance
         # self.id = id
         # self.student_list = []
