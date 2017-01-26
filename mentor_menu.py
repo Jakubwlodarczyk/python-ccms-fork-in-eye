@@ -6,7 +6,7 @@ import sys
 
 class MentorMenu:
     """
-    Handles navigation menu after logging as mentor
+    Handles navigation menu after logging as mentor.
     """
     @staticmethod
     def handle_menu():
@@ -46,8 +46,10 @@ class MentorMenu:
                 Student.remove_person(Student.student_list)
 
             elif chose_option[0] == '7':
-                # edit student's data
-                pass
+                title = 'Students:'
+                Ui.print_staff_list(Employee.employees_list, title)
+                person = Employee.choose_person_to_change_data(Employee.employees_list)
+                Employee.data_to_change(person)
 
             elif chose_option[0] == '0':
                 # common.write_table_to_file('Assignments.csv')
@@ -61,4 +63,3 @@ class MentorMenu:
 
             else:
                 Ui.print_error_message('There is no such option.')
-

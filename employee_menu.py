@@ -1,46 +1,28 @@
 from ui import Ui
+from Common import *
 import sys
-import os
-from student import Student
-
+from student import *
 
 class EmployeeMenu:
-
+    '''
+    Handles navigating the menu after logging in as regular Employee.
+    '''
     @staticmethod
-    def choose_option():
-        """
-        prints staff menu for kati and miriam
-        :return: None
-        """
-
+    def handle_menu():
+        '''
+        Allows to choose an action to perform.
+        '''
+        options = ["View students list"]
         while True:
-            os.system("clear")
-            title = 'Employee menu'
-            list_options = ['Show list of students']
-            Ui.print_menu(title, list_options, 'Exit program')
-            chose_option = Ui.get_inputs(["Choose option: "], "")
-            my_option = chose_option[0]
-            try:
-                print(my_option)
-                int(my_option)
-                if int(my_option) < 0 or int(my_option) > len(list_options):
-                    raise ValueError
-            except TypeError:
-                print("Wrong input.")
-                m = Ui.get_inputs([""], "")
-                continue
-            except ValueError:
-                print("It must be integer between 1 and " + str(len(list_options)) + " or 0.")
-                m = Ui.get_inputs([""], "")
-                continue
-
-            if chose_option[0] == '1':
-                os.system("clear")
-                print(Ui.print_staff_list(Student.student_list, "List of students:"))
-                Ui.get_inputs([""], "")
-
-            elif chose_option[0] == '0':
+            Ui.print_menu("\nWhat you want to do?", options, "Log out")
+            inputs = Ui.get_inputs(["Please enter a number: "], "")
+            option = inputs[0]
+            if option == '1':
+                # show student list
+                title = 'Students list:'
+                Ui.print_staff_list(Student.student_list, title)
+            elif option == '0':
+                #SAVE
                 sys.exit()
-
             else:
-                raise ValueError('Wrong input')
+                Ui.print_error_message('There is no such option.')
