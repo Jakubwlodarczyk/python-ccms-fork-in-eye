@@ -52,13 +52,7 @@ class MentorMenu:
                 Employee.data_to_change(person)
 
             elif chose_option[0] == '0':
-                # common.write_table_to_file('Assignments.csv')
-                # common.write_table_to_file('Attendance.csv')
-                # common.write_table_to_file('Manager.csv')
-                # common.write_table_to_file('Mentors.csv')
-                # common.write_table_to_file('Regular_employees.csv')
-                # common.write_table_to_file('Student.csv')
-                # common.write_table_to_file('Submissions.csv')
+                Common.write_submission_to_file('Submissions.csv', Submission.submission_list)
                 Common.write_table_to_file('Student.csv', Student.student_list)
                 Common.write_attendance_to_file('Attendance.csv', Attendance.attendances_list)
                 Common.write_assignment_to_file('Assignments.csv', Assignments.assignments_list)
