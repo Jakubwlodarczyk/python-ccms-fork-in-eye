@@ -13,9 +13,6 @@ class Submission:
         self.submission_name = submission_name
         self.github_link = github_link
 
-    # def make_a_submission(self):
-    #     pass
-
     @classmethod
     def grade_an_submission(cls):
 

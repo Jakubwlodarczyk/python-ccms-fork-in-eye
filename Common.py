@@ -38,6 +38,20 @@ class Common:
                 obj_atrr = [obj.name, obj.surname, obj.email, obj.password, obj.status, obj.id]
                 f.write(','.join(obj_atrr) + '\n')
 
+    @classmethod
+    def write_assigment_to_file(cls, file_name, obj_list):
+        """
+      Writes list of lists into a csv file.
+        Args:
+            file_name (str): name of file to write to
+            table: list of lists to write to a file
+        Returns:
+                None"""
+        with open(file_name, "w") as f:
+            for obj in obj_list:
+                obj_atrr = [obj.start_date, obj.end_date, obj.assignment_name]
+                f.write(','.join(obj_atrr) + '\n')
+
     @staticmethod
     def error_integer_handling(chosen_option, value_of_possible_options):
         """

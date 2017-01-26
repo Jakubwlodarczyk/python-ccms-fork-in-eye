@@ -17,12 +17,12 @@ class Assignments:
 
     @staticmethod
     def view_assignment_list():
-        Ui.print_assignments_list(Assignments.assignments_list, "Assignments List")
+        Ui.print_assignments_list(Assignments.assignments_list, "Assignments List:")
 
     @classmethod
     def add_an_assignment(cls):
-        add_an_assignment_input = Ui.get_inputs(['start_date: ', 'end_date: ', 'assignment_name: '],
-                                                "Please provide the assignment: ")
+        add_an_assignment_input = Ui.get_inputs(['start_date (dd-mm-yyyy): ', 'end_date (dd-mm-yyyy): ',
+                                                 'assignment_name: '], "Please provide the assignment: ")
         Assignments.assignments_list.append(add_an_assignment_input)
 
     @classmethod
