@@ -1,5 +1,3 @@
-from student import *
-
 class Ui:
     '''
     Handles user interface.
