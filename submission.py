@@ -41,10 +41,14 @@ class Submission:
     def create_submission_list(cls, file_path):
         submission_list = []
         with open(file_path, "r") as f:
-            for line in f:
+            my_lines = f.readlines()
+            for index, line in enumerate(my_lines):
                 line = line.split(",")
                 length = len(line) - 1
-                line[length] = line[length][:-2]
+                if index + 1 == len(my_lines):
+                    pass
+                else:
+                    line[length] = line[length][:-1]
                 start_date = line[0]
                 end_date = line[1]
                 submission_name = line[2]

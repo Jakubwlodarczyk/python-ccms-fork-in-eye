@@ -44,6 +44,3 @@ class EmployeeMenu:
 
             else:
                 raise ValueError('Wrong input')
-
-
-EmployeeMenu.choose_option()

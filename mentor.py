@@ -1,7 +1,4 @@
 from employee import *
-from user import *
-from ui import *
-from Common import *
 
 
 class Mentor(Employee):
@@ -13,3 +10,4 @@ class Mentor(Employee):
 
     def __str__(self):
         return "{} {}".format(self.name, self.surname)
+

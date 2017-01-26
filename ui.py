@@ -130,8 +130,23 @@ class Ui:
         os.system("clear")
         n = 1
         options = ['Name', 'Surname', 'email']
-        
         print('{}:'.format(title))
         for item in options:
             print('\t({}) {}'.format(str(n), item))
             n += 1
+
+    def print_assignments_list(assignments_list, title):
+        """
+        :param assignments_list: (list) list of assignments
+        :param title: (string) heading of list
+        :return: print full list of heading and assignments
+        """
+        os.system("clear")
+        print(title)
+        idx = 1
+        for assign in assignments_list:
+            print(idx,
+                  assign.start_date,
+                  assign.end_date,
+                  assign.assignment_name)
+            idx += 1

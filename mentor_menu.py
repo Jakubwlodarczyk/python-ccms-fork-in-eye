@@ -27,9 +27,7 @@ class MentorMenu(Menu):
 
             elif chose_option[0] == '2':
                 # add an assignment
-                add_an_assignment_input = Ui.get_inputs(['start_date: ', 'end_date: ', 'assignment_name: '],
-                                                        "Please provide the assignment: ")
-                Assignments.assignments_list.append(add_an_assignment_input)
+                Assignments.add_an_assignment()
 
             elif chose_option[0] == '3':
                 # grade assignments submitted by students
@@ -41,11 +39,11 @@ class MentorMenu(Menu):
 
             elif chose_option[0] == '5':
                 # add a student to a class
-                User.add_person(Student.student_list)
+                Student.add_person(Student.student_list)
 
             elif chose_option[0] == '6':
                 # remove student from class
-                User.remove_person(Student.student_list)
+                Student.remove_person(Student.student_list)
 
             elif chose_option[0] == '7':
                 # edit student's data
