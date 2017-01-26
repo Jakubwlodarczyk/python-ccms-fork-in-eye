@@ -10,6 +10,7 @@ class Mentor(Employee):
 
     def __init__(self, *args, **kwargs):
         super(Mentor, self).__init__(*args, **kwargs)
+        self.status = 'mentor'
 
     def __str__(self):
         return "{} {}".format(self.name, self.surname)

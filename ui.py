@@ -100,7 +100,8 @@ class Ui:
             print(person.id,
                   person.name,
                   person.surname,
-                  person.email)
+                  person.email,
+                  person.status)
 
     @staticmethod
     def print_submissions_list(submission_list, title):
