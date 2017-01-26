@@ -24,7 +24,7 @@ class Submission:
         """
         Ui.print_submissions_list(Submission.submission_list, "Submission list:")
         sub_to_grade = Ui.get_inputs(['Submission name: ', 'ID: '],
-                                     'Type submission name, and student ID which you want to grade: ')
+                                     'Type submission name, and student ID which you want to grade: \n')
 
         found = False
         for sub in Submission.submission_list:

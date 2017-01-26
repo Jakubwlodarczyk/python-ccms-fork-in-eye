@@ -1,4 +1,5 @@
 from ui import Ui
+import os
 
 
 class Assignments:
@@ -32,11 +33,13 @@ class Assignments:
         """
         method adds assignments to assignment_list, and update this list
         """
+        os.system('clear')
         data = Ui.get_inputs(['start_date (dd-mm-yyyy): ', 'end_date (dd-mm-yyyy): ', 'assignment_name: '],
-                             "Please provide the assignment: ")
+                             "Please provide the assignment: \n")
 
         new_assignment = cls(data[0], data[1], data[2])
         Assignments.assignments_list.append(new_assignment)
+
 
     @classmethod
     def create_assignments_list(cls, file_path):

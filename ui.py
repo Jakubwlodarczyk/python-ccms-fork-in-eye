@@ -103,7 +103,7 @@ class Ui:
         :return: print full list of heading and submissions
         """
         os.system("clear")
-        print(title)
+        print(title+'\n')
         idx = 1
         for sub in submission_list:
             print(idx,
@@ -114,6 +114,7 @@ class Ui:
                   sub.github_link,
                   sub.id)
             idx += 1
+        print('\n')
 
     @staticmethod
     def print_data_list(title):
