@@ -121,3 +121,17 @@ class Ui:
                   sub.github_link,
                   sub.id)
             idx += 1
+
+    @staticmethod
+    def print_data_list(title):
+        '''
+        Handles printing atributte names.
+        '''
+        os.system("clear")
+        n = 1
+        options = ['Name', 'Surname', 'email']
+        
+        print('{}:'.format(title))
+        for item in options:
+            print('\t({}) {}'.format(str(n), item))
+            n += 1
