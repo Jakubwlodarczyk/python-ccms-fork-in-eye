@@ -39,10 +39,14 @@ class User:
         '''
         object_list = []
         with open(file_path, "r") as f:
-            for line in f:
+            my_lines = f.readlines()
+            for index, line in enumerate(my_lines):
                 line = line.split(",")
-                lenght = len(line) - 1
-                line[lenght] = line[lenght][:-2]
+                length = len(line) - 1
+                if index + 1 == len(my_lines):
+                    pass
+                else:
+                    line[length] = line[length][:-1]
                 name = line[0]
                 surname = line[1]
                 email = line[2]

@@ -121,3 +121,20 @@ class Ui:
                   sub.github_link,
                   sub.id)
             idx += 1
+
+    @staticmethod
+    def print_assignments_list(assignments_list, title):
+        """
+        :param assignments_list: (list) list of assignments
+        :param title: (string) heading of list
+        :return: print full list of heading and assignments
+        """
+        os.system("clear")
+        print(title)
+        idx = 1
+        for assign in assignments_list:
+            print(idx,
+                  assign.start_date,
+                  assign.end_date,
+                  assign.assignment_name)
+            idx += 1

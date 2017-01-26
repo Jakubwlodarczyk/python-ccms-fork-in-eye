@@ -9,11 +9,9 @@ class Manager(User):
 
     manager_list = []
 
-    def __init__(self, name, surname, email, password, status, manager_id):
-        User.__init__(self, name, surname, email, password)
-        self.status = status
-        self.manager_id = manager_id
+    def __init__(self, *args, **kwargs):
+        super(Manager, self).__init__(*args, **kwargs)
 
     def __str__(self):
-        return "{} {} {} {} {}".format(self.name, self.surname, self.email, self.status, self.manager_id)
+        return "{} {}".format(self.name, self.surname)
 
