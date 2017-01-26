@@ -74,17 +74,6 @@ class Menu:
         Ui.print_menu("\tMAIN MENU", options, "EXIT PROGRAM")
 
     @staticmethod
-    def save(class_name):
-        if class_name == 'Student':
-            Common.write_table_to_file()
-        elif class_name == 'Mentor':
-            Common.write_table_to_file()
-        elif class_name == 'Manager':
-            Common.write_table_to_file()
-        elif class_name == 'Employee':
-            Common.write_table_to_file()
-
-    @staticmethod
     def main():
         while True:
             Menu.loading_data()
