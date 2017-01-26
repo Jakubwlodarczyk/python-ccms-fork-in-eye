@@ -1,6 +1,7 @@
 from ui import *
 from Common import *
 import sys
+from menu import *
 
 
 class StudentMenu:

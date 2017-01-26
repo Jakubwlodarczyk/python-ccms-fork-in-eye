@@ -20,22 +20,25 @@ class Submission:
     def grade_an_submission(cls):
 
         Ui.print_submissions_list(Submission.submission_list, "Submission list:")
-        sub_to_grade = Ui.get_inputs(['Submission name', 'ID'],
+        sub_to_grade = Ui.get_inputs(['Submission name: ', 'ID: '],
                                      'Type submission name, and student ID which you want to grade: ')
 
+        found = False
         for sub in Submission.submission_list:
             if sub.submission_name == sub_to_grade[0] and sub.id == sub_to_grade[1]:
-                Ui.print_error_message("Chosen submission:\n {} {} {} {} {} {}\n".format(sub.start_date,
-                                                                                         sub.end_date,
-                                                                                         sub.submission_name,
-                                                                                         sub.grade,
-                                                                                         sub.github_link,
-                                                                                         sub.id))
-                sub_grade = Ui.get_inputs(['Grade: '], "Type the grade: ")
-                sub.grade = sub_grade[0]
-                Ui.print_error_message('Submission graded!')
-            else:
-                Ui.print_error_message('Wrong submission name or ID')
+                found = True
+                if found:
+                    Ui.print_error_message("Chosen submission:\n{} {} {} {} {} {}\n".format(sub.start_date,
+                                                                                            sub.end_date,
+                                                                                            sub.submission_name,
+                                                                                            sub.grade,
+                                                                                            sub.github_link,
+                                                                                            sub.id))
+                    sub_grade = Ui.get_inputs(['Grade: '], "Type the grade: ")
+                    sub.grade = sub_grade[0]
+                    Ui.print_error_message('Submission graded!')
+        if not found:
+            Ui.print_error_message('Wrong submission name or ID')
 
     @classmethod
     def create_submission_list(cls, file_path):

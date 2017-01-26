@@ -7,9 +7,9 @@ from student import *
 from employee import *
 from mentor import *
 from manager import *
-#from submission import *
-#from assignments import *
-#from attendance import *
+from submission import *
+from assignments import *
+from attendance import *
 from ui import *
 from manager_menu import *
 from mentor_menu import *
@@ -46,7 +46,7 @@ class Menu:
         if not user:
             print('Invalid login or password. Please try again. ')
         elif user:
-            print('\nHello, ' + user.name + '!')
+            print('\nHello, ' + user.name + '!\n')
             if user.status == 'manager':
                 ManagerMenu.handle_menu()
             elif user.status == 'employee':
@@ -57,9 +57,6 @@ class Menu:
                 StudentMenu.handle_menu()
         return None
 
-    def exit_program():  # save csv files
-        pass
-
     @classmethod
     def choose_option(cls):
         inputs = Ui.get_inputs(["Please enter a number: "], "")
@@ -67,18 +64,25 @@ class Menu:
         if option == "1":
             Menu.log_in()
         elif option == "0":
-            print('bye')
-            save(cls, csv_file)
             sys.exit(0)
+        else:
+            Ui.print_error_message('There is no such option.')
 
     @classmethod
     def main_menu(cls):
         options = ["SIGN IN"]
         Ui.print_menu("\tMAIN MENU: ", options, "EXIT PROGRAM")
 
-    @classmethod
-    def save(cls):
-        pass
+    @staticmethod
+    def save(class_name):
+        if class_name == 'Student':
+            Common.write_table_to_file()
+        elif class_name == 'Mentor':
+            Common.write_table_to_file()
+        elif class_name == 'Manager':
+            Common.write_table_to_file()
+        elif class_name == 'Employee':
+            Common.write_table_to_file()
 
     @staticmethod
     def main():
