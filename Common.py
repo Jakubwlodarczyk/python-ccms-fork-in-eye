@@ -3,7 +3,6 @@ import string
 from ui import *
 
 
-
 class Common:
     @staticmethod
     def get_table_from_file(file_name):
@@ -40,6 +39,43 @@ class Common:
                 file.write(row + "\n")
 
     @staticmethod
+    def error_integer_handling(chosen_option, value_of_possible_options):
+        """
+
+        :param chosen_option: user's input.
+        :param value_of_possible_options: how many options users could take? Don't count 0 - exit
+        :return: True or False. Will be useful to control while loop in other part of program. If True, continue program.
+        """
+        try:
+            int(chosen_option)
+            if int(chosen_option) < 0 or int(chosen_option) > value_of_possible_options:
+                raise ValueError
+        except TypeError:
+            print("Wrong input.")
+            m = Ui.get_inputs([""], "")
+            return False
+        except ValueError:
+            print("It must be integer between 1 and " + str(value_of_possible_options))
+            m = Ui.get_inputs([""], "")
+            return False
+        return True
+
+    @staticmethod
+    def check_date(max_day, user_day):
+        """
+        :param max_day: int (e.g. 30)
+        :param user_day: str (e.g. 32)
+        :return: True (if
+        """
+
+        try:
+            if int(user_day) > max_day:
+                raise ValueError
+            return True
+        except ValueError:
+            return False
+
+    @staticmethod
     def generate_random_id(table):
         """
         Generates random and unique string. Used for id/key generation.
@@ -65,3 +101,4 @@ class Common:
                 is_unique = False
 
         return generated
+

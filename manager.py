@@ -6,7 +6,9 @@ class Manager(User):
     Class manager
     parent class: User
     """
+
     manager_list = []
+
     def __init__(self, name, surname, email, password, status, manager_id):
         User.__init__(self, name, surname, email, password)
         self.status = status
@@ -15,5 +17,3 @@ class Manager(User):
     def __str__(self):
         return "{} {} {} {} {}".format(self.name, self.surname, self.email, self.status, self.manager_id)
 
-    def view_manager_list(self):
-        pass
