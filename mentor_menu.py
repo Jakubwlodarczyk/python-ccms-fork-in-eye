@@ -59,6 +59,7 @@ class MentorMenu:
                 # common.write_table_to_file('Regular_employees.csv')
                 # common.write_table_to_file('Student.csv')
                 # common.write_table_to_file('Submissions.csv')
+                Common.write_assignment_to_file('Assignments.csv', Assignments.assignments_list)
                 sys.exit()
 
             else:
