@@ -68,6 +68,7 @@ class ManagerMenu:
                 title = 'Students list:'
                 Ui.print_staff_list(Student.student_list, title)
             elif option == '0':
+                Common.write_table_to_file('Mentors.csv', Mentor.mentors_list)
                 Common.write_table_to_file('Regular_employees.csv', Employee.employees_list)
                 sys.exit()
             else:
