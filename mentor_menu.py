@@ -1,3 +1,7 @@
+from student import *
+from user import *
+from submission import *
+import sys
 
 
 class MentorMenu:
