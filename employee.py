@@ -11,6 +11,7 @@ class Employee(User):
 
     def __init__(self, *args, **kwargs):
         super(Employee, self).__init__(*args, **kwargs)
+        self.status = 'employee'
 
     def __str__(self):
         return "{} {}, email: {}".format(self.name, self.surname, self.email)
