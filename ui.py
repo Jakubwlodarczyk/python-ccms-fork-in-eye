@@ -135,6 +135,7 @@ class Ui:
             print('\t({}) {}'.format(str(n), item))
             n += 1
 
+    @staticmethod
     def print_assignments_list(assignments_list, title):
         """
         :param assignments_list: (list) list of assignments

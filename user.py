@@ -54,7 +54,6 @@ class User:
                 password = line[3]
                 status = line[4]
                 id = line[5]
-                full_name = name + "_" + surname
                 full_name = cls(name, surname, email, password, status, id)
                 object_list.append(full_name)
         return object_list
