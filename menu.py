@@ -71,7 +71,7 @@ class Menu:
     @classmethod
     def main_menu(cls):
         options = ["SIGN IN"]
-        Ui.print_menu("\tMAIN MENU: ", options, "EXIT PROGRAM")
+        Ui.print_menu("\tMAIN MENU", options, "EXIT PROGRAM")
 
     @staticmethod
     def save(class_name):
@@ -92,7 +92,7 @@ class Menu:
             try:
                 Menu.choose_option()
             except KeyError:
-                ui.print_error_message('unknown error at main!')
+                ui.print_error_message('Unknown error at main!')
 
 
 if __name__ == '__main__':
