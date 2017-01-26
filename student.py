@@ -1,6 +1,3 @@
-from user import *
-from submission import *
-
 class Student(User):
 
     student_list = []

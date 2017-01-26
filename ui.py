@@ -1,3 +1,5 @@
+import os
+
 class Ui:
     '''
     Handles user interface.
@@ -86,16 +88,36 @@ class Ui:
         print(message)
 
     @staticmethod
-    def print_staff_list(staff_list, title):
+    def print_staff_list(people_list, title):
         """
-        :param staff_list: list of object of staff members
+        :param people_list: list of object of people
         :param title: (string) name of printing heading
         :return: print full list with heading and staff members
         """
-        staff_string = ''
-        staff_string += title
+        os.system("clear")
+        print(title)
+        for person in people_list:
+            print(person.id,
+                  person.name,
+                  person.surname,
+                  person.email)
 
-        for i in staff_list:
-            staff_string += '\n{}'.format(i)
-        return staff_string
-
+    @staticmethod
+    def print_submissions_list(submission_list, title):
+        """
+        :param submission_list: (list) list of submissions
+        :param title: (string) heading of list
+        :return: print full list of heading and submissions
+        """
+        os.system("clear")
+        print(title)
+        idx = 1
+        for sub in submission_list:
+            print(idx,
+                  sub.start_date,
+                  sub.end_date,
+                  sub.submission_name,
+                  sub.grade,
+                  sub.github_link,
+                  sub.id)
+            idx += 1

@@ -1,6 +1,8 @@
+from menu import *
 from ui import *
 from Common import *
 import sys
+
 
 class ManagerMenu(Menu):
     '''
@@ -10,10 +12,12 @@ class ManagerMenu(Menu):
         '''
         Allows to choose an action to perform.
         '''
-        options = ["View all employees list",
+        options = ["View regular employees list",
+                   "Add an employee",
                    "Edit employees' data",
                    "Fire an employee",
                    "View mentors list",
+                   "Add a mentor",
                    "Edit mentors' data",
                    "Fire a mentor",
                    "View students list"]
@@ -22,26 +26,35 @@ class ManagerMenu(Menu):
             inputs = Ui.get_inputs(["Please enter a number: "], "")
             option = inputs[0]
             if option == '1':
-                # view all employees list
-                pass
+                # show regular employees
+                title = 'Regular employees list:'
+                Ui.print_staff_list(Employee.employees_list, title)
             elif option == '2':
-                # edit employees data
-                pass
+                # add regular employee
+                Employee.add_person(Employee.employees_list)
             elif option == '3':
-                # fire a employee
+                # edit employees data
                 pass
             elif option == '4':
-                # view mentors list
-                pass
+                # fire a regular employee
+                Employee.remove_person(Employee.employees_list)
             elif option == '5':
-                # edit employees data
-                pass
+                # show mentors
+                title = 'Mentors list:'
+                Ui.print_staff_list(Mentor.mentors_list, title)
             elif option == '6':
-                # fire a employee
-                pass
+                # add mentor
+                Mentor.add_person(Mentor.mentors_list)
             elif option == '7':
-                # fire a employee
+                # edit mentor's data
                 pass
+            elif option == '8':
+                # fire mentor
+                Mentor.remove_person(Mentor.mentors_list)
+            elif option == '9':
+                # view student list
+                title = 'Students list:'
+                Ui.print_staff_list(Student.student_list, title)
             elif option == '0':
                 #common.write_table_to_file('Mentors.csv')
                 #common.write_table_to_file('Regular_employees.csv')

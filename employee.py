@@ -112,7 +112,7 @@ class Employee(User):
         new_password = input("Type a new password for chosen employee: ")
         #self.edit_password(new_password)#  UNHASH IT WHEN METHOD CREATED IN USER CLASS
 
-
+    
 
 
 

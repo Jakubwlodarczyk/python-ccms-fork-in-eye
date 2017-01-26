@@ -1,15 +1,20 @@
 import csv
+import getpass
 import sys
 from user import *
 from Common import *
 from student import *
-from employee import *
+#from employee import *
 from mentor import *
 from manager import *
 from submission import *
 from assignments import *
 from attendance import *
 from ui import *
+from manager_menu import *
+#from mentor_menu import *
+# from student_menu import *
+# from employee_menu import *
 
 
 class Menu:
@@ -26,8 +31,8 @@ class Menu:
                           Mentor.mentors_list,
                           Student.student_list,
                           Manager.manager_list]
-        # Submission.submission_list = User.create_objects_list('Submissions.csv')
-        # Assignments.assignments_list = User.create_objects_list('Assignments.csv')
+        Submission.submission_list = Submission.create_submission_list('Submissions.csv')
+        Assignments.assignments_list = Assignments.create_assignments_list('Assignments.csv')
         # Attendance.attendance_list = User.create_objects_list('Attendance.csv')
 
     @classmethod
@@ -38,16 +43,17 @@ class Menu:
 
         if not user:
             print('User not found!')
-        elif user_password_check(login, password):
-            print('Hello ' + login)
-            if type(user) == Manager:
-                return ManagerMenu()
-            elif type(user) == Employee:
-                return EmployeeMenu()
-            elif type(user) == Mentor:
-                return MentorMenu()
-            elif type(user) == Student:
-                return StudentMenu()
+        elif user:
+            print('Hello, ' + user.name)
+            if user.status == 'manager':
+                ManagerMenu.handle_menu()
+            elif user.status == 'employee':
+                EmployeeMenu.handle_menu()
+            elif user.status == 'Mentor':
+                MentorMenu.handle_menu()
+            elif user.status == 'student':
+                print('YEEEESSSS')
+                StudentMenu.handle_menu()
         return None
 
     def exit_program():  # save csv files
