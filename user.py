@@ -12,6 +12,9 @@ class User:
     all_users = []
 
     def __init__(self, name, surname, email, password, status, id):
+        '''
+        Initializing an object with data validation.
+        '''
         try:
             self.name = name
             if not self.name:
@@ -44,7 +47,7 @@ class User:
         except ValueError:
             Ui.print_error_message("Password can't be empty")
 
-        self.status = status
+        self.status = status  # status is overwritten by each child class
         self.id = id
 
     @classmethod
@@ -105,7 +108,6 @@ class User:
             Ui.print_error_message('No id match.')
             if option[0] == '0':
                 choosing = False
-
 
     @classmethod
     def data_to_change(cls, person):
