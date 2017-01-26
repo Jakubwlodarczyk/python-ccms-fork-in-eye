@@ -67,8 +67,6 @@ class Menu:
         if option == "1":
             Menu.log_in()
         elif option == "0":
-            print('bye')
-            save(cls, csv_file)
             sys.exit(0)
 
     @classmethod
@@ -76,9 +74,22 @@ class Menu:
         options = ["SIGN IN"]
         Ui.print_menu("\tMAIN MENU: ", options, "EXIT PROGRAM")
 
-    @classmethod
-    def save(cls):
-        pass
+    @staticmethod
+    def save(class_name):
+        if class_name == 'Student':
+            Common.write_table_to_file(Student.file, Student.create_objects_list(Student.object_list))
+        elif class_name == 'Mentor':
+            Common.write_table_to_file(Mentor.file, Mentor.create_objects_list(Mentor.object_list))
+        elif class_name == 'Manager':
+            Common.write_table_to_file(Manager.file, Manager.create_objects_list(Manager.object_list))
+        elif class_name == 'Employee':
+            Common.write_table_to_file(Employee.file, Employee.create_objects_list(Employee.object_list))
+        elif class_name == 'Submission':
+            Common.write_table_to_file(Submission.file, Submission.create_objects_list(Submission.object_list))
+        elif class_name == 'Assignments':
+            Common.write_table_to_file(Assignments.file, Assignments.create_objects_list(Assignments.object_list))
+        elif class_name == 'Attendance':
+            Common.write_table_to_file(Attendance.file, Attendance.create_objects_list(Attendance.object_list))
 
     @staticmethod
     def main():

@@ -21,8 +21,8 @@ class Common:
         table = [element.replace("\n", "").split(",") for element in lines]
         return table
 
-    @staticmethod
-    def write_table_to_file(file_name, table):
+    @classmethod
+    def write_table_to_file(cls, file_name, obj_list):  # for persons
         """
         Writes list of lists into a csv file.
 
@@ -33,10 +33,10 @@ class Common:
         Returns:
             None
         """
-        with open(file_name, "w") as file:
-            for record in table:
-                row = ','.join(record)
-                file.write(row + "\n")
+        with open(file_name, "w") as f:
+            for obj in obj_list:
+                obj_atrr = [obj.name, obj.surname, obj.email, obj.password, obj.status, obj.id]
+                f.write(','.join(obj_atrr) + '\n')
 
     @staticmethod
     def error_integer_handling(chosen_option, value_of_possible_options):
@@ -101,4 +101,3 @@ class Common:
                 is_unique = False
 
         return generated
-
