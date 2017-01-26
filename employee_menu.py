@@ -3,6 +3,7 @@ import sys
 import os
 from student import Student
 
+
 class EmployeeMenu:
 
     @staticmethod
@@ -33,7 +34,6 @@ class EmployeeMenu:
                 m = Ui.get_inputs([""], "")
                 continue
 
-
             if chose_option[0] == '1':
                 os.system("clear")
                 print(Ui.print_staff_list(Student.student_list, "List of students:"))
@@ -44,6 +44,3 @@ class EmployeeMenu:
 
             else:
                 raise ValueError('Wrong input')
-
-
-EmployeeMenu.choose_option()

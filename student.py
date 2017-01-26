@@ -1,3 +1,6 @@
+from user import *
+
+
 class Student(User):
 
     student_list = []

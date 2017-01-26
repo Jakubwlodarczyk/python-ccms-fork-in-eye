@@ -26,8 +26,8 @@ class Attendance:
         date = None
         while True:
             os.system("clear")
-            options_list = Ui.get_inputs(["1 - Check attendance for today\n2 - Choose another day\n0 - Go back\n"], "Do \
-you want to check attendance for today or set another day? \n")
+            options_list = Ui.get_inputs(["1 - Check attendance for today\n2 - Choose another day\n0 - Go back\n"],
+                                         "Do you want to check attendance for today or set another day? \n")
             if Common.error_integer_handling(options_list[0], 2):
                 if options_list[0] == "1":
                     today = datetime.date.today()
@@ -39,8 +39,8 @@ you want to check attendance for today or set another day? \n")
                     while True:
                         os.system("clear")
                         options_list = Ui.get_inputs(
-                            ["Year (e.g. 2017): ", "Month (e.g. 01): ", "Day (e.g. 23): "], "Write date you \
-want to check attendance: \n")
+                            ["Year (e.g. 2017): ", "Month (e.g. 01): ", "Day (e.g. 23): "],
+                            "Write date you want to check attendance: \n")
                         today = datetime.date.today()
                         today = str(today)
                         date = [options_list[0], options_list[1], options_list[2]]
@@ -125,10 +125,3 @@ want to check attendance: \n")
     #             m = Ui.get_inputs([""], "")
     #             continue
     #         Attendance.create_attendace_object_for_student(Student.student_list[my_option - 1])
-
-
-Attendance.set_date()
-
-
-
-

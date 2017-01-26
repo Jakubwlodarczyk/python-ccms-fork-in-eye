@@ -15,21 +15,28 @@ class Assignments:
     def __str__(self):
         return '{} {} {}'.format(self.start_date, self.end_date, self.assignment_name)
 
-    def view_assignment_list(self):
-        pass
+    @staticmethod
+    def view_assignment_list():
+        Ui.print_assignments_list(Assignments.assignments_list, "Assignments List")
 
     @classmethod
-    def add_an_assignment(cls, assignment_input):
-        pass
+    def add_an_assignment(cls):
+        add_an_assignment_input = Ui.get_inputs(['start_date: ', 'end_date: ', 'assignment_name: '],
+                                                "Please provide the assignment: ")
+        Assignments.assignments_list.append(add_an_assignment_input)
 
     @classmethod
     def create_assignments_list(cls, file_path):
         assignments_list = []
         with open(file_path, "r") as f:
-            for line in f:
+            my_lines = f.readlines()
+            for index, line in enumerate(my_lines):
                 line = line.split(",")
                 length = len(line) - 1
-                line[length] = line[length][:-2]
+                if index + 1 == len(my_lines):
+                    pass
+                else:
+                    line[length] = line[length][:-1]
                 start_date = line[0]
                 end_date = line[1]
                 assignment_name = line[2]
