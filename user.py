@@ -83,13 +83,15 @@ class User:
         '''
         choosing = True
         while choosing:
-            option = Ui.get_inputs(['Enter person ID:'], "Whose data you want to change?")
+            option = Ui.get_inputs(['Enter person ID or 0 to go back: '], "Whose data you want to change?")
             for person in object_list:
                 if option[0] == person.id:
                     return person
-                else:
-                    Ui.print_error_message('No id match.')
-                    break
+            print(repr(person.id))
+            Ui.print_error_message('No id match.')
+            if option[0] == '0':
+                choosing = False
+
 
     @classmethod
     def data_to_change(cls, person):
@@ -168,6 +170,8 @@ class User:
         new_person = cls(data[0], data[1], data[2], data[3], data[4], id)
         object_list.append(new_person)
 
+        return object_list
+
     @classmethod
     def remove_person(cls, object_list):
         '''
@@ -179,3 +183,4 @@ class User:
         for person in object_list:
             if person.id == to_remove[0]:
                 object_list.remove(person)
+        return object_list

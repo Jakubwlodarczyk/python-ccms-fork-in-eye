@@ -4,7 +4,7 @@ from user import User
 class Manager(User):
     """
     Class manager
-    parent class: User
+    Parent class: User
     """
     manager_list = []
 
