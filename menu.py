@@ -7,9 +7,9 @@ from student import *
 #from employee import *
 from mentor import *
 from manager import *
-from submission import *
-from assignments import *
-from attendance import *
+#from submission import *
+#from assignments import *
+#from attendance import *
 from ui import *
 # from manager_menu import *
 from mentor_menu import *
@@ -37,14 +37,16 @@ class Menu:
 
     @classmethod
     def log_in(cls):
-        login = Ui.get_inputs(['Your email: '], "")
-        password = Ui.get_inputs(['Your password: '], "")
+        login = Ui.get_inputs(['Please enter your email: '], "")
+        password = []
+        passw = getpass.getpass('Enter pass: ')
+        password.append(passw)
         user = User.user_password_check(login[0], password[0])
 
         if not user:
-            print('User not found!')
+            print('Invalid login or password. Please try again. ')
         elif user:
-            print('Hello, ' + user.name)
+            print('\nHello, ' + user.name + '!')
             if user.status == 'manager':
                 ManagerMenu.handle_menu()
             elif user.status == 'employee':
@@ -52,7 +54,6 @@ class Menu:
             elif user.status == 'Mentor':
                 MentorMenu.handle_menu()
             elif user.status == 'student':
-                print('YEEEESSSS')
                 StudentMenu.handle_menu()
         return None
 
@@ -66,13 +67,18 @@ class Menu:
         if option == "1":
             Menu.log_in()
         elif option == "0":
+            print('bye')
+            save(cls, csv_file)
             sys.exit(0)
 
     @classmethod
     def main_menu(cls):
-        options = ["LOGIN",
-                   "SOMETHING"]
-        Ui.print_menu("MAIN MENU", options, "EXIT PROGRAM")
+        options = ["SIGN IN"]
+        Ui.print_menu("\tMAIN MENU: ", options, "EXIT PROGRAM")
+
+    @classmethod
+    def save(cls):
+        pass
 
     @staticmethod
     def main():
