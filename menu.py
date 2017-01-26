@@ -7,9 +7,9 @@ from student import *
 #from employee import *
 from mentor import *
 from manager import *
-from submission import *
-from assignments import *
-from attendance import *
+#from submission import *
+#from assignments import *
+#from attendance import *
 from ui import *
 from manager_menu import *
 #from mentor_menu import *
@@ -38,7 +38,9 @@ class Menu:
     @classmethod
     def log_in(cls):
         login = Ui.get_inputs(['Please enter your email: '], "")
-        password = Ui.get_inputs(['Enter your password: '], "")
+        password = []
+        passw = getpass.getpass('Enter pass: ')
+        password.append(passw)
         user = User.user_password_check(login[0], password[0])
 
         if not user:
@@ -65,12 +67,18 @@ class Menu:
         if option == "1":
             Menu.log_in()
         elif option == "0":
+            print('bye')
+            save(cls, csv_file)
             sys.exit(0)
 
     @classmethod
     def main_menu(cls):
         options = ["SIGN IN"]
         Ui.print_menu("\tMAIN MENU: ", options, "EXIT PROGRAM")
+
+    @classmethod
+    def save(cls):
+        pass
 
     @staticmethod
     def main():
