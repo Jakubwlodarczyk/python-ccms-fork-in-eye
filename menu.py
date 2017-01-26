@@ -37,14 +37,14 @@ class Menu:
 
     @classmethod
     def log_in(cls):
-        login = Ui.get_inputs(['Your email: '], "")
-        password = Ui.get_inputs(['Your password: '], "")
+        login = Ui.get_inputs(['Please enter your email: '], "")
+        password = Ui.get_inputs(['Enter your password: '], "")
         user = User.user_password_check(login[0], password[0])
 
         if not user:
-            print('User not found!')
+            print('Invalid login or password. Please try again. ')
         elif user:
-            print('Hello, ' + user.name)
+            print('\nHello, ' + user.name + '!')
             if user.status == 'manager':
                 ManagerMenu.handle_menu()
             elif user.status == 'employee':
@@ -52,7 +52,6 @@ class Menu:
             elif user.status == 'Mentor':
                 MentorMenu.handle_menu()
             elif user.status == 'student':
-                print('YEEEESSSS')
                 StudentMenu.handle_menu()
         return None
 
@@ -70,9 +69,8 @@ class Menu:
 
     @classmethod
     def main_menu(cls):
-        options = ["LOGIN",
-                   "SOMETHING"]
-        Ui.print_menu("MAIN MENU", options, "EXIT PROGRAM")
+        options = ["SIGN IN"]
+        Ui.print_menu("\tMAIN MENU: ", options, "EXIT PROGRAM")
 
     @staticmethod
     def main():
