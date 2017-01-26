@@ -37,6 +37,13 @@ class Common:
 
     @classmethod
     def write_attendance_to_file(cls, file_name, obj_list):
+        """
+      Writes list of lists into a csv file.
+        Args:
+            file_name (str): name of file to write to
+            table: list of lists to write to a file
+        Returns:
+                None"""
         with open(file_name, "w") as f:
             for obj in obj_list:
                 obj_atrr = [obj.data, obj.status, obj.id]
@@ -44,6 +51,13 @@ class Common:
 
     @classmethod
     def write_submission_to_file(cls, file_name, obj_list):
+        """
+      Writes list of lists into a csv file.
+        Args:
+            file_name (str): name of file to write to
+            table: list of lists to write to a file
+        Returns:
+                None"""
         for obj in obj_list:
             obj_atrr = [obj.start_date, obj.end_date, obj.submission_name, obj.grade, obj.github_link, obj.id]
             f.write(','.join(obj_atrr))
