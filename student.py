@@ -1,4 +1,3 @@
-
 from user import *
 from assignments import *
 from ui import *
@@ -22,6 +21,7 @@ class Student(User):
         self.attendance_list = []
         self.submission_list = Submission.submission_list
 
+
      
         
         
@@ -40,6 +40,9 @@ class Student(User):
         # for submission in cls.submission_list:
         #     print('Assignment name: {}, Grade: {}.'.format(submission.submission_name, submission.grade))
         
+    def __str__(self):
+        return "{} {}".format(self.name, self.surname)
+
 
     @classmethod
     def view_grades(cls):
@@ -51,6 +54,7 @@ class Student(User):
 
     
     def submit_assignment(self):
+
 
         print('Choose the number from the following assignments: ')
 
@@ -80,4 +84,11 @@ class Student(User):
             print('Your assignment was succesfully submitted')
         else:
             print('invalid value')
+
+
+        # '''
+        # Allows student to submit chosen assignment
+        # '''
+        # Ui.print_error_message('''\nSorry, this method is not avialable yet.\n\nOur team is working on it as you read this!\n\nStay tuned!\n\n''')
+
 

@@ -38,7 +38,7 @@ class Menu:
                           Manager.manager_list]
         
         Assignments.assignments_list = Assignments.create_assignments_list('Assignments.csv')
-        Attendance.attendance_list = User.create_objects_list('Attendance.csv')
+        Attendance.attendance_list = Attendance.create_attendance_list('Attendance.csv')
 
     @classmethod
     def log_in(cls):
