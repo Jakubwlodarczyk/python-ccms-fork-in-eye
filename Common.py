@@ -79,7 +79,7 @@ class Common:
             m = Ui.get_inputs([""], "")
             return False
         except ValueError:
-            print("It must be integer between 1 and " + str(value_of_possible_options))
+            print("It must be integer between 1 and " + str(value_of_possible_options) + " or 0. Press enter to try again.")
             m = Ui.get_inputs([""], "")
             return False
         return True

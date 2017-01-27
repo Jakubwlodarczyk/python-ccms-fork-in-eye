@@ -4,7 +4,6 @@ from submission import *
 from attendance import *
 import sys
 
-
 class MentorMenu:
     """
     Handles navigation menu after logging as mentor.
