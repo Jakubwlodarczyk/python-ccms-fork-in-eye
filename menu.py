@@ -8,13 +8,17 @@ from employee import *
 from mentor import *
 from manager import *
 from submission import *
+#from assignments import *
+#from attendance import *
 from assignments import *
 from attendance import *
 from ui import *
 from manager_menu import *
 from mentor_menu import *
 from student_menu import *
+# from employee_menu import *
 from employee_menu import *
+
 
 
 class Menu:
@@ -25,15 +29,16 @@ class Menu:
         '''
         Employee.employees_list = Employee.create_objects_list('Regular_employees.csv')
         Mentor.mentors_list = Mentor.create_objects_list('Mentors.csv')
+        Submission.submission_list = Submission.create_submission_list('Submissions.csv')
         Student.student_list = Student.create_objects_list('Student.csv')
         Manager.manager_list = Manager.create_objects_list('Manager.csv')
         User.all_users = [Employee.employees_list,
                           Mentor.mentors_list,
                           Student.student_list,
                           Manager.manager_list]
-        Submission.submission_list = Submission.create_submission_list('Submissions.csv')
+        
         Assignments.assignments_list = Assignments.create_assignments_list('Assignments.csv')
-        # Attendance.attendance_list = User.create_objects_list('Attendance.csv')
+        Attendance.attendance_list = User.create_objects_list('Attendance.csv')
 
     @classmethod
     def log_in(cls):
@@ -48,9 +53,9 @@ class Menu:
         user = User.user_password_check(login[0], password[0])
 
         if not user:
-            print('Invalid login or password. Please try again. ')
+            Ui.print_error_message('Invalid login or password. Please try again. ')
         elif user:
-            print('\nHello, ' + user.name + '!\n')
+            Ui.print_error_message('\nHello, ' + user.name + '!\n')
             if user.status == 'manager':
                 ManagerMenu.handle_menu()
             elif user.status == 'employee':
