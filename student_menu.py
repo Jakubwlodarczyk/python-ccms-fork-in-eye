@@ -13,13 +13,8 @@ class StudentMenu:
         '''
         Allows to choose an action to perform.
         '''
-        options = ["View all employees list",
-                   "Edit employees' data",
-                   "Fire an employee",
-                   "View mentors list",
-                   "Edit mentors' data",
-                   "Fire a mentor",
-                   "View students list"]
+        options = ["View grades",
+                   "Edit employees' data"]
         while True:
             Ui.print_menu("What you want to do?", options, "Log out")
             inputs = Ui.get_inputs(["Please enter a number: "], "")
