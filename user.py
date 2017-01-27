@@ -66,6 +66,8 @@ class User:
                     pass
                 else:
                     line[length] = line[length][:-1]
+                if line[5][-1] == '\n':
+                    line[5] = line[5][:-1]
                 name = line[0]
                 surname = line[1]
                 email = line[2]

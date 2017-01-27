@@ -58,6 +58,8 @@ class Assignments:
                     pass
                 else:
                     line[length] = line[length][:-1]
+                if line[2][-1] == '\n':
+                    line[2] = line[2][:-1]
                 start_date = line[0]
                 end_date = line[1]
                 assignment_name = line[2]

@@ -16,6 +16,32 @@ class Attendance:
         self.status = status
         self.id = id
 
+    @classmethod
+    def create_attendance_list(cls, file_path):
+        '''
+        Arg: file_path.
+        Creates list of objects from csv file.
+        '''
+        object_list = []
+        with open(file_path, "r") as f:
+            my_lines = f.readlines()
+            for index, line in enumerate(my_lines):
+                line = line.split(",")
+                length = len(line) - 1
+                if index + 1 == len(my_lines):
+                    pass
+                else:
+                    line[length] = line[length][:-1]
+                if line[2][-1] == '\n':
+                    line[2] = line[2][:-1]
+                data = line[0]
+                status = line[1]
+                id = line[2]
+                full_name = cls(data, status, id)
+                object_list.append(full_name)
+
+        return object_list
+
     @staticmethod
     def date_control():
         """
@@ -49,9 +75,9 @@ class Attendance:
                 student_attendance = Ui.get_inputs(["Student status:\n   0 - upsent\n   1 - late\n   2 - present\n"], student)
                 if Common.error_integer_handling(student_attendance[0], 2):
                     student_status = student_attendance[0]
-                    object = Attendance(day_str, student_status)
-                    student.attendance_list.append(object)
-                    Attendance.attendances_list.append(object)
+                    att = Attendance(day_str, student_status, student.id)
+                    student.attendance_list.append(att)
+                    Attendance.attendances_list.append(att)
                     Ui.print_error_message("\nDone.\n")
                     break
                 else:
@@ -218,6 +244,7 @@ status in {}: {}".format(day_str, status))
                                          "3 - View students attendance\n0 - Back to main menu\n\n"],
                                         "~~Welcome in ..::ATTENDANCE::.. menu~~\n\nWhat would you "
                                         "like to do?\n\n")
+            print(Attendance.attendances_list)
             if Common.error_integer_handling(option_list[0], 3):
                 if int(option_list[0]) == 1:
                     day_str = Attendance.date_control()
