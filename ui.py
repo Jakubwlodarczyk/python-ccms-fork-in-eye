@@ -4,6 +4,7 @@ class Ui:
     '''
     Handles user interface.
     '''
+    
     @staticmethod
     def print_table(object_list, title):
         '''
@@ -144,5 +145,48 @@ class Ui:
                   assign.start_date,
                   assign.end_date,
                   assign.assignments)
-              
+
             idx += 1
+
+    @classmethod
+    def print_submissions(cls, submission_list):
+        '''
+        Displays assignments with grades for student.
+        '''
+        title = 'YOUR SUBMISSIONS'
+        title_list = ['Assignment name:', 'Grade:']
+        table = []
+        for sub in submission_list:
+            sub = [sub.submission_name, sub.grade]
+            table.append(sub)
+
+        len_for_col = []
+        for title_iterator in range(len(title_list)):
+            len_col = len(title_list[title_iterator])
+            for row in table:
+                if len(row[title_iterator]) > len_col:
+                    len_col = len(row[title_iterator])
+
+            len_for_col.append(len_col)
+
+        how_wide = 0
+        for name in title_list:
+            x = (len_for_col[title_list.index(name)])
+            how_wide += (len(("|{: <" + str(x + 2) + "}").format(name)))
+        print('-' * how_wide)
+
+        for name in title_list:
+            print("|", end="")
+            x = (len_for_col[title_list.index(name)])
+            print(("{: <" + str(x + 2) + "}").format(name), end="")
+        print("|")
+        print('-' * how_wide)
+
+        for row in table:
+            print("|", end="")
+            for element in row:
+                x = (len_for_col[row.index(element)])
+                print(("{: <" + str(x + 2) + "}|").format(element), end="")
+            print()
+        print('-' * how_wide)
+            #print('Assignment name: {}, Grade: {}.'.format(sub.submission_name, sub.grade))
