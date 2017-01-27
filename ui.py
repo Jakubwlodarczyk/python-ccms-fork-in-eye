@@ -5,13 +5,21 @@ class Ui:
     Handles user interface.
     '''
     @staticmethod
-    def print_table(table, title_list):
+    def print_table(object_list, title):
         '''
         Displays table with data.
         Args:
-            table: list of lists - table to display created in Common.py.
-            title_list: list containing table headers.
+            object_list: list of objects to unpack into table.
+            title: string containing main table header.
         '''
+        os.system("clear")
+        print(title)
+        title_list = ['ID', 'Name', 'Surname', 'Email', 'Status']
+        table = []
+        for obj in object_list:
+            obj_atrr = [obj.id, obj.name, obj.surname, obj.email, obj.status]
+            table.append(obj_atrr)
+
         len_for_col = []
         for title_iterator in range(len(title_list)):
             len_col = len(title_list[title_iterator])
@@ -71,7 +79,6 @@ class Ui:
             List of data given by the user.
         '''
         print(title)
-
         input_table = []
         for label in list_labels:
             input_table.append(input(label))
@@ -88,22 +95,6 @@ class Ui:
         print(message)
 
     @staticmethod
-    def print_staff_list(people_list, title):
-        """
-        :param people_list: list of object of people
-        :param title: (string) name of printing heading
-        :return: print full list with heading and staff members
-        """
-        os.system("clear")
-        print(title)
-        for person in people_list:
-            print(person.id,
-                  person.name,
-                  person.surname,
-                  person.email,
-                  person.status)
-
-    @staticmethod
     def print_submissions_list(submission_list, title):
         """
         :param submission_list: (list) list of submissions
@@ -111,7 +102,7 @@ class Ui:
         :return: print full list of heading and submissions
         """
         os.system("clear")
-        print(title)
+        print(title+'\n')
         idx = 1
         for sub in submission_list:
             print(idx,
@@ -122,6 +113,7 @@ class Ui:
                   sub.github_link,
                   sub.id)
             idx += 1
+        print('\n')
 
     @staticmethod
     def print_data_list(title):

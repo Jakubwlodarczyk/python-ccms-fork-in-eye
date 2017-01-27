@@ -8,7 +8,6 @@ from submission import *
 import sys
 import os
 
-
 class Student(User):
 
     student_list = []
@@ -21,6 +20,7 @@ class Student(User):
         # self.attendance = attendance
         # self.id = id
         # self.student_list = []
+
         self.attendace_list = []
         # self.submission_list = Submission.submission_list
         
@@ -30,7 +30,14 @@ class Student(User):
     def view_grades(cls):
         
         # print(submission)
+
+    #     self.attendance_list = []
+
+    # def view_grades(self):
+    #     pass
+
         # # must get the submissions list from csv, where are added students submissions
+
         submission_list = Submission.submission_list
        
         # self.submission_list = Submission.submission_list
@@ -57,7 +64,7 @@ class Student(User):
         assignment_list = []
         for i in ass:
             print(i.start_date)
-            assignment_list.append([i.start_date, i.end_date, i.assignment_name, '0', 'git_trololo', 'id_2'])
+            assignment_list.append([i.start_date, i.end_date, i.assignment_name, '0', 'git_trololo', 'id_4'])
         print(assignment_list)
         if choose <= len(assignment_list):
             

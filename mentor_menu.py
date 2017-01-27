@@ -4,7 +4,6 @@ from submission import *
 from attendance import *
 import sys
 
-
 class MentorMenu:
     """
     Handles navigation menu after logging as mentor.
@@ -24,7 +23,7 @@ class MentorMenu:
 
             if chose_option[0] == '1':
                 # print list of students
-                Ui.print_staff_list(Student.student_list, "List of students")
+                Ui.print_table(Student.student_list, "List of students")
 
             elif chose_option[0] == '2':
                 # add an assignment to assignment list
@@ -49,9 +48,13 @@ class MentorMenu:
 
             elif chose_option[0] == '7':
                 # edit students data
-                Ui.print_staff_list(Student.student_list, "List of students")
+                Ui.print_table(Student.student_list, "List of students")
                 person = Student.choose_person_to_change_data(Student.student_list)
                 Student.data_to_change(person)
+                if person:
+                    Employee.data_to_change(person)
+                else:
+                    pass
 
             elif chose_option[0] == '0':
                 # save data to files, and exit

@@ -25,7 +25,7 @@ class Submission:
         """
         Ui.print_submissions_list(Submission.submission_list, "Submission list:")
         sub_to_grade = Ui.get_inputs(['Submission name: ', 'ID: '],
-                                     'Type submission name, and student ID which you want to grade: ')
+                                     'Type submission name, and student ID which you want to grade: \n')
 
         found = False
         for sub in Submission.submission_list:
@@ -70,7 +70,4 @@ class Submission:
                 full_submission_name = cls(start_date, end_date, submission_name, grade, github_link, id)
                 submission_list.append(full_submission_name)
         return submission_list
-
-#sub = Submission.create_submission_list('Submissions.csv')
-#print(sub[1])
 

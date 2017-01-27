@@ -3,6 +3,7 @@ from Common import *
 import sys
 from student import *
 
+
 class EmployeeMenu:
     '''
     Handles navigating the menu after logging in as regular Employee.
@@ -20,9 +21,10 @@ class EmployeeMenu:
             if option == '1':
                 # show student list
                 title = 'Students list:'
-                Ui.print_staff_list(Student.student_list, title)
+                Ui.print_table(Student.student_list, title)
             elif option == '0':
                 #SAVE
                 sys.exit()
             else:
                 Ui.print_error_message('There is no such option.')
+

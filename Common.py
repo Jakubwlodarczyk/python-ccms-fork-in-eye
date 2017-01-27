@@ -60,6 +60,7 @@ class Common:
             table: list of lists to write to a file
         Returns:
                 None"""
+
         # for obj in obj_list:
         with open(file_name, "w") as f:
             object_list = [obj_list.start_date, obj_list.end_date, obj_list.submission_name, obj_list.grade, 
@@ -69,10 +70,15 @@ class Common:
 
             
 
+        # with open(file_name, "w") as f:
+        #     for obj in obj_list:
+        #         obj_atrr = [obj.start_date, obj.end_date, obj.submission_name, obj.grade, obj.github_link, obj.id]
+        #         f.write(','.join(obj_atrr))
+
+
     @staticmethod
     def error_integer_handling(chosen_option, value_of_possible_options):
         """
-
         :param chosen_option: user's input.
         :param value_of_possible_options: how many options users could take? Don't count 0 - exit
         :return: True or False. Will be useful to control while loop in other part of program. If True, continue program.
@@ -86,7 +92,7 @@ class Common:
             m = Ui.get_inputs([""], "")
             return False
         except ValueError:
-            print("It must be integer between 1 and " + str(value_of_possible_options))
+            print("It must be integer between 1 and " + str(value_of_possible_options) + " or 0. Press enter to try again.")
             m = Ui.get_inputs([""], "")
             return False
         return True
