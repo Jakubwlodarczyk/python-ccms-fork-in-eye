@@ -12,25 +12,40 @@ class User:
     all_users = []
 
     def __init__(self, name, surname, email, password, status, id):
-        self.name = name
-        self.surname = surname
-        self.email = str(email)
-        self.password = str(password)
+        try:
+            self.name = name
+            if not self.name:
+                raise ValueError
+        except ValueError:
+            Ui.print_error_message("Name can't be empty")
+
+        try:
+            self.surname = surname
+            if not self.surname:
+                raise ValueError
+        except ValueError:
+            Ui.print_error_message("Surname can't be empty")
+
+        try:
+            self.email = email
+            if not self.email:
+                raise ValueError
+            if '@' not in self.email or '.' not in self.email:
+                raise KeyError
+        except KeyError:
+            Ui.print_error_message('Please use proper email format')
+        except ValueError:
+            Ui.print_error_message("Email can't be empty")
+
+        try:
+            self.password = str(password)
+            if not self.password:
+                raise ValueError
+        except ValueError:
+            Ui.print_error_message("Password can't be empty")
+
         self.status = status
         self.id = id
-
-        if name == '':
-            raise ValueError('Name can\'t be empty.')
-        if surname == '':
-            raise ValueError('Surname can\'t be empty.')
-        if email == '':
-            raise ValueError('Email can\'t be empty.')
-        if password == '':
-            raise ValueError('Password can\'t be empty.')
-        if status == '':
-            raise ValueError('Status can\'t be empty.')
-        if id == '':
-            raise ValueError('ID can\'t be empty.')
 
     @classmethod
     def create_objects_list(cls, file_path):
@@ -54,9 +69,9 @@ class User:
                 password = line[3]
                 status = line[4]
                 id = line[5]
-                full_name = name + "_" + surname
                 full_name = cls(name, surname, email, password, status, id)
                 object_list.append(full_name)
+
         return object_list
 
     @classmethod
@@ -83,13 +98,14 @@ class User:
         '''
         choosing = True
         while choosing:
-            option = Ui.get_inputs(['Enter person ID:'], "Whose data you want to change?")
+            option = Ui.get_inputs(['Enter person ID or 0 to go back: '], "Whose data you want to change?")
             for person in object_list:
                 if option[0] == person.id:
                     return person
-                else:
-                    Ui.print_error_message('No id match.')
-                    break
+            Ui.print_error_message('No id match.')
+            if option[0] == '0':
+                choosing = False
+
 
     @classmethod
     def data_to_change(cls, person):
@@ -163,10 +179,11 @@ class User:
         data = Ui.get_inputs(['Name: ', 'Surname: ',
                              'email: ', 'Password: ', 'Status: '],
                              "Please provide informations:")
-        id = '11111111'  # HAVE TO CHANGE IT TO RANDOMLY GENERATED
-
+        id = Common.generate_random_id(object_list)
         new_person = cls(data[0], data[1], data[2], data[3], data[4], id)
         object_list.append(new_person)
+
+        return object_list
 
     @classmethod
     def remove_person(cls, object_list):
@@ -179,3 +196,4 @@ class User:
         for person in object_list:
             if person.id == to_remove[0]:
                 object_list.remove(person)
+        return object_list

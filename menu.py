@@ -4,17 +4,21 @@ import sys
 from user import *
 from Common import *
 from student import *
-#from employee import *
+from employee import *
 from mentor import *
 from manager import *
 from submission import *
 #from assignments import *
 #from attendance import *
+from assignments import *
+from attendance import *
 from ui import *
 from manager_menu import *
 from mentor_menu import *
 from student_menu import *
 # from employee_menu import *
+from employee_menu import *
+
 
 
 class Menu:
@@ -47,19 +51,16 @@ class Menu:
         if not user:
             print('Invalid login or password. Please try again. ')
         elif user:
-            print('\nHello, ' + user.name + '!')
+            print('\nHello, ' + user.name + '!\n')
             if user.status == 'manager':
                 ManagerMenu.handle_menu()
             elif user.status == 'employee':
                 EmployeeMenu.handle_menu()
-            elif user.status == 'Mentor':
+            elif user.status == 'mentor':
                 MentorMenu.handle_menu()
             elif user.status == 'student':
                 StudentMenu.handle_menu()
         return None
-
-    def exit_program():  # save csv files
-        pass
 
     @classmethod
     def choose_option(cls):
@@ -68,18 +69,14 @@ class Menu:
         if option == "1":
             Menu.log_in()
         elif option == "0":
-            print('bye')
-            save(cls, csv_file)
             sys.exit(0)
+        else:
+            Ui.print_error_message('There is no such option.')
 
     @classmethod
     def main_menu(cls):
         options = ["SIGN IN"]
-        Ui.print_menu("\tMAIN MENU: ", options, "EXIT PROGRAM")
-
-    @classmethod
-    def save(cls):
-        pass
+        Ui.print_menu("\tMAIN MENU", options, "EXIT PROGRAM")
 
     @staticmethod
     def main():
@@ -89,7 +86,7 @@ class Menu:
             try:
                 Menu.choose_option()
             except KeyError:
-                ui.print_error_message('unknown error at main!')
+                ui.print_error_message('Unknown error at main!')
 
 
 if __name__ == '__main__':

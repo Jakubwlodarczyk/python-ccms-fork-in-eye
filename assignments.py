@@ -3,7 +3,8 @@ from ui import Ui
 
 class Assignments:
     """
-
+    Class Assignments
+    handle assignments objects (assignment list)
     """
     assignments_list = []
 
@@ -17,16 +18,33 @@ class Assignments:
 
     @staticmethod
     def view_assignment_list():
-        Ui.print_assignments_list(Assignments.assignments_list, "Assignments List")
+        """
+        method prints the list or error_message if list is empty
+        """
+
+        if len(Assignments.assignments_list) == 0:
+            Ui.print_error_message("Assignment list is empty")
+        else:
+            Ui.print_assignments_list(Assignments.assignments_list, "Assignments List:")
 
     @classmethod
     def add_an_assignment(cls):
-        add_an_assignment_input = Ui.get_inputs(['start_date: ', 'end_date: ', 'assignment_name: '],
-                                                "Please provide the assignment: ")
-        Assignments.assignments_list.append(add_an_assignment_input)
+        """
+        method adds assignments to assignment_list, and update this list
+        """
+        data = Ui.get_inputs(['start_date (dd-mm-yyyy): ', 'end_date (dd-mm-yyyy): ', 'assignment_name: '],
+                             "Please provide the assignment: ")
+
+        new_assignment = cls(data[0], data[1], data[2])
+        Assignments.assignments_list.append(new_assignment)
 
     @classmethod
     def create_assignments_list(cls, file_path):
+        """
+        reads the file with data, and creates the list of objects
+        :param file_path: the path to file
+        :return: (list) list of objects of assignments
+        """
         assignments_list = []
         with open(file_path, "r") as f:
             my_lines = f.readlines()
