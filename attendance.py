@@ -79,8 +79,8 @@ class Attendance:
                     while True:
                         os.system("clear")
                         options_list = Ui.get_inputs(
-                            ["Year (e.g. 2017): ", "Month (e.g. 01): ", "Day (e.g. 23): "], "Write date you \
-want to change attendance: \n")
+                            ["Year (e.g. 2017): ", "Month (e.g. 01): ", "Day (e.g. 23): "],
+                            "Write date you want to change attendance: \n")
                         today = datetime.date.today()
                         today = str(today)
                         date = [options_list[0], options_list[1], options_list[2]]
@@ -214,9 +214,10 @@ status in {}: {}".format(day_str, status))
         """
         while True:
             os.system("clear")
-            option_list = Ui.get_inputs(["1 - Check attendance\n2 - Change student's attendance\n\
-3 - View students attendance\n0 - Back to main menu\n\n"], "~~Welcome in ..::ATTENDANCE::.. menu~~\n\nWhat would you\
-like to do?\n\n")
+            option_list = Ui.get_inputs(["1 - Check attendance\n2 - Change student's attendance\n "
+                                         "3 - View students attendance\n0 - Back to main menu\n\n"],
+                                        "~~Welcome in ..::ATTENDANCE::.. menu~~\n\nWhat would you "
+                                        "like to do?\n\n")
             if Common.error_integer_handling(option_list[0], 3):
                 if int(option_list[0]) == 1:
                     day_str = Attendance.date_control()
@@ -231,8 +232,8 @@ like to do?\n\n")
                     break # PASTE HERE LINK TO MY MENU (OR NOT)
 
 
-Student.student_list.append(Student("Krzysiek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","id7sdg54($)"))
-Student.student_list.append(Student("Krzysiffffek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","iderg754($)"))
-Student.student_list.append(Student("Krsdfszysiek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","iderwg54($)"))
-Attendance.attendance_mini_menu()
+# Student.student_list.append(Student("Krzysiek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","id7sdg54($)"))
+# Student.student_list.append(Student("Krzysiffffek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","iderg754($)"))
+# Student.student_list.append(Student("Krsdfszysiek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","iderwg54($)"))
+# Attendance.attendance_mini_menu()
 
