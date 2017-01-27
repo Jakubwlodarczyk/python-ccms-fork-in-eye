@@ -18,6 +18,9 @@ class Student(User):
         self.attendance_list = []
         self.submission_list = Submission.submission_list
 
+    def __str__(self):
+        return "{} {}".format(self.name, self.surname)
+
     @classmethod
     def view_grades(cls):
         '''
