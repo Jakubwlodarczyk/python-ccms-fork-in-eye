@@ -35,9 +35,12 @@ class Common:
         Returns:
                 None"""
         with open(file_name, "w") as f:
-            for obj in obj_list:
+            for index, obj in enumerate(obj_list):
                 obj_atrr = [obj.start_date, obj.end_date, obj.assignment_name]
-                f.write(','.join(obj_atrr))
+                if index < len(obj_list) - 1:
+                    f.write(','.join(obj_atrr) + '\n')
+                else:
+                    f.write(','.join(obj_atrr))
 
     @classmethod
     def write_attendance_to_file(cls, file_name, obj_list):
@@ -49,9 +52,12 @@ class Common:
         Returns:
                 None"""
         with open(file_name, "w") as f:
-            for obj in obj_list:
+            for index, obj in enumerate(obj_list):
                 obj_atrr = [obj.data, obj.status, obj.id]
-                f.write(','.join(obj_atrr))
+                if index < len(obj_list) - 1:
+                    f.write(','.join(obj_atrr) + '\n')
+                else:
+                    f.write(','.join(obj_atrr))
 
     @classmethod
     def write_submission_to_file(cls, file_name, obj_list):
@@ -63,9 +69,12 @@ class Common:
         Returns:
                 None"""
         with open(file_name, "w") as f:
-            for obj in obj_list:
+            for index, obj in enumerate(obj_list):
                 obj_atrr = [obj.start_date, obj.end_date, obj.submission_name, obj.grade, obj.github_link, obj.id]
-                f.write(','.join(obj_atrr))
+                if index < len(obj_list) - 1:
+                    f.write(','.join(obj_atrr) + '\n')
+                else:
+                    f.write(','.join(obj_atrr))
 
     @staticmethod
     def error_integer_handling(chosen_option, value_of_possible_options):
