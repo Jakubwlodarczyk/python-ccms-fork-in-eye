@@ -4,7 +4,7 @@ import sys
 from user import *
 from Common import *
 from student import *
-#from employee import *
+from employee import *
 from mentor import *
 from manager import *
 from submission import *
@@ -12,9 +12,9 @@ from assignments import *
 from attendance import *
 from ui import *
 from manager_menu import *
-#from mentor_menu import *
-# from student_menu import *
-# from employee_menu import *
+from mentor_menu import *
+from student_menu import *
+from employee_menu import *
 
 
 class Menu:
@@ -23,10 +23,10 @@ class Menu:
         '''
         Creates objects from csv and then a list of all users to loop through for login and password validation.
         '''
-        Employee.employees_list = User.create_objects_list('Regular_employees.csv')
-        Mentor.mentors_list = User.create_objects_list('Mentors.csv')
-        Student.student_list = User.create_objects_list('Student.csv')
-        Manager.manager_list = User.create_objects_list('Manager.csv')
+        Employee.employees_list = Employee.create_objects_list('Regular_employees.csv')
+        Mentor.mentors_list = Mentor.create_objects_list('Mentors.csv')
+        Student.student_list = Student.create_objects_list('Student.csv')
+        Manager.manager_list = Manager.create_objects_list('Manager.csv')
         User.all_users = [Employee.employees_list,
                           Mentor.mentors_list,
                           Student.student_list,
@@ -37,42 +37,51 @@ class Menu:
 
     @classmethod
     def log_in(cls):
-        login = Ui.get_inputs(['Your email: '], "")
-        password = Ui.get_inputs(['Your password: '], "")
+        '''
+        Handles logging in as user based on given email and password.
+        Redirects to specific submenu.
+        '''
+        login = Ui.get_inputs(['Please enter your email: '], "")
+        password = []
+        passw = getpass.getpass('Enter pass: ')
+        password.append(passw)
         user = User.user_password_check(login[0], password[0])
 
         if not user:
-            print('User not found!')
+            print('Invalid login or password. Please try again. ')
         elif user:
-            print('Hello, ' + user.name)
+            print('\nHello, ' + user.name + '!\n')
             if user.status == 'manager':
                 ManagerMenu.handle_menu()
             elif user.status == 'employee':
                 EmployeeMenu.handle_menu()
-            elif user.status == 'Mentor':
+            elif user.status == 'mentor':
                 MentorMenu.handle_menu()
             elif user.status == 'student':
-                print('YEEEESSSS')
                 StudentMenu.handle_menu()
         return None
 
-    def exit_program():  # save csv files
-        pass
-
     @classmethod
     def choose_option(cls):
+        '''
+        Allows user to log in or exit program.
+        '''
         inputs = Ui.get_inputs(["Please enter a number: "], "")
         option = inputs[0]
         if option == "1":
             Menu.log_in()
         elif option == "0":
             sys.exit(0)
+        else:
+            Ui.print_error_message('There is no such option.')
 
     @classmethod
     def main_menu(cls):
-        options = ["LOGIN",
-                   "SOMETHING"]
-        Ui.print_menu("MAIN MENU", options, "EXIT PROGRAM")
+        '''
+        Handles redirecting to printing menu options.
+        '''
+        options = ["SIGN IN"]
+        Ui.print_menu("\tMAIN MENU", options, "EXIT PROGRAM")
 
     @staticmethod
     def main():
@@ -82,7 +91,7 @@ class Menu:
             try:
                 Menu.choose_option()
             except KeyError:
-                ui.print_error_message('unknown error at main!')
+                ui.print_error_message('Unknown error at main!')
 
 
 if __name__ == '__main__':

@@ -1,8 +1,12 @@
-from menu import Menu
+from student import *
+from user import *
+from submission import *
+from attendance import *
+import sys
 
-class MentorMenu(Menu):
+class MentorMenu:
     """
-    Handles navigation menu after logging as mentor
+    Handles navigation menu after logging as mentor.
     """
     @staticmethod
     def handle_menu():
@@ -19,13 +23,11 @@ class MentorMenu(Menu):
 
             if chose_option[0] == '1':
                 # print list of students
-                Ui.print_staff_list(Student.student_list, "List of students")
+                Ui.print_table(Student.student_list, "List of students")
 
             elif chose_option[0] == '2':
-                # add an assignment
-                add_an_assignment_input = Ui.get_inputs(['start_date: ', 'end_date: ', 'assignment_name: '],
-                                                        "Please provide the assignment: ")
-                Assignments.assignments_list.append(add_an_assignment_input)
+                # add an assignment to assignment list
+                Assignments.add_an_assignment()
 
             elif chose_option[0] == '3':
                 # grade assignments submitted by students
@@ -34,29 +36,33 @@ class MentorMenu(Menu):
             elif chose_option[0] == '4':
                 # check attendance of students
                 pass
+                # Attendance.attendance_mini_menu()
 
             elif chose_option[0] == '5':
                 # add a student to a class
-                User.add_person(Student.student_list)
+                Student.add_person(Student.student_list)
 
             elif chose_option[0] == '6':
                 # remove student from class
-                User.remove_person(Student.student_list)
+                Student.remove_person(Student.student_list)
 
             elif chose_option[0] == '7':
-                # edit student's data
-                pass
+                # edit students data
+                Ui.print_table(Student.student_list, "List of students")
+                person = Student.choose_person_to_change_data(Student.student_list)
+                Student.data_to_change(person)
+                if person:
+                    Employee.data_to_change(person)
+                else:
+                    pass
 
             elif chose_option[0] == '0':
-                # common.write_table_to_file('Assignments.csv')
-                # common.write_table_to_file('Attendance.csv')
-                # common.write_table_to_file('Manager.csv')
-                # common.write_table_to_file('Mentors.csv')
-                # common.write_table_to_file('Regular_employees.csv')
-                # common.write_table_to_file('Student.csv')
-                # common.write_table_to_file('Submissions.csv')
+                # save data to files, and exit
+                Common.write_submission_to_file('Submissions.csv', Submission.submission_list)
+                Common.write_table_to_file('Student.csv', Student.student_list)
+                Common.write_attendance_to_file('Attendance.csv', Attendance.attendances_list)
+                Common.write_assignment_to_file('Assignments.csv', Assignments.assignments_list)
                 sys.exit()
 
             else:
                 Ui.print_error_message('There is no such option.')
-
