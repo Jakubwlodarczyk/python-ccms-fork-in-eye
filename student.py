@@ -11,7 +11,7 @@ import os
 class Student(User):
 
     student_list = []
-    submission_list = Submission.submission_list
+    # submission_list = Submission.submission_list
     
 
     def __init__(self, *args, **kwargs):
@@ -22,23 +22,16 @@ class Student(User):
         # self.student_list = []
 
         self.attendace_list = []
-        # self.submission_list = Submission.submission_list
+        self.submission_list = Submission.submission_list
         
         
         
     @classmethod
     def view_grades(cls):
         
-        # print(submission)
+       
 
-    #     self.attendance_list = []
-
-    # def view_grades(self):
-    #     pass
-
-        # # must get the submissions list from csv, where are added students submissions
-
-        submission_list = Submission.submission_list
+        cls.submission_list = Submission.submission_list
        
         # self.submission_list = Submission.submission_list
         
@@ -47,7 +40,7 @@ class Student(User):
         
         # for submission in cls.submission_list:
         #     print('Assignment name: {}, Grade: {}.'.format(submission.submission_name, submission.grade))
-
+        
 
         
     @classmethod
