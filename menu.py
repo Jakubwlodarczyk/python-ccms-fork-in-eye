@@ -63,7 +63,7 @@ class Menu:
             elif user.status == 'mentor':
                 MentorMenu.handle_menu()
             elif user.status == 'student':
-                StudentMenu.handle_menu()
+                StudentMenu.handle_menu(user)
         return None
 
     @classmethod
