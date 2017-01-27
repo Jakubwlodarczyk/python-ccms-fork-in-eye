@@ -1,6 +1,7 @@
 from ui import *
 
 
+
 class Submission:
     """
     class Submission
@@ -69,3 +70,4 @@ class Submission:
                 full_submission_name = cls(start_date, end_date, submission_name, grade, github_link, id)
                 submission_list.append(full_submission_name)
         return submission_list
+

@@ -4,6 +4,7 @@ from ui import *
 
 
 class Common:
+
     @classmethod
     def write_table_to_file(cls, file_name, obj_list):  # for persons
         """
@@ -20,6 +21,7 @@ class Common:
             for obj in obj_list:
                 obj_atrr = [obj.name, obj.surname, obj.email, obj.password, obj.status, obj.id]
                 f.write(','.join(obj_atrr))
+
 
     @classmethod
     def write_assignment_to_file(cls, file_name, obj_list):
@@ -58,10 +60,21 @@ class Common:
             table: list of lists to write to a file
         Returns:
                 None"""
+
+        # for obj in obj_list:
         with open(file_name, "w") as f:
-            for obj in obj_list:
-                obj_atrr = [obj.start_date, obj.end_date, obj.submission_name, obj.grade, obj.github_link, obj.id]
-                f.write(','.join(obj_atrr))
+            object_list = [obj_list.start_date, obj_list.end_date, obj_list.submission_name, obj_list.grade, 
+                                obj_list.github_link, obj_list.id]
+            f.write(','.join(object_list))
+
+
+            
+
+        # with open(file_name, "w") as f:
+        #     for obj in obj_list:
+        #         obj_atrr = [obj.start_date, obj.end_date, obj.submission_name, obj.grade, obj.github_link, obj.id]
+        #         f.write(','.join(obj_atrr))
+
 
     @staticmethod
     def error_integer_handling(chosen_option, value_of_possible_options):
