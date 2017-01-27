@@ -20,25 +20,10 @@ class Student(User):
 
     @classmethod
     def view_grades(cls):
-
-        # print(submission)
-
-    #     self.attendance_list = []
-
-    # def view_grades(self):
-    #     pass
-
-        # # must get the submissions list from csv, where are added students submissions
-
-        submission_list = Submission.submission_list
-
-        # self.submission_list = Submission.submission_list
-
-        for sub in submission_list:
-            print('Assignment name: {}, Grade: {}.'.format(sub.submission_name, sub.grade))
-
-        # for submission in cls.submission_list:
-        #     print('Assignment name: {}, Grade: {}.'.format(submission.submission_name, submission.grade))
+        '''
+        Allows to view grades for all student's assignments.
+        '''
+        Ui.print_submissions(Submission.submission_list)
 
     @classmethod
     def submit_assignment(cls):
@@ -61,7 +46,9 @@ class Student(User):
             submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2],
                                 chosen_one[3], chosen_one[4], chosen_one[5])
 
+
             print(submission_obj.id)
+
             Common.write_submission_to_file('Submissions.csv', submission_obj)
                 # sub = Submission(start_date, end_date, name, 0, 'trololo', 11 )
                 # print(sub.submission_name, sub.github_link)
