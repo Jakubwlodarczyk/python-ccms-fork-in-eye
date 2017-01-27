@@ -48,7 +48,7 @@ class User:
             Ui.print_error_message("Password can't be empty")
 
         self.status = status  # status is overwritten by each child class
-        self.id = id
+        self.id = id  # id is randomly generated when adding a new person
 
     @classmethod
     def create_objects_list(cls, file_path):

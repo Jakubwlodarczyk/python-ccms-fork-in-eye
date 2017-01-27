@@ -235,5 +235,3 @@ status in {}: {}".format(day_str, status))
 # Student.student_list.append(Student("Krzysiffffek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","iderg754($)"))
 # Student.student_list.append(Student("Krsdfszysiek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","iderwg54($)"))
 # Attendance.attendance_mini_menu()
-
-
