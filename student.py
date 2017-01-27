@@ -4,7 +4,6 @@ from assignments import *
 from ui import *
 from Common import *
 from submission import *
-
 import sys
 import os
 
@@ -41,8 +40,6 @@ class Student(User):
         # for submission in cls.submission_list:
         #     print('Assignment name: {}, Grade: {}.'.format(submission.submission_name, submission.grade))
 
-
-
     @classmethod
     def submit_assignment(cls):
 
@@ -52,7 +49,6 @@ class Student(User):
         #     print(n+1, ', '.join(assignment))
         choose = int(input('Type the chosen number here: '))
         ass = Assignments.assignments_list
-
 
         assignment_list = []
         for i in ass:
@@ -65,8 +61,8 @@ class Student(User):
             submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2],
                                 chosen_one[3], chosen_one[4], chosen_one[5])
 
-            print(submission_obj.id)
 
+            print(submission_obj.id)
 
             Common.write_submission_to_file('Submissions.csv', submission_obj)
                 # sub = Submission(start_date, end_date, name, 0, 'trololo', 11 )
