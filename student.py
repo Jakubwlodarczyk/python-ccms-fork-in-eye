@@ -1,3 +1,5 @@
+from user import User
+
 class Student(User):
 
     student_list = []
@@ -8,7 +10,7 @@ class Student(User):
         # self.attendance = attendance
         # self.id = id
         # self.student_list = []
-        attendace_list = []
+        self.attendance_list = []
 
     def view_grades(self):
         pass

@@ -1,8 +1,4 @@
-from menu import *
-from student import *
-from user import *
-from submission import *
-
+from menu import Menu
 
 class MentorMenu(Menu):
     """
