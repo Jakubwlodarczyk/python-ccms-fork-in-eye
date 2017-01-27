@@ -12,7 +12,7 @@ class StudentMenu:
         '''
         Allows to choose an action to perform.
         '''
-        options = ['View grades', "Submit an assignment", 'View attandence']
+        options = ['View grades', "Submit an assignment"]
         while True:
 
             Ui.print_menu("What you want to do?", options, 'Exit')
@@ -28,8 +28,7 @@ class StudentMenu:
             elif option == '2':
                 os.system('clear')
                 Student.submit_assignment()
-            elif option == '3':
-                pass
+
             elif option == '0':
                 sys.exit()
             else:
