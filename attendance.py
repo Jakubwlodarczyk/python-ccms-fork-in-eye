@@ -231,9 +231,9 @@ status in {}: {}".format(day_str, status))
                     os.system("clear")
                     break # PASTE HERE LINK TO MY MENU (OR NOT)
 
-
 # Student.student_list.append(Student("Krzysiek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","id7sdg54($)"))
 # Student.student_list.append(Student("Krzysiffffek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","iderg754($)"))
 # Student.student_list.append(Student("Krsdfszysiek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","iderwg54($)"))
 # Attendance.attendance_mini_menu()
+
 

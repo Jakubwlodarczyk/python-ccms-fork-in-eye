@@ -138,9 +138,11 @@ class Ui:
         os.system("clear")
         print(title)
         idx = 1
+
         for assign in assignments_list:
             print(idx,
                   assign.start_date,
                   assign.end_date,
-                  assign.assignment_name)
+                  assign.assignments)
+              
             idx += 1
