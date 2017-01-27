@@ -39,14 +39,12 @@ class Common:
         with open(file_name, "w") as f:
             for index, obj in enumerate(obj_list):
                 obj_atrr = [obj.start_date, obj.end_date, obj.assignment_name]
-<<<<<<< HEAD
-                f.write(','.join(obj_atrr)+'\n')
-=======
+
                 if index < len(obj_list) - 1:
                     f.write(','.join(obj_atrr) + '\n')
                 else:
                     f.write(','.join(obj_atrr))
->>>>>>> 49b6b8775a0ce0b6b9bbd0b892a010c852f49da2
+
 
     @classmethod
     def write_attendance_to_file(cls, file_name, obj_list):
@@ -61,14 +59,11 @@ class Common:
         with open(file_name, "w") as f:
             for index, obj in enumerate(obj_list):
                 obj_atrr = [obj.data, obj.status, obj.id]
-<<<<<<< HEAD
-                f.write(','.join(obj_atrr)+'\n')
-=======
                 if index < len(obj_list) - 1:
                     f.write(','.join(obj_atrr) + '\n')
                 else:
                     f.write(','.join(obj_atrr))
->>>>>>> 49b6b8775a0ce0b6b9bbd0b892a010c852f49da2
+
 
     @classmethod
     def write_submission_to_file(cls, file_name, obj_list):
