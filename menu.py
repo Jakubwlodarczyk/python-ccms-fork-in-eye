@@ -48,9 +48,9 @@ class Menu:
         user = User.user_password_check(login[0], password[0])
 
         if not user:
-            print('Invalid login or password. Please try again. ')
+            Ui.print_error_message('Invalid login or password. Please try again. ')
         elif user:
-            print('\nHello, ' + user.name + '!\n')
+            Ui.print_error_message('\nHello, ' + user.name + '!\n')
             if user.status == 'manager':
                 ManagerMenu.handle_menu()
             elif user.status == 'employee':
