@@ -35,7 +35,6 @@ class MentorMenu:
 
             elif chose_option[0] == '4':
                 # check attendance of students
-                pass
                 Attendance.attendance_mini_menu()
 
             elif chose_option[0] == '5':
