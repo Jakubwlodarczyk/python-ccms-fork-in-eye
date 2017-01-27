@@ -1,7 +1,6 @@
 from ui import *
 
 
-
 class Submission:
     """
     class Submission

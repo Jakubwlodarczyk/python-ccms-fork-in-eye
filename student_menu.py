@@ -12,10 +12,10 @@ from submission import *
 
 import os
 
+
 class StudentMenu:
 
     @staticmethod
-
     def handle_menu():
 
         options = ['View grades', "Submit an assignment", 'View attandence', 'Exit']
