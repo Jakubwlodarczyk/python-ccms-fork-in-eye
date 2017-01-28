@@ -60,28 +60,24 @@ class Student(User):
 
         for n, assignment in enumerate(Assignments.assignments_list):
             print(str(n+1) + '. ' + str(assignment))
-        choose = int(input('Type the chosen number here: '))
+        choose = input('Type the chosen number here: ')  # choose is a string
         ass = Assignments.assignments_list
 
         assignment_list = []
+        
         for i in ass:
-            print(i.start_date)
             assignment_list.append([i.start_date, i.end_date, i.assignment_name, '0', 'git_trololo', self.id])
-        print(assignment_list)
-        if choose <= len(assignment_list):
-
-
-            chosen_one = assignment_list[choose-1]
-            submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2],
+       
+        if int(choose) <= len(assignment_list) and choose.isnumeric():  #condition
+            chosen_one = assignment_list[int(choose)-1]
+            
+            submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], #object of new submission is created
                                 chosen_one[3], chosen_one[4], chosen_one[5])
-
-
-            print(submission_obj.id)
-
-            # Common.write_submission_to_file('Submissions.csv', submission_obj)
-            #     # sub = Submission(start_date, end_date, name, 0, 'trololo', 11)
-            #     # print(sub.submission_name, sub.github_link)
+    
+            Submission.submission_list.append(submission_obj)             
             print('Your assignment was succesfully submitted')
+            return Submission.submission_list
+        
         else:
             print('invalid value')
 

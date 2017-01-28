@@ -40,6 +40,7 @@ class StudentMenu:
 
 
             elif option == '0':
+                Common.write_submission_to_file('Submissions.csv', Submission.submission_list)
                 sys.exit()
             else:
                 Ui.print_error_message('There is no such option.')
