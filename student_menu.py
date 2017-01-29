@@ -4,6 +4,7 @@ import sys
 from student import *
 from submission import *
 import os
+import time
 
 
 class StudentMenu:
@@ -26,13 +27,15 @@ class StudentMenu:
             option = inputs[0]
 
             if option == '1':
+                
                 os.system('clear')
-                Student.view_grades()
+                user.view_grades()
+                # Student.view_grades()
 
             elif option == '2':
                 os.system('clear')
-
                 user.submit_assignment()
+
             elif option == '3':
                 pass
 
