@@ -1,7 +1,6 @@
 from ui import *
 
 
-
 class Submission:
     """
     class Submission
@@ -61,6 +60,8 @@ class Submission:
                     pass
                 else:
                     line[length] = line[length][:-1]
+                if line[5][-1] == '\n':
+                    line[5] = line[5][:-1]
                 start_date = line[0]
                 end_date = line[1]
                 submission_name = line[2]
