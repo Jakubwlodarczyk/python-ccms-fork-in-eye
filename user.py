@@ -15,36 +15,25 @@ class User:
         '''
         Initializing an object with data validation.
         '''
-        try:
-            self.name = name
-            if not self.name:
-                raise ValueError
-        except ValueError:
+        not_valid = True
+
+        self.name = name
+        if not self.name:
             Ui.print_error_message("Name can't be empty")
 
-        try:
-            self.surname = surname
-            if not self.surname:
-                raise ValueError
-        except ValueError:
+        self.surname = surname
+        if not self.surname:
             Ui.print_error_message("Surname can't be empty")
 
-        try:
-            self.email = email
-            if not self.email:
-                raise ValueError
-            if '@' not in self.email or '.' not in self.email:
-                raise KeyError
-        except KeyError:
-            Ui.print_error_message('Please use proper email format')
-        except ValueError:
+        self.email = email
+        if not self.email:
             Ui.print_error_message("Email can't be empty")
 
-        try:
-            self.password = str(password)
-            if not self.password:
-                raise ValueError
-        except ValueError:
+        elif '@' not in self.email or '.' not in self.email:
+            Ui.print_error_message('Please use proper email format')
+
+        self.password = password
+        if not self.password:
             Ui.print_error_message("Password can't be empty")
 
         self.status = status  # status is overwritten by each child class
@@ -180,14 +169,19 @@ class User:
         Function allows to add new person object to a list of given type of objects.
         Returns updated list of objects.
         '''
+
         data = Ui.get_inputs(['Name: ', 'Surname: ',
                              'email: ', 'Password: ', 'Status: '],
                              "Please provide informations:")
         id = Common.generate_random_id(object_list)
-        new_person = cls(data[0], data[1], data[2], data[3], data[4], id)
-        object_list.append(new_person)
+        if data[0] == '' or data[1] == '' or data[2] =='' or data[3] == '':
+            pass
 
+        else:
+            new_person = cls(data[0], data[1], data[2], data[3], data[4], id)
+            object_list.append(new_person)
         return object_list
+
 
     @classmethod
     def remove_person(cls, object_list):
