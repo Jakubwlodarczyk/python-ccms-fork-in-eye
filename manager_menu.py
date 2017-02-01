@@ -46,6 +46,8 @@ class ManagerMenu:
                     pass
             elif option == '4':
                 # fire a regular employee
+                title = 'Regular employees list:'
+                Ui.print_table(Employee.employees_list, title)
                 Employee.remove_person(Employee.employees_list)
             elif option == '5':
                 # show mentors
@@ -62,6 +64,8 @@ class ManagerMenu:
                 Mentor.data_to_change(person)
             elif option == '8':
                 # fire mentor
+                title = 'Mentors:'
+                Ui.print_table(Mentor.mentors_list, title)
                 Mentor.remove_person(Mentor.mentors_list)
             elif option == '9':
                 # view student list
