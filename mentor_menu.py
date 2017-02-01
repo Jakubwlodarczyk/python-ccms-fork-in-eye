@@ -45,13 +45,13 @@ class MentorMenu:
 
             elif chose_option[0] == '6':
                 # remove student from class
+                Ui.print_table(Student.student_list, "List of students")
                 Student.remove_person(Student.student_list)
 
             elif chose_option[0] == '7':
                 # edit students data
                 Ui.print_table(Student.student_list, "List of students")
                 person = Student.choose_person_to_change_data(Student.student_list)
-                Student.data_to_change(person)
                 if person:
                     Employee.data_to_change(person)
                 else:

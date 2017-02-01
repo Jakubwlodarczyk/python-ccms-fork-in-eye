@@ -92,12 +92,12 @@ class User:
         '''
         choosing = True
         while choosing:
-            option = Ui.get_inputs(['Enter person ID or 0 to go back: '], "Whose data you want to change?")
+            option = Ui.get_inputs(["Enter person ID or 'q' to go back: "], "Whose data you want to change?")
             for person in object_list:
                 if option[0] == person.id:
                     return person
             Ui.print_error_message('No id match.')
-            if option[0] == '0':
+            if option[0] == 'q':
                 choosing = False
 
     @classmethod
@@ -108,13 +108,15 @@ class User:
         choosing = True
         while choosing:
             Ui.print_data_list('Data list:')
-            choice = Ui.get_inputs(['Enter a number: '], 'Which data you want to edit?')
+            choice = Ui.get_inputs(["Enter a number or 'q' to go back: "], 'Which data do you want to edit?')
             if choice[0] == '1':
                 return cls.edit_name(person)
             elif choice[0] == '2':
                 return cls.edit_surname(person)
             elif choice[0] == '3':
                 return cls.edit_email(person)
+            elif choice[0] == 'q':
+                choosing = False
             else:
                 Ui.print_error_message('There is no such option.')
                 time.sleep(3)

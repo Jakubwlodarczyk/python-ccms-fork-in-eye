@@ -61,7 +61,10 @@ class ManagerMenu:
                 title = 'Mentors:'
                 Ui.print_table(Mentor.mentors_list, title)
                 person = Mentor.choose_person_to_change_data(Mentor.mentors_list)
-                Mentor.data_to_change(person)
+                if person:
+                    Mentor.data_to_change(person)
+                else:
+                    pass
             elif option == '8':
                 # fire mentor
                 title = 'Mentors:'
