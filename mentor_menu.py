@@ -2,6 +2,7 @@ from student import *
 from user import *
 from submission import *
 from attendance import *
+from employee import Employee
 import sys
 
 
