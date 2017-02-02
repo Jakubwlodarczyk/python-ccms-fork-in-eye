@@ -4,7 +4,7 @@ class Ui:
     '''
     Handles user interface.
     '''
-    
+
     @staticmethod
     def print_table(object_list, title):
         '''

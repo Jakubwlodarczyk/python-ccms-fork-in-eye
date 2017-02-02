@@ -16,6 +16,21 @@ class Attendance:
         self.status = status
         self.id = id
 
+    def __str__(self):
+        remember = ""
+        remember_status = None
+
+        if self.status == "1":
+            remember_status = 80
+        elif self.status == "2":
+            remember_status = 100
+
+        for student in Student.student_list:
+            if student.id == self.id:
+                remember = student
+        return "{} {} {}".format(remember, self.data, remember_status)
+
+
     @classmethod
     def create_attendance_list(cls, file_path):
         '''
@@ -52,6 +67,8 @@ class Attendance:
         while True:
             os.system("clear")
             date_list = Attendance.set_date()
+            if date_list == None:
+                return None
             date_str = "-".join(date_list)
             if date_str > str(datetime.date.today()):
                 Ui.print_error_message("No way my friend.")
@@ -88,13 +105,13 @@ class Attendance:
         """
         :return: date of chosen day as list with strings (e.g. ["2017", "05", "03"]
         """
-        date = None
+
         while True:
             os.system("clear")
             options_list = Ui.get_inputs(["1 - Today\n2 - Choose another day\n0 - Go back\n"], "Please set a date:")
             if Common.error_integer_handling(options_list[0], 2):
                 if options_list[0] == "0":
-                    Attendance.attendance_mini_menu()
+                    return None
                 if options_list[0] == "1":
                     today = datetime.date.today()
                     today = str(today)
@@ -155,9 +172,7 @@ class Attendance:
                             continue
             else:
                  continue
-            date = [options_list[0], options_list[1], options_list[2]]
-            wait = Ui.get_inputs([""], "")
-            return date
+
 
     @staticmethod
     def choose_student():
@@ -175,7 +190,7 @@ class Attendance:
             user_option = option_list[0]
             if Common.error_integer_handling(user_option, len(Student.student_list)):
                 if user_option[0] == "0":
-                    Attendance.attendance_mini_menu()
+                    return None
                 for number, student in enumerate(Student.student_list):
                     if number + 1 == int(user_option):
                         return student.id
@@ -240,23 +255,28 @@ status in {}: {}".format(day_str, status))
         """
         while True:
             os.system("clear")
-            option_list = Ui.get_inputs(["1 - Check attendance\n2 - Change student's attendance\n "
+            option_list = Ui.get_inputs(["1 - Check attendance\n2 - Change student's attendance\n"
                                          "3 - View students attendance\n0 - Back to main menu\n\n"],
                                         "~~Welcome in ..::ATTENDANCE::.. menu~~\n\nWhat would you "
                                         "like to do?\n\n")
-            print(Attendance.attendances_list)
+
             if Common.error_integer_handling(option_list[0], 3):
                 if int(option_list[0]) == 1:
                     day_str = Attendance.date_control()
+                    if day_str == None:
+                        continue
                     Attendance.check_attendance_for_day(day_str)
                 if int(option_list[0]) == 2:
                     id = Attendance.choose_student()
+                    if id == None:
+                        continue
                     Attendance.change_student_attendance(id)
                 if int(option_list[0]) == 3:
                     Attendance.view_students_attendance()
                 if int(option_list[0]) == 0:
                     os.system("clear")
-                    break # PASTE HERE LINK TO MY MENU (OR NOT)
+                    break
+
 
 # Student.student_list.append(Student("Krzysiek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","id7sdg54($)"))
 # Student.student_list.append(Student("Krzysiffffek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","iderg754($)"))
