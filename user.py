@@ -78,12 +78,14 @@ class User:
         choosing = True
         while choosing:
             option = Ui.get_inputs(["Enter person ID or 'q' to go back: "], "Whose data you want to change?")
+            if option[0] == 'q':
+                choosing = False
+            else:
+                Ui.print_error_message('No id match.')
             for person in object_list:
                 if option[0] == person.id:
                     return person
-            Ui.print_error_message('No id match.')
-            if option[0] == 'q':
-                choosing = False
+
 
     @classmethod
     def data_to_change(cls, person):
@@ -92,7 +94,7 @@ class User:
         '''
         choosing = True
         while choosing:
-            Ui.print_data_list('Data list:')
+            Ui.print_data_list('Data list: ')
             choice = Ui.get_inputs(["Enter a number or 'q' to go back: "], 'Which data do you want to edit?')
             if choice[0] == '1':
                 return cls.edit_name(person)
@@ -112,8 +114,11 @@ class User:
         Allows to change person object's attribute.
         '''
         new_name = Ui.get_inputs(['Enter new name: '], " ")
-        person.name = new_name[0]
-        Ui.print_error_message("\nName has been changed.\n")
+        if not new_name[0]:
+            Ui.print_error_message("\nName cannot be empty.\n")
+        else:
+            person.name = new_name[0]
+            Ui.print_error_message("\nName has been changed.\n")
 
     @classmethod
     def edit_surname(cls, person):
@@ -121,8 +126,11 @@ class User:
         Allows to change person object's attribute.
         '''
         new_surname = Ui.get_inputs(['Enter new surname: '], " ")
-        person.surname = new_surname[0]
-        Ui.print_error_message("\nSurname has been changed.\n")
+        if not new_surname[0]:
+            Ui.print_error_message("\nSurame cannot be empty.\n")
+        else:
+            person.surname = new_surname[0]
+            Ui.print_error_message("\nSurname has been changed.\n")
 
     @classmethod
     def edit_email(cls, person):
@@ -130,8 +138,11 @@ class User:
         Allows to change person object's attribute.
         '''
         new_email = Ui.get_inputs(['Enter new email: '], " ")
-        person.email = new_email[0]
-        Ui.print_error_message("\nEmail has been changed.\n")
+        if not nem_email[0]:
+            Ui.print_error_message('email cannot be empty.')
+        else:
+            person.email = new_email[0]
+            Ui.print_error_message("\nEmail has been changed.\n")
 
     @classmethod
     def edit_password(cls, person):
