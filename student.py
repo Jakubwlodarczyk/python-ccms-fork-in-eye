@@ -3,6 +3,8 @@ from assignments import *
 from ui import *
 from Common import *
 from submission import *
+
+
 import sys
 import os
 
@@ -40,12 +42,12 @@ class Student(User):
         for n, assignment in enumerate(Assignments.assignments_list):
             print(str(n+1) + '. ' + str(assignment))
         choose = input('Type the chosen number here: ')  
-        ass = Assignments.assignments_list
+        assign = Assignments.assignments_list
 
         assignment_list = []
-        
-        for i in ass:
-            assignment_list.append([i.start_date, i.end_date, i.assignment_name, '0', 'git_trololo', self.id])
+        choose = input('Type the submission link: ')
+        for i in assign:
+            assignment_list.append([i.start_date, i.end_date, i.assignment_name, '0', choose, self.id])
 
         if not choose.isnumeric():
             os.system('clear')
@@ -71,3 +73,14 @@ class Student(User):
         else:
             os.system('clear')
             print('Invalid number')
+
+
+    def check_attendence(self, data):
+        table = []
+        for row in data:
+            if row.id == self.id:
+                table.append([row.data, row.status])
+        return table
+
+        
+        

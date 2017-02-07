@@ -3,6 +3,7 @@ from Common import *
 import sys
 from student import *
 from submission import *
+from attendance import *
 import os
 import time
 
@@ -37,13 +38,15 @@ class StudentMenu:
                 user.submit_assignment()
 
             elif option == '3':
-                pass
-
-                # Student.submit_assignment()
-
+                data = Attendance.attendance_list    
+                table = user.check_attendence(data)
+                print('Data, Status:')
+                for row in table:
+                    print(': '.join(row))
+                
+               
 
             elif option == '0':
                 Common.write_submission_to_file('Submissions.csv', Submission.submission_list)
                 sys.exit()
-            else:
                 Ui.print_error_message('There is no such option.')
