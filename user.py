@@ -18,24 +18,9 @@ class User:
         not_valid = True
 
         self.name = name
-        if not self.name:
-            Ui.print_error_message("Name can't be empty")
-
         self.surname = surname
-        if not self.surname:
-            Ui.print_error_message("Surname can't be empty")
-
         self.email = email
-        if not self.email:
-            Ui.print_error_message("Email can't be empty")
-
-        elif '@' not in self.email or '.' not in self.email:
-            Ui.print_error_message('Please use proper email format')
-
         self.password = password
-        if not self.password:
-            Ui.print_error_message("Password can't be empty")
-
         self.status = status  # status is overwritten by each child class
         self.id = id  # id is randomly generated when adding a new person
 
@@ -177,8 +162,9 @@ class User:
                              "Please provide informations:")
         id = Common.generate_random_id(object_list)
         if data[0] == '' or data[1] == '' or data[2] =='' or data[3] == '':
-            pass
-
+            Ui.print_error_message("\nValue can't be empty")
+        elif '@' and '.' not in data[2]:
+            Ui.print_error_message("Enter proper email format")
         else:
             new_person = cls(data[0], data[1], data[2], data[3], data[4], id)
             object_list.append(new_person)
@@ -196,4 +182,5 @@ class User:
         for person in object_list:
             if person.id == to_remove[0]:
                 object_list.remove(person)
+                Ui.print_error_message("Person removed")
         return object_list
