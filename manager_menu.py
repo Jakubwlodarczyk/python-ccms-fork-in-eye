@@ -91,4 +91,4 @@ class ManagerMenu:
                 Common.write_table_to_file('Regular_employees.csv', Employee.employees_list)
                 sys.exit()
             else:
-                Ui.print_error_message('There is no such option.')
+                Ui.print_message('There is no such option.')

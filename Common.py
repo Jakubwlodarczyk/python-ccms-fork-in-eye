@@ -19,7 +19,8 @@ class Common:
         """
         with open(file_name, "w") as f:
             for index, obj in enumerate(obj_list):
-                obj_atrr = [obj.name, obj.surname, obj.email, obj.password, obj.status, obj.id]
+                obj_atrr = [str(obj.name), str(obj.surname), str(obj.email), str(obj.password), str(obj.status),
+                            str(obj.id)]
 
                 if index < len(obj_list) - 1:
                     f.write(','.join(obj_atrr) + '\n')
@@ -38,7 +39,7 @@ class Common:
                 None"""
         with open(file_name, "w") as f:
             for index, obj in enumerate(obj_list):
-                obj_atrr = [obj.start_date, obj.end_date, obj.assignment_name]
+                obj_atrr = [str(obj.start_date), str(obj.end_date), str(obj.assignment_name)]
 
                 if index < len(obj_list) - 1:
                     f.write(','.join(obj_atrr) + '\n')
@@ -58,7 +59,7 @@ class Common:
 
         with open(file_name, "w") as f:
             for index, obj in enumerate(obj_list):
-                obj_atrr = [obj.data, obj.status, obj.id]
+                obj_atrr = [str(obj.data), str(obj.status), str(obj.id)]
                 if index < len(obj_list) - 1:
                     f.write(','.join(obj_atrr) + '\n')
                 else:
@@ -70,6 +71,7 @@ class Common:
         """
       Writes list of lists into a csv file.
         Args:
+            obj_list
             file_name (str): name of file to write to
             table: list of lists to write to a file
         Returns:
@@ -77,7 +79,8 @@ class Common:
 
         with open(file_name, "w") as f:
             for index, obj in enumerate(obj_list):
-                obj_atrr = [obj.start_date, obj.end_date, obj.submission_name, obj.grade, obj.github_link, obj.id]
+                obj_atrr = [str(obj.send_date), str(obj.submission_name), str(obj.grade), str(obj.github_link),
+                            str(obj.id)]
                 if index < len(obj_list) - 1:
                     f.write(','.join(obj_atrr) + '\n')
                 else:

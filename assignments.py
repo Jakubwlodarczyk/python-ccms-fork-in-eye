@@ -58,7 +58,7 @@ class Assignments:
         """
 
         if len(Assignments.assignments_list) == 0:
-            Ui.print_error_message("Assignment list is empty")
+            Ui.print_message("Assignment list is empty")
         else:
             Ui.print_assignments_list(Assignments.assignments_list, "Assignments List:")
 
@@ -81,35 +81,35 @@ class Assignments:
                 end_date_year = int(data[5])
                 name_of_assign = str(data[6])
             except ValueError:
-                Ui.print_error_message("\nDate must be an integer!\n\n")
+                Ui.print_message("\nDate must be an integer!\n\n")
                 break
 
             if start_date_day > 31 or start_date_day < 1:
-                Ui.print_error_message('\nStart day value is incorrect')
+                Ui.print_message('\nStart day value is incorrect')
             else:
                 if start_date_month > 12 or start_date_month < 1:
-                    Ui.print_error_message('\nStart month value is incorrect')
+                    Ui.print_message('\nStart month value is incorrect')
                 else:
                     if start_date_year > 9999 or start_date_year < 2000:
-                        Ui.print_error_message('\nStart year value is incorrect')
+                        Ui.print_message('\nStart year value is incorrect')
                     else:
                         if end_date_day > 31 or end_date_day < 1:
-                            Ui.print_error_message('\nEnd day value is incorrect')
+                            Ui.print_message('\nEnd day value is incorrect')
                         else:
                             if end_date_month > 12 or end_date_month < 1:
-                                Ui.print_error_message('\nEnd month value is incorrect')
+                                Ui.print_message('\nEnd month value is incorrect')
                             else:
                                 if end_date_year > 9999 or end_date_year < 1000:
-                                    Ui.print_error_message('\nEnd year value is incorrect')
+                                    Ui.print_message('\nEnd year value is incorrect')
                                 else:
                                     if len(name_of_assign) <= 1:
-                                        Ui.print_error_message("\nAssignment name have to be longer!")
+                                        Ui.print_message("\nAssignment name have to be longer!")
                                     else:
                                         list_of_names_of_assignments = []
                                         for i in Assignments.assignments_list:
                                             list_of_names_of_assignments.append(i.assignment_name)
                                         if name_of_assign in list_of_names_of_assignments:
-                                            Ui.print_error_message("\nAssignment name already exist, "
+                                            Ui.print_message("\nAssignment name already exist, "
                                                                    "type another one!")
                                         else:
                                             start_date = '{}-{}-{}'.format(start_date_year,
@@ -120,5 +120,5 @@ class Assignments:
                                                                          end_date_day)
                                             new_assignment = cls(start_date, end_date, name_of_assign)
                                             Assignments.assignments_list.append(new_assignment)
-                                            Ui.print_error_message("\nAssignment added!\n")
+                                            Ui.print_message("\nAssignment added!\n")
             break  # it stops the WHILE loop whenever passed information is incorrect, or assignment has been added

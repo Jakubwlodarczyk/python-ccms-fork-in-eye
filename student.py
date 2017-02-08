@@ -120,8 +120,8 @@ class Student(User):
     @classmethod
     def change_student_card(cls, person):
         os.system('clear')
-        Ui.print_error_message("Chosen student: {} {}".format(person, person.card))
-        Ui.print_error_message("What card you want to give:\n"
+        Ui.print_message("Chosen student: {} {}".format(person, person.card))
+        Ui.print_message("What card you want to give:\n"
                                "1. GREEN\n"
                                "2. YELLOW\n"
                                "3. RED\n"
@@ -142,4 +142,4 @@ class Student(User):
                 person.card = "None"
                 break
             else:
-                Ui.print_error_message('Wrong input!')
+                Ui.print_message('Wrong input!')
