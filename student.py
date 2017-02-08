@@ -3,8 +3,6 @@ from assignments import *
 from ui import *
 from Common import *
 from submission import *
-
-
 import sys
 import os
 
@@ -15,11 +13,16 @@ class Student(User):
 
     # submission_list = Submission.submission_list
 
-    def __init__(self, *args, **kwargs):
-        super(Student, self).__init__(*args, **kwargs)
-        self.status = 'student'
-        self.attendance_list = []
-        # self.submission_list = Submission.submission_list     
+    
+
+    def __init__(self, name, surname, email, password, status, id, team, card):
+            User.__init__(self, name, surname, email, password, status, id)
+            self.status = 'student'
+            self.attendance_list = []
+            # self.submission_list = Submission.submission_list
+            self.team = team
+            self.card = card
+
 
     def __str__(self):
         return "{} {}".format(self.name, self.surname)
@@ -74,7 +77,6 @@ class Student(User):
             os.system('clear')
             print('Invalid number')
 
-
     def check_attendence(self, data):
         table = []
         for row in data:
@@ -82,7 +84,3 @@ class Student(User):
                 table.append([row.data, row.status])
         return table
 
-    
-
-        
-        
