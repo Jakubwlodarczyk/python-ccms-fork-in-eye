@@ -1,0 +1,32 @@
+PRAGMA foreign_keys = 0;
+
+CREATE TABLE staff (
+    ID       INTEGER PRIMARY KEY AUTOINCREMENT
+                     UNIQUE,
+    name     TEXT,
+    surname  TEXT,
+    email    TEXT,
+    password TEXT,
+    status   TEXT
+);
+
+INSERT INTO staff (
+                      ID,
+                      name,
+                      surname,
+                      email,
+                      password,
+                      status
+                  )
+                  SELECT ID,
+                         name,
+                         surname,
+                         email,
+                         password,
+                         status
+                    FROM staf;
+
+DROP TABLE staf;
+
+PRAGMA foreign_keys = 1;
+

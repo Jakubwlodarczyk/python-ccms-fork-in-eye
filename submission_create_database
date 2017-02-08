@@ -1,0 +1,29 @@
+PRAGMA foreign_keys = 0;
+
+CREATE TABLE submission (
+    ID          INTEGER PRIMARY KEY AUTOINCREMENT
+                        UNIQUE,
+    send_date   DATE,
+    grade       INTEGER,
+    name        TEXT,
+    github_link TEXT
+);
+
+INSERT INTO submission (
+                           ID,
+                           send_date,
+                           grade,
+                           name,
+                           github_link
+                       )
+                       SELECT ID,
+                              send_date,
+                              grade,
+                              name,
+                              github_link
+                         FROM submissio;
+
+DROP TABLE submissio;
+
+PRAGMA foreign_keys = 1;
+
