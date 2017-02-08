@@ -25,7 +25,7 @@ class MentorMenu:
 
             if chose_option[0] == '1':
                 # print list of students
-                Ui.print_table(Student.student_list, "List of students")
+                Ui.print_student_table(Student.student_list, "List of students")
 
             elif chose_option[0] == '2':
                 # add an assignment to assignment list

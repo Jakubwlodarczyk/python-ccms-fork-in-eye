@@ -54,6 +54,52 @@ class Ui:
         print('-' * how_wide)
 
     @staticmethod
+    def print_student_table(object_list, title):
+        '''
+        Displays table with data.
+        Args:
+            object_list: list of objects to unpack into table.
+            title: string containing main table header.
+        '''
+        os.system("clear")
+        print(title)
+        title_list = ['ID', 'Name', 'Surname', 'Email', 'Status', 'Team', 'Card']
+        table = []
+        for obj in object_list:
+            obj_atrr = [obj.id, obj.name, obj.surname, obj.email, obj.status, obj.team, obj.card]
+            table.append(obj_atrr)
+
+        len_for_col = []
+        for title_iterator in range(len(title_list)):
+            len_col = len(title_list[title_iterator])
+            for row in table:
+                if len(row[title_iterator]) > len_col:
+                    len_col = len(row[title_iterator])
+
+            len_for_col.append(len_col)
+
+        how_wide = 0
+        for name in title_list:
+            x = (len_for_col[title_list.index(name)])
+            how_wide += (len(("|{: <" + str(x + 2) + "}").format(name)))
+        print('-' * how_wide)
+
+        for name in title_list:
+            print("|", end="")
+            x = (len_for_col[title_list.index(name)])
+            print(("{: <" + str(x + 2) + "}").format(name), end="")
+        print("|")
+        print('-' * how_wide)
+
+        for row in table:
+            print("|", end="")
+            for element in row:
+                x = (len_for_col[row.index(element)])
+                print(("{: <" + str(x + 2) + "}|").format(element), end="")
+            print()
+        print('-' * how_wide)
+
+    @staticmethod
     def print_menu(title, list_options, exit_message):
         '''
         Handles displaying menu.
