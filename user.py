@@ -54,6 +54,37 @@ class User:
         return object_list
 
     @classmethod
+    def create_students_list(cls, file_path):
+        '''
+        Arg: file_path.
+        Creates list of person objects from csv file.
+        '''
+        object_list = []
+        with open(file_path, "r") as f:
+            my_lines = f.readlines()
+            for index, line in enumerate(my_lines):
+                line = line.split(",")
+                length = len(line) - 1
+                if index + 1 == len(my_lines):
+                    pass
+                else:
+                    line[length] = line[length][:-1]
+                if line[5][-1] == '\n':
+                    line[5] = line[5][:-1]
+                name = line[0]
+                surname = line[1]
+                email = line[2]
+                password = line[3]
+                status = line[4]
+                id = line[5]
+                team = line[6]
+                card = line[7]
+                full_name = cls(name, surname, email, password, status, id, team, card)
+                object_list.append(full_name)
+
+        return object_list
+
+    @classmethod
     def user_password_check(cls, email, password):
         '''
         Args:
