@@ -1,4 +1,4 @@
-from student import *
+from student import Student
 from user import *
 from submission import *
 from attendance import *
@@ -55,13 +55,11 @@ class MentorMenu:
                 person = Student.choose_person_to_change_data(Student.student_list)
                 if person:
                     Employee.data_to_change(person)
-                else:
-                    pass
 
             elif chose_option[0] == '8':
                 # show students of specific group
-                Ui.print_student_teams()
-                pass
+                stu_list = Student.student_list
+                Ui.print_student_teams(stu_list)
 
             elif chose_option[0] == '0':
                 # save data to files, and exit
