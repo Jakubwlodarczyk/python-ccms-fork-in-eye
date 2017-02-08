@@ -13,7 +13,7 @@ class Student(User):
 
     # submission_list = Submission.submission_list
 
-    def __init__(self, name, surname, email, password, status, id, team, card):
+    def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
             User.__init__(self, name, surname, email, password, status, id)
             self.status = 'student'
             self.attendance_list = []
