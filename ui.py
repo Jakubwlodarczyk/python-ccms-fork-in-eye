@@ -198,6 +198,7 @@ class Ui:
     @classmethod
     def print_student_teams(cls, stu_list):
         """
+        :param stu_list: list of student objects
         :return: print students team in a pretty format :D
         """
         os.system('clear')
