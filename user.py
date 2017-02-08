@@ -73,35 +73,6 @@ class User:
 
 
     @classmethod
-    def create_objects_list(cls, file_path):
-        '''
-        Arg: file_path.
-        Creates list of person objects from csv file.
-        '''
-        object_list = []
-        with open(file_path, "r") as f:
-            my_lines = f.readlines()
-            for index, line in enumerate(my_lines):
-                line = line.split(",")
-                length = len(line) - 1
-                if index + 1 == len(my_lines):
-                    pass
-                else:
-                    line[length] = line[length][:-1]
-                if line[5][-1] == '\n':
-                    line[5] = line[5][:-1]
-                name = line[0]
-                surname = line[1]
-                email = line[2]
-                password = line[3]
-                status = line[4]
-                id = line[5]
-                full_name = cls(name, surname, email, password, status, id)
-                object_list.append(full_name)
-
-        return object_list
-
-    @classmethod
     def create_students_list(cls, file_path):
         '''
         Arg: file_path.

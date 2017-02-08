@@ -51,14 +51,6 @@ class Assignments:
         return assignments_list
 
 
-
-
-
-
-
-
-
-
     @staticmethod
     def view_assignment_list():
         """
@@ -130,29 +122,3 @@ class Assignments:
                                             Assignments.assignments_list.append(new_assignment)
                                             Ui.print_error_message("\nAssignment added!\n")
             break  # it stops the WHILE loop whenever passed information is incorrect, or assignment has been added
-
-    @classmethod
-    def create_assignments_list(cls, file_path):
-        """
-        reads the file with data, and creates the list of objects
-        :param file_path: the path to file
-        :return: (list) list of objects of assignments
-        """
-        assignments_list = []
-        with open(file_path, "r") as f:
-            my_lines = f.readlines()
-            for index, line in enumerate(my_lines):
-                line = line.split(",")
-                length = len(line) - 1
-                if index + 1 == len(my_lines):
-                    pass
-                else:
-                    line[length] = line[length][:-1]
-                if line[2][-1] == '\n':
-                    line[2] = line[2][:-1]
-                start_date = line[0]
-                end_date = line[1]
-                assignment_name = line[2]
-                full_assignment_name = cls(start_date, end_date, assignment_name)
-                assignments_list.append(full_assignment_name)
-        return assignments_list

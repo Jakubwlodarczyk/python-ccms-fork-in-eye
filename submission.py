@@ -75,35 +75,3 @@ class Submission:
         conn.close()
 
         return submission_list
-
-
-
-    # @classmethod
-    # def create_submission_list(cls, file_path):
-    #     """
-    #     reads the file with data, and creates the list of objects
-    #     :param file_path: the path to file
-    #     :return: (list) list of objects of submissions
-    #     """
-    #     submission_list = []
-    #     with open(file_path, "r") as f:
-    #         my_lines = f.readlines()
-    #         for index, line in enumerate(my_lines):
-    #             line = line.split(",")
-    #             length = len(line) - 1
-    #             if index + 1 == len(my_lines):
-    #                 pass
-    #             else:
-    #                 line[length] = line[length][:-1]
-    #             if line[5][-1] == '\n':
-    #                 line[5] = line[5][:-1]
-    #             start_date = line[0]
-    #             end_date = line[1]
-    #             submission_name = line[2]
-    #             grade = line[3]
-    #             github_link = line[4]
-    #             id = line[5]
-    #             full_submission_name = cls(start_date, end_date, submission_name, grade, github_link, id)
-    #             submission_list.append(full_submission_name)
-    #     return submission_list
-

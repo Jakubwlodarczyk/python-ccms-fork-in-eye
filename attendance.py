@@ -62,43 +62,6 @@ class Attendance:
         return attendances_list
 
 
-
-
-
-
-
-
-
-
-
-
-
-    # @classmethod
-    # def create_attendance_list(cls, file_path):
-    #     '''
-    #     Arg: file_path.
-    #     Creates list of objects from csv file.
-    #     '''
-    #     object_list = []
-    #     with open(file_path, "r") as f:
-    #         my_lines = f.readlines()
-    #         for index, line in enumerate(my_lines):
-    #             line = line.split(",")
-    #             length = len(line) - 1
-    #             if index + 1 == len(my_lines):
-    #                 pass
-    #             else:
-    #                 line[length] = line[length][:-1]
-    #             if line[2][-1] == '\n':
-    #                 line[2] = line[2][:-1]
-    #             data = line[0]
-    #             status = line[1]
-    #             id = line[2]
-    #             full_name = cls(data, status, id)
-    #             object_list.append(full_name)
-    #
-    #     return object_list
-
     @staticmethod
     def date_control():
         """

@@ -60,9 +60,6 @@ class Student(User):
         return  student_list
 
 
-
-
-
     def view_grades(self):
         '''
         Allows to view grades for all student's assignments.
