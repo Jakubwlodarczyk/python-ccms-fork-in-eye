@@ -8,10 +8,10 @@ import os
 import datetime
 import sqlite3
 
+
 class Student(User):
 
     student_list = []
-
 
     def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
             User.__init__(self, name, surname, email, password, status, id)
@@ -20,7 +20,6 @@ class Student(User):
             self.submission_list = Submission.submission_list
             self.team = team
             self.card = card
-
 
     def __str__(self):
         return "{} {}".format(self.name, self.surname)
@@ -49,15 +48,15 @@ class Student(User):
             password = row[3]
             status = row[4]
             password = row[5]
-            card = row[6]
-            team = row[7]
+            card = row[7]
+            team = row[6]
 
             full_name = cls(name, surname, email, password, status, password, card, team)
             student_list.append(full_name)
 
         conn.close()
 
-        return  student_list
+        return student_list
 
 
     def view_grades(self):
@@ -73,9 +72,9 @@ class Student(User):
 
     def submit_assignment(self):
 
-        Ui.print_error_message('Choose the number from the following assignments: \n')
+        Ui.print_message('Choose the number from the following assignments: \n')
         for n, assignment in enumerate(Assignments.assignments_list):
-            Ui.print_error_message(str(n+1) + '. ' + str(assignment))
+            Ui.print_message(str(n+1) + '. ' + str(assignment))
         choose = input('Type the chosen number here: ')
         assign = Assignments.assignments_list
 
@@ -86,14 +85,14 @@ class Student(User):
 
         if not choose.isnumeric():
             os.system('clear')
-            Ui.print_error_message('\nChosen value must be a number')
+            Ui.print_message('\nChosen value must be a number')
             return
         if int(choose) <= len(assignment_list):  # value condition
             chosen_one = assignment_list[int(choose)-1]
             for submiss in Submission.submission_list:
                 if submiss.submission_name == chosen_one[2] and submiss.id == chosen_one[5]:  # condition for assignment being submitted
                     os.system('clear')
-                    Ui.print_error_message('Assignment is already submitted\n')
+                    Ui.print_message('Assignment is already submitted\n')
                     return
 
             submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], # object of new submission is created
@@ -102,15 +101,14 @@ class Student(User):
 
             Submission.submission_list.append(submission_obj)
             os.system('clear')
-            Ui.print_error_message('Your assignment was succesfully submitted\n')
+            Ui.print_message('Your assignment was succesfully submitted\n')
 
             return Submission.submission_list
 
         else:
             os.system('clear')
 
-            Ui.print_error_message('Invalid number')
-
+            Ui.print_message('Invalid number')
 
     def check_attendence(self, data):
         table = []
