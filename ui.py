@@ -166,7 +166,7 @@ class Ui:
     @staticmethod
     def print_data_list(title):
         '''
-        Handles printing atributte names.
+        Handles printing attribute names.
         '''
         os.system("clear")
         n = 1
