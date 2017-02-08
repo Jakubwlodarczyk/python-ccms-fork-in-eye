@@ -60,7 +60,7 @@ class MentorMenu:
 
             elif chose_option[0] == '8':
                 # show students of specific group
-                # Ui.print_error_message()
+                Ui.print_student_teams()
                 pass
 
             elif chose_option[0] == '0':
