@@ -19,7 +19,7 @@ class Student(User):
         super(Student, self).__init__(*args, **kwargs)
         self.status = 'student'
         self.attendance_list = []
-        self.submission_list = Submission.submission_list     
+        # self.submission_list = Submission.submission_list     
 
     def __str__(self):
         return "{} {}".format(self.name, self.surname)
@@ -45,9 +45,9 @@ class Student(User):
         assign = Assignments.assignments_list
 
         assignment_list = []
-        choose = input('Type the submission link: ')
+        choose_val = input('Type the submission link: ')
         for i in assign:
-            assignment_list.append([i.start_date, i.end_date, i.assignment_name, '0', choose, self.id])
+            assignment_list.append([i.start_date, i.end_date, i.assignment_name, '0', choose_val, self.id])
 
         if not choose.isnumeric():
             os.system('clear')
@@ -81,6 +81,8 @@ class Student(User):
             if row.id == self.id:
                 table.append([row.data, row.status])
         return table
+
+    
 
         
         

@@ -19,7 +19,8 @@ class MentorMenu:
             title = 'Mentor menu'
             list_options = ['Check the list of students', 'Add an assignment',
                             'Grade an assignment submitted by students', 'Check attendance of students',
-                            'Add a student to a class', 'Remove a student from class', "Edit student's data"]
+                            'Add a student to a class', 'Remove a student from class', "Edit student's data", 
+                            'Add student to specific team']
             Ui.print_menu(title, list_options, 'Log out')
             chose_option = Ui.get_inputs(["Please enter a number: "], "")
 
@@ -56,6 +57,10 @@ class MentorMenu:
                     Employee.data_to_change(person)
                 else:
                     pass
+
+             elif chose_option[0] == '8':
+                #  Add student to specific team
+                
 
             elif chose_option[0] == '0':
                 # save data to files, and exit
