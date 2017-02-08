@@ -5,7 +5,8 @@ from Common import *
 from submission import *
 import sys
 import os
-
+import datetime
+import sqlite3
 
 class Student(User):
 
@@ -13,9 +14,11 @@ class Student(User):
 
     # submission_list = Submission.submission_list
 
+
     
 
-    def __init__(self, name, surname, email, password, status, id, team, card):
+
+    def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
             User.__init__(self, name, surname, email, password, status, id)
             self.status = 'student'
             self.attendance_list = []
@@ -26,6 +29,41 @@ class Student(User):
 
     def __str__(self):
         return "{} {} ".format(self.name, self.surname)
+
+    @classmethod
+    def create_objects_list_from_database(cls, table_name):  # from database
+        """
+        Creates abjects based on data from database.
+        :param file_path:
+        :return:
+        """
+
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+        name_q = "SELECT name, surname, email, password, status, password, card, team FROM student;"
+        name_db = c.execute(name_q)
+        conn.commit()
+
+        student_list = []
+
+        for row in name_db:
+            name = row[0]
+            surname = row[1]
+            email = row[2]
+            password = row[3]
+            status = row[4]
+            password = row[5]
+            card = row[6]
+            team = row[7]
+
+            full_name = cls(name, surname, email, password, status, password, card, team)
+            student_list.append(full_name)
+
+        conn.close()
+
+        return  student_list
+
 
     def view_grades(self):
         '''
@@ -49,8 +87,8 @@ class Student(User):
 
         assignment_list = []
         choose_val = input('Type the submission link: ')
-        for i in assign:
-            assignment_list.append([i.start_date, i.end_date, i.assignment_name, '0', choose_val, self.id])
+        for i in assign:  
+            assignment_list.append([datetime.date.today(), i.assignment_name, '0', choose, self.id])
 
         if not choose.isnumeric():
             os.system('clear')

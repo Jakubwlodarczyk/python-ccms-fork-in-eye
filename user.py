@@ -3,6 +3,10 @@ from Common import *
 from assignments import *
 from submission import *
 import time
+import sqlite3
+# from mentor import Mentor
+# from manager import Manager
+# from employee import Employee
 
 
 class User:
@@ -24,34 +28,49 @@ class User:
         self.status = status  # status is overwritten by each child class
         self.id = id  # id is randomly generated when adding a new person
 
-    @classmethod
-    def create_objects_list(cls, file_path):
-        '''
-        Arg: file_path.
-        Creates list of person objects from csv file.
-        '''
-        object_list = []
-        with open(file_path, "r") as f:
-            my_lines = f.readlines()
-            for index, line in enumerate(my_lines):
-                line = line.split(",")
-                length = len(line) - 1
-                if index + 1 == len(my_lines):
-                    pass
-                else:
-                    line[length] = line[length][:-1]
-                if line[5][-1] == '\n':
-                    line[5] = line[5][:-1]
-                name = line[0]
-                surname = line[1]
-                email = line[2]
-                password = line[3]
-                status = line[4]
-                id = line[5]
-                full_name = cls(name, surname, email, password, status, id)
-                object_list.append(full_name)
 
-        return object_list
+
+
+    @classmethod
+    def create_objects_list_from_database(cls, table_name):    #  from database
+        """
+        Creates abjects based on data from database.
+        :param file_path:
+        :return:
+        """
+
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+
+        name_q = "SELECT name, surname, email, password, status, staff_id  FROM staff;"
+        name_db = c.execute(name_q)
+        conn.commit()
+
+        mentors_list = []
+        manager_list = []
+        employee_list = []
+
+        for row in name_db:
+            name = row[0]
+            surname = row[1]
+            email = row[2]
+            password = row[3]
+            status = row[4]
+            staff_id = row[5]
+
+            full_name = cls(name, surname, email, password, status, staff_id)
+            if status == "mentor":
+                mentors_list.append(full_name)
+            if status == "manager":
+                manager_list.append(full_name)
+            if status == "employee":
+                employee_list.append(full_name)
+
+        conn.close()
+
+        return mentors_list, manager_list, employee_list
+
 
     @classmethod
     def create_students_list(cls, file_path):
@@ -81,6 +100,7 @@ class User:
                 card = line[7]
                 full_name = cls(name, surname, email, password, status, id, team, card)
                 object_list.append(full_name)
+                print(full_name.password, full_name.email)
 
         return object_list
 
@@ -95,6 +115,8 @@ class User:
         '''
         # people as list of objects
         # all_users is list containing all the objects
+        # for obj in cls.all_users:
+        #     print(obj.email, obj.passwor)
         for people in cls.all_users:
             # person as single object
             for person in people:
@@ -158,7 +180,7 @@ class User:
         '''
         new_surname = Ui.get_inputs(['Enter new surname: '], " ")
         if not new_surname[0]:
-            Ui.print_error_message("\nSurame cannot be empty.\n")
+            Ui.print_error_message("\nSurname cannot be empty.\n")
         else:
             person.surname = new_surname[0]
             Ui.print_error_message("\nSurname has been changed.\n")
@@ -211,7 +233,6 @@ class User:
             new_person = cls(data[0], data[1], data[2], data[3], data[4], id)
             object_list.append(new_person)
         return object_list
-
 
     @classmethod
     def remove_person(cls, object_list):

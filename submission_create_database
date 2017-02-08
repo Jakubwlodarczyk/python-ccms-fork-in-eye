@@ -1,0 +1,8 @@
+CREATE TABLE submission (
+    ID          INTEGER PRIMARY KEY AUTOINCREMENT
+                        UNIQUE,
+    send_date   DATE,
+    grade       INTEGER,
+    name        TEXT,
+    github_link TEXT
+);

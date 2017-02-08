@@ -1,5 +1,4 @@
 import os
-from datetime import datetime
 
 
 class Ui:
@@ -195,6 +194,26 @@ class Ui:
                   assign.assignments)
 
             idx += 1
+
+    @classmethod
+    def print_student_teams(cls, stu_list):
+        """
+        :param stu_list: list of student objects
+        :return: print students team in a pretty format :D
+        """
+        os.system('clear')
+        team_names = []
+        for team in stu_list:
+            if team.team in team_names:
+                pass
+            else:
+                team_names.append(team.team)
+        for team_name in team_names:
+            print(team_name+':')
+            for student in stu_list:
+                if student.team == team_name:
+                    print(student.name, student.surname)
+            print('\n')
 
     @classmethod
     def print_submissions(cls, submission_list):

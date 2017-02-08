@@ -1,4 +1,4 @@
-from student import *
+from student import Student
 from user import *
 from submission import *
 from attendance import *
@@ -22,6 +22,7 @@ class MentorMenu:
                             'Grade an assignment submitted by students', 'Check attendance of students',
                             'Add a student to a class', 'Remove a student from class', "Edit student's data", 
                             'Add student to specific team']
+
             Ui.print_menu(title, list_options, 'Log out')
             chose_option = Ui.get_inputs(["Please enter a number: "], "")
 
@@ -47,19 +48,22 @@ class MentorMenu:
 
             elif chose_option[0] == '6':
                 # remove student from class
-                Ui.print_table(Student.student_list, "List of students")
+                Ui.print_student_table(Student.student_list, "List of students")
                 Student.remove_person(Student.student_list)
 
             elif chose_option[0] == '7':
                 # edit students data
-                Ui.print_table(Student.student_list, "List of students")
+                Ui.print_student_table(Student.student_list, "List of students")
                 person = Student.choose_person_to_change_data(Student.student_list)
                 if person:
                     Employee.data_to_change(person)
-                else:
-                    pass
 
             elif chose_option[0] == '8':
+                # show students of specific group
+                stu_list = Student.student_list
+                Ui.print_student_teams(stu_list)
+
+            elif chose_option[0] == '9':
                 os.system('clear')               
                 
                 Ui.print_error_message('''Assign each student to the following teams(type the number): 
@@ -68,70 +72,41 @@ class MentorMenu:
     (3) Rainbow unicorns
     (4) Jakkiedy                 
                 ''')              
-                # chosen = Ui.get_inputs(Student.student_list, '')            
-                # [1, 1, 1, 1]
-
-                for student in Student.student_list:
-                    choice = input('Assign student {} to the team (type the number):'.format(str(student)))
-                    if choice == '1':
-                        student.team = 'Fork in ear'                        
-                    elif choice == '2':
-                        student.team  = 'Stepan'                        
-                    elif choice == '3':
-                        student.team  = 'Rainbow unicorns'                        
-                    elif choice == '4':
-                        student.team  = 'Jakkiedy'
-                    else:
-                        Ui.print_error_message('There is no such option, try again.')
-                        break
-                       
-                
-                # while True:
-                #     i = 0
-                # # for chose in chosen:
-                #     # if i in ['1', '2', '3', '4']:
-                #     if chosen[i] == '1':
-                #         chosen[chosen.index('1')] = 'Fork in ear'
-                #         break
-                #     elif chosen[i] == '2':
-                #         chosen[chosen.index('2')] = 'Stepan'
-                #         break
-                #     elif chosen[i] == '3':
-                #         chosen[chosen.index('3')] = 'Rainbow unicorns'
-                #         break
-                #     elif chosen[i] == '4':
-                #         chosen[chosen.index('4')] = 'Jakkiedy'
-                #         break
-                #     else:
-                #         Ui.print_error_message('There is no such option, try again.')
-                #         break
-
-                    # for chose in chosen:
-                    #     if chose in ['1', '2', '3', '4']:
-                #     i += 1
-                # x = 0  
-                # while x <= len(Student.student_list)-1:   
-                #     Student.student_list[x].team = chosen[x]                    
-                #     x += 1
-                        # else:
-                        #                          
-                   
-                
-                
-            
-
 
                 
-                
+                is_valid = False
+                while not is_valid:
+                    table = Ui.get_inputs(Student.student_list, '')
+                    is_need_break = False
+                    for value in table:
+                        if value not in ['1', '2', '3', '4']:
+                            Ui.print_error_message('There is no such option, try again.')
+                            is_need_break = True
+                            break
+                    if is_need_break:
+                        continue
+                    is_valid = True
+                    i = 0
+                    while i <= len(table)-1:
+                        if table[i] == '1':
+                            table[table.index('1')] = 'Fork in ear'                            
+                        elif table[i] == '2':
+                            table[table.index('2')] = 'Stepan'                            
+                        elif table[i] == '3':
+                            table[table.index('3')] = 'Rainbow unicorns'                            
+                        elif table[i] == '4':
+                            table[table.index('4')] = 'Jakkiedy'                            
+                        Student.student_list[i].team = table[i]
+                        
+                        i += 1
+                    
 
             elif chose_option[0] == '0':
                 # save data to files, and exit
                 Common.write_submission_to_file('Submissions.csv', Submission.submission_list)
-                Common.write_students_to_file('Student.csv', Student.student_list)
-              
+                Common.write_students_to_file('Student.csv', Student.student_list)              
                 Common.write_attendance_to_file('Attendance.csv', Attendance.attendances_list)
-                Common.write_assignment_to_file('Assignments.csv', Assignments.assignments_list)
-                
+                Common.write_assignment_to_file('Assignments.csv', Assignments.assignments_list)                
                 sys.exit()
 
             else:

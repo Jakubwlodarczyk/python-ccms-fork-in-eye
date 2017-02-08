@@ -1,0 +1,26 @@
+PRAGMA foreign_keys = 0;
+
+CREATE TABLE attendance (
+    ID         INTEGER PRIMARY KEY AUTOINCREMENT
+                       UNIQUE,
+    date       DATE,
+    status     INTEGER,
+    student_id TEXT
+);
+
+INSERT INTO attendance (
+                           ID,
+                           date,
+                           status,
+                           student_id
+                       )
+                       SELECT ID,
+                              date,
+                              status,
+                              student_id
+                         FROM attendanc;
+
+DROP TABLE attendanc;
+
+PRAGMA foreign_keys = 1;
+
