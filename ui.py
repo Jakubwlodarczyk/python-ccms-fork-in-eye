@@ -1,6 +1,4 @@
 import os
-from datetime import datetime
-from student import Student
 
 
 class Ui:
@@ -198,13 +196,23 @@ class Ui:
             idx += 1
 
     @classmethod
-    def print_student_teams(cls):
+    def print_student_teams(cls, stu_list):
+        """
+        :return: print students team in a pretty format :D
+        """
         os.system('clear')
-        number = 1
-        print("Students team name:")
-        for i in Student.student_list:
-            print(number, i.team)
-            number += 1
+        team_names = []
+        for team in stu_list:
+            if team.team in team_names:
+                pass
+            else:
+                team_names.append(team.team)
+        for team_name in team_names:
+            print(team_name+':')
+            for student in stu_list:
+                if student.team == team_name:
+                    print(student.name, student.surname)
+            print('\n')
 
     @classmethod
     def print_submissions(cls, submission_list):
