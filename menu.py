@@ -27,19 +27,21 @@ class Menu:
         '''
         Creates objects from csv and then a list of all users to loop through for login and password validation.
         '''
-        Employee.employees_list = Employee.create_objects_list('Regular_employees.csv')
-        Mentor.mentors_list = Mentor.create_objects_list('Mentors.csv')
-        Submission.submission_list = Submission.create_submission_list('Submissions.csv')
-        Student.student_list = Student.create_students_list('Student.csv')
-        Manager.manager_list = Manager.create_objects_list('Manager.csv')
+        staff_tuple = User.create_objects_list_from_database('staff')
+        Mentor.mentors_list = staff_tuple[0]
+        Manager.manager_list = staff_tuple[1]
+        Employee.employees_list = staff_tuple[2]
+        Submission.submission_list = Submission.create_objects_list_from_database('submission')
+        Student.student_list = Student.create_objects_list_from_database('student')
         User.all_users = [Employee.employees_list,
                           Mentor.mentors_list,
                           Student.student_list,
                           Manager.manager_list]
         
-        Assignments.assignments_list = Assignments.create_assignments_list('Assignments.csv')
-        Attendance.attendance_list = Attendance.create_attendance_list('Attendance.csv')
-        
+        Assignments.assignments_list = Assignments.create_objects_list_from_database('assignements')
+        Attendance.attendances_list = Attendance.create_objects_list_from_database('attendance')
+
+
     @classmethod
     def log_in(cls):
         '''

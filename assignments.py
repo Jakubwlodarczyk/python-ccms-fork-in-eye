@@ -1,5 +1,6 @@
 from ui import Ui
 import os
+import sqlite3
 
 
 class Assignments:
@@ -10,12 +11,45 @@ class Assignments:
     assignments_list = []
 
     def __init__(self, start_date, end_date, assignment_name):
-        self.start_date = str(start_date)  # sample date "01-01-2017"
-        self.end_date = str(end_date)  # sample date "01-01-2017"
+        self.start_date = str(start_date)  # sample date "2017-01-01"
+        self.end_date = str(end_date)  # sample date "2017-01-01"
         self.assignment_name = str(assignment_name)  # sample name "OOP_SI_exercise"
 
     def __str__(self):
         return '{} {} {}'.format(self.start_date, self.end_date, self.assignment_name)
+
+
+    @classmethod
+    def create_objects_list_from_database(cls, table_name):    #  from database
+        """
+        Creates abjects based on data from database.
+        :param file_path:
+        :return:
+        """
+
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+
+        name_q = "SELECT start_date, end_date, name  FROM assignements;"
+        name_db = c.execute(name_q)
+        conn.commit()
+
+        assignments_list = []
+
+        for row in name_db:
+            start_date = row[0]
+            end_date = row[1]
+            name = row[2]
+
+            full_name = cls(start_date, end_date, name)
+            assignments_list.append(full_name)
+
+
+        conn.close()
+
+        return assignments_list
+
 
     @staticmethod
     def view_assignment_list():
@@ -88,29 +122,3 @@ class Assignments:
                                             Assignments.assignments_list.append(new_assignment)
                                             Ui.print_error_message("\nAssignment added!\n")
             break  # it stops the WHILE loop whenever passed information is incorrect, or assignment has been added
-
-    @classmethod
-    def create_assignments_list(cls, file_path):
-        """
-        reads the file with data, and creates the list of objects
-        :param file_path: the path to file
-        :return: (list) list of objects of assignments
-        """
-        assignments_list = []
-        with open(file_path, "r") as f:
-            my_lines = f.readlines()
-            for index, line in enumerate(my_lines):
-                line = line.split(",")
-                length = len(line) - 1
-                if index + 1 == len(my_lines):
-                    pass
-                else:
-                    line[length] = line[length][:-1]
-                if line[2][-1] == '\n':
-                    line[2] = line[2][:-1]
-                start_date = line[0]
-                end_date = line[1]
-                assignment_name = line[2]
-                full_assignment_name = cls(start_date, end_date, assignment_name)
-                assignments_list.append(full_assignment_name)
-        return assignments_list
