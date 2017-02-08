@@ -63,7 +63,7 @@ class Ui:
             exit_message (str): the last option with (0) (example: "Back to main menu")
         '''
         n = 1
-        print('{}:'.format(title))
+        print('{}'.format(title))
         for item in list_options:
             print('\t({}) {}'.format(str(n), item))
             n += 1
