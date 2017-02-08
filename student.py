@@ -67,7 +67,7 @@ class Student(User):
 
             Submission.submission_list.append(submission_obj) 
             os.system('clear')            
-            print('Your assignment was succesfully submitted\n')
+            print('Your assignment was successfully submitted\n')
             return Submission.submission_list
         
         else:
@@ -80,3 +80,30 @@ class Student(User):
             if row.id == self.id:
                 table.append([row.data, row.status])
         return table
+
+    @classmethod
+    def change_student_card(cls, person):
+        os.system('clear')
+        Ui.print_error_message("Chosen student: {} {}".format(person, person.card))
+        Ui.print_error_message("What card you want to give:\n"
+                               "1. GREEN\n"
+                               "2. YELLOW\n"
+                               "3. RED\n"
+                               "4. None")
+        chose_card = Ui.get_inputs([''], "")
+        while True:
+            if chose_card[0] == '1':
+                person.card = "Green"
+                break
+            elif chose_card[0] == '2':
+                person.card = "Yellow"
+                print(person.card)
+                break
+            elif chose_card[0] == '3':
+                person.card = "Red"
+                break
+            elif chose_card[0] == '4':
+                person.card = "None"
+                break
+            else:
+                Ui.print_error_message('Wrong input!')
