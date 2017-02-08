@@ -72,3 +72,39 @@ class Submission:
                 submission_list.append(full_submission_name)
         return submission_list
 
+    @classmethod
+    def get_students_average_grades(cls, submission_list):
+        '''
+        Returns a dictionary with students average grades.
+        '''
+
+        student_grades = {}
+        for submission in submission_list:
+            if submission.id not in student_grades:
+                student_grades[submission.id] = [int(submission.grade)]
+            else:
+                student_grades[submission.id] += [int(submission.grade)]
+
+        for key, val in student_grades.items():
+            student_grades[key] = (sum(val)/(len(val)))
+
+        return student_grades
+
+
+    @classmethod
+    def get_name_by_id(cls, student_grades, student_list):
+        '''
+        Returns name of student based on given id.
+        '''
+        average_grades = {}
+        for key in student_grades:
+            for student in student_list:
+                if key == student.id:
+                    average_grades[key] = [student.name, student.surname, student_grades[key]]
+                    # print("{} {} {}".format(key, student.name + " " + student.surname, ))
+        return average_grades
+
+
+
+        # id_and_grades = []
+        # for key, value in student_grades.items():

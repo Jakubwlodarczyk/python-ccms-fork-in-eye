@@ -14,3 +14,13 @@ class Manager(User):
 
     def __str__(self):
         return "{} {}".format(self.name, self.surname)
+
+
+
+    @classmethod
+    def view_full_students_statistics(cls):
+        pass
+
+    @classmethod
+    def view_full_mentors_statistics(cls):
+        pass

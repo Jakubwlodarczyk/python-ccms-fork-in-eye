@@ -86,7 +86,6 @@ class User:
                 if option[0] == person.id:
                     return person
 
-
     @classmethod
     def data_to_change(cls, person):
         '''
