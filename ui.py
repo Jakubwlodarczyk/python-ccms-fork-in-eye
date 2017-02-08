@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from student import Student
 
 
 class Ui:
@@ -195,6 +196,15 @@ class Ui:
                   assign.assignments)
 
             idx += 1
+
+    @classmethod
+    def print_student_teams(cls):
+        os.system('clear')
+        number = 1
+        print("Students team name:")
+        for i in Student.student_list:
+            print(number, i.team)
+            number += 1
 
     @classmethod
     def print_submissions(cls, submission_list):
