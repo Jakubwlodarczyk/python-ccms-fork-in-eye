@@ -158,7 +158,7 @@ class User:
         '''
         new_surname = Ui.get_inputs(['Enter new surname: '], " ")
         if not new_surname[0]:
-            Ui.print_error_message("\nSurame cannot be empty.\n")
+            Ui.print_error_message("\nSurname cannot be empty.\n")
         else:
             person.surname = new_surname[0]
             Ui.print_error_message("\nSurname has been changed.\n")
@@ -211,7 +211,6 @@ class User:
             new_person = cls(data[0], data[1], data[2], data[3], data[4], id)
             object_list.append(new_person)
         return object_list
-
 
     @classmethod
     def remove_person(cls, object_list):
