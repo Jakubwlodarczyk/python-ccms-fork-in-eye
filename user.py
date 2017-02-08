@@ -107,7 +107,6 @@ class User:
             else:
                 Ui.print_error_message('No id match.')
 
-
     @classmethod
     def data_to_change(cls, person):
         '''

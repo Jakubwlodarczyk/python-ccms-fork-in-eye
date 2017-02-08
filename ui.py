@@ -256,4 +256,13 @@ class Ui:
                 print(("{: <" + str(x + 2) + "}|").format(element), end="")
             print()
         print('-' * how_wide)
-            # print('Assignment name: {}, Grade: {}.'.format(sub.submission_name, sub.grade))
+
+
+    def print_student_average_grades(student_grades):
+        '''
+        Displays each students grades.
+        '''
+        os.system('clear')
+        print("STUDENTS' GRADE AVERAGE:\n")
+        for key, value in student_grades.items():
+            print(key, ':', ''.join(str(value)))
