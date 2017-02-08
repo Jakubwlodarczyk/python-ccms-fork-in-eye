@@ -55,9 +55,9 @@ class Menu:
         user = User.user_password_check(login[0], password[0])
         
         if not user:
-            Ui.print_error_message('Invalid login or password. Please try again. ')
+            Ui.print_message('Invalid login or password. Please try again. ')
         elif user:
-            Ui.print_error_message('\nHello, ' + user.name + '!\n')
+            Ui.print_message('\nHello, ' + user.name + '!\n')
             if user.status == 'manager':
                 ManagerMenu.handle_menu()
             elif user.status == 'employee':
@@ -80,7 +80,7 @@ class Menu:
         elif option == "0":
             sys.exit(0)
         else:
-            Ui.print_error_message('There is no such option.')
+            Ui.print_message('There is no such option.')
 
     @classmethod
     def main_menu(cls):
@@ -98,7 +98,7 @@ class Menu:
             try:
                 Menu.choose_option()
             except KeyError:
-                ui.print_error_message('Unknown error at main!')
+                ui.print_message('Unknown error at main!')
 
 
 if __name__ == '__main__':

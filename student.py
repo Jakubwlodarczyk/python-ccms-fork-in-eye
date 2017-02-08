@@ -8,14 +8,17 @@ import os
 import datetime
 import sqlite3
 
+
 class Student(User):
 
     student_list = []
+
 
     # submission_list = Submission.submission_list
 
 
     
+
 
 
     def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
@@ -54,35 +57,34 @@ class Student(User):
             password = row[3]
             status = row[4]
             password = row[5]
-            card = row[6]
-            team = row[7]
+            card = row[7]
+            team = row[6]
 
             full_name = cls(name, surname, email, password, status, password, card, team)
             student_list.append(full_name)
 
         conn.close()
 
-        return  student_list
+        return student_list
 
 
     def view_grades(self):
         '''
         Allows to view grades for all student's assignments.
 
-        '''   
-        my_submiss = []   
+        '''
+        my_submiss = []
         for sub in Submission.submission_list:
             if sub.id == self.id:
                 my_submiss.append(sub)
-       
-        Ui.print_submissions(my_submiss)  
+        Ui.print_submissions(my_submiss)
 
     def submit_assignment(self):
 
-        print('Choose the number from the following assignments: \n')
+        Ui.print_message('Choose the number from the following assignments: \n')
         for n, assignment in enumerate(Assignments.assignments_list):
-            print(str(n+1) + '. ' + str(assignment))
-        choose = input('Type the chosen number here: ')  
+            Ui.print_message(str(n+1) + '. ' + str(assignment))
+        choose = input('Type the chosen number here: ')
         assign = Assignments.assignments_list
 
         assignment_list = []
@@ -92,28 +94,30 @@ class Student(User):
 
         if not choose.isnumeric():
             os.system('clear')
-            print('\nChosen value must be a number')
-            return 
-       
+            Ui.print_message('\nChosen value must be a number')
+            return
         if int(choose) <= len(assignment_list):  # value condition
             chosen_one = assignment_list[int(choose)-1]
             for submiss in Submission.submission_list:
                 if submiss.submission_name == chosen_one[2] and submiss.id == chosen_one[5]:  # condition for assignment being submitted
-                    os.system('clear') 
-                    print('Assignment is already submitted\n')
+                    os.system('clear')
+                    Ui.print_message('Assignment is already submitted\n')
                     return
-            
+
             submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], # object of new submission is created
                                 chosen_one[3], chosen_one[4], chosen_one[5])
 
-            Submission.submission_list.append(submission_obj) 
-            os.system('clear')            
-            print('Your assignment was succesfully submitted\n')
+
+            Submission.submission_list.append(submission_obj)
+            os.system('clear')
+            Ui.print_message('Your assignment was succesfully submitted\n')
+
             return Submission.submission_list
-        
+
         else:
             os.system('clear')
-            print('Invalid number')
+
+            Ui.print_message('Invalid number')
 
     def check_attendence(self, data):
         table = []
@@ -122,3 +126,66 @@ class Student(User):
                 table.append([row.data, row.status])
         return table
 
+
+    @classmethod
+    def change_student_card(cls, person):
+        os.system('clear')
+        Ui.print_message("Chosen student: {} {}".format(person, person.card))
+        Ui.print_message("What card you want to give:\n"
+                               "1. GREEN\n"
+                               "2. YELLOW\n"
+                               "3. RED\n"
+                               "4. None")
+        chose_card = Ui.get_inputs([''], "")
+        while True:
+            if chose_card[0] == '1':
+                person.card = "Green"
+                break
+            elif chose_card[0] == '2':
+                person.card = "Yellow"
+                print(person.card)
+                break
+            elif chose_card[0] == '3':
+                person.card = "Red"
+                break
+            elif chose_card[0] == '4':
+                person.card = "None"
+                break
+            else:
+                Ui.print_message('Wrong input!')
+
+    @classmethod
+    def add_student_team(cls):
+        Ui.print_message('''Assign each student to the following teams(type the number): 
+        (1) Fork in ear
+        (2) Stepan
+        (3) Rainbow unicorns
+        (4) Jakkiedy                 
+                    ''')              
+
+                
+        is_valid = False
+        while not is_valid:
+            table = Ui.get_inputs(Student.student_list, '')
+            is_need_break = False
+            for value in table:
+                if value not in ['1', '2', '3', '4']:
+                    Ui.print_message('There is no such option, try again.')
+                    is_need_break = True
+                    break
+            if is_need_break:
+                continue
+            is_valid = True
+            i = 0
+            while i <= len(table)-1:
+                if table[i] == '1':
+                    table[table.index('1')] = 'Fork in ear'                            
+                elif table[i] == '2':
+                    table[table.index('2')] = 'Stepan'                            
+                elif table[i] == '3':
+                    table[table.index('3')] = 'Rainbow unicorns'                            
+                elif table[i] == '4':
+                    table[table.index('4')] = 'Jakkiedy'                            
+                Student.student_list[i].team = table[i]
+                
+                i += 1

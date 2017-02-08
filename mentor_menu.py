@@ -20,8 +20,8 @@ class MentorMenu:
             title = 'Mentor menu'
             list_options = ['Check the list of students', 'Add an assignment',
                             'Grade an assignment submitted by students', 'Check attendance of students',
-                            'Add a student to a class', 'Remove a student from class', "Edit student's data", 
-                            'Add student to specific team']
+                            'Add a student to a class', 'Remove a student from class', "Edit student's data",
+                            "Show students of specific group", "Give a card to student", 'Add student to specific group']
 
             Ui.print_menu(title, list_options, 'Log out')
             chose_option = Ui.get_inputs(["Please enter a number: "], "")
@@ -64,42 +64,19 @@ class MentorMenu:
                 Ui.print_student_teams(stu_list)
 
             elif chose_option[0] == '9':
-                os.system('clear')               
+                 # give a card to students
+                Ui.print_student_table(Student.student_list, "List of students")
+                person = Student.choose_person_to_change_data(Student.student_list)
+                if person:
+                    Student.change_student_card(person)
+            
+            elif chose_option[0] == '10':
+                os.system('clear')   
+                Student.add_student_team()            
                 
-                Ui.print_error_message('''Assign each student to the following teams(type the number): 
-    (1) Fork in ear
-    (2) Stepan
-    (3) Rainbow unicorns
-    (4) Jakkiedy                 
-                ''')              
-
                 
-                is_valid = False
-                while not is_valid:
-                    table = Ui.get_inputs(Student.student_list, '')
-                    is_need_break = False
-                    for value in table:
-                        if value not in ['1', '2', '3', '4']:
-                            Ui.print_error_message('There is no such option, try again.')
-                            is_need_break = True
-                            break
-                    if is_need_break:
-                        continue
-                    is_valid = True
-                    i = 0
-                    while i <= len(table)-1:
-                        if table[i] == '1':
-                            table[table.index('1')] = 'Fork in ear'                            
-                        elif table[i] == '2':
-                            table[table.index('2')] = 'Stepan'                            
-                        elif table[i] == '3':
-                            table[table.index('3')] = 'Rainbow unicorns'                            
-                        elif table[i] == '4':
-                            table[table.index('4')] = 'Jakkiedy'                            
-                        Student.student_list[i].team = table[i]
-                        
-                        i += 1
                     
+
 
             elif chose_option[0] == '0':
                 # save data to files, and exit
@@ -110,4 +87,4 @@ class MentorMenu:
                 sys.exit()
 
             else:
-                Ui.print_error_message('There is no such option.')
+                Ui.print_message('There is no such option.')

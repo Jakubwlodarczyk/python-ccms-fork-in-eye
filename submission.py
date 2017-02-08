@@ -31,16 +31,16 @@ class Submission:
             if sub.submission_name == sub_to_grade[0] and sub.id == sub_to_grade[1]:
                 found = True
                 if found:
-                    Ui.print_error_message("Chosen submission:\n{} {} {} {} {} {}\n".format(sub.send_date,
+                    Ui.print_message("Chosen submission:\n{} {} {} {} {} {}\n".format(sub.send_date,
                                                                                             sub.submission_name,
                                                                                             sub.grade,
                                                                                             sub.github_link,
                                                                                             sub.id))
                     sub_grade = Ui.get_inputs(['Grade: '], "Type the grade: ")
                     sub.grade = sub_grade[0]
-                    Ui.print_error_message('Submission graded!')
+                    Ui.print_message('Submission graded!')
         if not found:
-            Ui.print_error_message('Wrong submission name or ID')
+            Ui.print_message('Wrong submission name or ID')
 
 
     @classmethod
@@ -60,7 +60,6 @@ class Submission:
         conn.commit()
 
         submission_list = []
-
         for row in name_db:
             send_date = row[0]
             grade = row[1]
@@ -75,3 +74,35 @@ class Submission:
         conn.close()
 
         return submission_list
+
+    @classmethod
+    def get_students_average_grades(cls, submission_list):
+        '''
+        Returns a dictionary with students average grades.
+        '''
+
+        student_grades = {}
+        for submission in submission_list:
+            if submission.id not in student_grades:
+                student_grades[submission.id] = [int(submission.grade)]
+            else:
+                student_grades[submission.id] += [int(submission.grade)]
+
+        for key, val in student_grades.items():
+            student_grades[key] = (sum(val)/(len(val)))
+
+        return student_grades
+
+
+    @classmethod
+    def get_name_by_id(cls, student_grades, student_list):
+        '''
+        Returns name of student based on given id.
+        '''
+        average_grades = {}
+        for key in student_grades:
+            for student in student_list:
+                if key == student.id:
+                    average_grades[key] = [student.name, student.surname, student_grades[key]]
+                    # print("{} {} {}".format(key, student.name + " " + student.surname, ))
+        return average_grades

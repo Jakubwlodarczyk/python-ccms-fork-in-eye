@@ -133,7 +133,7 @@ class Ui:
         return input_table
 
     @staticmethod
-    def print_error_message(message):
+    def print_message(message):
         """
         Displays an error message.
         Args:
@@ -154,8 +154,7 @@ class Ui:
         idx = 1
         for sub in submission_list:
             print(idx,
-                  sub.start_date,
-                  sub.end_date,
+                  sub.send_date,
                   sub.submission_name,
                   sub.grade,
                   sub.github_link,
@@ -166,7 +165,7 @@ class Ui:
     @staticmethod
     def print_data_list(title):
         '''
-        Handles printing atributte names.
+        Handles printing attribute names.
         '''
         os.system("clear")
         n = 1
@@ -191,7 +190,7 @@ class Ui:
             print(idx,
                   assign.start_date,
                   assign.end_date,
-                  assign.assignments)
+                  assign.assignment_name)
 
             idx += 1
 
@@ -256,4 +255,12 @@ class Ui:
                 print(("{: <" + str(x + 2) + "}|").format(element), end="")
             print()
         print('-' * how_wide)
-            # print('Assignment name: {}, Grade: {}.'.format(sub.submission_name, sub.grade))
+
+    def print_student_average_grades(student_grades):
+        '''
+        Displays each students grades.
+        '''
+        os.system('clear')
+        print("STUDENTS' GRADE AVERAGE:\n")
+        for key, value in student_grades.items():
+            print(key, ':', ''.join(str(value)))
