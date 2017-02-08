@@ -112,12 +112,12 @@ class Assignments:
                                             Ui.print_error_message("\nAssignment name already exist, "
                                                                    "type another one!")
                                         else:
-                                            start_date = '{}-{}-{}'.format(start_date_day,
+                                            start_date = '{}-{}-{}'.format(start_date_year,
                                                                            start_date_month,
-                                                                           start_date_year)
-                                            end_date = '{}-{}-{}'.format(end_date_day,
+                                                                           start_date_day)
+                                            end_date = '{}-{}-{}'.format(end_date_year,
                                                                          end_date_month,
-                                                                         end_date_year)
+                                                                         end_date_day)
                                             new_assignment = cls(start_date, end_date, name_of_assign)
                                             Assignments.assignments_list.append(new_assignment)
                                             Ui.print_error_message("\nAssignment added!\n")

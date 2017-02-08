@@ -1,4 +1,4 @@
-from student import *
+from student import Student
 from user import *
 from submission import *
 from attendance import *
@@ -19,7 +19,8 @@ class MentorMenu:
             title = 'Mentor menu'
             list_options = ['Check the list of students', 'Add an assignment',
                             'Grade an assignment submitted by students', 'Check attendance of students',
-                            'Add a student to a class', 'Remove a student from class', "Edit student's data"]
+                            'Add a student to a class', 'Remove a student from class', "Edit student's data",
+                            "Show students of specific group"]
             Ui.print_menu(title, list_options, 'Log out')
             chose_option = Ui.get_inputs(["Please enter a number: "], "")
 
@@ -45,17 +46,20 @@ class MentorMenu:
 
             elif chose_option[0] == '6':
                 # remove student from class
-                Ui.print_table(Student.student_list, "List of students")
+                Ui.print_student_table(Student.student_list, "List of students")
                 Student.remove_person(Student.student_list)
 
             elif chose_option[0] == '7':
                 # edit students data
-                Ui.print_table(Student.student_list, "List of students")
+                Ui.print_student_table(Student.student_list, "List of students")
                 person = Student.choose_person_to_change_data(Student.student_list)
                 if person:
                     Employee.data_to_change(person)
-                else:
-                    pass
+
+            elif chose_option[0] == '8':
+                # show students of specific group
+                stu_list = Student.student_list
+                Ui.print_student_teams(stu_list)
 
             elif chose_option[0] == '0':
                 # save data to files, and exit
