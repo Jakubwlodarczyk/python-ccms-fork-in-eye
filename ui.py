@@ -1,5 +1,4 @@
 import os
-from datetime import datetime
 
 
 class Ui:
@@ -21,6 +20,52 @@ class Ui:
         table = []
         for obj in object_list:
             obj_atrr = [obj.id, obj.name, obj.surname, obj.email, obj.status]
+            table.append(obj_atrr)
+
+        len_for_col = []
+        for title_iterator in range(len(title_list)):
+            len_col = len(title_list[title_iterator])
+            for row in table:
+                if len(row[title_iterator]) > len_col:
+                    len_col = len(row[title_iterator])
+
+            len_for_col.append(len_col)
+
+        how_wide = 0
+        for name in title_list:
+            x = (len_for_col[title_list.index(name)])
+            how_wide += (len(("|{: <" + str(x + 2) + "}").format(name)))
+        print('-' * how_wide)
+
+        for name in title_list:
+            print("|", end="")
+            x = (len_for_col[title_list.index(name)])
+            print(("{: <" + str(x + 2) + "}").format(name), end="")
+        print("|")
+        print('-' * how_wide)
+
+        for row in table:
+            print("|", end="")
+            for element in row:
+                x = (len_for_col[row.index(element)])
+                print(("{: <" + str(x + 2) + "}|").format(element), end="")
+            print()
+        print('-' * how_wide)
+
+    @staticmethod
+    def print_student_table(object_list, title):
+        '''
+        Displays table with data.
+        Args:
+            object_list: list of objects to unpack into table.
+            title: string containing main table header.
+        '''
+        os.system("clear")
+        print(title)
+        title_list = ['ID', 'Name', 'Surname', 'Email', 'Status', 'Team', 'Card']
+        table = []
+        for obj in object_list:
+            obj_atrr = [obj.id, obj.name, obj.surname, obj.email, obj.status, obj.team, obj.card]
             table.append(obj_atrr)
 
         len_for_col = []
@@ -121,7 +166,7 @@ class Ui:
     @staticmethod
     def print_data_list(title):
         '''
-        Handles printing atributte names.
+        Handles printing attribute names.
         '''
         os.system("clear")
         n = 1
@@ -149,6 +194,26 @@ class Ui:
                   assign.assignments)
 
             idx += 1
+
+    @classmethod
+    def print_student_teams(cls, stu_list):
+        """
+        :param stu_list: list of student objects
+        :return: print students team in a pretty format :D
+        """
+        os.system('clear')
+        team_names = []
+        for team in stu_list:
+            if team.team in team_names:
+                pass
+            else:
+                team_names.append(team.team)
+        for team_name in team_names:
+            print(team_name+':')
+            for student in stu_list:
+                if student.team == team_name:
+                    print(student.name, student.surname)
+            print('\n')
 
     @classmethod
     def print_submissions(cls, submission_list):

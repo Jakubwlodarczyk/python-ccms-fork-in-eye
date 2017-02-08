@@ -1,4 +1,5 @@
 from ui import *
+import sqlite3
 
 
 class Submission:
@@ -9,9 +10,8 @@ class Submission:
 
     submission_list = []
 
-    def __init__(self, start_date, end_date, submission_name, grade, github_link, id):
-        self.start_date = start_date
-        self.end_date = end_date
+    def __init__(self, send_date, submission_name, grade, github_link, id):
+        self.send_date = send_date
         self.grade = grade
         self.id = id
         self.submission_name = submission_name
@@ -31,8 +31,7 @@ class Submission:
             if sub.submission_name == sub_to_grade[0] and sub.id == sub_to_grade[1]:
                 found = True
                 if found:
-                    Ui.print_error_message("Chosen submission:\n{} {} {} {} {} {}\n".format(sub.start_date,
-                                                                                            sub.end_date,
+                    Ui.print_error_message("Chosen submission:\n{} {} {} {} {} {}\n".format(sub.send_date,
                                                                                             sub.submission_name,
                                                                                             sub.grade,
                                                                                             sub.github_link,
@@ -43,33 +42,37 @@ class Submission:
         if not found:
             Ui.print_error_message('Wrong submission name or ID')
 
+
     @classmethod
-    def create_submission_list(cls, file_path):
+    def create_objects_list_from_database(cls, table_name):    #  from database
         """
-        reads the file with data, and creates the list of objects
-        :param file_path: the path to file
-        :return: (list) list of objects of submissions
+        Creates abjects based on data from database.
+        :param file_path:
+        :return:
         """
+
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+
+        name_q = "SELECT send_date, grade, name, github_link, student_id FROM submission;"
+        name_db = c.execute(name_q)
+        conn.commit()
+
         submission_list = []
-        with open(file_path, "r") as f:
-            my_lines = f.readlines()
-            for index, line in enumerate(my_lines):
-                line = line.split(",")
-                length = len(line) - 1
-                if index + 1 == len(my_lines):
-                    pass
-                else:
-                    line[length] = line[length][:-1]
-                if line[5][-1] == '\n':
-                    line[5] = line[5][:-1]
-                start_date = line[0]
-                end_date = line[1]
-                submission_name = line[2]
-                grade = line[3]
-                github_link = line[4]
-                id = line[5]
-                full_submission_name = cls(start_date, end_date, submission_name, grade, github_link, id)
-                submission_list.append(full_submission_name)
+        for row in name_db:
+            send_date = row[0]
+            grade = row[1]
+            name = row[2]
+            github_link = row[3]
+            student_id = row[4]
+
+            full_name = cls(send_date, grade, name, github_link, student_id)
+            submission_list.append(full_name)
+
+
+        conn.close()
+
         return submission_list
 
     @classmethod
@@ -103,8 +106,3 @@ class Submission:
                     average_grades[key] = [student.name, student.surname, student_grades[key]]
                     # print("{} {} {}".format(key, student.name + " " + student.surname, ))
         return average_grades
-
-
-
-        # id_and_grades = []
-        # for key, value in student_grades.items():

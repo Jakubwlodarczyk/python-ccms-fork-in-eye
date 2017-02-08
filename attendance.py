@@ -3,6 +3,7 @@ import os
 import datetime
 from Common import Common
 from student import Student
+import sqlite3
 
 
 class Attendance:
@@ -31,31 +32,35 @@ class Attendance:
         return "{} {} {}".format(remember, self.data, remember_status)
 
 
-    @classmethod
-    def create_attendance_list(cls, file_path):
-        '''
-        Arg: file_path.
-        Creates list of objects from csv file.
-        '''
-        object_list = []
-        with open(file_path, "r") as f:
-            my_lines = f.readlines()
-            for index, line in enumerate(my_lines):
-                line = line.split(",")
-                length = len(line) - 1
-                if index + 1 == len(my_lines):
-                    pass
-                else:
-                    line[length] = line[length][:-1]
-                if line[2][-1] == '\n':
-                    line[2] = line[2][:-1]
-                data = line[0]
-                status = line[1]
-                id = line[2]
-                full_name = cls(data, status, id)
-                object_list.append(full_name)
 
-        return object_list
+    @classmethod
+    def create_objects_list_from_database(cls, table_name):    #  from database
+        """
+        Creates abjects based on data from database.
+        :param file_path:
+        :return:
+        """
+
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+        attendances_list = []
+        name_q = "SELECT date, status, student_id FROM attendance;"
+        name_db = c.execute(name_q)
+        conn.commit()
+
+        for row in name_db:
+            date = row[0]
+            status = row[1]
+            student_id = row[2]
+
+            full_name = cls(date, status, student_id)
+            attendances_list.append(full_name)
+
+        #print(Attendance.attendances_list)
+        conn.close()
+        return attendances_list
+
 
     @staticmethod
     def date_control():
