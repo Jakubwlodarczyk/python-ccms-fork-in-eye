@@ -99,13 +99,13 @@ class User:
         choosing = True
         while choosing:
             option = Ui.get_inputs(["Enter person ID or 'q' to go back: "], "Whose data you want to change?")
+            for person in object_list:
+                if option[0] == person.id:
+                    return person
             if option[0] == 'q':
                 choosing = False
             else:
                 Ui.print_error_message('No id match.')
-            for person in object_list:
-                if option[0] == person.id:
-                    return person
 
 
     @classmethod
