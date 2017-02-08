@@ -20,10 +20,13 @@ class ManagerMenu:
                    "Edit employees' data",
                    "Fire an employee",
                    "View mentors list",
+                   'Show the full statistics about mentors',
                    "Add a mentor",
                    "Edit mentors' data",
                    "Fire a mentor",
-                   "View students list"]
+                   "View students list",
+                   "View students' grades",
+                   'Show full statistics about students']
         while True:
             Ui.print_menu("\nWhat you want to do?", options, "Log out")
             inputs = Ui.get_inputs(["Please enter a number: "], "")
@@ -54,9 +57,12 @@ class ManagerMenu:
                 title = 'Mentors list:'
                 Ui.print_table(Mentor.mentors_list, title)
             elif option == '6':
+                #  Show full statistics about mentors
+                print('Show full statistics about mentors - in progress')
+            elif option == '7':
                 # add mentor
                 Mentor.add_person(Mentor.mentors_list)
-            elif option == '7':
+            elif option == '8':
                 # change mentor's data
                 title = 'Mentors:'
                 Ui.print_table(Mentor.mentors_list, title)
@@ -65,15 +71,21 @@ class ManagerMenu:
                     Mentor.data_to_change(person)
                 else:
                     pass
-            elif option == '8':
+            elif option == '9':
                 # fire mentor
                 title = 'Mentors:'
                 Ui.print_table(Mentor.mentors_list, title)
                 Mentor.remove_person(Mentor.mentors_list)
-            elif option == '9':
+            elif option == '10':
                 # view student list
                 title = 'Students list:'
                 Ui.print_table(Student.student_list, title)
+            elif option == '11':
+                # view students grades
+                print('In progress')
+            elif option == '12':
+                 # Show full statistics about students
+                 print('in progress too')
             elif option == '0':
                 Common.write_table_to_file('Mentors.csv', Mentor.mentors_list)
                 Common.write_table_to_file('Regular_employees.csv', Employee.employees_list)
