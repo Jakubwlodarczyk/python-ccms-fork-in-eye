@@ -64,7 +64,7 @@ class MentorMenu:
                 Ui.print_student_teams(stu_list)
 
             elif chose_option[0] == '9':
-                 # give a card to students
+                # give a card to students
                 Ui.print_student_table(Student.student_list, "List of students")
                 person = Student.choose_person_to_change_data(Student.student_list)
                 if person:
@@ -73,10 +73,6 @@ class MentorMenu:
             elif chose_option[0] == '10':
                 os.system('clear')   
                 Student.add_student_team()            
-                
-                
-                    
-
 
             elif chose_option[0] == '0':
                 # save data to files, and exit
