@@ -28,7 +28,7 @@ class Submission:
 
         found = False
         for sub in Submission.submission_list:
-            if sub.submission_name == sub_to_grade[0] and sub.id == sub_to_grade[1]:
+            if sub.name == sub_to_grade[0] and sub.student_id == sub_to_grade[1]:
                 found = True
                 if found:
                     Ui.print_message("Chosen submission:\n{} {} {} {} {} {}\n".format(sub.send_date,
@@ -94,14 +94,12 @@ class Submission:
         '''
         Returns name of student based on given id.
         '''
-        print(student_list)
 
         average_grades = {}
         for key in student_grades:
             for student in student_list:
-                print(student.id)
-                print(student.name)
+
                 if key == student.id:
                     average_grades[key] = [student.name, student.surname, student_grades[key]]
-        # RETURNS EMPTY DICTIONARY WHYYYYYYYYYY
+
         return average_grades

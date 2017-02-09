@@ -17,7 +17,7 @@ class Student(User):
     # submission_list = Submission.submission_list
 
 
-    
+
 
 
 
@@ -82,7 +82,7 @@ class Student(User):
         '''
         my_submiss = []
         for sub in Submission.submission_list:
-            if sub.id == self.id:
+            if sub.student_id == self.id:
                 my_submiss.append(sub)
         Ui.print_submissions(my_submiss)
 
@@ -96,8 +96,8 @@ class Student(User):
 
         assignment_list = []
         choose_val = input('Type the submission link: ')
-        for i in assign:  
-            assignment_list.append([datetime.date.today(), i.assignment_name, '0', choose, self.id])
+        for i in assign:
+            assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, self.id])
 
         if not choose.isnumeric():
             os.system('clear')
@@ -106,15 +106,15 @@ class Student(User):
         if int(choose) <= len(assignment_list):  # value condition
             chosen_one = assignment_list[int(choose)-1]
             for submiss in Submission.submission_list:
-                if submiss.submission_name == chosen_one[2] and submiss.id == chosen_one[5]:  # condition for assignment being submitted
+                if submiss.name == chosen_one[2] and submiss.student_id == chosen_one[4]:  # condition for assignment being submitted
                     os.system('clear')
                     Ui.print_message('Assignment is already submitted\n')
                     return
 
             submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], # object of new submission is created
-                                chosen_one[3], chosen_one[4], chosen_one[5])
+                                chosen_one[3], chosen_one[4])
 
-
+# send_date, grade, name, github_link, student_id
             Submission.submission_list.append(submission_obj)
             os.system('clear')
             Ui.print_message('Your assignment was succesfully submitted\n')
@@ -163,14 +163,14 @@ class Student(User):
 
     @classmethod
     def add_student_team(cls):
-        Ui.print_message('''Assign each student to the following teams(type the number): 
+        Ui.print_message('''Assign each student to the following teams(type the number):
         (1) Fork in ear
         (2) Stepan
         (3) Rainbow unicorns
-        (4) Jakkiedy                 
-                    ''')              
+        (4) Jakkiedy
+                    ''')
 
-                
+
         is_valid = False
         while not is_valid:
             table = Ui.get_inputs(Student.student_list, '')
@@ -186,13 +186,17 @@ class Student(User):
             i = 0
             while i <= len(table)-1:
                 if table[i] == '1':
-                    table[table.index('1')] = 'Fork in ear'                            
+                    table[table.index('1')] = 'Fork in ear'
                 elif table[i] == '2':
-                    table[table.index('2')] = 'Stepan'                            
+                    table[table.index('2')] = 'Stepan'
                 elif table[i] == '3':
-                    table[table.index('3')] = 'Rainbow unicorns'                            
+                    table[table.index('3')] = 'Rainbow unicorns'
                 elif table[i] == '4':
-                    table[table.index('4')] = 'Jakkiedy'                            
+                    table[table.index('4')] = 'Jakkiedy'
                 Student.student_list[i].team = table[i]
-                
+
                 i += 1
+    @classmethod
+    def get_full_statistics_about_students(cls):
+
+        pass
