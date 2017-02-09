@@ -4,6 +4,7 @@ import sys
 from employee import *
 from student import *
 from mentor import *
+from manager import Manager
 
 
 class ManagerMenu:
@@ -87,9 +88,9 @@ class ManagerMenu:
                  # Show full statistics about students
                  print('in progress too')
             elif option == '0':
-                #Common.write_staff_to_file('database.db', Mentor.mentors_list)
-                #Common.write_table_to_file('Mentors.csv', Mentor.mentors_list)
-                #Common.write_table_to_file('Regular_employees.csv', Employee.employees_list)
+                Common.write_staff_to_file('database.db', Mentor.mentors_list)
+                Common.write_staff_to_file('database.db', Manager.manager_list)
+                Common.write_staff_to_file('database.db', Employee.employees_list)
                 sys.exit()
             else:
                 Ui.print_error_message('There is no such option.')
