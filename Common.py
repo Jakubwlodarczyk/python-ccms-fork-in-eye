@@ -101,8 +101,8 @@ class Common:
 
         with open(file_name, "w") as f:
             for index, obj in enumerate(obj_list):
-                obj_atrr = [str(obj.send_date), str(obj.submission_name), str(obj.grade), str(obj.github_link),
-                            str(obj.id)]
+                obj_atrr = [str(obj.send_date), str(obj.name), str(obj.grade), str(obj.github_link),
+                            str(obj.student_id)]
                 if index < len(obj_list) - 1:
                     f.write(','.join(obj_atrr) + '\n')
                 else:
