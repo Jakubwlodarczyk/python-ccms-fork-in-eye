@@ -195,18 +195,18 @@ class Student(User):
     def add_student_to_team(cls):
         student_list = Student.student_list
         for student in student_list:
-            print("""ID: {} \t {} {} {}\n""".format(student.id, student.name, student.surname, student.team))
+            Ui.print_message("""ID: {} \t {} {} {}\n""".format(student.id, student.name, student.surname, student.team))
         choosen_student = User.choose_person_to_change_data(student_list)
-        print(choosen_student)
+        Ui.print_message(choosen_student)
         teams = Student.teams_list
         for index, team in enumerate(teams):
-            print(index, team)
+            Ui.print_message('Team {} {}'.format(index+1, team))
         chosen = input('Choose team: ')
         if chosen in teams:
             choosen_student.team = chosen
-            print('Chosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
+            Ui.print_message('Chosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
         else:
-            print('No match!')
+            Ui.print_message('No match!')
 
     @classmethod
     def get_full_statistics_about_students(cls, student_list, average_grades):
