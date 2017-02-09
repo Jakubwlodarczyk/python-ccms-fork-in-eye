@@ -13,14 +13,6 @@ class Student(User):
 
     student_list = []
 
-
-    # submission_list = Submission.submission_list
-
-
-    
-
-
-
     def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
             User.__init__(self, name, surname, email, password, status, id)
             self.status = 'student'
@@ -28,7 +20,6 @@ class Student(User):
             # self.submission_list = Submission.submission_list
             self.team = team
             self.card = card
-
 
     def __str__(self):
         return "{} {} ".format(self.name, self.surname)
@@ -74,7 +65,6 @@ class Student(User):
                 if attendance.id == student.id:
                     student.attendance_list.append(attendance)
 
-
     def view_grades(self):
         '''
         Allows to view grades for all student's assignments.
@@ -82,7 +72,7 @@ class Student(User):
         '''
         my_submiss = []
         for sub in Submission.submission_list:
-            if sub.id == self.id:
+            if sub.student_id == self.id:
                 my_submiss.append(sub)
         Ui.print_submissions(my_submiss)
 
@@ -96,8 +86,8 @@ class Student(User):
 
         assignment_list = []
         choose_val = input('Type the submission link: ')
-        for i in assign:  
-            assignment_list.append([datetime.date.today(), i.assignment_name, '0', choose, self.id])
+        for i in assign:
+            assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, self.id])
 
         if not choose.isnumeric():
             os.system('clear')
@@ -106,21 +96,16 @@ class Student(User):
         if int(choose) <= len(assignment_list):  # value condition
             chosen_one = assignment_list[int(choose)-1]
             for submiss in Submission.submission_list:
-                if submiss.submission_name == chosen_one[2] and submiss.id == chosen_one[5]:  # condition for assignment being submitted
+                if submiss.name == chosen_one[2] and submiss.student_id == chosen_one[4]:  # condition for assignment being submitted
                     os.system('clear')
                     Ui.print_message('Assignment is already submitted\n')
                     return
 
-            submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], # object of new submission is created
-                                chosen_one[3], chosen_one[4], chosen_one[5])
-
-
+            submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], chosen_one[4])
             Submission.submission_list.append(submission_obj)
             os.system('clear')
             Ui.print_message('Your assignment was succesfully submitted\n')
-
             return Submission.submission_list
-
         else:
             os.system('clear')
 
@@ -139,10 +124,10 @@ class Student(User):
         os.system('clear')
         Ui.print_message("Chosen student: {} {}".format(person, person.card))
         Ui.print_message("What card you want to give:\n"
-                               "1. GREEN\n"
-                               "2. YELLOW\n"
-                               "3. RED\n"
-                               "4. None")
+                         "1. GREEN\n"
+                         "2. YELLOW\n"
+                         "3. RED\n"
+                         "4. None")
         chose_card = Ui.get_inputs([''], "")
         while True:
             if chose_card[0] == '1':
@@ -163,14 +148,14 @@ class Student(User):
 
     @classmethod
     def add_student_team(cls):
-        Ui.print_message('''Assign each student to the following teams(type the number): 
+        Ui.print_message('''Assign each student to the following teams(type the number):
         (1) Fork in ear
         (2) Stepan
         (3) Rainbow unicorns
-        (4) Jakkiedy                 
-                    ''')              
+        (4) Jakkiedy
+                    ''')
 
-                
+
         is_valid = False
         while not is_valid:
             table = Ui.get_inputs(Student.student_list, '')
@@ -186,13 +171,36 @@ class Student(User):
             i = 0
             while i <= len(table)-1:
                 if table[i] == '1':
-                    table[table.index('1')] = 'Fork in ear'                            
+                    table[table.index('1')] = 'Fork in ear'
                 elif table[i] == '2':
-                    table[table.index('2')] = 'Stepan'                            
+                    table[table.index('2')] = 'Stepan'
                 elif table[i] == '3':
-                    table[table.index('3')] = 'Rainbow unicorns'                            
+                    table[table.index('3')] = 'Rainbow unicorns'
                 elif table[i] == '4':
-                    table[table.index('4')] = 'Jakkiedy'                            
+                    table[table.index('4')] = 'Jakkiedy'
                 Student.student_list[i].team = table[i]
-                
+
                 i += 1
+
+    @staticmethod
+    def show_full_report_of_students_performance():
+        os.system('clear')
+        st_end_date = Ui.get_inputs(['Start date (yyyy-mm-dd): ', 'End date (yyyy-mm-dd): '], "Type the values")
+
+        conn = sqlite3.connect("database.db")
+        with conn:
+            c = conn.cursor()
+
+            db = c.execute("SELECT submission.send_date, submission.name, student.name, student.surname, submission.grade\
+                         FROM submission\
+                         INNER JOIN student\
+                         ON submission.student_id=student.student_id\
+                         WHERE submission.send_date BETWEEN (?) AND (?);", (st_end_date[0], st_end_date[1]))
+            conn.commit()
+            print(c.fetchone())
+
+    @classmethod
+    def get_full_statistics_about_students(cls):
+
+        pass
+
