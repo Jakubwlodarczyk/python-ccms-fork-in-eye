@@ -44,7 +44,7 @@ class Student(User):
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
 
-        name_q = "SELECT name, surname, email, password, status, password, card, team FROM student;"
+        name_q = "SELECT name, surname, email, password, status, card, team, student_id FROM student;"
         name_db = c.execute(name_q)
         conn.commit()
 
@@ -56,16 +56,23 @@ class Student(User):
             email = row[2]
             password = row[3]
             status = row[4]
-            password = row[5]
-            card = row[7]
+            card = row[5]
             team = row[6]
+            student_id = row[7]
 
-            full_name = cls(name, surname, email, password, status, password, card, team)
+            full_name = cls(name, surname, email, password, status, student_id, team, card)
             student_list.append(full_name)
 
         conn.close()
 
         return student_list
+
+    @staticmethod
+    def add_attendance_to_student(attendances_obj_list):
+        for student in Student.student_list:
+            for attendance in attendances_obj_list:
+                if attendance.id == student.id:
+                    student.attendance_list.append(attendance)
 
 
     def view_grades(self):
@@ -89,8 +96,10 @@ class Student(User):
 
         assignment_list = []
         choose_val = input('Type the submission link: ')
+            if choose_val == '':
+                Ui.print_message('Submission link is empty')
         for i in assign:  
-            assignment_list.append([datetime.date.today(), i.assignment_name, '0', choose, self.id])
+            assignment_list.append([datetime.date.today(), i.assignment_name, '0', choose_val, self.id])
 
         if not choose.isnumeric():
             os.system('clear')
@@ -104,8 +113,9 @@ class Student(User):
                     Ui.print_message('Assignment is already submitted\n')
                     return
 
+
             submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], # object of new submission is created
-                                chosen_one[3], chosen_one[4], chosen_one[5])
+                                    chosen_one[3], chosen_one[4])
 
 
             Submission.submission_list.append(submission_obj)
@@ -154,8 +164,8 @@ class Student(User):
             else:
                 Ui.print_message('Wrong input!')
 
-    @classmethod
-    def add_student_team(cls):
+    @staticmethod
+    def add_student_team():
         Ui.print_message('''Assign each student to the following teams(type the number): 
         (1) Fork in ear
         (2) Stepan
@@ -188,4 +198,10 @@ class Student(User):
                     table[table.index('4')] = 'Jakkiedy'                            
                 Student.student_list[i].team = table[i]
                 
+    
                 i += 1
+
+        
+
+
+

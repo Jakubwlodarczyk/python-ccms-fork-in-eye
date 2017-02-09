@@ -223,7 +223,7 @@ class Ui:
         title_list = ['Assignment name:', 'Grade:']
         table = []
         for sub in submission_list:
-            sub = [sub.submission_name, sub.grade]
+            sub = [sub.name, sub.grade]
             table.append(sub)
 
         len_for_col = []
