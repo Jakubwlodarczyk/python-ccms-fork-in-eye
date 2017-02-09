@@ -203,11 +203,10 @@ class Student(User):
             print(index, team)
         chosen = input('Choose team: ')
         if chosen in teams:
-            print('AAAAA', choosen_student)
             choosen_student.team = chosen
-            print(chosen)
+            print('Chosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
         else:
-            print('dupa')
+            print('No match!')
 
     @classmethod
     def get_full_statistics_about_students(cls, student_list, average_grades):
