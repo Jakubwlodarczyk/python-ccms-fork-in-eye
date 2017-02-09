@@ -20,7 +20,6 @@ from student_menu import *
 from employee_menu import *
 
 
-
 class Menu:
     @staticmethod
     def loading_data():
@@ -41,7 +40,6 @@ class Menu:
         Assignments.assignments_list = Assignments.create_objects_list_from_database('assignements')
         Attendance.attendances_list = Attendance.create_objects_list_from_database('attendance')
         Student.add_attendance_to_student(Attendance.attendances_list) # add attendance obj to a specific student
-
 
     @classmethod
     def log_in(cls):
