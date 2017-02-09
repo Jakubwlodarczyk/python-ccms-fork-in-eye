@@ -216,20 +216,30 @@ class Student(User):
 
     @staticmethod
     def show_full_report_of_students_performance():
+        """
+        method asks for input to get special date,
+        and creates a list of students performance in specific period of time
+        """
         os.system('clear')
         st_end_date = Ui.get_inputs(['Start date (yyyy-mm-dd): ', 'End date (yyyy-mm-dd): '], "Type the values")
-
+        list_of_performance = []
         conn = sqlite3.connect("database.db")
+
         with conn:
             c = conn.cursor()
-
             db = c.execute("SELECT submission.send_date, submission.name, student.name, student.surname, submission.grade\
                          FROM submission\
                          INNER JOIN student\
                          ON submission.student_id=student.student_id\
-                         WHERE submission.send_date BETWEEN (?) AND (?);", (st_end_date[0], st_end_date[1]))
+                         WHERE submission.send_date BETWEEN (?) AND (?)\
+                         ORDER BY student.surname ASC;", (st_end_date[0], st_end_date[1]))
             conn.commit()
-            print(c.fetchone())
+            for row in db:
+                list_of_performance.append(row)
+        title_of_table = 'FULL REPORT OF STUDENTS PERFORMANCE:'
+        top_of_table = ('SUB. SEND DATE', 'SUB. NAME', 'STUDENT NAME', 'SURNAME', 'GRADE')
+        list_of_performance.insert(0, top_of_table)
+        Ui.print_full_report_of_students_performance(list_of_performance, title_of_table)
 
     @classmethod
     def get_full_statistics_about_students(cls):

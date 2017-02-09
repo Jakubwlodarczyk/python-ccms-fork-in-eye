@@ -129,7 +129,7 @@ class Common:
         c.execute(query)
 
         for obj in obj_list:
-            params = [obj.send_date, obj.grade, obj.name, obj.github_link, obj.student_id]
+            params = [obj.send_date, obj.grade, obj.student_id, obj.name, obj.github_link]
             c.execute("INSERT INTO submission (send_date, grade, name, github_link, student_id) VALUES (?, ?, ?, ?, ?)", params)
             conn.commit()
 
@@ -153,8 +153,6 @@ class Common:
                 else:
                     f.write(','.join(obj_atrr))
 
-
-
     @classmethod
     def write_submission_to_file(cls, file_name, obj_list):
         """
@@ -174,7 +172,6 @@ class Common:
                     f.write(','.join(obj_atrr) + '\n')
                 else:
                     f.write(','.join(obj_atrr))
-
 
     @staticmethod
     def error_integer_handling(chosen_option, value_of_possible_options):

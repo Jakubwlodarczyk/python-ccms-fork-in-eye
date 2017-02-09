@@ -27,4 +27,3 @@ class EmployeeMenu:
                 sys.exit()
             else:
                 Ui.print_message('There is no such option.')
-
