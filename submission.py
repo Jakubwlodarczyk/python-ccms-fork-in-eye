@@ -87,7 +87,7 @@ class Submission:
                 student_grades[submission.student_id] += [int(submission.grade)]
 
         for key, val in student_grades.items():
-            student_grades[key] = round((sum(val)/len(str(val))), 2)
+            student_grades[key] = round((sum(val)/len(val)), 2)
 
         return student_grades
 
