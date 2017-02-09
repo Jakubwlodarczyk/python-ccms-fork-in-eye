@@ -31,7 +31,7 @@ class Menu:
         Mentor.mentors_list = staff_tuple[0]
         Manager.manager_list = staff_tuple[1]
         Employee.employees_list = staff_tuple[2]
-        Submission.submission_list = Submission.create_objects_list_from_database('submission')
+        Submission.create_objects_list_from_database('submission')
         Student.student_list = Student.create_objects_list_from_database('Student.csv')
         User.all_users = [Employee.employees_list,
                           Mentor.mentors_list,
