@@ -155,10 +155,10 @@ class Ui:
         for sub in submission_list:
             print(idx,
                   sub.send_date,
-                  sub.submission_name,
+                  sub.name,
                   sub.grade,
                   sub.github_link,
-                  sub.id)
+                  sub.student_id)
             idx += 1
         print('\n')
 
