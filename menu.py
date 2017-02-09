@@ -1,23 +1,18 @@
-import csv
 import getpass
 import sys
-from user import *
-from Common import *
-from student import *
-from employee import *
-from mentor import *
-from manager import *
-from submission import *
-#from assignments import *
-#from attendance import *
-from assignments import *
-from attendance import *
-from ui import *
-from manager_menu import *
-from mentor_menu import *
-from student_menu import *
-# from employee_menu import *
-from employee_menu import *
+from user import User
+from student import Student
+from employee import Employee
+from mentor import Mentor
+from manager import Manager
+from submission import Submission
+from assignments import Assignments
+from attendance import Attendance
+from ui import Ui
+from manager_menu import ManagerMenu
+from mentor_menu import MentorMenu
+from student_menu import StudentMenu
+from employee_menu import EmployeeMenu
 
 
 class Menu:
@@ -98,7 +93,7 @@ class Menu:
             try:
                 Menu.choose_option()
             except KeyError:
-                ui.print_message('Unknown error at main!')
+                Ui.print_message('Unknown error at main!')
 
 
 if __name__ == '__main__':

@@ -1,14 +1,16 @@
-from ui import *
-from Common import *
+from ui import Ui
+from Common import Common
 import sys
-from student import *
-from submission import *
-from attendance import *
+from student import Student
+from submission import Submission
+from attendance import Attendance
 import os
-import time
 
 
 class StudentMenu:
+    """
+    handle navigation menu after logging in as student
+    """
 
     def handle_menu(user):
         '''

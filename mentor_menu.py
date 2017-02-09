@@ -94,7 +94,6 @@ class MentorMenu:
                 # Show full report of students performance between provided dates
                 Student.show_full_report_of_students_performance()
 
-
             elif chose_option[0] == '0':
                 sys.exit()
 

@@ -1,8 +1,8 @@
-from user import *
-from assignments import *
-from ui import *
-from Common import *
-from submission import *
+from user import User
+from assignments import Assignments
+from ui import Ui
+from Common import Common
+from submission import Submission
 import sys
 import os
 import datetime
@@ -31,16 +31,12 @@ class Student(User):
         :param file_path:
         :return:
         """
-
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-
         name_q = "SELECT name, surname, email, password, status, card, team, student_id FROM student;"
         name_db = c.execute(name_q)
         conn.commit()
-
         student_list = []
-
         for row in name_db:
             name = row[0]
             surname = row[1]
@@ -50,12 +46,9 @@ class Student(User):
             card = row[5]
             team = row[6]
             student_id = row[7]
-
             full_name = cls(name, surname, email, password, status, student_id, team, card)
             student_list.append(full_name)
-
         conn.close()
-
         return student_list
 
     @staticmethod
@@ -73,10 +66,12 @@ class Student(User):
         for sub in Submission.submission_list:
             if sub.student_id == self.id:
                 my_submiss.append(sub)
-
         return my_submiss
 
     def submit_assignment(self):
+        """
+        allow student to submit an assignment as a team or alone
+        """
         students = Student.student_list
         Ui.print_message('Choose the number from the following assignments: \n')
         for n, assignment in enumerate(Assignments.assignments_list):
@@ -87,10 +82,8 @@ class Student(User):
         choose_val = input('Type the submission link: ')
         if choose_val == '':
             Ui.print_message('Submission link is empty')
-
         for i in assign:
             assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, self.id])
-
         if not choose.isnumeric():
             os.system('clear')
             Ui.print_message('\nChosen value must be a number')
@@ -102,7 +95,6 @@ class Student(User):
                     os.system('clear')
                     Ui.print_message('Assignment is already submitted\n')
                     return
-
             Ui.print_message('''
             Choose the following option:\n
             (1) Submit assignment as a team
@@ -110,7 +102,6 @@ class Student(User):
                         ''')
             submit_option = input('Type the number: ')
             if submit_option == '1':
-
                 for student in students:
                     if student.team == self.team:
                         assignment_list = []
@@ -118,13 +109,11 @@ class Student(User):
                         print(assignment_list)
                         submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], student.id)
                         Submission.submission_list.append(submission_obj)
-
             elif submit_option == '2':
                 submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], chosen_one[4])
                 Submission.submission_list.append(submission_obj)
             else:
                 Ui.print_message('Invalid value')
-
             os.system('clear')
             Ui.print_message('Your assignment was succesfully submitted\n')
             return Submission.submission_list
@@ -133,6 +122,9 @@ class Student(User):
             Ui.print_message('Invalid number')
 
     def check_attendence(self, data):
+        """
+        change attendance of students
+        """
         table = []
         for row in data:
             if row.id == self.id:
@@ -141,6 +133,10 @@ class Student(User):
 
     @classmethod
     def change_student_card(cls, person):
+        """
+        change a student card
+        :param person: chosen student to change a card
+        """
         os.system('clear')
         Ui.print_message("Chosen student: {} {}".format(person, person.card))
         Ui.print_message("What card you want to give:\n"
@@ -168,6 +164,9 @@ class Student(User):
 
     @staticmethod
     def add_student_team():
+        """
+        add a student to a specific team
+        """
         Ui.print_message('''Assign each student to the following teams(type the number):
 
         (1) Fork in ear
@@ -216,20 +215,18 @@ class Student(User):
             for key in average_grades:
                 if key == student.id:
                     record[-2] = (str(average_grades[key][2]))
-
         return stats
 
     @staticmethod
     def show_full_report_of_students_performance():
         """
-        method asks for input to get special date,
+        method asks for input to get specific date,
         and creates a list of students performance in specific period of time
         """
         os.system('clear')
         st_end_date = Ui.get_inputs(['Start date (yyyy-mm-dd): ', 'End date (yyyy-mm-dd): '], "Type the values")
         list_of_performance = []
         conn = sqlite3.connect("database.db")
-
         with conn:
             c = conn.cursor()
             db = c.execute("SELECT submission.send_date, submission.name, student.name, student.surname, submission.grade\

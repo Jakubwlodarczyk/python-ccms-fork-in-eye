@@ -1,5 +1,4 @@
 from ui import Ui
-from Common import *
 import sys
 from student import *
 from manager_menu import ManagerMenu

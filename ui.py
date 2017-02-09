@@ -11,10 +11,12 @@ class Ui:
         '''
         Displays table with data.
         Args:
-            object_list: list of objects to unpack into table.
-            title: string containing main table header.
+            table: list of items to print
+            title: string containing main table header
+            title_list: header
         '''
         os.system("clear")
+        print(title)
         len_for_col = []
         for title_iterator in range(len(title_list)):
             len_col = len(title_list[title_iterator])
@@ -133,7 +135,6 @@ class Ui:
                   assign.start_date,
                   assign.end_date,
                   assign.assignment_name)
-
             idx += 1
 
     @classmethod
@@ -156,11 +157,11 @@ class Ui:
                     print(student.name, student.surname)
             print('\n')
 
+    @staticmethod
     def print_student_average_grades(student_grades):
         '''
         Displays each students grades.
         '''
-
         os.system('clear')
         print("STUDENTS' GRADE AVERAGE:\n")
         for key, value in student_grades.items():
@@ -173,7 +174,6 @@ class Ui:
         :param performance: list of students performance data
         :return: prints table with data
         """
-
         if len(performance) < 2:
             os.system('clear')
             print("There is no submissions in given date time :( \n\n\n")
@@ -188,6 +188,7 @@ class Ui:
             Ui.get_inputs([''],'Enter to go back')
             os.system('clear')
 
+    @staticmethod
     def create_person_table_to_print(object_list):
         '''
         Creates table to put into printing function for person.
@@ -200,6 +201,7 @@ class Ui:
 
         return table
 
+    @staticmethod
     def create_student_table_to_print(object_list):
         '''
         Creates table to put into printing function for student
@@ -211,6 +213,7 @@ class Ui:
             table.append(student_attributes)
         return table
 
+    @staticmethod
     def create_submission_table_to_print(object_list):
         '''
         Creates table to put into printing function for submission
