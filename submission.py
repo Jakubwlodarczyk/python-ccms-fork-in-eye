@@ -11,11 +11,13 @@ class Submission:
     submission_list = []
 
     def __init__(self, send_date, grade, name, github_link, student_id):
-        self.send_date = send_date
-        self.grade = grade
-        self.student_id = student_id
-        self.name = name
-        self.github_link = github_link
+
+       self.send_date = send_date
+       self.grade = grade
+       self.student_id = student_id
+       self.name = name
+       self.github_link = github_link
+
 
     @classmethod
     def grade_an_submission(cls):
@@ -31,11 +33,11 @@ class Submission:
             if sub.name == sub_to_grade[0] and sub.student_id == sub_to_grade[1]:
                 found = True
                 if found:
-                    Ui.print_message("Chosen submission:\n{} {} {} {} {} {}\n".format(sub.send_date,
-                                                                                            sub.submission_name,
-                                                                                            sub.grade,
-                                                                                            sub.github_link,
-                                                                                            sub.id))
+                    Ui.print_message("Chosen submission:\n{} {} {} {} {}\n".format(sub.send_date,
+                                                                                   sub.name,
+                                                                                   sub.grade,
+                                                                                   sub.github_link,
+                                                                                   sub.student_id))
                     sub_grade = Ui.get_inputs(['Grade: '], "Type the grade: ")
                     sub.grade = sub_grade[0]
                     Ui.print_message('Submission graded!')
@@ -85,7 +87,7 @@ class Submission:
                 student_grades[submission.student_id] += [int(submission.grade)]
 
         for key, val in student_grades.items():
-            student_grades[key] = round((sum(val)/len(str(val))), 2)
+            student_grades[key] = round((sum(val)/len(val)), 2)
 
         return student_grades
 

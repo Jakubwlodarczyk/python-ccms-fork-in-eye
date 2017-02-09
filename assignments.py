@@ -110,7 +110,7 @@ class Assignments:
                                             list_of_names_of_assignments.append(i.assignment_name)
                                         if name_of_assign in list_of_names_of_assignments:
                                             Ui.print_message("\nAssignment name already exist, "
-                                                                   "type another one!")
+                                                             "type another one!")
                                         else:
                                             start_date = '{}-{}-{}'.format(start_date_year,
                                                                            start_date_month,

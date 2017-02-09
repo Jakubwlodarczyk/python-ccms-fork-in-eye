@@ -302,3 +302,18 @@ class Ui:
                 print(("{: <" + str(x + 2) + "}|").format(element), end="")
             print()
         print('-' * how_wide)
+
+
+    @staticmethod
+    def print_full_report_of_students_performance(performance, title):
+        """
+        :param title: title of table to print
+        :param performance: list of students performance data
+        :return: prints table with data
+        """
+        os.system('clear')
+        print(title, '\n')
+        for row in performance:
+            print("{:>15} {:>15} {:>15} {:>15} {:>15}".format(row[0], row[1], row[2], row[3], row[4]))
+        print('\n')
+        Ui.get_inputs([''],'Enter to go back')

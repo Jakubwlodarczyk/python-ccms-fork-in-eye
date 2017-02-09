@@ -16,11 +16,6 @@ class Student(User):
 
     # submission_list = Submission.submission_list
 
-
-
-
-
-
     def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
             User.__init__(self, name, surname, email, password, status, id)
             self.status = 'student'
@@ -28,7 +23,6 @@ class Student(User):
             # self.submission_list = Submission.submission_list
             self.team = team
             self.card = card
-
 
     def __str__(self):
         return "{} {} ".format(self.name, self.surname)
@@ -74,7 +68,6 @@ class Student(User):
                 if attendance.id == student.id:
                     student.attendance_list.append(attendance)
 
-
     def view_grades(self):
         '''
         Allows to view grades for all student's assignments.
@@ -88,6 +81,8 @@ class Student(User):
 
     def submit_assignment(self):
 
+        students = Student.student_list
+
         Ui.print_message('Choose the number from the following assignments: \n')
         for n, assignment in enumerate(Assignments.assignments_list):
             Ui.print_message(str(n+1) + '. ' + str(assignment))
@@ -96,6 +91,11 @@ class Student(User):
 
         assignment_list = []
         choose_val = input('Type the submission link: ')
+        if choose_val == '':
+            Ui.print_message('Submission link is empty')
+
+
+
         for i in assign:
             assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, self.id])
 
@@ -115,14 +115,21 @@ class Student(User):
                                 chosen_one[3], chosen_one[4])
 
             Submission.submission_list.append(submission_obj)
+
+            for student in students:
+                if student.team == self.team:
+
+                    assignment_list = []
+                    assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, student.id])
+                    print(assignment_list)
+                    submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], student.id)
+                    Submission.submission_list.append(submission_obj)
+
             os.system('clear')
             Ui.print_message('Your assignment was succesfully submitted\n')
-
             return Submission.submission_list
-
         else:
             os.system('clear')
-
             Ui.print_message('Invalid number')
 
     def check_attendence(self, data):
@@ -138,10 +145,10 @@ class Student(User):
         os.system('clear')
         Ui.print_message("Chosen student: {} {}".format(person, person.card))
         Ui.print_message("What card you want to give:\n"
-                               "1. GREEN\n"
-                               "2. YELLOW\n"
-                               "3. RED\n"
-                               "4. None")
+                         "1. GREEN\n"
+                         "2. YELLOW\n"
+                         "3. RED\n"
+                         "4. None")
         chose_card = Ui.get_inputs([''], "")
         while True:
             if chose_card[0] == '1':
@@ -160,15 +167,16 @@ class Student(User):
             else:
                 Ui.print_message('Wrong input!')
 
-    @classmethod
-    def add_student_team(cls):
+
+    @staticmethod
+    def add_student_team():
         Ui.print_message('''Assign each student to the following teams(type the number):
+
         (1) Fork in ear
         (2) Stepan
         (3) Rainbow unicorns
         (4) Jakkiedy
                     ''')
-
 
         is_valid = False
         while not is_valid:
@@ -193,7 +201,6 @@ class Student(User):
                 elif table[i] == '4':
                     table[table.index('4')] = 'Jakkiedy'
                 Student.student_list[i].team = table[i]
-
                 i += 1
 
     @classmethod
@@ -213,3 +220,30 @@ class Student(User):
                     record[-2] = (str(average_grades[key][2]))
 
         return stats
+
+    @staticmethod
+    def show_full_report_of_students_performance():
+        """
+        method asks for input to get special date,
+        and creates a list of students performance in specific period of time
+        """
+        os.system('clear')
+        st_end_date = Ui.get_inputs(['Start date (yyyy-mm-dd): ', 'End date (yyyy-mm-dd): '], "Type the values")
+        list_of_performance = []
+        conn = sqlite3.connect("database.db")
+
+        with conn:
+            c = conn.cursor()
+            db = c.execute("SELECT submission.send_date, submission.name, student.name, student.surname, submission.grade\
+                         FROM submission\
+                         INNER JOIN student\
+                         ON submission.student_id=student.student_id\
+                         WHERE submission.send_date BETWEEN (?) AND (?)\
+                         ORDER BY student.surname ASC;", (st_end_date[0], st_end_date[1]))
+            conn.commit()
+            for row in db:
+                list_of_performance.append(row)
+        title_of_table = 'FULL REPORT OF STUDENTS PERFORMANCE:'
+        top_of_table = ('SUB. SEND DATE', 'SUB. NAME', 'STUDENT NAME', 'SURNAME', 'GRADE')
+        list_of_performance.insert(0, top_of_table)
+        Ui.print_full_report_of_students_performance(list_of_performance, title_of_table)
