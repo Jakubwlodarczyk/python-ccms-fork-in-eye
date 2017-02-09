@@ -33,11 +33,11 @@ class Submission:
             if sub.name == sub_to_grade[0] and sub.student_id == sub_to_grade[1]:
                 found = True
                 if found:
-                    Ui.print_message("Chosen submission:\n{} {} {} {} {} {}\n".format(sub.send_date,
-                                                                                            sub.submission_name,
-                                                                                            sub.grade,
-                                                                                            sub.github_link,
-                                                                                            sub.id))
+                    Ui.print_message("Chosen submission:\n{} {} {} {} {}\n".format(sub.send_date,
+                                                                                   sub.name,
+                                                                                   sub.grade,
+                                                                                   sub.github_link,
+                                                                                   sub.student_id))
                     sub_grade = Ui.get_inputs(['Grade: '], "Type the grade: ")
                     sub.grade = sub_grade[0]
                     Ui.print_message('Submission graded!')

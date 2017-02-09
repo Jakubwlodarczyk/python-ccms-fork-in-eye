@@ -45,9 +45,8 @@ class Common:
         Writes object list into a DB file.
 
         Args:
+            obj_list: list students objects
             file_name (str): name of file to write to
-            table: list of lists to write to a file
-
         Returns:
             None
         """
@@ -64,29 +63,17 @@ class Common:
         conn.close()
 
     @classmethod
-    def write_students_to_file(cls, file_name, obj_list):  # for persons
+    def write_assignment_to_db(cls, file_name, obj_list):
         """
-        Writes list of lists into a csv file.
+        Writes object list into a DB file.
 
         Args:
+            obj_list: list of assignment objects
             file_name (str): name of file to write to
             table: list of lists to write to a file
-
         Returns:
             None
         """
-        with open(file_name, "w") as f:
-            for index, obj in enumerate(obj_list):
-                obj_atrr = [obj.name, obj.surname, obj.email, obj.password, obj.status, obj.id, obj.team, obj.card]
-
-                if index < len(obj_list) - 1:
-                    f.write(','.join(obj_atrr) + '\n')
-                else:
-                    f.write(','.join(obj_atrr))
-
-    @classmethod
-    def write_assignment_to_db(cls, file_name, obj_list):
-        """ docstrings"""
 
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
@@ -102,6 +89,16 @@ class Common:
 
     @classmethod
     def write_attendance_to_db(cls, file_name, obj_list):
+        """
+        Writes object list into a DB file.
+
+        Args:
+            file_name (str): name of file to write to
+            table: list of lists to write to a file
+
+        Returns:
+            None
+        """
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
         query = "DELETE FROM `attendance`;"
@@ -116,6 +113,16 @@ class Common:
 
     @classmethod
     def write_submission_to_db(cls, file_name, obj_list):
+        """
+        Writes object list into a DB file.
+
+        Args:
+            file_name (str): name of file to write to
+            table: list of lists to write to a file
+
+        Returns:
+            None
+        """
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
         query = "DELETE FROM `submission`;"
@@ -128,32 +135,13 @@ class Common:
 
         conn.close()
 
-    # @classmethod
-    # def write_assignment_to_file(cls, file_name, obj_list):
-    #     """
-    #   Writes list of lists into a csv file.
-    #     Args:
-    #         file_name (str): name of file to write to
-    #         table: list of lists to write to a file
-    #     Returns:
-    #             None"""
-    #     with open(file_name, "w") as f:
-    #         for index, obj in enumerate(obj_list):
-    #             obj_atrr = [obj.start_date, obj.end_date, obj.assignment_name]
-    #
-    #             if index < len(obj_list) - 1:
-    #                 f.write(','.join(obj_atrr) + '\n')
-    #             else:
-    #                 f.write(','.join(obj_atrr))
-
-
     @classmethod
     def write_attendance_to_file(cls, file_name, obj_list):
         """
       Writes list of lists into a csv file.
         Args:
             file_name (str): name of file to write to
-            table: list of lists to write to a file
+            obj_list: list of lists to write to a file
         Returns:
                 None"""
 
@@ -164,6 +152,7 @@ class Common:
                     f.write(','.join(obj_atrr) + '\n')
                 else:
                     f.write(','.join(obj_atrr))
+
 
 
     @classmethod
@@ -179,8 +168,7 @@ class Common:
         with open(file_name, "w") as f:
             for index, obj in enumerate(obj_list):
 
-                obj_atrr = [str(obj.send_date), str(obj.name), str(obj.grade), str(obj.github_link),
-                            str(obj.student_id)]
+                obj_atrr = [obj.send_date, obj.grade, obj.name, obj.github_link, obj.student_id]
 
                 if index < len(obj_list) - 1:
                     f.write(','.join(obj_atrr) + '\n')
@@ -229,7 +217,6 @@ class Common:
         """
         Generates random and unique string. Used for id/key generation.
         """
-
         characters = [['!', '@', '#', '$', '%', '^', '&', '*'], [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]]
         characters.append(list(string.ascii_uppercase))
         characters.append(list(string.ascii_lowercase))

@@ -13,7 +13,9 @@ class Student(User):
 
     student_list = []
 
+
     # submission_list = Submission.submission_list
+
     def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
             User.__init__(self, name, surname, email, password, status, id)
             self.status = 'student'
@@ -21,7 +23,6 @@ class Student(User):
             # self.submission_list = Submission.submission_list
             self.team = team
             self.card = card
-
 
     def __str__(self):
         return "{} {} ".format(self.name, self.surname)
@@ -67,7 +68,6 @@ class Student(User):
                 if attendance.id == student.id:
                     student.attendance_list.append(attendance)
 
-
     def view_grades(self):
         '''
         Allows to view grades for all student's assignments.
@@ -110,6 +110,7 @@ class Student(User):
                     os.system('clear')
                     Ui.print_message('Assignment is already submitted\n')
                     return
+# <<<<<<< HEAD
                       
             for student in students:
                 if student.team == self.team:
@@ -121,6 +122,11 @@ class Student(User):
                     Submission.submission_list.append(submission_obj)
 
             
+# =======
+
+#             submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], chosen_one[4])
+#             Submission.submission_list.append(submission_obj)
+# >>>>>>> e76e0fcfbc6ff6388586240af59d4f80ee8aff5c
             os.system('clear')
             Ui.print_message('Your assignment was succesfully submitted\n')
             return Submission.submission_list
@@ -141,10 +147,10 @@ class Student(User):
         os.system('clear')
         Ui.print_message("Chosen student: {} {}".format(person, person.card))
         Ui.print_message("What card you want to give:\n"
-                               "1. GREEN\n"
-                               "2. YELLOW\n"
-                               "3. RED\n"
-                               "4. None")
+                         "1. GREEN\n"
+                         "2. YELLOW\n"
+                         "3. RED\n"
+                         "4. None")
         chose_card = Ui.get_inputs([''], "")
         while True:
             if chose_card[0] == '1':
@@ -199,12 +205,27 @@ class Student(User):
                 Student.student_list[i].team = table[i]   
                 i += 1
 
-        
 
+    @staticmethod
+    def show_full_report_of_students_performance():
+        os.system('clear')
+        st_end_date = Ui.get_inputs(['Start date (yyyy-mm-dd): ', 'End date (yyyy-mm-dd): '], "Type the values")
 
+        conn = sqlite3.connect("database.db")
+        with conn:
+            c = conn.cursor()
 
+            db = c.execute("SELECT submission.send_date, submission.name, student.name, student.surname, submission.grade\
+                         FROM submission\
+                         INNER JOIN student\
+                         ON submission.student_id=student.student_id\
+                         WHERE submission.send_date BETWEEN (?) AND (?);", (st_end_date[0], st_end_date[1]))
+            conn.commit()
+            print(c.fetchone())
 
+    @classmethod
+    def get_full_statistics_about_students(cls):
 
-             
-   
+        pass
+
 
