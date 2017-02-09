@@ -1,11 +1,14 @@
 from student import Student
-from user import *
-from submission import *
-from attendance import *
+from user import User
+from submission import Submission
+from assignments import Assignments
+from attendance import Attendance
 from employee import Employee
+from Common import Common
 import sys
 import os
 from manager_menu import ManagerMenu
+from ui import Ui
 
 
 class MentorMenu:
@@ -13,25 +16,24 @@ class MentorMenu:
     Handles navigation menu after logging as mentor.
     """
     @staticmethod
-    def handle_menu():
+    def handle_menu(user):
         """
         It doesnt return anything, just handle menu for mentor
         """
+        list_options = ['Check the list of students',
+                        'Add an assignment',
+                        'Grade an assignment submitted by students',
+                        'Check attendance of students',
+                        'Add a student to a class',
+                        'Remove a student from class',
+                        "Edit student's data",
+                        'Show students of specific group',
+                        'Give a card to student',
+                        'Add student to specific group',
+                        'Show full report of students performance between provided dates']
         while True:
-            title = 'Mentor menu'
-            list_options = ['Check the list of students',
-                            'Add an assignment',
-                            'Grade an assignment submitted by students',
-                            'Check attendance of students',
-                            'Add a student to a class',
-                            'Remove a student from class',
-                            "Edit student's data",
-                            'Show students of specific group',
-                            'Give a card to student',
-                            'Add student to specific group',
-                            'Show full report of students performance between provided dates']
-
-            Ui.print_menu(title, list_options, 'Log out')
+            Ui.print_message(('\n...:::Logged in as {} {}:::...\n').format(user.name, user.surname))
+            Ui.print_menu("What you want to do?", list_options, 'Log out')
             chose_option = Ui.get_inputs(["Please enter a number: "], "")
 
             if chose_option[0] == '1':
