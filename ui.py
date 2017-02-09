@@ -155,10 +155,10 @@ class Ui:
         for sub in submission_list:
             print(idx,
                   sub.send_date,
-                  sub.submission_name,
+                  sub.name,
                   sub.grade,
                   sub.github_link,
-                  sub.id)
+                  sub.student_id)
             idx += 1
         print('\n')
 
@@ -223,14 +223,14 @@ class Ui:
         title_list = ['Assignment name:', 'Grade:']
         table = []
         for sub in submission_list:
-            sub = [sub.submission_name, sub.grade]
+            sub = [sub.name, sub.grade]
             table.append(sub)
 
         len_for_col = []
         for title_iterator in range(len(title_list)):
             len_col = len(title_list[title_iterator])
             for row in table:
-                if len(row[title_iterator]) > len_col:
+                if len(str(row[title_iterator])) > len_col:
                     len_col = len(row[title_iterator])
 
             len_for_col.append(len_col)
@@ -260,7 +260,8 @@ class Ui:
         '''
         Displays each students grades.
         '''
+
         os.system('clear')
         print("STUDENTS' GRADE AVERAGE:\n")
         for key, value in student_grades.items():
-            print(key, ':', ''.join(str(value)))
+            print( key, value[0], value[1], value[2])

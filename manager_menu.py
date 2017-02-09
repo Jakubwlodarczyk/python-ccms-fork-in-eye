@@ -46,8 +46,6 @@ class ManagerMenu:
                 person = Employee.choose_person_to_change_data(Employee.employees_list)
                 if person:
                     Employee.data_to_change(person)
-                else:
-                    pass
             elif option == '4':
                 # fire a regular employee
                 title = 'Regular employees list:'
@@ -70,8 +68,6 @@ class ManagerMenu:
                 person = Mentor.choose_person_to_change_data(Mentor.mentors_list)
                 if person:
                     Mentor.data_to_change(person)
-                else:
-                    pass
             elif option == '9':
                 # fire mentor
                 title = 'Mentors:'
