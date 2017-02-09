@@ -76,12 +76,12 @@ class Attendance:
                 return None
             date_str = "-".join(date_list)
             if date_str > str(datetime.date.today()):
-                Ui.print_error_message("No way my friend.")
+                Ui.print_message("No way my friend.")
                 wait = Ui.get_inputs([""], "")
                 continue
             for day in Attendance.attendances_list:
                 if day.data == date_str: #  day.data == str
-                    Ui.print_error_message("You have already checked attendance for this day.")
+                    Ui.print_message("You have already checked attendance for this day.")
                     remember = True
                     wait = Ui.get_inputs([""], "")
                     Attendance.attendance_mini_menu()
@@ -100,7 +100,7 @@ class Attendance:
                     att = Attendance(day_str, student_status, student.id)
                     student.attendance_list.append(att)
                     Attendance.attendances_list.append(att)
-                    Ui.print_error_message("\nDone.\n")
+                    Ui.print_message("\nDone.\n")
                     break
                 else:
                     continue
@@ -143,36 +143,36 @@ class Attendance:
                                 if Common.check_date(30, options_list[2]):
                                     return date
                                 else:
-                                    Ui.print_error_message("Can't accept this date.")
+                                    Ui.print_message("Can't accept this date.")
                                     wait = Ui.get_inputs([""], "")
                             if options_list[1] == "04":
                                 if Common.check_date(30, options_list[2]):
                                     return date
                                 else:
-                                    Ui.print_error_message("Can't accept this date.")
+                                    Ui.print_message("Can't accept this date.")
                                     wait = Ui.get_inputs([""], "")
                             if options_list[1] == "06":
                                 if Common.check_date(30, options_list[2]):
                                     return date
                                 else:
-                                    Ui.print_error_message("Can't accept this date.")
+                                    Ui.print_message("Can't accept this date.")
                                     wait = Ui.get_inputs([""], "")
                             if options_list[1] == "09":
                                 if Common.check_date(30, options_list[2]):
                                     return date
                                 else:
-                                    Ui.print_error_message("Can't accept this date.")
+                                    Ui.print_message("Can't accept this date.")
                                     wait = Ui.get_inputs([""], "")
                             if options_list[1] == "11":
                                 if Common.check_date(30, options_list[2]):
                                     return date
                                 else:
-                                    Ui.print_error_message("Can't accept this date.")
+                                    Ui.print_message("Can't accept this date.")
                                     wait = Ui.get_inputs([""], "")
                             if options_list[1] == "01" or options_list[1] == "03" or options_list[1] == "05" or options_list[1] == "07" or options_list[1] == "08" or options_list[1] == "10" or options_list[1] == "12":
                                 return date
                         else:
-                            Ui.print_error_message("Can't accept this date.")
+                            Ui.print_message("Can't accept this date.")
                             wait = Ui.get_inputs([""], "")
                             continue
             else:
@@ -187,10 +187,10 @@ class Attendance:
         """
         while True:
             os.system("clear")
-            Ui.print_error_message("Which student do you want to choose?\n")
+            Ui.print_message("Which student do you want to choose?\n")
             for number, student in enumerate(Student.student_list):
-                Ui.print_error_message("  {}: {}".format(number + 1, student))
-            Ui.print_error_message("  0: Go back\n")
+                Ui.print_message("  {}: {}".format(number + 1, student))
+            Ui.print_message("  0: Go back\n")
             option_list = Ui.get_inputs([""],"")
             user_option = option_list[0]
             if Common.error_integer_handling(user_option, len(Student.student_list)):
@@ -207,7 +207,7 @@ class Attendance:
         :param student_id: str
         """
         os.system("clear")
-        Ui.print_error_message("Please set up a date.")
+        Ui.print_message("Please set up a date.")
         day_list = Attendance.set_date()
         day_str = "-".join(day_list)
         option_list = Ui.get_inputs(["New status: "], "0 - upsent, 1 - late, 2 - present\n\n")
@@ -234,23 +234,20 @@ status in {}: {}".format(day_str, status))
         Shows students attendance to school.
         """
         os.system("clear")
-        Ui.print_error_message("...::: Students attendance\n\n")
+        Ui.print_message("...::: Students attendance\n\n")
         for student in Student.student_list:
             attendance_points = 0
             counter = 0
             for one_day_obj in student.attendance_list:
                 counter += 1
-                if one_day_obj.status == "1":
-                    attendance_points += 80
-                if one_day_obj.status == "2":
-                    attendance_points += 100
+                attendance_points += one_day_obj.status
 
             if counter == 0:
                 Ui.get_inputs([""], "No dates to show.")
-                Attendance.attendance_mini_menu()
+                break
             else:
                 average_attendance = attendance_points / counter
-                Ui.print_error_message("{}: {}".format(student, average_attendance))
+                Ui.print_message("{}: {}".format(student, average_attendance))
         Ui.get_inputs([""], "")
 
     @staticmethod

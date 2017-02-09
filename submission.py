@@ -31,16 +31,16 @@ class Submission:
             if sub.submission_name == sub_to_grade[0] and sub.id == sub_to_grade[1]:
                 found = True
                 if found:
-                    Ui.print_error_message("Chosen submission:\n{} {} {} {} {} {}\n".format(sub.send_date,
+                    Ui.print_message("Chosen submission:\n{} {} {} {} {} {}\n".format(sub.send_date,
                                                                                             sub.submission_name,
                                                                                             sub.grade,
                                                                                             sub.github_link,
                                                                                             sub.id))
                     sub_grade = Ui.get_inputs(['Grade: '], "Type the grade: ")
                     sub.grade = sub_grade[0]
-                    Ui.print_error_message('Submission graded!')
+                    Ui.print_message('Submission graded!')
         if not found:
-            Ui.print_error_message('Wrong submission name or ID')
+            Ui.print_message('Wrong submission name or ID')
 
     @classmethod
     def create_objects_list_from_database(cls, table_name):# from database
