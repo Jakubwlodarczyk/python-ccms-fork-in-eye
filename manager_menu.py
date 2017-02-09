@@ -85,8 +85,10 @@ class ManagerMenu:
 
             elif option == '12':
                  # Show full statistics about students
-                 print('in progress too')
-                 #Manager.view_full_students_statistics()
+                 data = Submission.get_students_average_grades(Submission.submission_list)
+                 average_grades = Submission.get_name_by_id(data, Student.student_list)
+                 stats = Student.get_full_statistics_about_students(Student.student_list, average_grades)
+                 Ui.print_student_stats(stats)
             elif option == '0':
                 # Common.write_table_to_file('Mentors.csv', Mentor.mentors_list)
                 # Common.write_table_to_file('Regular_employees.csv', Employee.employees_list)
