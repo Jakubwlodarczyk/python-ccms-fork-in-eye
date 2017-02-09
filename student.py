@@ -195,6 +195,26 @@ class Student(User):
             else:
                 Ui.print_message('Wrong input!')
 
+    @classmethod
+    def add_student_to_team(cls):
+        student_list = Student.student_list
+        for student in student_list:
+            print("""ID: {} \t {} {} {}\n""".format(student.id, student.name, student.surname, student.team))
+        choosen_student = User.choose_person_to_change_data(student_list)
+        print(choosen_student)
+        teams = Student.teams_list
+        for index, team in enumerate(teams):
+            print(index, team)
+        chosen = input('Choose team: ')
+        if chosen in teams:
+            print('AAAAA', choosen_student)
+            choosen_student.team = chosen
+            print(chosen)
+        else:
+            print('dupa')
+
+
+
     @staticmethod
     def add_student_team():
         Ui.print_message('''Assign each student to the following teams(type the number):
