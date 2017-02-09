@@ -9,7 +9,7 @@ import time
 
 
 class StudentMenu:
-    
+
     def handle_menu(user):
         '''
         Allows to choose an action to perform.
@@ -25,8 +25,11 @@ class StudentMenu:
             option = inputs[0]
             if option == '1':
                 os.system('clear')
-                user.view_grades()
-                # Student.view_grades()
+                submissions = user.view_grades()
+                table = Ui.create_submission_table_to_print(submissions)
+                title = ('\nYour submissions:\n')
+                title_list = ['Submission name', 'Grade']
+                Ui.print_table(table, title, title_list)
             elif option == '2':
                 os.system('clear')
                 user.submit_assignment()

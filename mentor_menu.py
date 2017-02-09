@@ -5,6 +5,7 @@ from attendance import *
 from employee import Employee
 import sys
 import os
+from manager_menu import ManagerMenu
 
 
 class MentorMenu:
@@ -35,7 +36,7 @@ class MentorMenu:
 
             if chose_option[0] == '1':
                 # print list of students
-                Ui.print_student_table(Student.student_list, "List of students")
+                MentorMenu.show_students_data()
 
             elif chose_option[0] == '2':
                 # add an assignment to assignment list
@@ -55,12 +56,12 @@ class MentorMenu:
 
             elif chose_option[0] == '6':
                 # remove student from class
-                Ui.print_student_table(Student.student_list, "List of students")
+                ManagerMenu.show_students()
                 Student.remove_person(Student.student_list)
 
             elif chose_option[0] == '7':
                 # edit students data
-                Ui.print_student_table(Student.student_list, "List of students")
+                ManagerMenu.show_students()
                 person = Student.choose_person_to_change_data(Student.student_list)
                 if person:
                     Employee.data_to_change(person)
@@ -72,19 +73,19 @@ class MentorMenu:
 
             elif chose_option[0] == '9':
                 # give a card to students
-                Ui.print_student_table(Student.student_list, "List of students")
+                MentorMenu.show_students_data()
                 person = Student.choose_person_to_change_data(Student.student_list)
                 if person:
                     Student.change_student_card(person)
 
             elif chose_option[0] == '10':
-                os.system('clear')   
+                os.system('clear')
                 Student.add_student_team()
 
             elif chose_option[0] == '11':
                 # Show full report of students performance between provided dates
                 Student.show_full_report_of_students_performance()
-                pass
+
 
             elif chose_option[0] == '0':
                 Common.write_submission_to_db('database.db', Submission.submission_list)
@@ -95,3 +96,10 @@ class MentorMenu:
 
             else:
                 Ui.print_message('There is no such option.')
+
+    @staticmethod
+    def show_students_data():
+        title_list = ['ID', 'Name', 'Surname', 'Email', 'Status', 'Team', 'Card']
+        title = 'Student list:'
+        table = Ui.create_student_table_to_print(Student.student_list)
+        Ui.print_table(table, title, title_list)

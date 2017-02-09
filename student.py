@@ -77,7 +77,8 @@ class Student(User):
         for sub in Submission.submission_list:
             if sub.student_id == self.id:
                 my_submiss.append(sub)
-        Ui.print_submissions(my_submiss)
+
+        return my_submiss
 
     def submit_assignment(self):
 

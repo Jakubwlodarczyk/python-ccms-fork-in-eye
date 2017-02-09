@@ -98,7 +98,7 @@ class User:
         '''
         choosing = True
         while choosing:
-            option = Ui.get_inputs(["Enter person ID or 'q' to go back: "], "Whose data you want to change?")
+            option = Ui.get_inputs(["Enter person ID or 'q' to go back: "], "Choose person: ")
             for person in object_list:
                 if option[0] == person.id:
                     return person
@@ -208,7 +208,7 @@ class User:
         Allows to remove person object from list of given objects.
         Returns updated list of objects.
         '''
-        to_remove = Ui.get_inputs(['-> '], "Enter ID of person you want to fire:")
+        to_remove = Ui.get_inputs(['-> '], "Enter ID of person you want to remove:")
         for person in object_list:
             if person.id == to_remove[0]:
                 object_list.remove(person)
