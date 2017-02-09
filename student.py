@@ -81,10 +81,7 @@ class Student(User):
 
     def submit_assignment(self):
 
-        # print(self.team)
-        students = Student.student_list
-        # for id in students:
-        #     print(id.team)
+        students = Student.student_list  
 
         Ui.print_message('Choose the number from the following assignments: \n')
         for n, assignment in enumerate(Assignments.assignments_list):
@@ -99,13 +96,8 @@ class Student(User):
 
         
 
-        for i in assign:  # for each row in assignments - for each assignment
+        for i in assign:  
             assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, self.id])
-           
-            # Here need to add all students which are in the same team
-            # 
-
-        # print(assignment_list)
 
         if not choose.isnumeric():
             os.system('clear')
@@ -118,27 +110,15 @@ class Student(User):
                     os.system('clear')
                     Ui.print_message('Assignment is already submitted\n')
                     return
-
-            submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2],# object of new submission is created
-                                                            chosen_one[3], chosen_one[4])
-
-            Submission.submission_list.append(submission_obj)
-            
+                      
             for student in students:
                 if student.team == self.team:
-
-                    # print('ok')
-                    # l = input('')
                    
                     assignment_list = []
                     assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, student.id])
+                    print(assignment_list)
                     submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], student.id)
                     Submission.submission_list.append(submission_obj)
-
-
-
-
-
 
             
             os.system('clear')
@@ -226,8 +206,5 @@ class Student(User):
 
 
              
-    # @classmethod
-    # def get_full_statistics_about_students(cls):
-
-    #     pass
+   
 
