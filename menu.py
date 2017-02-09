@@ -32,7 +32,7 @@ class Menu:
         Manager.manager_list = staff_tuple[1]
         Employee.employees_list = staff_tuple[2]
         Submission.submission_list = Submission.create_objects_list_from_database('submission')
-        Student.student_list = Student.create_objects_list_from_database('student')
+        Student.student_list = Student.create_objects_list_from_database('Student.csv')
         User.all_users = [Employee.employees_list,
                           Mentor.mentors_list,
                           Student.student_list,
@@ -40,6 +40,7 @@ class Menu:
         
         Assignments.assignments_list = Assignments.create_objects_list_from_database('assignements')
         Attendance.attendances_list = Attendance.create_objects_list_from_database('attendance')
+        Student.add_attendance_to_student(Attendance.attendances_list) # add attendance obj to a specific student
 
 
     @classmethod
@@ -53,7 +54,7 @@ class Menu:
         passw = getpass.getpass('Enter pass: ')
         password.append(passw)
         user = User.user_password_check(login[0], password[0])
-
+        
         if not user:
             Ui.print_message('Invalid login or password. Please try again. ')
         elif user:
