@@ -41,23 +41,28 @@ class MentorMenu:
             elif chose_option[0] == '2':
                 # add an assignment to assignment list
                 Assignments.add_an_assignment()
+                Common.write_assignment_to_db('database.db', Assignments.assignments_list)
 
             elif chose_option[0] == '3':
                 # grade assignments submitted by students
                 Submission.grade_an_submission()
+                Common.write_submission_to_db('database.db', Submission.submission_list)
 
             elif chose_option[0] == '4':
                 # check attendance of students
                 Attendance.attendance_mini_menu()
+                Common.write_attendance_to_db('database.db', Attendance.attendances_list)
 
             elif chose_option[0] == '5':
                 # add a student to a class
                 Student.add_person(Student.student_list)
+                Common.write_student_to_db('database.db', Student.student_list)
 
             elif chose_option[0] == '6':
                 # remove student from class
                 ManagerMenu.show_students()
                 Student.remove_person(Student.student_list)
+                Common.write_student_to_db('database.db', Student.student_list)
 
             elif chose_option[0] == '7':
                 # edit students data
@@ -65,6 +70,7 @@ class MentorMenu:
                 person = Student.choose_person_to_change_data(Student.student_list)
                 if person:
                     Employee.data_to_change(person)
+                    Common.write_student_to_db('database.db', Student.student_list)
 
             elif chose_option[0] == '8':
                 # show students of specific group
@@ -77,10 +83,12 @@ class MentorMenu:
                 person = Student.choose_person_to_change_data(Student.student_list)
                 if person:
                     Student.change_student_card(person)
+                    Common.write_student_to_db('database.db', Student.student_list)
 
             elif chose_option[0] == '10':
                 os.system('clear')
                 Student.add_student_team()
+                Common.write_student_to_db('database.db', Student.student_list)
 
             elif chose_option[0] == '11':
                 # Show full report of students performance between provided dates
@@ -88,10 +96,6 @@ class MentorMenu:
 
 
             elif chose_option[0] == '0':
-                Common.write_submission_to_db('database.db', Submission.submission_list)
-                Common.write_student_to_db('database.db', Student.student_list)
-                Common.write_attendance_to_db('database.db', Attendance.attendances_list)
-                Common.write_assignment_to_db('database.db', Assignments.assignments_list)
                 sys.exit()
 
             else:

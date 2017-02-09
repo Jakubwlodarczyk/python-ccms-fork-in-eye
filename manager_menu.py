@@ -49,7 +49,7 @@ class ManagerMenu:
                 ManagerMenu.show_mentors()
             elif option == '6':
                 #  Show full statistics about mentors
-                print('Show full statistics about mentors - in progress')
+                ManagerMenu.show_mentors()
             elif option == '7':
                 Mentor.add_person(Mentor.mentors_list)
             elif option == '8':
