@@ -114,7 +114,6 @@ class Student(User):
             submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], # object of new submission is created
                                 chosen_one[3], chosen_one[4])
 
-# send_date, grade, name, github_link, student_id
             Submission.submission_list.append(submission_obj)
             os.system('clear')
             Ui.print_message('Your assignment was succesfully submitted\n')
@@ -196,7 +195,21 @@ class Student(User):
                 Student.student_list[i].team = table[i]
 
                 i += 1
-    @classmethod
-    def get_full_statistics_about_students(cls):
 
-        pass
+    @classmethod
+    def get_full_statistics_about_students(cls, student_list, average_grades):
+        '''
+        Returns table with all information about student.
+        '''
+        stats = []
+
+        for student in student_list:
+            record = [student.id, student.name,
+                      student.surname, student.email,
+                      student.team, 'no record', student.card]
+            stats.append(record)
+            for key in average_grades:
+                if key == student.id:
+                    record[-2] = (str(average_grades[key][2]))
+
+        return stats
