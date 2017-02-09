@@ -29,14 +29,13 @@ class Common:
 
 
     @classmethod
-    def write_students_to_file(cls, file_name, obj_list):  # for persons
+    def write_students_to_file(cls, file_name, obj_list):
         """
         Writes list of lists into a csv file.
 
         Args:
+            obj_list: list students objects
             file_name (str): name of file to write to
-            table: list of lists to write to a file
-
         Returns:
             None
         """
@@ -55,8 +54,8 @@ class Common:
         """
       Writes list of lists into a csv file.
         Args:
+            obj_list: list of assignment objects
             file_name (str): name of file to write to
-            table: list of lists to write to a file
         Returns:
                 None"""
         with open(file_name, "w") as f:
@@ -68,14 +67,13 @@ class Common:
                 else:
                     f.write(','.join(obj_atrr))
 
-
     @classmethod
     def write_attendance_to_file(cls, file_name, obj_list):
         """
       Writes list of lists into a csv file.
         Args:
             file_name (str): name of file to write to
-            table: list of lists to write to a file
+            obj_list: list of lists to write to a file
         Returns:
                 None"""
 
@@ -86,7 +84,6 @@ class Common:
                     f.write(','.join(obj_atrr) + '\n')
                 else:
                     f.write(','.join(obj_atrr))
-
 
     @classmethod
     def write_submission_to_file(cls, file_name, obj_list):
@@ -107,7 +104,6 @@ class Common:
                     f.write(','.join(obj_atrr) + '\n')
                 else:
                     f.write(','.join(obj_atrr))
-
 
     @staticmethod
     def error_integer_handling(chosen_option, value_of_possible_options):
@@ -150,7 +146,6 @@ class Common:
         """
         Generates random and unique string. Used for id/key generation.
         """
-
         characters = [['!', '@', '#', '$', '%', '^', '&', '*'], [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]]
         characters.append(list(string.ascii_uppercase))
         characters.append(list(string.ascii_lowercase))
