@@ -12,6 +12,8 @@ import sqlite3
 class Student(User):
 
     student_list = []
+    teams_list = []
+    # submission_list = Submission.submission_list
 
     def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
             User.__init__(self, name, surname, email, password, status, id)
@@ -23,6 +25,33 @@ class Student(User):
 
     def __str__(self):
         return "{} {} ".format(self.name, self.surname)
+
+
+    @classmethod
+    def create_teams_list(cls):  # from database
+        """
+        Reads teams based on data from database.
+        :param table_name
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+        name_q = "SELECT name FROM teams_list;"
+        name_db = c.execute(name_q)
+        conn.commit()
+
+        for row in name_db:
+            name = row[0]
+            Student.teams_list.append(name)
+        conn.close()
+
+    @staticmethod
+    def add_team():
+        os.system("clear")
+        name = Ui.get_inputs(" ", 'Type a name of a new team: \n')
+        Student.teams_list.append(name[0])
+        wait = Ui.get_inputs(" ", '\nTeam has been added succesfully.\n')
+        os.system("clear")
 
     @classmethod
     def create_objects_list_from_database(cls, table_name):  # from database
