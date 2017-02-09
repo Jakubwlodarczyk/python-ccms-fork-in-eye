@@ -76,10 +76,11 @@ class MentorMenu:
                 person = Student.choose_person_to_change_data(Student.student_list)
                 if person:
                     Student.change_student_card(person)
-            
+
             elif chose_option[0] == '10':
                 os.system('clear')   
                 Student.add_student_team()
+
 
             elif chose_option[0] == '11':
                 # Show full report of students performance between provided dates
@@ -87,11 +88,10 @@ class MentorMenu:
                 pass
 
             elif chose_option[0] == '0':
-                # save data to files, and exit
-                Common.write_submission_to_file('Submissions.csv', Submission.submission_list)
-                Common.write_students_to_file('Student.csv', Student.student_list)
-                Common.write_attendance_to_file('Attendance.csv', Attendance.attendances_list)
-                Common.write_assignment_to_file('Assignments.csv', Assignments.assignments_list)                
+                Common.write_submission_to_db('database.db', Submission.submission_list)
+                Common.write_student_to_db('database.db', Student.student_list)
+                Common.write_attendance_to_db('database.db', Attendance.attendances_list)
+                Common.write_assignment_to_db('database.db', Assignments.assignments_list)
                 sys.exit()
 
             else:
