@@ -28,9 +28,9 @@ class Student(User):
 
 
     @classmethod
-    def create_teams_list(cls, table_name):  # from database
+    def create_teams_list(cls):  # from database
         """
-        Creates teams based on data from database.
+        Reads teams based on data from database.
         :param table_name
         """
         conn = sqlite3.connect("database.db")
@@ -43,8 +43,15 @@ class Student(User):
         for row in name_db:
             name = row[0]
             Student.teams_list.append(name)
-
         conn.close()
+
+    @staticmethod
+    def add_team():
+        os.system("clear")
+        name = Ui.get_inputs(" ", 'Type a name of a new team: \n')
+        Student.teams_list.append(name[0])
+        wait = Ui.get_inputs(" ", '\nTeam has been added succesfully.\n')
+        os.system("clear")
 
 
     @classmethod
