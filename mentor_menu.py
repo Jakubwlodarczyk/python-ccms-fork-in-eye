@@ -11,8 +11,8 @@ class MentorMenu:
     """
     Handles navigation menu after logging as mentor.
     """
-    @staticmethod
-    def handle_menu():
+    
+    def handle_menu(user):
         """
         It doesnt return anything, just handle menu for mentor
         """
@@ -29,6 +29,8 @@ class MentorMenu:
                             'Give a card to student',
                             'Add student to specific group',
                             'Show full report of students performance between provided dates']
+            
+            Ui.print_message(' '*30 + 'Logged in as {}\n\n'.format(user))
 
             Ui.print_menu(title, list_options, 'Log out')
             chose_option = Ui.get_inputs(["Please enter a number: "], "")

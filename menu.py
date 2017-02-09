@@ -65,7 +65,7 @@ class Menu:
             elif user.status == 'employee':
                 EmployeeMenu.handle_menu()
             elif user.status == 'mentor':
-                MentorMenu.handle_menu()
+                MentorMenu.handle_menu(user)
             elif user.status == 'student':
                 StudentMenu.handle_menu(user)
         return None

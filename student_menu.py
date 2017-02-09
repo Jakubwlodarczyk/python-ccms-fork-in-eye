@@ -18,7 +18,7 @@ class StudentMenu:
 
         while True:
             # os.system('clear')
-            Ui.print_message(' '*32 + 'Logged in as {}\n\n'.format(user))
+            Ui.print_message(' '*30 + 'Logged in as {}\n\n'.format(user))
 
             Ui.print_menu("What do you want to do?", options, 'Exit')
             inputs = Ui.get_inputs(["Please enter a number: "], "")
