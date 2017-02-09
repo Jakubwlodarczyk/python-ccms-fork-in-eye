@@ -129,7 +129,7 @@ class Ui:
         print(title)
         input_table = []
         for label in list_labels:
-            input_table.append(input(label))
+            input_table.append(input(label ))
         return input_table
 
     @staticmethod

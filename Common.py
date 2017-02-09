@@ -29,6 +29,28 @@ class Common:
 
 
     @classmethod
+    def write_students_to_file(cls, file_name, obj_list):  # for persons
+        """
+        Writes list of lists into a csv file.
+
+        Args:
+            file_name (str): name of file to write to
+            table: list of lists to write to a file
+
+        Returns:
+            None
+        """
+        with open(file_name, "w") as f:
+            for index, obj in enumerate(obj_list):
+                obj_atrr = [obj.name, obj.surname, obj.email, obj.password, obj.status, obj.id, obj.team, obj.card]
+
+                if index < len(obj_list) - 1:
+                    f.write(','.join(obj_atrr) + '\n')
+                else:
+                    f.write(','.join(obj_atrr))
+
+
+    @classmethod
     def write_assignment_to_file(cls, file_name, obj_list):
         """
       Writes list of lists into a csv file.

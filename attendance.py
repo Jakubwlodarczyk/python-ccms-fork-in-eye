@@ -240,14 +240,11 @@ status in {}: {}".format(day_str, status))
             counter = 0
             for one_day_obj in student.attendance_list:
                 counter += 1
-                if one_day_obj.status == "1":
-                    attendance_points += 80
-                if one_day_obj.status == "2":
-                    attendance_points += 100
+                attendance_points += one_day_obj.status
 
             if counter == 0:
                 Ui.get_inputs([""], "No dates to show.")
-                Attendance.attendance_mini_menu()
+                break
             else:
                 average_attendance = attendance_points / counter
                 Ui.print_message("{}: {}".format(student, average_attendance))
