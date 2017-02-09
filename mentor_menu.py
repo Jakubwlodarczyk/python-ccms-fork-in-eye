@@ -86,8 +86,9 @@ class MentorMenu:
                     Common.write_student_to_db('database.db', Student.student_list)
 
             elif chose_option[0] == '10':
+                # add student to specific team
                 os.system('clear')
-                Student.add_student_team()
+                Student.add_student_to_team()
                 Common.write_student_to_db('database.db', Student.student_list)
 
             elif chose_option[0] == '11':

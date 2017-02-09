@@ -162,43 +162,23 @@ class Student(User):
             else:
                 Ui.print_message('Wrong input!')
 
-    @staticmethod
-    def add_student_team():
-        """
-        add a student to a specific team
-        """
-        Ui.print_message('''Assign each student to the following teams(type the number):
-
-        (1) Fork in ear
-        (2) Stepan
-        (3) Rainbow unicorns
-        (4) Jakkiedy
-                    ''')
-
-        is_valid = False
-        while not is_valid:
-            table = Ui.get_inputs(Student.student_list, '')
-            is_need_break = False
-            for value in table:
-                if value not in ['1', '2', '3', '4']:
-                    Ui.print_message('There is no such option, try again.')
-                    is_need_break = True
-                    break
-            if is_need_break:
-                continue
-            is_valid = True
-            i = 0
-            while i <= len(table)-1:
-                if table[i] == '1':
-                    table[table.index('1')] = 'Fork in ear'
-                elif table[i] == '2':
-                    table[table.index('2')] = 'Stepan'
-                elif table[i] == '3':
-                    table[table.index('3')] = 'Rainbow unicorns'
-                elif table[i] == '4':
-                    table[table.index('4')] = 'Jakkiedy'
-                Student.student_list[i].team = table[i]
-                i += 1
+    @classmethod
+    def add_student_to_team(cls):
+        student_list = Student.student_list
+        for student in student_list:
+            print("""ID: {} \t {} {} {}\n""".format(student.id, student.name, student.surname, student.team))
+        choosen_student = User.choose_person_to_change_data(student_list)
+        print(choosen_student)
+        teams = Student.teams_list
+        for index, team in enumerate(teams):
+            print(index, team)
+        chosen = input('Choose team: ')
+        if chosen in teams:
+            print('AAAAA', choosen_student)
+            choosen_student.team = chosen
+            print(chosen)
+        else:
+            print('dupa')
 
     @classmethod
     def get_full_statistics_about_students(cls, student_list, average_grades):
