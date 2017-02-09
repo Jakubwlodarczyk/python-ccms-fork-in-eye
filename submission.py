@@ -11,11 +11,13 @@ class Submission:
     submission_list = []
 
     def __init__(self, send_date, grade, name, github_link, student_id):
-        self.send_date = send_date
-        self.grade = grade
-        self.student_id = student_id
-        self.name = name
-        self.github_link = github_link
+
+       self.send_date = send_date
+       self.grade = grade
+       self.student_id = student_id
+       self.name = name
+       self.github_link = github_link
+
 
     @classmethod
     def grade_an_submission(cls):

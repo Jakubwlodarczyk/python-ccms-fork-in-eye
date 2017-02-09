@@ -63,9 +63,9 @@ class Common:
         conn.close()
 
     @classmethod
-    def write_students_to_file(cls, file_name, obj_list):  # for persons
+    def write_assignment_to_db(cls, file_name, obj_list):
         """
-        Writes list of lists into a csv file.
+        Writes object list into a DB file.
 
         Args:
             obj_list: list of assignment objects
@@ -74,18 +74,6 @@ class Common:
         Returns:
             None
         """
-        with open(file_name, "w") as f:
-            for index, obj in enumerate(obj_list):
-                obj_atrr = [obj.name, obj.surname, obj.email, obj.password, obj.status, obj.id, obj.team, obj.card]
-
-                if index < len(obj_list) - 1:
-                    f.write(','.join(obj_atrr) + '\n')
-                else:
-                    f.write(','.join(obj_atrr))
-
-    @classmethod
-    def write_assignment_to_db(cls, file_name, obj_list):
-        """ docstrings"""
 
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
@@ -101,6 +89,16 @@ class Common:
 
     @classmethod
     def write_attendance_to_db(cls, file_name, obj_list):
+        """
+        Writes object list into a DB file.
+
+        Args:
+            file_name (str): name of file to write to
+            table: list of lists to write to a file
+
+        Returns:
+            None
+        """
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
         query = "DELETE FROM `attendance`;"
@@ -115,13 +113,23 @@ class Common:
 
     @classmethod
     def write_submission_to_db(cls, file_name, obj_list):
+        """
+        Writes object list into a DB file.
+
+        Args:
+            file_name (str): name of file to write to
+            table: list of lists to write to a file
+
+        Returns:
+            None
+        """
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
         query = "DELETE FROM `submission`;"
         c.execute(query)
 
         for obj in obj_list:
-            params = [obj.send_date, obj.grade, obj.id, obj.submission_name, obj.github_link]
+            params = [obj.send_date, obj.grade, obj.student_id, obj.name, obj.github_link]
             c.execute("INSERT INTO submission (send_date, grade, name, github_link, student_id) VALUES (?, ?, ?, ?, ?)", params)
             conn.commit()
 
@@ -157,7 +165,9 @@ class Common:
 
         with open(file_name, "w") as f:
             for index, obj in enumerate(obj_list):
-                obj_atrr = [obj.start_date, obj.end_date, obj.submission_name, obj.grade, obj.github_link, obj.id]
+
+                obj_atrr = [obj.send_date, obj.grade, obj.name, obj.github_link, obj.student_id]
+
                 if index < len(obj_list) - 1:
                     f.write(','.join(obj_atrr) + '\n')
                 else:
