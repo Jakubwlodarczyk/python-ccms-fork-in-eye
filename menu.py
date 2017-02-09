@@ -56,6 +56,7 @@ class Menu:
         if not user:
             Ui.print_message('Invalid login or password. Please try again. ')
         elif user:
+            
             Ui.print_message('\nHello, ' + user.name + '!\n')
             if user.status == 'manager':
                 ManagerMenu.handle_menu()

@@ -81,7 +81,7 @@ class Student(User):
 
     def submit_assignment(self):
 
-        students = Student.student_list  
+        students = Student.student_list
 
         Ui.print_message('Choose the number from the following assignments: \n')
         for n, assignment in enumerate(Assignments.assignments_list):
@@ -94,9 +94,9 @@ class Student(User):
         if choose_val == '':
             Ui.print_message('Submission link is empty')
 
-        
 
-        for i in assign:  
+
+        for i in assign:
             assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, self.id])
 
         if not choose.isnumeric():
@@ -110,23 +110,30 @@ class Student(User):
                     os.system('clear')
                     Ui.print_message('Assignment is already submitted\n')
                     return
-# <<<<<<< HEAD
-                      
-            for student in students:
-                if student.team == self.team:
-                   
-                    assignment_list = []
-                    assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, student.id])
-                    print(assignment_list)
-                    submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], student.id)
-                    Submission.submission_list.append(submission_obj)
 
-            
-# =======
+            Ui.print_message('''
+            Choose the following option:\n
+            (1) Submit assignment as a team
+            (2) Submit assignment by myself
+                        ''')
+            submit_option = input('Type the number: ')
+            if submit_option == '1':
 
-#             submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], chosen_one[4])
-#             Submission.submission_list.append(submission_obj)
-# >>>>>>> e76e0fcfbc6ff6388586240af59d4f80ee8aff5c
+
+                for student in students:
+                    if student.team == self.team:
+                        assignment_list = []
+                        assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, student.id])
+                        print(assignment_list)
+                        submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], student.id)
+                        Submission.submission_list.append(submission_obj)
+
+            elif submit_option == '2':
+                submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], chosen_one[4])
+                Submission.submission_list.append(submission_obj)
+            else:
+                Ui.print_message('Invalid value')
+
             os.system('clear')
             Ui.print_message('Your assignment was succesfully submitted\n')
             return Submission.submission_list
@@ -171,7 +178,7 @@ class Student(User):
 
 
     @staticmethod
-    def add_student_team():        
+    def add_student_team():
         Ui.print_message('''Assign each student to the following teams(type the number):
 
         (1) Fork in ear
@@ -202,9 +209,26 @@ class Student(User):
                     table[table.index('3')] = 'Rainbow unicorns'
                 elif table[i] == '4':
                     table[table.index('4')] = 'Jakkiedy'
-                Student.student_list[i].team = table[i]   
+                Student.student_list[i].team = table[i]
                 i += 1
 
+    @classmethod
+    def get_full_statistics_about_students(cls, student_list, average_grades):
+        '''
+        Returns table with all information about student.
+        '''
+        stats = []
+
+        for student in student_list:
+            record = [student.id, student.name,
+                      student.surname, student.email,
+                      student.team, 'no record', student.card]
+            stats.append(record)
+            for key in average_grades:
+                if key == student.id:
+                    record[-2] = (str(average_grades[key][2]))
+
+        return stats
 
     @staticmethod
     def show_full_report_of_students_performance():
@@ -232,10 +256,3 @@ class Student(User):
         top_of_table = ('SUB. SEND DATE', 'SUB. NAME', 'STUDENT NAME', 'SURNAME', 'GRADE')
         list_of_performance.insert(0, top_of_table)
         Ui.print_full_report_of_students_performance(list_of_performance, title_of_table)
-
-    @classmethod
-    def get_full_statistics_about_students(cls):
-
-        pass
-
-

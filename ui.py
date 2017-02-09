@@ -19,15 +19,15 @@ class Ui:
         title_list = ['ID', 'Name', 'Surname', 'Email', 'Status']
         table = []
         for obj in object_list:
-            obj_atrr = [obj.id, obj.name, obj.surname, obj.email, obj.status]
+            obj_atrr = list(map(str, [obj.id, obj.name, obj.surname, obj.email, obj.status]))
             table.append(obj_atrr)
 
         len_for_col = []
         for title_iterator in range(len(title_list)):
             len_col = len(title_list[title_iterator])
             for row in table:
-                if len(row[title_iterator]) > len_col:
-                    len_col = len(row[title_iterator])
+                if len(str(row[title_iterator])) > len_col:
+                    len_col = len(str(row[title_iterator]))
 
             len_for_col.append(len_col)
 
@@ -70,7 +70,7 @@ class Ui:
 
         len_for_col = []
         for title_iterator in range(len(title_list)):
-            len_col = len(title_list[title_iterator])
+            len_col = str(len(title_list[title_iterator]))
             for row in table:
                 if len(row[title_iterator]) > len_col:
                     len_col = len(row[title_iterator])
@@ -264,7 +264,45 @@ class Ui:
         os.system('clear')
         print("STUDENTS' GRADE AVERAGE:\n")
         for key, value in student_grades.items():
-            print( key, value[0], value[1], value[2])
+            print(key, value[0], value[1], value[2])
+
+    def print_student_stats(stats):
+        '''
+        Displays stats about students.
+        '''
+        title_list = ['ID', 'Name', 'Surname', 'Email', 'Team', 'Average', 'Card']
+        table = stats
+
+        len_for_col = []
+        for title_iterator in range(len(title_list)):
+            len_col = len(title_list[title_iterator])
+            for row in table:
+                if len(str(row[title_iterator])) > len_col:
+                    len_col = len(row[title_iterator])
+
+            len_for_col.append(len_col)
+
+        how_wide = 0
+        for name in title_list:
+            x = (len_for_col[title_list.index(name)])
+            how_wide += (len(("|{: <" + str(x + 2) + "}").format(name)))
+        print('-' * how_wide)
+
+        for name in title_list:
+            print("|", end="")
+            x = (len_for_col[title_list.index(name)])
+            print(("{: <" + str(x + 2) + "}").format(name), end="")
+        print("|")
+        print('-' * how_wide)
+
+        for row in table:
+            print("|", end="")
+            for element in row:
+                x = (len_for_col[row.index(element)])
+                print(("{: <" + str(x + 2) + "}|").format(element), end="")
+            print()
+        print('-' * how_wide)
+
 
     @staticmethod
     def print_full_report_of_students_performance(performance, title):
@@ -279,7 +317,3 @@ class Ui:
             print("{:>15} {:>15} {:>15} {:>15} {:>15}".format(row[0], row[1], row[2], row[3], row[4]))
         print('\n')
         Ui.get_inputs([''],'Enter to go back')
-
-
-
-

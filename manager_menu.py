@@ -79,10 +79,15 @@ class ManagerMenu:
                 Ui.print_table(Student.student_list, title)
             elif option == '11':
                 # view students grades
-                print('In progress')
+                 data = Submission.get_students_average_grades(Submission.submission_list)
+                 average_grades = Submission.get_name_by_id(data, Student.student_list)
+                 Ui.print_student_average_grades(average_grades)
             elif option == '12':
                  # Show full statistics about students
-                 print('in progress too')
+                 data = Submission.get_students_average_grades(Submission.submission_list)
+                 average_grades = Submission.get_name_by_id(data, Student.student_list)
+                 stats = Student.get_full_statistics_about_students(Student.student_list, average_grades)
+                 Ui.print_student_stats(stats)
             elif option == '0':
                 Common.write_staff_to_file('database.db', Mentor.mentors_list)
                 Common.write_staff_to_file('database.db', Manager.manager_list)
