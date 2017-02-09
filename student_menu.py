@@ -31,10 +31,10 @@ class StudentMenu:
             elif option == '3':
                 data = Attendance.attendance_list
                 table = user.check_attendence(data)
-                Ui.print_error_message('Data, Status:')
+                Ui.print_message('Data, Status:')
                 for row in table:
-                    Ui.print_error_message(': '.join(row))
+                    Ui.print_message(': '.join(row))
             elif option == '0':
                 Common.write_submission_to_file('Submissions.csv', Submission.submission_list)
                 sys.exit()
-                Ui.print_error_message('There is no such option.')
+                Ui.print_message('There is no such option.')

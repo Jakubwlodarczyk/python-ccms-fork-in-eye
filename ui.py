@@ -129,11 +129,11 @@ class Ui:
         print(title)
         input_table = []
         for label in list_labels:
-            input_table.append(input(label))
+            input_table.append(input(label ))
         return input_table
 
     @staticmethod
-    def print_error_message(message):
+    def print_message(message):
         """
         Displays an error message.
         Args:
@@ -154,8 +154,7 @@ class Ui:
         idx = 1
         for sub in submission_list:
             print(idx,
-                  sub.start_date,
-                  sub.end_date,
+                  sub.send_date,
                   sub.submission_name,
                   sub.grade,
                   sub.github_link,
@@ -191,7 +190,7 @@ class Ui:
             print(idx,
                   assign.start_date,
                   assign.end_date,
-                  assign.assignments)
+                  assign.assignment_name)
 
             idx += 1
 
@@ -256,7 +255,6 @@ class Ui:
                 print(("{: <" + str(x + 2) + "}|").format(element), end="")
             print()
         print('-' * how_wide)
-
 
     def print_student_average_grades(student_grades):
         '''
