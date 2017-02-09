@@ -111,19 +111,28 @@ class Student(User):
                     Ui.print_message('Assignment is already submitted\n')
                     return
 
-            submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], # object of new submission is created
-                                chosen_one[3], chosen_one[4])
+            Ui.print_message('''
+            Choose the following option:\n
+            (1) Submit assignment as a team
+            (2) Submit assignment by myself
+                        ''')
+            submit_option = input('Type the number: ')
+            if submit_option == '1':
 
-            Submission.submission_list.append(submission_obj)
 
-            for student in students:
-                if student.team == self.team:
+                for student in students:
+                    if student.team == self.team:
+                        assignment_list = []
+                        assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, student.id])
+                        print(assignment_list)
+                        submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], student.id)
+                        Submission.submission_list.append(submission_obj)
 
-                    assignment_list = []
-                    assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, student.id])
-                    print(assignment_list)
-                    submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], student.id)
-                    Submission.submission_list.append(submission_obj)
+            elif submit_option == '2':
+                submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], chosen_one[4])
+                Submission.submission_list.append(submission_obj)
+            else:
+                Ui.print_message('Invalid value')
 
             os.system('clear')
             Ui.print_message('Your assignment was succesfully submitted\n')
