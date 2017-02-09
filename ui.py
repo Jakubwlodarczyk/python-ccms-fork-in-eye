@@ -264,5 +264,6 @@ class Ui:
         '''
         os.system('clear')
         print("STUDENTS' GRADE AVERAGE:\n")
-        for key, value in student_grades.items():
-            print(key, ':', ''.join(str(value)))
+        print(student_grades)
+        for key, value in student_grades:
+            print(key, value)

@@ -45,8 +45,6 @@ class ManagerMenu:
                 person = Employee.choose_person_to_change_data(Employee.employees_list)
                 if person:
                     Employee.data_to_change(person)
-                else:
-                    pass
             elif option == '4':
                 # fire a regular employee
                 title = 'Regular employees list:'
@@ -70,8 +68,6 @@ class ManagerMenu:
                 person = Mentor.choose_person_to_change_data(Mentor.mentors_list)
                 if person:
                     Mentor.data_to_change(person)
-                else:
-                    pass
             elif option == '9':
                 # fire mentor
                 title = 'Mentors:'
@@ -92,8 +88,8 @@ class ManagerMenu:
                  print('in progress too')
                  #Manager.view_full_students_statistics()
             elif option == '0':
-                Common.write_table_to_file('Mentors.csv', Mentor.mentors_list)
-                Common.write_table_to_file('Regular_employees.csv', Employee.employees_list)
+                # Common.write_table_to_file('Mentors.csv', Mentor.mentors_list)
+                # Common.write_table_to_file('Regular_employees.csv', Employee.employees_list)
                 sys.exit()
             else:
                 Ui.print_error_message('There is no such option.')

@@ -31,13 +31,14 @@ class Menu:
         Mentor.mentors_list = staff_tuple[0]
         Manager.manager_list = staff_tuple[1]
         Employee.employees_list = staff_tuple[2]
-        Submission.submission_list = Submission.create_objects_list_from_database('submission')
+        # Submission.submission_list =
+        Submission.create_objects_list_from_database('submission')
         Student.student_list = Student.create_objects_list_from_database('student')
         User.all_users = [Employee.employees_list,
                           Mentor.mentors_list,
                           Student.student_list,
                           Manager.manager_list]
-        
+
         Assignments.assignments_list = Assignments.create_objects_list_from_database('assignements')
         Attendance.attendances_list = Attendance.create_objects_list_from_database('attendance')
 
