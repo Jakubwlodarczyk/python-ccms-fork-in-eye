@@ -18,10 +18,17 @@ class MentorMenu:
         """
         while True:
             title = 'Mentor menu'
-            list_options = ['Check the list of students', 'Add an assignment',
-                            'Grade an assignment submitted by students', 'Check attendance of students',
-                            'Add a student to a class', 'Remove a student from class', "Edit student's data",
-                            "Show students of specific group", "Give a card to student", 'Add student to specific group']
+            list_options = ['Check the list of students',
+                            'Add an assignment',
+                            'Grade an assignment submitted by students',
+                            'Check attendance of students',
+                            'Add a student to a class',
+                            'Remove a student from class',
+                            "Edit student's data",
+                            'Show students of specific group',
+                            'Give a card to student',
+                            'Add student to specific group',
+                            'Show full report of students performance between provided dates']
 
             Ui.print_menu(title, list_options, 'Log out')
             chose_option = Ui.get_inputs(["Please enter a number: "], "")
@@ -72,7 +79,12 @@ class MentorMenu:
             
             elif chose_option[0] == '10':
                 os.system('clear')   
-                Student.add_student_team()            
+                Student.add_student_team()
+
+            elif chose_option[0] == '11':
+                # Show full report of students performance between provided dates
+                Student.show_full_report_of_students_performance()
+                pass
 
             elif chose_option[0] == '0':
                 # save data to files, and exit
