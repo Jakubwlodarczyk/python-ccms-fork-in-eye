@@ -9,7 +9,7 @@ class Common:
     @classmethod
     def write_staff_to_file(cls, file_name, obj_list):  # for staff
         """
-        Writes list of lists into a csv file.
+        Writes object list into a DB file.
 
         Args:
             file_name (str): name of file to write to
@@ -21,9 +21,16 @@ class Common:
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
 
-        #query = "DELETE FROM staff;"
-        #c.execute(query)
-        #conn.commit()
+        for obj in obj_list:
+            if obj.status == "mentor":
+                query = "DELETE FROM `staff` WHERE `status` = 'mentor';"
+                c.execute(query)
+            elif obj.status == "employee":
+                query = "DELETE FROM `staff` WHERE `status` = 'employee';"
+                c.execute(query)
+            elif obj.status == "manager":
+                query = "DELETE FROM `staff` WHERE `status` = 'manager';"
+                c.execute(query)
 
         for index, obj in enumerate(obj_list):
             params = [obj.name, obj.surname, obj.email, obj.password, obj.status, obj.id]
@@ -32,6 +39,29 @@ class Common:
 
         conn.close()
 
+    @classmethod
+    def write_student_to_db(cls, file_name, obj_list):
+        """
+        Writes object list into a DB file.
+
+        Args:
+            file_name (str): name of file to write to
+            table: list of lists to write to a file
+
+        Returns:
+            None
+        """
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
+        query = "DELETE FROM `student`;"
+        c.execute(query)
+
+        for obj in obj_list:
+            params = [obj.name, obj.surname, obj.email, obj.password, obj.status, obj.card, obj.team, obj.id]
+            c.execute("INSERT INTO student (name, surname, email, password, status, card, team, student_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", params)
+            conn.commit()
+
+        conn.close()
 
     @classmethod
     def write_students_to_file(cls, file_name, obj_list):  # for persons
@@ -54,24 +84,67 @@ class Common:
                 else:
                     f.write(','.join(obj_atrr))
 
+    @classmethod
+    def write_assignment_to_db(cls, file_name, obj_list):
+        """ docstrings"""
+
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
+        query = "DELETE FROM `assignements`;"
+        c.execute(query)
+
+        for obj in obj_list:
+            params = [obj.start_date, obj.end_date, obj.assignment_name]
+            c.execute("INSERT INTO assignements (start_date, end_date, name) VALUES (?, ?, ?)", params)
+            conn.commit()
+
+        conn.close()
 
     @classmethod
-    def write_assignment_to_file(cls, file_name, obj_list):
-        """
-      Writes list of lists into a csv file.
-        Args:
-            file_name (str): name of file to write to
-            table: list of lists to write to a file
-        Returns:
-                None"""
-        with open(file_name, "w") as f:
-            for index, obj in enumerate(obj_list):
-                obj_atrr = [obj.start_date, obj.end_date, obj.assignment_name]
+    def write_attendance_to_db(cls, file_name, obj_list):
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
+        query = "DELETE FROM `attendance`;"
+        c.execute(query)
 
-                if index < len(obj_list) - 1:
-                    f.write(','.join(obj_atrr) + '\n')
-                else:
-                    f.write(','.join(obj_atrr))
+        for obj in obj_list:
+            params = [obj.data, obj.status, obj.id]
+            c.execute("INSERT INTO attendance (date, status, student_id) VALUES (?, ?, ?)", params)
+            conn.commit()
+
+        conn.close()
+
+    @classmethod
+    def write_submission_to_db(cls, file_name, obj_list):
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
+        query = "DELETE FROM `submission`;"
+        c.execute(query)
+
+        for obj in obj_list:
+            params = [obj.send_date, obj.grade, obj.id, obj.submission_name, obj.github_link]
+            c.execute("INSERT INTO submission (send_date, grade, name, github_link, student_id) VALUES (?, ?, ?, ?, ?)", params)
+            conn.commit()
+
+        conn.close()
+
+    # @classmethod
+    # def write_assignment_to_file(cls, file_name, obj_list):
+    #     """
+    #   Writes list of lists into a csv file.
+    #     Args:
+    #         file_name (str): name of file to write to
+    #         table: list of lists to write to a file
+    #     Returns:
+    #             None"""
+    #     with open(file_name, "w") as f:
+    #         for index, obj in enumerate(obj_list):
+    #             obj_atrr = [obj.start_date, obj.end_date, obj.assignment_name]
+    #
+    #             if index < len(obj_list) - 1:
+    #                 f.write(','.join(obj_atrr) + '\n')
+    #             else:
+    #                 f.write(','.join(obj_atrr))
 
 
     @classmethod
