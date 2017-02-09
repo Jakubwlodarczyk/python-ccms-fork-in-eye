@@ -29,11 +29,13 @@ class StudentMenu:
                 os.system('clear')
                 user.submit_assignment()
             elif option == '3':
-                data = Attendance.attendance_list
+                data = Attendance.attendances_list
                 table = user.check_attendence(data)
-                Ui.print_message('Data, Status:')
+                os.system('clear')
+                Ui.print_message('\n ...::: Data, Status :::...\n')
                 for row in table:
-                    Ui.print_message(': '.join(row))
+                    Ui.print_message("{}: {}".format(row[0], str(row[1])))
+                print("\n")
             elif option == '0':
                 Common.write_submission_to_file('Submissions.csv', Submission.submission_list)
                 sys.exit()

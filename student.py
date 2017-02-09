@@ -44,7 +44,7 @@ class Student(User):
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
 
-        name_q = "SELECT name, surname, email, password, status, password, card, team FROM student;"
+        name_q = "SELECT name, surname, email, password, status, card, team, student_id FROM student;"
         name_db = c.execute(name_q)
         conn.commit()
 
@@ -56,16 +56,23 @@ class Student(User):
             email = row[2]
             password = row[3]
             status = row[4]
-            password = row[5]
-            card = row[7]
+            card = row[5]
             team = row[6]
+            student_id = row[7]
 
-            full_name = cls(name, surname, email, password, status, password, card, team)
+            full_name = cls(name, surname, email, password, status, student_id, team, card)
             student_list.append(full_name)
 
         conn.close()
 
         return student_list
+
+    @staticmethod
+    def add_attendance_to_student(attendances_obj_list):
+        for student in Student.student_list:
+            for attendance in attendances_obj_list:
+                if attendance.id == student.id:
+                    student.attendance_list.append(attendance)
 
 
     def view_grades(self):
