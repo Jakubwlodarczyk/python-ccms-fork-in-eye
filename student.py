@@ -13,6 +13,9 @@ class Student(User):
 
     student_list = []
 
+
+    # submission_list = Submission.submission_list
+
     def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
             User.__init__(self, name, surname, email, password, status, id)
             self.status = 'student'
@@ -78,6 +81,8 @@ class Student(User):
 
     def submit_assignment(self):
 
+        students = Student.student_list  
+
         Ui.print_message('Choose the number from the following assignments: \n')
         for n, assignment in enumerate(Assignments.assignments_list):
             Ui.print_message(str(n+1) + '. ' + str(assignment))
@@ -86,7 +91,12 @@ class Student(User):
 
         assignment_list = []
         choose_val = input('Type the submission link: ')
-        for i in assign:
+        if choose_val == '':
+            Ui.print_message('Submission link is empty')
+
+        
+
+        for i in assign:  
             assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, self.id])
 
         if not choose.isnumeric():
@@ -100,15 +110,28 @@ class Student(User):
                     os.system('clear')
                     Ui.print_message('Assignment is already submitted\n')
                     return
+# <<<<<<< HEAD
+                      
+            for student in students:
+                if student.team == self.team:
+                   
+                    assignment_list = []
+                    assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, student.id])
+                    print(assignment_list)
+                    submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], student.id)
+                    Submission.submission_list.append(submission_obj)
 
-            submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], chosen_one[4])
-            Submission.submission_list.append(submission_obj)
+            
+# =======
+
+#             submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], chosen_one[4])
+#             Submission.submission_list.append(submission_obj)
+# >>>>>>> e76e0fcfbc6ff6388586240af59d4f80ee8aff5c
             os.system('clear')
             Ui.print_message('Your assignment was succesfully submitted\n')
             return Submission.submission_list
         else:
             os.system('clear')
-
             Ui.print_message('Invalid number')
 
     def check_attendence(self, data):
@@ -146,15 +169,16 @@ class Student(User):
             else:
                 Ui.print_message('Wrong input!')
 
-    @classmethod
-    def add_student_team(cls):
+
+    @staticmethod
+    def add_student_team():        
         Ui.print_message('''Assign each student to the following teams(type the number):
+
         (1) Fork in ear
         (2) Stepan
         (3) Rainbow unicorns
         (4) Jakkiedy
                     ''')
-
 
         is_valid = False
         while not is_valid:
@@ -178,9 +202,9 @@ class Student(User):
                     table[table.index('3')] = 'Rainbow unicorns'
                 elif table[i] == '4':
                     table[table.index('4')] = 'Jakkiedy'
-                Student.student_list[i].team = table[i]
-
+                Student.student_list[i].team = table[i]   
                 i += 1
+
 
     @staticmethod
     def show_full_report_of_students_performance():
@@ -203,4 +227,5 @@ class Student(User):
     def get_full_statistics_about_students(cls):
 
         pass
+
 

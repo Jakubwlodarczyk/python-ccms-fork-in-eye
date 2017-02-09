@@ -153,6 +153,26 @@ class Common:
                 else:
                     f.write(','.join(obj_atrr))
 
+    @classmethod
+    def write_submission_to_file(cls, file_name, obj_list):
+        """
+      Writes list of lists into a csv file.
+        Args:
+            file_name (str): name of file to write to
+            table: list of lists to write to a file
+        Returns:
+                None"""
+
+        with open(file_name, "w") as f:
+            for index, obj in enumerate(obj_list):
+
+                obj_atrr = [obj.send_date, obj.grade, obj.name, obj.github_link, obj.student_id]
+
+                if index < len(obj_list) - 1:
+                    f.write(','.join(obj_atrr) + '\n')
+                else:
+                    f.write(','.join(obj_atrr))
+
     @staticmethod
     def error_integer_handling(chosen_option, value_of_possible_options):
         """
