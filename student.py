@@ -197,11 +197,11 @@ class Student(User):
         for student in student_list:
             Ui.print_message("""ID: {} \t {} {} {}\n""".format(student.id, student.name, student.surname, student.team))
         choosen_student = User.choose_person_to_change_data(student_list)
-        Ui.print_message(choosen_student)
+        Ui.print_message('\nChosen student: {}'.format(choosen_student))
         teams = Student.teams_list
         for index, team in enumerate(teams):
             Ui.print_message('Team {} {}'.format(index+1, team))
-        chosen = input('Choose team: ')
+        chosen = input('Write a chosen team NAME: ')
         if chosen in teams:
             choosen_student.team = chosen
             Ui.print_message('Chosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
