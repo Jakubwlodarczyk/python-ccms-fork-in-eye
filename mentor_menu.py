@@ -88,6 +88,7 @@ class MentorMenu:
                 os.system('clear')
                 Student.add_student_team()
                 Common.write_student_to_db('database.db', Student.student_list)
+                Common.write_team_to_db('database.db', Student.teams_list)
 
             elif chose_option[0] == '11':
                 # Show full report of students performance between provided dates
