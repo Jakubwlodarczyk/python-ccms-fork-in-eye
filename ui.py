@@ -139,7 +139,6 @@ class Ui:
         Args:
             message(str): error message to be displayed.
         """
-
         print(message)
 
     @staticmethod
@@ -151,15 +150,11 @@ class Ui:
         """
         os.system("clear")
         print(title+'\n')
-        idx = 1
+        print("{:>15} {:>15} {:>15} {:>15} {:>15}"
+              .format('SEND DATE:', 'NAME:', 'GRADE:', 'GITHUB LINK:', 'STUDENT ID:'))
         for sub in submission_list:
-            print(idx,
-                  sub.send_date,
-                  sub.name,
-                  sub.grade,
-                  sub.github_link,
-                  sub.student_id)
-            idx += 1
+            print("{:>15} {:>15} {:>15} {:>15} {:>15}"
+                  .format(sub.send_date, sub.name, sub.grade, sub.github_link, sub.student_id))
         print('\n')
 
     @staticmethod
@@ -273,12 +268,19 @@ class Ui:
         :param performance: list of students performance data
         :return: prints table with data
         """
-        os.system('clear')
-        print(title, '\n')
-        for row in performance:
-            print("{:>15} {:>15} {:>15} {:>15} {:>15}".format(row[0], row[1], row[2], row[3], row[4]))
-        print('\n')
-        Ui.get_inputs([''],'Enter to go back')
+        if len(performance) < 2:
+            os.system('clear')
+            print("There is no submissions in given date time :( \n\n\n")
+            Ui.get_inputs([''], 'Enter to go back')
+            os.system('clear')
+        else:
+            os.system('clear')
+            print(title, '\n')
+            for row in performance:
+                print("{:>15} {:>15} {:>15} {:>15} {:>15}".format(row[0], row[1], row[2], row[3], row[4]))
+            print('\n')
+            Ui.get_inputs([''],'Enter to go back')
+            os.system('clear')
 
 
 

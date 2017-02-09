@@ -13,9 +13,6 @@ class Student(User):
 
     student_list = []
 
-
-    # submission_list = Submission.submission_list
-
     def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
             User.__init__(self, name, surname, email, password, status, id)
             self.status = 'student'
@@ -71,7 +68,6 @@ class Student(User):
     def view_grades(self):
         '''
         Allows to view grades for all student's assignments.
-
         '''
         my_submiss = []
         for sub in Submission.submission_list:
@@ -80,21 +76,16 @@ class Student(User):
         Ui.print_submissions(my_submiss)
 
     def submit_assignment(self):
-
-        students = Student.student_list  
-
+        students = Student.student_list
         Ui.print_message('Choose the number from the following assignments: \n')
         for n, assignment in enumerate(Assignments.assignments_list):
             Ui.print_message(str(n+1) + '. ' + str(assignment))
         choose = input('Type the chosen number here: ')
         assign = Assignments.assignments_list
-
         assignment_list = []
         choose_val = input('Type the submission link: ')
         if choose_val == '':
             Ui.print_message('Submission link is empty')
-
-        
 
         for i in assign:  
             assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, self.id])
@@ -110,23 +101,14 @@ class Student(User):
                     os.system('clear')
                     Ui.print_message('Assignment is already submitted\n')
                     return
-# <<<<<<< HEAD
-                      
+
             for student in students:
                 if student.team == self.team:
-                   
                     assignment_list = []
                     assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, student.id])
                     print(assignment_list)
                     submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], student.id)
                     Submission.submission_list.append(submission_obj)
-
-            
-# =======
-
-#             submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], chosen_one[4])
-#             Submission.submission_list.append(submission_obj)
-# >>>>>>> e76e0fcfbc6ff6388586240af59d4f80ee8aff5c
             os.system('clear')
             Ui.print_message('Your assignment was succesfully submitted\n')
             return Submission.submission_list
@@ -140,7 +122,6 @@ class Student(User):
             if row.id == self.id:
                 table.append([row.data, row.status])
         return table
-
 
     @classmethod
     def change_student_card(cls, person):
@@ -168,7 +149,6 @@ class Student(User):
                 break
             else:
                 Ui.print_message('Wrong input!')
-
 
     @staticmethod
     def add_student_team():        
@@ -204,7 +184,6 @@ class Student(User):
                     table[table.index('4')] = 'Jakkiedy'
                 Student.student_list[i].team = table[i]   
                 i += 1
-
 
     @staticmethod
     def show_full_report_of_students_performance():
