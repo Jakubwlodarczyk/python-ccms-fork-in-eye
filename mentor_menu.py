@@ -81,7 +81,6 @@ class MentorMenu:
                 os.system('clear')   
                 Student.add_student_team()
 
-
             elif chose_option[0] == '11':
                 # Show full report of students performance between provided dates
                 Student.show_full_report_of_students_performance()
