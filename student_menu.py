@@ -19,7 +19,8 @@ class StudentMenu:
         options = ['View grades', "Submit an assignment", 'View attandence']
 
         while True:
-            Ui.print_message(('\n...:::Logged in as {} {}:::...\n').format(user.name, user.surname))
+
+            Ui.print_message(('\n...:::Logged in as {}:::...\n').format(user))
             Ui.print_menu("What do you want to do?", options, 'Exit')
             inputs = Ui.get_inputs(["Please enter a number: "], "")
             option = inputs[0]

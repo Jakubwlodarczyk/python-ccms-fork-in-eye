@@ -7,7 +7,7 @@ import sys
 import os
 import datetime
 import sqlite3
-
+import time
 
 class Student(User):
 
@@ -49,6 +49,7 @@ class Student(User):
         Student.teams_list.append(name[0])
         wait = Ui.get_inputs(" ", '\nTeam has been added succesfully.\n')
         os.system("clear")
+
 
     @classmethod
     def create_objects_list_from_database(cls, table_name):  # from database
@@ -132,7 +133,7 @@ class Student(User):
                     if student.team == self.team:
                         assignment_list = []
                         assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, student.id])
-                        print(assignment_list)
+                        Ui.print_message(assignment_list)
                         submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], student.id)
                         Submission.submission_list.append(submission_obj)
             elif submit_option == '2':
@@ -199,20 +200,26 @@ class Student(User):
     def add_student_to_team(cls):
         student_list = Student.student_list
         for student in student_list:
-            Ui.print_message("""ID: {} \t {} {} {}\n""".format(student.id, student.name, student.surname, student.team))
-        choosen_student = User.choose_person_to_change_data(student_list)
-        Ui.print_message('\nChosen student: {}'.format(choosen_student))
-        teams = Student.teams_list
-        for index, team in enumerate(teams):
-            Ui.print_message('Team {} {}'.format(index+1, team))
-        chosen = ''
-        while chosen not in teams:
-            chosen = input('Write a chosen team NAME: ')
-            if chosen in teams:
-                choosen_student.team = chosen
-                Ui.print_message('Chosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
-            else:
-                Ui.print_message('No match! Try again.')
+            Ui.print_message("""ID: {} \t {} {} ║ Actual team: {}\n""".format(student.id, student.name, student.surname, student.team))
+        try:
+            choosen_student = User.choose_person_to_change_data(student_list)
+            os.system("clear")
+            Ui.print_message('\nChosen student: {}'.format(choosen_student))
+            teams = Student.teams_list
+            for index, team in enumerate(teams):
+                Ui.print_message('\n№{} {}'.format(index+1, team))
+            chosen = ''
+            while chosen not in teams:
+                chosen = input('\nWrite a chosen team NAME: ')
+                if chosen in teams:
+                    choosen_student.team = chosen
+                    Ui.print_message('\nChosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
+                    time.sleep(3)
+                else:
+                    Ui.print_message('\nNo match! Try again.')
+        except AttributeError:
+            Ui.print_message('No student chosen.')
+            time.sleep(2)
 
     @classmethod
     def get_full_statistics_about_students(cls, student_list, average_grades):

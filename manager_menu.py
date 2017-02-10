@@ -33,7 +33,7 @@ class ManagerMenu:
 
         while True:
             os.system('clear')
-            Ui.print_message(('\n...:::Logged in as {} {}:::...\n').format(user.name, user.surname))
+            Ui.print_message(('\n...:::Logged in as {}:::...\n').format(user))
             Ui.print_menu("What you want to do?", options, "Log out")
             inputs = Ui.get_inputs(["Please enter a number: "], "")
             option = inputs[0]
