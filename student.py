@@ -53,6 +53,7 @@ class Student(User):
         wait = Ui.get_inputs(" ", '\nTeam has been added succesfully.\n')
         os.system("clear")
 
+
     @classmethod
     def create_objects_list_from_database(cls, table_name):  # from database
         """

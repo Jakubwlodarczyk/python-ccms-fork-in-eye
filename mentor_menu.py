@@ -30,7 +30,8 @@ class MentorMenu:
                             'Show students of specific group',
                             'Give a card to student',
                             'Add student to specific group',
-                            'Show full report of students performance between provided dates']
+                            'Show full report of students performance between provided dates',
+                            'Add a new team']
 
             Ui.print_menu(title, list_options, 'Log out')
             chose_option = Ui.get_inputs(["Please enter a number: "], "")
@@ -93,10 +94,15 @@ class MentorMenu:
                 os.system('clear')
                 Student.add_student_to_team()
                 Common.write_student_to_db('database.db', Student.student_list)
+                Common.write_team_to_db('database.db', Student.teams_list)
 
             elif chose_option[0] == '11':
                 # Show full report of students performance between provided dates
                 Student.show_full_report_of_students_performance()
+
+            elif chose_option[0] == '12':
+                # Add a new team
+                Student.add_team()
 
             elif chose_option[0] == '0':
                 sys.exit()
