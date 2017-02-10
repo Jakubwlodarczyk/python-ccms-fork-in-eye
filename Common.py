@@ -132,19 +132,29 @@ class Common:
             params = [obj.send_date, obj.name, obj.grade, obj.github_link, obj.student_id]
             c.execute("INSERT INTO submission (send_date, grade, name, github_link, student_id) VALUES (?, ?, ?, ?, ?)", params)
             conn.commit()
-
         conn.close()
 
-    # @classmethod
-    # def write_team_to_db(cls, file_name, teams_list):
-    #     conn = sqlite3.connect('database.db')
-    #     c = conn.cursor()
-    #     query = "DELETE FROM `teams_list`;"
-    #     c.execute(query)
-    #
-    #     for team in teams_list:
-    #         params = []
-    #         c.execute("INSERT INTO teams_list () VALUES ()", params)
+    @classmethod
+    def write_team_to_db(cls, file_name, teams_list):
+        """
+    Writes object list into a DB file.
+
+    Args:
+        file_name (str): name of file to write to
+        table: list of lists to write to a file
+
+    Returns:
+        None
+    """
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
+        query = "DELETE FROM `teams_list`;"
+        c.execute(query)
+
+        for team in teams_list:
+            c.execute("INSERT INTO teams_list (name) VALUES (?)", [team])
+            conn.commit()
+        conn.close()
 
     @staticmethod
     def error_integer_handling(chosen_option, value_of_possible_options):
