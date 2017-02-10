@@ -113,4 +113,5 @@ class Assignments:
                                             new_assignment = cls(start_date, end_date, name_of_assign)
                                             Assignments.assignments_list.append(new_assignment)
                                             Ui.print_message("\nAssignment added!\n")
+                                            Ui.get_inputs([''], "Click enter to go back")
             break  # it stops the WHILE loop whenever passed information is incorrect, or assignment has been added
