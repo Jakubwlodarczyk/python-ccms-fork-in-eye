@@ -129,7 +129,7 @@ class Common:
         c.execute(query)
 
         for obj in obj_list:
-            params = [obj.send_date, obj.grade, obj.student_id, obj.name, obj.github_link]
+            params = [obj.send_date, obj.grade, obj.name, obj.github_link, obj.student_id]
             c.execute("INSERT INTO submission (send_date, grade, name, github_link, student_id) VALUES (?, ?, ?, ?, ?)", params)
             conn.commit()
 

@@ -8,6 +8,7 @@ import os
 
 
 class MentorMenu:
+    
     """
     Handles navigation menu after logging as mentor.
     """
