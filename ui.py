@@ -93,18 +93,16 @@ class Ui:
     @staticmethod
     def print_submissions_list(submission_list, title):
         """
+        prepare table for printing data
         :param submission_list: (list) list of submissions
         :param title: (string) heading of list
-        :return: print full list of heading and submissions
         """
-        os.system("clear")
-        print(title+'\n')
-        print("{:>15} {:>15} {:>15} {:>15} {:>15}"
-              .format('SEND DATE:', 'NAME:', 'GRADE:', 'GITHUB LINK:', 'STUDENT ID:'))
+        heading = ['SEND DATE:', 'NAME:', 'GRADE:', 'GITHUB LINK:', 'STUDENT ID:']
+        table = []
         for sub in submission_list:
-            print("{:>15} {:>15} {:>15} {:>15} {:>15}"
-                  .format(sub.send_date, sub.name, sub.grade, sub.github_link, sub.student_id))
-        print('\n')
+            sub_attributes = list(map(str, [sub.send_date, sub.grade, sub.name, sub.github_link, sub.student_id]))
+            table.append(sub_attributes)
+        Ui.print_table(table, title, heading)
 
     @staticmethod
     def print_data_list(title):
