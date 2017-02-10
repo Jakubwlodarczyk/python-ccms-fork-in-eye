@@ -201,12 +201,14 @@ class Student(User):
         teams = Student.teams_list
         for index, team in enumerate(teams):
             Ui.print_message('Team {} {}'.format(index+1, team))
-        chosen = input('Write a chosen team NAME: ')
-        if chosen in teams:
-            choosen_student.team = chosen
-            Ui.print_message('Chosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
-        else:
-            Ui.print_message('No match!')
+        chosen = ''
+        while chosen not in teams:
+            chosen = input('Write a chosen team NAME: ')
+            if chosen in teams:
+                choosen_student.team = chosen
+                Ui.print_message('Chosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
+            else:
+                Ui.print_message('No match! Try again.')
 
     @classmethod
     def get_full_statistics_about_students(cls, student_list, average_grades):
