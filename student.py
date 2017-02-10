@@ -44,6 +44,10 @@ class Student(User):
 
     @staticmethod
     def add_team():
+        """
+        Add a new team.
+        :param input
+        """
         os.system("clear")
         name = Ui.get_inputs(" ", 'Type a name of a new team: \n')
         Student.teams_list.append(name[0])
@@ -80,6 +84,10 @@ class Student(User):
 
     @staticmethod
     def add_attendance_to_student(attendances_obj_list):
+        """
+        Returns attendances of select students.
+        :param table_name
+        """
         for student in Student.student_list:
             for attendance in attendances_obj_list:
                 if attendance.id == student.id:
