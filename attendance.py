@@ -234,7 +234,7 @@ class Attendance:
             counter = 0
             for one_day_obj in student.attendance_list:
                 counter += 1
-                attendance_points += one_day_obj.status
+                attendance_points += int(one_day_obj.status)
 
             if counter == 0:
                 Ui.get_inputs([""], "No dates to show.")

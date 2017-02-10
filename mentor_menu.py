@@ -12,7 +12,7 @@ from ui import Ui
 
 
 class MentorMenu:
-    
+
     """
     Handles navigation menu after logging as mentor.
     """
@@ -33,15 +33,16 @@ class MentorMenu:
                         'Show students of specific group',
                         'Give a card to student',
                         'Add student to specific group',
-                        'Show full report of students performance between provided dates']
+                        'Show full report of students performance between provided dates',
+                        'Add student to a team']
         while True:
 
-            
-            
-            os.system('clear')
-        
 
-                       
+
+            os.system('clear')
+
+
+
             Ui.print_message(('\n...:::Logged in as {}:::...\n').format(user))
             Ui.print_menu("What you want to do?", list_options, 'Log out')
 
