@@ -4,6 +4,7 @@ from assignments import Assignments
 from submission import Submission
 import time
 import sqlite3
+import os
 
 
 class User:
@@ -121,6 +122,7 @@ class User:
         else:
             person.name = new_name[0]
             Ui.print_message("\nName has been changed.\n")
+            Ui.get_inputs([''], "Click enter to go back")
 
     @classmethod
     def edit_surname(cls, person):
@@ -133,6 +135,7 @@ class User:
         else:
             person.surname = new_surname[0]
             Ui.print_message("\nSurname has been changed.\n")
+            Ui.get_inputs([''], "Click enter to go back")
 
     @classmethod
     def edit_email(cls, person):
@@ -145,6 +148,7 @@ class User:
         else:
             person.email = new_email[0]
             Ui.print_message("\nEmail has been changed.\n")
+            Ui.get_inputs([''], "Click enter to go back")
 
     @classmethod
     def edit_password(cls, person):
@@ -168,7 +172,7 @@ class User:
         Function allows to add new person object to a list of given type of objects.
         Returns updated list of objects.
         '''
-
+        os.system('clear')
         data = Ui.get_inputs(['Name: ', 'Surname: ',
                              'email: ', 'Password: ', 'Status: '],
                              "Please provide information:")
@@ -180,6 +184,8 @@ class User:
         else:
             new_person = cls(data[0], data[1], data[2], data[3], data[4], id)
             object_list.append(new_person)
+            Ui.print_message('Person added!')
+            Ui.get_inputs([''], "Click enter to go back")
         return object_list
 
     @classmethod
@@ -194,4 +200,5 @@ class User:
             if person.id == to_remove[0]:
                 object_list.remove(person)
                 Ui.print_message("Person removed")
+                Ui.get_inputs([''], "Click enter to go back")
         return object_list

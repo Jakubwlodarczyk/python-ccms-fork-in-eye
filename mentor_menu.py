@@ -32,6 +32,7 @@ class MentorMenu:
                         'Add student to specific group',
                         'Show full report of students performance between provided dates']
         while True:
+            os.system('clear')
             Ui.print_message(('\n...:::Logged in as {} {}:::...\n').format(user.name, user.surname))
             Ui.print_menu("What you want to do?", list_options, 'Log out')
             chose_option = Ui.get_inputs(["Please enter a number: "], "")
@@ -39,6 +40,7 @@ class MentorMenu:
             if chose_option[0] == '1':
                 # print list of students
                 MentorMenu.show_students_data()
+                Ui.get_inputs([''], "Click enter to go back")
 
             elif chose_option[0] == '2':
                 # add an assignment to assignment list
@@ -78,6 +80,7 @@ class MentorMenu:
                 # show students of specific group
                 stu_list = Student.student_list
                 Ui.print_student_teams(stu_list)
+                Ui.get_inputs([''], "Click enter to go back")
 
             elif chose_option[0] == '9':
                 # give a card to students
@@ -105,6 +108,9 @@ class MentorMenu:
 
     @staticmethod
     def show_students_data():
+        '''
+        Prepares data to display in a formatted table.
+        '''
         title_list = ['ID', 'Name', 'Surname', 'Email', 'Status', 'Team', 'Card']
         title = 'Student list:'
         table = Ui.create_student_table_to_print(Student.student_list)

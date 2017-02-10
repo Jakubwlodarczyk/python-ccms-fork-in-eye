@@ -174,16 +174,23 @@ class Student(User):
         while True:
             if chose_card[0] == '1':
                 person.card = "Green"
+                Ui.print_message("Card has been added!")
+                Ui.get_inputs([''], "Click enter to go back")
                 break
             elif chose_card[0] == '2':
                 person.card = "Yellow"
-                print(person.card)
+                Ui.print_message("Card has been added!")
+                Ui.get_inputs([''], "Click enter to go back")
                 break
             elif chose_card[0] == '3':
                 person.card = "Red"
+                Ui.print_message("Card has been added!")
+                Ui.get_inputs([''], "Click enter to go back")
                 break
             elif chose_card[0] == '4':
                 person.card = "None"
+                Ui.print_message("Card has been added!")
+                Ui.get_inputs([''], "Click enter to go back")
                 break
             else:
                 Ui.print_message('Wrong input!')
@@ -192,19 +199,19 @@ class Student(User):
     def add_student_to_team(cls):
         student_list = Student.student_list
         for student in student_list:
-            print("""ID: {} \t {} {} {}\n""".format(student.id, student.name, student.surname, student.team))
+            Ui.print_message("""ID: {} \t {} {} {}\n""".format(student.id, student.name, student.surname, student.team))
         choosen_student = User.choose_person_to_change_data(student_list)
-        print(choosen_student)
+        Ui.print_message('\nChosen student: {}'.format(choosen_student))
         teams = Student.teams_list
         for index, team in enumerate(teams):
-            print(index, team)
-        chosen = input('Choose team: ')
+            Ui.print_message('Team {} {}'.format(index+1, team))
+        chosen = input('Write a chosen team NAME: ')
         if chosen in teams:
-            print('AAAAA', choosen_student)
             choosen_student.team = chosen
-            print(chosen)
+            Ui.print_message('Chosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
+            Ui.get_inputs([''], "Click enter to go back")
         else:
-            print('dupa')
+            Ui.print_message('No match!')
 
     @classmethod
     def get_full_statistics_about_students(cls, student_list, average_grades):
@@ -242,10 +249,8 @@ class Student(User):
                          WHERE submission.send_date BETWEEN (?) AND (?)\
                          ORDER BY student.surname ASC;", (st_end_date[0], st_end_date[1]))
             conn.commit()
-            print(db)
         for row in db:
             list_of_performance.append(row)
         title_of_table = 'FULL REPORT OF STUDENTS PERFORMANCE:'
         top_of_table = ('SUB. SEND DATE', 'SUB. NAME', 'STUDENT NAME', 'SURNAME', 'GRADE')
-        list_of_performance.insert(0, top_of_table)
-        Ui.print_full_report_of_students_performance(list_of_performance, title_of_table)
+        Ui.print_full_report_of_students_performance(list_of_performance, title_of_table, top_of_table)

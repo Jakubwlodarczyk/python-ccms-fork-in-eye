@@ -158,8 +158,10 @@ class Ui:
             print('\n')
 
     @staticmethod
-    def print_full_report_of_students_performance(performance, title):
+    def print_full_report_of_students_performance(performance, title, heading):
+
         """
+        :param heading: heading of table
         :param title: title of table to print
         :param performance: list of students performance data
         :return: prints table with data
@@ -171,11 +173,8 @@ class Ui:
             os.system('clear')
         else:
             os.system('clear')
-            print(title, '\n')
-            for row in performance:
-                print("{:>15} {:>15} {:>15} {:>15} {:>15}".format(row[0], row[1], row[2], row[3], row[4]))
-            print('\n')
-            Ui.get_inputs([''],'Enter to go back')
+            Ui.print_table(performance, title, heading)
+            Ui.get_inputs([''], 'Enter to go back')
             os.system('clear')
 
     @staticmethod
