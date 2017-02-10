@@ -7,7 +7,7 @@ import sys
 import os
 import datetime
 import sqlite3
-
+import time
 
 class Student(User):
 
@@ -202,20 +202,24 @@ class Student(User):
     def add_student_to_team(cls):
         student_list = Student.student_list
         for student in student_list:
-            Ui.print_message("""ID: {} \t {} {} {}\n""".format(student.id, student.name, student.surname, student.team))
+            Ui.print_message("""ID: {} \t {} {} ║ Actual team: {}\n""".format(student.id, student.name, student.surname, student.team))
         choosen_student = User.choose_person_to_change_data(student_list)
+        os.system("clear")
         Ui.print_message('\nChosen student: {}'.format(choosen_student))
         teams = Student.teams_list
         for index, team in enumerate(teams):
-            Ui.print_message('Team {} {}'.format(index+1, team))
+            Ui.print_message('\n№{} {}'.format(index+1, team))
         chosen = ''
         while chosen not in teams:
-            chosen = input('Write a chosen team NAME: ')
+            chosen = input('\nWrite a chosen team NAME: ')
             if chosen in teams:
                 choosen_student.team = chosen
-                Ui.print_message('Chosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
+                Ui.print_message('\nChosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
+                time.sleep(3)
+            elif chosen == 'dupa':
+                Ui.print_message('\nReally? Please...')
             else:
-                Ui.print_message('No match! Try again.')
+                Ui.print_message('\nNo match! Try again.')
 
     @classmethod
     def get_full_statistics_about_students(cls, student_list, average_grades):
