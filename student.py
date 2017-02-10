@@ -13,19 +13,16 @@ class Student(User):
 
     student_list = []
     teams_list = []
-    # submission_list = Submission.submission_list
 
     def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
             User.__init__(self, name, surname, email, password, status, id)
             self.status = 'student'
             self.attendance_list = []
-            # self.submission_list = Submission.submission_list
             self.team = team
             self.card = card
 
     def __str__(self):
         return "{} {} ".format(self.name, self.surname)
-
 
     @classmethod
     def create_teams_list(cls):  # from database
@@ -209,13 +206,14 @@ class Student(User):
         teams = Student.teams_list
         for index, team in enumerate(teams):
             Ui.print_message('Team {} {}'.format(index+1, team))
-        chosen = input('Write a chosen team NAME: ')
-        if chosen in teams:
-            choosen_student.team = chosen
-            Ui.print_message('Chosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
-            Ui.get_inputs([''], "Click enter to go back")
-        else:
-            Ui.print_message('No match!')
+        chosen = ''
+        while chosen not in teams:
+            chosen = input('Write a chosen team NAME: ')
+            if chosen in teams:
+                choosen_student.team = chosen
+                Ui.print_message('Chosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
+            else:
+                Ui.print_message('No match! Try again.')
 
     @classmethod
     def get_full_statistics_about_students(cls, student_list, average_grades):
