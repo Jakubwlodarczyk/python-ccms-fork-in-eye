@@ -132,7 +132,7 @@ class Student(User):
                     if student.team == self.team:
                         assignment_list = []
                         assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, student.id])
-                        print(assignment_list)
+                        Ui.print_message(assignment_list)
                         submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], student.id)
                         Submission.submission_list.append(submission_obj)
             elif submit_option == '2':

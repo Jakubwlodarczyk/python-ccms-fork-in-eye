@@ -88,8 +88,8 @@ class Menu:
 
     @staticmethod
     def main():
+        Menu.loading_data()
         while True:
-            Menu.loading_data()
             Menu.main_menu()
             try:
                 Menu.choose_option()
