@@ -110,6 +110,11 @@ class MentorMenu:
                 # Show full report of students performance between provided dates
                 Student.show_full_report_of_students_performance()
 
+            elif chose_option[0] == '12':
+                # Add a new team
+                Student.add_team()
+                Common.write_team_to_db('database.db', Student.teams_list)
+
             elif chose_option[0] == '0':
                 sys.exit()
 
