@@ -18,6 +18,7 @@ class MentorMenu:
         It doesnt return anything, just handle menu for mentor
         """
         while True:
+            os.system('clear')
             title = 'Mentor menu'
             list_options = ['Check the list of students',
                             'Add an assignment',
@@ -37,6 +38,7 @@ class MentorMenu:
             if chose_option[0] == '1':
                 # print list of students
                 MentorMenu.show_students_data()
+                Ui.get_inputs([''], "Click enter to go back")
 
             elif chose_option[0] == '2':
                 # add an assignment to assignment list
@@ -76,6 +78,7 @@ class MentorMenu:
                 # show students of specific group
                 stu_list = Student.student_list
                 Ui.print_student_teams(stu_list)
+                Ui.get_inputs([''], "Click enter to go back")
 
             elif chose_option[0] == '9':
                 # give a card to students
