@@ -1,5 +1,7 @@
 import getpass
 import sys
+import os
+import time
 from user import User
 from student import Student
 from employee import Employee
@@ -17,23 +19,28 @@ from employee_menu import EmployeeMenu
 
 class Menu:
     @staticmethod
-    def loading_data():
+    def loading_people():
         '''
-        Creates objects from csv and then a list of all users to loop through for login and password validation.
+        Creates objects from DB and then a list of all users to loop through for login and password validation.
         '''
         staff_tuple = User.create_objects_list_from_database('staff')
         Mentor.mentors_list = staff_tuple[0]
         Manager.manager_list = staff_tuple[1]
         Employee.employees_list = staff_tuple[2]
-        Submission.create_objects_list_from_database('submission')
         Student.student_list = Student.create_objects_list_from_database('student')
         User.all_users = [Employee.employees_list,
                           Mentor.mentors_list,
                           Student.student_list,
                           Manager.manager_list]
 
+    @staticmethod
+    def loading_data():
+        '''
+        Creates objects from DB and then a list of all users to loop through for login and password validation.
+        '''
         Assignments.assignments_list = Assignments.create_objects_list_from_database('assignements')
         Attendance.attendances_list = Attendance.create_objects_list_from_database('attendance')
+        Submission.create_objects_list_from_database('submission')
         Student.add_attendance_to_student(Attendance.attendances_list) # add attendance obj to a specific student
         Student.create_teams_list()
 
@@ -52,15 +59,20 @@ class Menu:
         if not user:
             Ui.print_message('Invalid login or password. Please try again. ')
         elif user:
-
+            os.system('clear')
             Ui.print_message('\nHello, ' + user.name + '!\n')
+            time.sleep(2)
             if user.status == 'manager':
+                Menu.loading_data()
                 ManagerMenu.handle_menu(user)
             elif user.status == 'employee':
+                Menu.loading_data()
                 EmployeeMenu.handle_menu(user)
             elif user.status == 'mentor':
+                Menu.loading_data()
                 MentorMenu.handle_menu(user)
             elif user.status == 'student':
+                Menu.loading_data()
                 StudentMenu.handle_menu(user)
         return None
 
@@ -88,7 +100,8 @@ class Menu:
 
     @staticmethod
     def main():
-        Menu.loading_data()
+        os.system('clear')
+        Menu.loading_people()
         while True:
             Menu.main_menu()
             try:
