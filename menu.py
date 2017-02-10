@@ -21,7 +21,7 @@ class Menu:
     @staticmethod
     def loading_people():
         '''
-        Creates objects from csv and then a list of all users to loop through for login and password validation.
+        Creates objects from DB and then a list of all users to loop through for login and password validation.
         '''
         staff_tuple = User.create_objects_list_from_database('staff')
         Mentor.mentors_list = staff_tuple[0]
@@ -35,6 +35,9 @@ class Menu:
 
     @staticmethod
     def loading_data():
+        '''
+        Creates objects from DB and then a list of all users to loop through for login and password validation.
+        '''
         Assignments.assignments_list = Assignments.create_objects_list_from_database('assignements')
         Attendance.attendances_list = Attendance.create_objects_list_from_database('attendance')
         Submission.create_objects_list_from_database('submission')
