@@ -35,9 +35,15 @@ class Submission:
                                                                                    sub.grade,
                                                                                    sub.github_link,
                                                                                    sub.student_id))
-                    sub_grade = Ui.get_inputs(['Grade: '], "Type the grade: ")
-                    sub.grade = sub_grade[0]
-                    Ui.print_message('Submission graded!')
+                    while True:
+                        sub_grade = Ui.get_inputs(['Grade: '], "Type the grade (0-100): ")
+                        if int(sub_grade[0]) < 0 or int(sub_grade[0]) > 100:
+                            Ui.print_message("Wrong grade value! It should be between 0 and 100")
+                        else:
+                            sub.grade = sub_grade[0]
+                            Ui.print_message('Submission graded!')
+                            Ui.get_inputs([''], 'click enter to go back')
+                            break
         if not found:
             Ui.print_message('Wrong submission name or ID')
 

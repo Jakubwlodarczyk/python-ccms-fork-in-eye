@@ -157,6 +157,7 @@ class Ui:
                     print(student.name, student.surname)
             print('\n')
 
+
     @staticmethod
     def print_full_report_of_students_performance(performance, title, heading):
 
