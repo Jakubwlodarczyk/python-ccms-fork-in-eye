@@ -177,16 +177,23 @@ class Student(User):
         while True:
             if chose_card[0] == '1':
                 person.card = "Green"
+                Ui.print_message("Card has been added!")
+                Ui.get_inputs([''], "Click enter to go back")
                 break
             elif chose_card[0] == '2':
                 person.card = "Yellow"
-                print(person.card)
+                Ui.print_message("Card has been added!")
+                Ui.get_inputs([''], "Click enter to go back")
                 break
             elif chose_card[0] == '3':
                 person.card = "Red"
+                Ui.print_message("Card has been added!")
+                Ui.get_inputs([''], "Click enter to go back")
                 break
             elif chose_card[0] == '4':
                 person.card = "None"
+                Ui.print_message("Card has been added!")
+                Ui.get_inputs([''], "Click enter to go back")
                 break
             else:
                 Ui.print_message('Wrong input!')
@@ -205,6 +212,7 @@ class Student(User):
         if chosen in teams:
             choosen_student.team = chosen
             Ui.print_message('Chosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
+            Ui.get_inputs([''], "Click enter to go back")
         else:
             Ui.print_message('No match!')
 
@@ -244,10 +252,8 @@ class Student(User):
                          WHERE submission.send_date BETWEEN (?) AND (?)\
                          ORDER BY student.surname ASC;", (st_end_date[0], st_end_date[1]))
             conn.commit()
-            print(db)
         for row in db:
             list_of_performance.append(row)
         title_of_table = 'FULL REPORT OF STUDENTS PERFORMANCE:'
         top_of_table = ('SUB. SEND DATE', 'SUB. NAME', 'STUDENT NAME', 'SURNAME', 'GRADE')
-        list_of_performance.insert(0, top_of_table)
-        Ui.print_full_report_of_students_performance(list_of_performance, title_of_table)
+        Ui.print_full_report_of_students_performance(list_of_performance, title_of_table, top_of_table)
