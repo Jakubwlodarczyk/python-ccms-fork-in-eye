@@ -30,7 +30,8 @@ class MentorMenu:
                         'Show students of specific group',
                         'Give a card to student',
                         'Add student to specific group',
-                        'Show full report of students performance between provided dates']
+                        'Show full report of students performance between provided dates',
+                        'Add a team']
         while True:
             os.system('clear')
             Ui.print_message(('\n...:::Logged in as {} {}:::...\n').format(user.name, user.surname))
