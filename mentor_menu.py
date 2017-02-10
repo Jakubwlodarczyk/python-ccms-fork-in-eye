@@ -33,7 +33,8 @@ class MentorMenu:
                         'Show students of specific group',
                         'Give a card to student',
                         'Add student to specific group',
-                        'Show full report of students performance between provided dates']
+                        'Show full report of students performance between provided dates',
+                        'Add a team']
         while True:
 
             
