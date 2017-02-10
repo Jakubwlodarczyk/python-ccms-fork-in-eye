@@ -55,9 +55,9 @@ class Menu:
 
             Ui.print_message('\nHello, ' + user.name + '!\n')
             if user.status == 'manager':
-                ManagerMenu.handle_menu()
+                ManagerMenu.handle_menu(user)
             elif user.status == 'employee':
-                EmployeeMenu.handle_menu()
+                EmployeeMenu.handle_menu(user)
             elif user.status == 'mentor':
                 MentorMenu.handle_menu(user)
             elif user.status == 'student':

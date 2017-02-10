@@ -1,11 +1,14 @@
 from student import Student
-from user import *
-from submission import *
-from attendance import *
+# from user import User
+from submission import Submission
+from assignments import Assignments
+from attendance import Attendance
 from employee import Employee
+from Common import Common
 import sys
 import os
 from manager_menu import ManagerMenu
+from ui import Ui
 
 
 class MentorMenu:
@@ -13,33 +16,41 @@ class MentorMenu:
     """
     Handles navigation menu after logging as mentor.
     """
-    
+
+    @staticmethod
+
     def handle_menu(user):
         """
         It doesnt return anything, just handle menu for mentor
         """
+        list_options = ['Check the list of students',
+                        'Add an assignment',
+                        'Grade an assignment submitted by students',
+                        'Check attendance of students',
+                        'Add a student to a class',
+                        'Remove a student from class',
+                        "Edit student's data",
+                        'Show students of specific group',
+                        'Give a card to student',
+                        'Add student to specific group',
+                        'Show full report of students performance between provided dates']
         while True:
-            title = 'Mentor menu'
-            list_options = ['Check the list of students',
-                            'Add an assignment',
-                            'Grade an assignment submitted by students',
-                            'Check attendance of students',
-                            'Add a student to a class',
-                            'Remove a student from class',
-                            "Edit student's data",
-                            'Show students of specific group',
-                            'Give a card to student',
-                            'Add student to specific group',
-                            'Show full report of students performance between provided dates']
-            
-            Ui.print_message(' '*30 + 'Logged in as {}\n\n'.format(user))
 
-            Ui.print_menu(title, list_options, 'Log out')
+            
+            
+            os.system('clear')
+        
+
+                       
+            Ui.print_message(('\n...:::Logged in as {}:::...\n').format(user))
+            Ui.print_menu("What you want to do?", list_options, 'Log out')
+
             chose_option = Ui.get_inputs(["Please enter a number: "], "")
 
             if chose_option[0] == '1':
                 # print list of students
                 MentorMenu.show_students_data()
+                Ui.get_inputs([''], "Click enter to go back")
 
             elif chose_option[0] == '2':
                 # add an assignment to assignment list
@@ -79,6 +90,7 @@ class MentorMenu:
                 # show students of specific group
                 stu_list = Student.student_list
                 Ui.print_student_teams(stu_list)
+                Ui.get_inputs([''], "Click enter to go back")
 
             elif chose_option[0] == '9':
                 # give a card to students
@@ -106,6 +118,9 @@ class MentorMenu:
 
     @staticmethod
     def show_students_data():
+        '''
+        Prepares data to display in a formatted table.
+        '''
         title_list = ['ID', 'Name', 'Surname', 'Email', 'Status', 'Team', 'Card']
         title = 'Student list:'
         table = Ui.create_student_table_to_print(Student.student_list)

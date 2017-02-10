@@ -158,18 +158,10 @@ class Ui:
             print('\n')
 
     @staticmethod
-    def print_student_average_grades(student_grades):
-        '''
-        Displays each students grades.
-        '''
-        os.system('clear')
-        print("STUDENTS' GRADE AVERAGE:\n")
-        for key, value in student_grades.items():
-            print(key, value[0], value[1], value[2])
+    def print_full_report_of_students_performance(performance, title, heading):
 
-    @staticmethod
-    def print_full_report_of_students_performance(performance, title):
         """
+        :param heading: heading of table
         :param title: title of table to print
         :param performance: list of students performance data
         :return: prints table with data
@@ -181,11 +173,8 @@ class Ui:
             os.system('clear')
         else:
             os.system('clear')
-            print(title, '\n')
-            for row in performance:
-                print("{:>15} {:>15} {:>15} {:>15} {:>15}".format(row[0], row[1], row[2], row[3], row[4]))
-            print('\n')
-            Ui.get_inputs([''],'Enter to go back')
+            Ui.print_table(performance, title, heading)
+            Ui.get_inputs([''], 'Enter to go back')
             os.system('clear')
 
     @staticmethod
@@ -222,4 +211,15 @@ class Ui:
         for submission in object_list:
             sub = [submission.name, submission.grade]
             table.append(sub)
+        return table
+
+    @staticmethod
+    def create_average_grades_table_to_print(student_grades):
+        '''
+        Creates table to put into printing function for submission
+        '''
+        table = []
+        for key, value in student_grades.items():
+            table.append([key, value[0], value[1], value[2]])
+
         return table
