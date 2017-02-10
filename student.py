@@ -198,6 +198,10 @@ class Student(User):
 
     @classmethod
     def add_student_to_team(cls):
+        """
+        change a student team
+        :param person: chosen student to change a team
+        """
         student_list = Student.student_list
         for student in student_list:
             Ui.print_message("""ID: {} \t {} {} ║ Actual team: {}\n""".format(student.id, student.name, student.surname, student.team))
