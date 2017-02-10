@@ -1,6 +1,6 @@
 from ui import Ui
 import sys
-from student import *
+from student import Student
 from manager_menu import ManagerMenu
 import os
 
@@ -10,12 +10,13 @@ class EmployeeMenu:
     Handles navigating the menu after logging in as regular Employee.
     '''
     @staticmethod
-    def handle_menu():
+    def handle_menu(user):
         '''
         Allows to choose an action to perform.
         '''
         options = ["View students list", "Get toilet paper"]
         while True:
+            Ui.print_message(('\n...:::Logged in as {} {}:::...\n').format(user.name, user.surname))
             Ui.print_menu("\nWhat you want to do?", options, "Log out")
             inputs = Ui.get_inputs(["Please enter a number: "], "")
             option = inputs[0]

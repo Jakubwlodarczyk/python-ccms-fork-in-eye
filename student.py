@@ -13,19 +13,16 @@ class Student(User):
 
     student_list = []
     teams_list = []
-    # submission_list = Submission.submission_list
 
     def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
             User.__init__(self, name, surname, email, password, status, id)
             self.status = 'student'
             self.attendance_list = []
-            # self.submission_list = Submission.submission_list
             self.team = team
             self.card = card
 
     def __str__(self):
         return "{} {} ".format(self.name, self.surname)
-
 
     @classmethod
     def create_teams_list(cls):  # from database
@@ -52,6 +49,7 @@ class Student(User):
         Student.teams_list.append(name[0])
         wait = Ui.get_inputs(" ", '\nTeam has been added succesfully.\n')
         os.system("clear")
+
 
     @classmethod
     def create_objects_list_from_database(cls, table_name):  # from database
