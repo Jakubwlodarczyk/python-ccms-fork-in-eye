@@ -1,24 +1,18 @@
-import csv
 import getpass
 import sys
-from user import *
-from Common import *
-from student import *
-from employee import *
-from mentor import *
-from manager import *
-from submission import *
-#from assignments import *
-#from attendance import *
-from assignments import *
-from attendance import *
-from ui import *
-from manager_menu import *
-from mentor_menu import *
-from student_menu import *
-# from employee_menu import *
-from employee_menu import *
-
+from user import User
+from student import Student
+from employee import Employee
+from mentor import Mentor
+from manager import Manager
+from submission import Submission
+from assignments import Assignments
+from attendance import Attendance
+from ui import Ui
+from manager_menu import ManagerMenu
+from mentor_menu import MentorMenu
+from student_menu import StudentMenu
+from employee_menu import EmployeeMenu
 
 
 class Menu:
@@ -41,7 +35,7 @@ class Menu:
         Assignments.assignments_list = Assignments.create_objects_list_from_database('assignements')
         Attendance.attendances_list = Attendance.create_objects_list_from_database('attendance')
         Student.add_attendance_to_student(Attendance.attendances_list) # add attendance obj to a specific student
-
+        Student.create_teams_list()
 
     @classmethod
     def log_in(cls):
@@ -58,7 +52,7 @@ class Menu:
         if not user:
             Ui.print_message('Invalid login or password. Please try again. ')
         elif user:
-            
+
             Ui.print_message('\nHello, ' + user.name + '!\n')
             if user.status == 'manager':
                 ManagerMenu.handle_menu()
@@ -100,7 +94,7 @@ class Menu:
             try:
                 Menu.choose_option()
             except KeyError:
-                ui.print_message('Unknown error at main!')
+                Ui.print_message('Unknown error at main!')
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-from ui import *
+from ui import Ui
 import sqlite3
 
 
@@ -11,13 +11,11 @@ class Submission:
     submission_list = []
 
     def __init__(self, send_date, grade, name, github_link, student_id):
-
-       self.send_date = send_date
-       self.grade = grade
-       self.student_id = student_id
-       self.name = name
-       self.github_link = github_link
-
+        self.send_date = send_date
+        self.grade = grade
+        self.student_id = student_id
+        self.name = name
+        self.github_link = github_link
 
     @classmethod
     def grade_an_submission(cls):
@@ -27,7 +25,6 @@ class Submission:
         Ui.print_submissions_list(Submission.submission_list, "Submission list:")
         sub_to_grade = Ui.get_inputs(['Submission name: ', 'ID: '],
                                      'Type submission name, and student ID which you want to grade: \n')
-
         found = False
         for sub in Submission.submission_list:
             if sub.name == sub_to_grade[0] and sub.student_id == sub_to_grade[1]:
@@ -45,34 +42,27 @@ class Submission:
             Ui.print_message('Wrong submission name or ID')
 
     @classmethod
-    def create_objects_list_from_database(cls, table_name):# from database
+    def create_objects_list_from_database(cls, table_name):
         """
         Creates abjects based on data from database.
-        :param file_path:
-        :return:
+        :param table_name : name of table
         """
-
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-
         name_q = "SELECT send_date, grade, name, github_link, student_id FROM submission;"
         name_db = c.execute(name_q)
         conn.commit()
 
-        # submission_list = []
         for row in name_db:
             send_date = row[0]
             grade = row[1]
             name = row[2]
             github_link = row[3]
             student_id = row[4]
-
             full_name = cls(send_date, grade, name, github_link, student_id)
             Submission.submission_list.append(full_name)
 
         conn.close()
-
-        # return Submission.submission_list
 
     @classmethod
     def get_students_average_grades(cls, submission_list):
@@ -85,10 +75,8 @@ class Submission:
                 student_grades[submission.student_id] = [int(submission.grade)]
             else:
                 student_grades[submission.student_id] += [int(submission.grade)]
-
         for key, val in student_grades.items():
-            student_grades[key] = round((sum(val)/len(str(val))), 2)
-
+            student_grades[key] = round((sum(val)/len(val)), 2)
         return student_grades
 
     @classmethod
@@ -96,7 +84,6 @@ class Submission:
         '''
         Returns name of student based on given id.
         '''
-
         average_grades = {}
         for key in student_grades:
             for student in student_list:

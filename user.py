@@ -1,12 +1,9 @@
-from ui import *
-from Common import *
-from assignments import *
-from submission import *
+from ui import Ui
+from Common import Common
+from assignments import Assignments
+from submission import Submission
 import time
 import sqlite3
-# from mentor import Mentor
-# from manager import Manager
-# from employee import Employee
 
 
 class User:
@@ -28,9 +25,6 @@ class User:
         self.status = status  # status is overwritten by each child class
         self.id = id  # id is randomly generated when adding a new person
 
-
-
-
     @classmethod
     def create_objects_list_from_database(cls, table_name):    #  from database
         """
@@ -38,15 +32,11 @@ class User:
         :param file_path:
         :return:
         """
-
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-
-
         name_q = "SELECT name, surname, email, password, status, staff_id  FROM staff;"
         name_db = c.execute(name_q)
         conn.commit()
-
         mentors_list = []
         manager_list = []
         employee_list = []
@@ -58,7 +48,6 @@ class User:
             password = row[3]
             status = row[4]
             staff_id = row[5]
-
             full_name = cls(name, surname, email, password, status, staff_id)
             if status == "mentor":
                 mentors_list.append(full_name)
@@ -66,11 +55,9 @@ class User:
                 manager_list.append(full_name)
             if status == "employee":
                 employee_list.append(full_name)
-
         conn.close()
 
         return mentors_list, manager_list, employee_list
-
 
     @classmethod
     def user_password_check(cls, email, password):
@@ -81,12 +68,7 @@ class User:
         Checks if given user exists.
         Checks if password for given user is correct.
         '''
-        # people as list of objects
-        # all_users is list containing all the objects
-        # for obj in cls.all_users:
-        #     print(obj.email, obj.passwor)
         for people in cls.all_users:
-            # person as single object
             for person in people:
                 if person.email == email and person.password == password:
                     return person
@@ -98,7 +80,7 @@ class User:
         '''
         choosing = True
         while choosing:
-            option = Ui.get_inputs(["Enter person ID or 'q' to go back: "], "Whose data you want to change?")
+            option = Ui.get_inputs(["Enter person ID or 'q' to go back: "], "Choose person: ")
             for person in object_list:
                 if option[0] == person.id:
                     return person
@@ -158,7 +140,7 @@ class User:
         Allows to change person object's attribute.
         '''
         new_email = Ui.get_inputs(['Enter new email: '], " ")
-        if not nem_email[0]:
+        if not new_email[0]:
             Ui.print_message('email cannot be empty.')
         else:
             person.email = new_email[0]
@@ -173,7 +155,6 @@ class User:
         while choosing:
             new_password = Ui.get_inputs(['Enter new password: '], " ")
             confirm_password = Ui.get_inputs(['Enter password again: '], " ")
-
             if new_password[0] == confirm_password[0]:
                 person.email = new_password[0]
                 Ui.print_message("\nPassword has been changed.\n")
@@ -190,7 +171,7 @@ class User:
 
         data = Ui.get_inputs(['Name: ', 'Surname: ',
                              'email: ', 'Password: ', 'Status: '],
-                             "Please provide informations:")
+                             "Please provide information:")
         id = Common.generate_random_id(object_list)
         if data[0] == '' or data[1] == '' or data[2] =='' or data[3] == '':
             Ui.print_message("\nValue can't be empty")
@@ -208,7 +189,7 @@ class User:
         Allows to remove person object from list of given objects.
         Returns updated list of objects.
         '''
-        to_remove = Ui.get_inputs(['-> '], "Enter ID of person you want to fire:")
+        to_remove = Ui.get_inputs(['-> '], "Enter ID of person you want to remove:")
         for person in object_list:
             if person.id == to_remove[0]:
                 object_list.remove(person)

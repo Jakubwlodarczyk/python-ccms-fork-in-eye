@@ -1,15 +1,17 @@
-from ui import *
-from Common import *
+from ui import Ui
+from Common import Common
 import sys
-from student import *
-from submission import *
-from attendance import *
+from student import Student
+from submission import Submission
+from attendance import Attendance
 import os
-import time
 
 
 class StudentMenu:
-    
+    """
+    handle navigation menu after logging in as student
+    """
+
     def handle_menu(user):
         '''
         Allows to choose an action to perform.
@@ -25,8 +27,11 @@ class StudentMenu:
             option = inputs[0]
             if option == '1':
                 os.system('clear')
-                user.view_grades()
-                # Student.view_grades()
+                submissions = user.view_grades()
+                table = Ui.create_submission_table_to_print(submissions)
+                title = ('\nYour submissions:\n')
+                title_list = ['Submission name', 'Grade']
+                Ui.print_table(table, title, title_list)
             elif option == '2':
                 os.system('clear')
                 user.submit_assignment()

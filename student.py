@@ -1,8 +1,8 @@
-from user import *
-from assignments import *
-from ui import *
-from Common import *
-from submission import *
+from user import User
+from assignments import Assignments
+from ui import Ui
+from Common import Common
+from submission import Submission
 import sys
 import os
 import datetime
@@ -12,8 +12,7 @@ import sqlite3
 class Student(User):
 
     student_list = []
-
-
+    teams_list = []
     # submission_list = Submission.submission_list
 
     def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
@@ -27,6 +26,33 @@ class Student(User):
     def __str__(self):
         return "{} {} ".format(self.name, self.surname)
 
+
+    @classmethod
+    def create_teams_list(cls):  # from database
+        """
+        Reads teams based on data from database.
+        :param table_name
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+        name_q = "SELECT name FROM teams_list;"
+        name_db = c.execute(name_q)
+        conn.commit()
+
+        for row in name_db:
+            name = row[0]
+            Student.teams_list.append(name)
+        conn.close()
+
+    @staticmethod
+    def add_team():
+        os.system("clear")
+        name = Ui.get_inputs(" ", 'Type a name of a new team: \n')
+        Student.teams_list.append(name[0])
+        wait = Ui.get_inputs(" ", '\nTeam has been added succesfully.\n')
+        os.system("clear")
+
     @classmethod
     def create_objects_list_from_database(cls, table_name):  # from database
         """
@@ -34,16 +60,12 @@ class Student(User):
         :param file_path:
         :return:
         """
-
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-
         name_q = "SELECT name, surname, email, password, status, card, team, student_id FROM student;"
         name_db = c.execute(name_q)
         conn.commit()
-
         student_list = []
-
         for row in name_db:
             name = row[0]
             surname = row[1]
@@ -53,12 +75,9 @@ class Student(User):
             card = row[5]
             team = row[6]
             student_id = row[7]
-
             full_name = cls(name, surname, email, password, status, student_id, team, card)
             student_list.append(full_name)
-
         conn.close()
-
         return student_list
 
     @staticmethod
@@ -71,34 +90,29 @@ class Student(User):
     def view_grades(self):
         '''
         Allows to view grades for all student's assignments.
-
         '''
         my_submiss = []
         for sub in Submission.submission_list:
             if sub.student_id == self.id:
                 my_submiss.append(sub)
-        Ui.print_submissions(my_submiss)
+        return my_submiss
 
     def submit_assignment(self):
-
-        students = Student.student_list  
-
+        """
+        allow student to submit an assignment as a team or alone
+        """
+        students = Student.student_list
         Ui.print_message('Choose the number from the following assignments: \n')
         for n, assignment in enumerate(Assignments.assignments_list):
             Ui.print_message(str(n+1) + '. ' + str(assignment))
         choose = input('Type the chosen number here: ')
         assign = Assignments.assignments_list
-
         assignment_list = []
         choose_val = input('Type the submission link: ')
         if choose_val == '':
             Ui.print_message('Submission link is empty')
-
-        
-
-        for i in assign:  
+        for i in assign:
             assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, self.id])
-
         if not choose.isnumeric():
             os.system('clear')
             Ui.print_message('\nChosen value must be a number')
@@ -110,31 +124,25 @@ class Student(User):
                     os.system('clear')
                     Ui.print_message('Assignment is already submitted\n')
                     return
-
             Ui.print_message('''
             Choose the following option:\n
             (1) Submit assignment as a team
-            (2) Submit assignment by myself             
+            (2) Submit assignment by myself
                         ''')
             submit_option = input('Type the number: ')
             if submit_option == '1':
-                         
-
                 for student in students:
-                    if student.team == self.team:                    
+                    if student.team == self.team:
                         assignment_list = []
                         assignment_list.append([datetime.date.today(), '0', i.assignment_name, choose_val, student.id])
                         print(assignment_list)
                         submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], student.id)
                         Submission.submission_list.append(submission_obj)
-
             elif submit_option == '2':
                 submission_obj = Submission(chosen_one[0], chosen_one[1], chosen_one[2], chosen_one[3], chosen_one[4])
                 Submission.submission_list.append(submission_obj)
             else:
                 Ui.print_message('Invalid value')
-                
-
             os.system('clear')
             Ui.print_message('Your assignment was succesfully submitted\n')
             return Submission.submission_list
@@ -143,15 +151,21 @@ class Student(User):
             Ui.print_message('Invalid number')
 
     def check_attendence(self, data):
+        """
+        change attendance of students
+        """
         table = []
         for row in data:
             if row.id == self.id:
                 table.append([row.data, row.status])
         return table
 
-
     @classmethod
     def change_student_card(cls, person):
+        """
+        change a student card
+        :param person: chosen student to change a card
+        """
         os.system('clear')
         Ui.print_message("Chosen student: {} {}".format(person, person.card))
         Ui.print_message("What card you want to give:\n"
@@ -177,54 +191,50 @@ class Student(User):
             else:
                 Ui.print_message('Wrong input!')
 
+    @classmethod
+    def add_student_to_team(cls):
+        student_list = Student.student_list
+        for student in student_list:
+            Ui.print_message("""ID: {} \t {} {} {}\n""".format(student.id, student.name, student.surname, student.team))
+        choosen_student = User.choose_person_to_change_data(student_list)
+        Ui.print_message('\nChosen student: {}'.format(choosen_student))
+        teams = Student.teams_list
+        for index, team in enumerate(teams):
+            Ui.print_message('Team {} {}'.format(index+1, team))
+        chosen = input('Write a chosen team NAME: ')
+        if chosen in teams:
+            choosen_student.team = chosen
+            Ui.print_message('Chosen student: {} join to {}! Yeah.'.format(choosen_student, choosen_student.team))
+        else:
+            Ui.print_message('No match!')
 
-    @staticmethod
-    def add_student_team():        
-        Ui.print_message('''Assign each student to the following teams(type the number):
+    @classmethod
+    def get_full_statistics_about_students(cls, student_list, average_grades):
+        '''
+        Returns table with all information about student.
+        '''
+        stats = []
 
-        (1) Fork in ear
-        (2) Stepan
-        (3) Rainbow unicorns
-        (4) Jakkiedy
-                    ''')
-
-        is_valid = False
-        while not is_valid:
-            table = Ui.get_inputs(Student.student_list, '')
-            is_need_break = False
-            for value in table:
-                if value not in ['1', '2', '3', '4']:
-                    Ui.print_message('There is no such option, try again.')
-                    is_need_break = True
-                    break
-            if is_need_break:
-                continue
-            is_valid = True
-            i = 0
-            while i <= len(table)-1:
-                if table[i] == '1':
-                    table[table.index('1')] = 'Fork in ear'
-                elif table[i] == '2':
-                    table[table.index('2')] = 'Stepan'
-                elif table[i] == '3':
-                    table[table.index('3')] = 'Rainbow unicorns'
-                elif table[i] == '4':
-                    table[table.index('4')] = 'Jakkiedy'
-                Student.student_list[i].team = table[i]   
-                i += 1
-
+        for student in student_list:
+            record = [student.id, student.name,
+                      student.surname, student.email,
+                      student.team, 'no record', student.card]
+            stats.append(record)
+            for key in average_grades:
+                if key == student.id:
+                    record[-2] = (str(average_grades[key][2]))
+        return stats
 
     @staticmethod
     def show_full_report_of_students_performance():
         """
-        method asks for input to get special date,
+        method asks for input to get specific date,
         and creates a list of students performance in specific period of time
         """
         os.system('clear')
         st_end_date = Ui.get_inputs(['Start date (yyyy-mm-dd): ', 'End date (yyyy-mm-dd): '], "Type the values")
         list_of_performance = []
         conn = sqlite3.connect("database.db")
-
         with conn:
             c = conn.cursor()
             db = c.execute("SELECT submission.send_date, submission.name, student.name, student.surname, submission.grade\
@@ -234,16 +244,10 @@ class Student(User):
                          WHERE submission.send_date BETWEEN (?) AND (?)\
                          ORDER BY student.surname ASC;", (st_end_date[0], st_end_date[1]))
             conn.commit()
-            for row in db:
-                list_of_performance.append(row)
+            print(db)
+        for row in db:
+            list_of_performance.append(row)
         title_of_table = 'FULL REPORT OF STUDENTS PERFORMANCE:'
         top_of_table = ('SUB. SEND DATE', 'SUB. NAME', 'STUDENT NAME', 'SURNAME', 'GRADE')
         list_of_performance.insert(0, top_of_table)
         Ui.print_full_report_of_students_performance(list_of_performance, title_of_table)
-
-    @classmethod
-    def get_full_statistics_about_students(cls):
-
-        pass
-
-

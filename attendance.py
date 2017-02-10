@@ -31,8 +31,6 @@ class Attendance:
                 remember = student
         return "{} {} {}".format(remember, self.data, remember_status)
 
-
-
     @classmethod
     def create_objects_list_from_database(cls, table_name):    #  from database
         """
@@ -40,7 +38,6 @@ class Attendance:
         :param file_path:
         :return:
         """
-
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
 
@@ -57,10 +54,8 @@ class Attendance:
             full_name = cls(date, status, student_id)
             attendances_list.append(full_name)
 
-        #print(Attendance.attendances_list)
         conn.close()
         return attendances_list
-
 
     @staticmethod
     def date_control():
@@ -178,7 +173,6 @@ class Attendance:
             else:
                  continue
 
-
     @staticmethod
     def choose_student():
         """
@@ -225,8 +219,8 @@ class Attendance:
                     if counter == 0:
                         Ui.get_inputs([""], "Nothing changed. Attendance hadn't been found with such date.")
                     else:
-                        Ui.get_inputs([""], "\nStudent's status has been successfully changed.\nCurrent student's \
-status in {}: {}".format(day_str, status))
+                        Ui.get_inputs([""], "\nStudent's status has been successfully changed.\n"
+                                            "Current student's status in {}: {}".format(day_str, status))
 
     @staticmethod
     def view_students_attendance():
@@ -278,9 +272,3 @@ status in {}: {}".format(day_str, status))
                 if int(option_list[0]) == 0:
                     os.system("clear")
                     break
-
-
-# Student.student_list.append(Student("Krzysiek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","id7sdg54($)"))
-# Student.student_list.append(Student("Krzysiffffek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","iderg754($)"))
-# Student.student_list.append(Student("Krsdfszysiek","Dzioba","krzysztof.dzioba.93@gmail.com","maslo","student","iderwg54($)"))
-# Attendance.attendance_mini_menu()

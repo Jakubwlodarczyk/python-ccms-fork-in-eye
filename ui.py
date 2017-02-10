@@ -7,73 +7,22 @@ class Ui:
     '''
 
     @staticmethod
-    def print_table(object_list, title):
+    def print_table(table, title, title_list):
         '''
         Displays table with data.
         Args:
-            object_list: list of objects to unpack into table.
-            title: string containing main table header.
+            table: list of items to print
+            title: string containing main table header
+            title_list: header
         '''
         os.system("clear")
         print(title)
-        title_list = ['ID', 'Name', 'Surname', 'Email', 'Status']
-        table = []
-        for obj in object_list:
-            obj_atrr = [obj.id, obj.name, obj.surname, obj.email, obj.status]
-            table.append(obj_atrr)
-
         len_for_col = []
         for title_iterator in range(len(title_list)):
             len_col = len(title_list[title_iterator])
             for row in table:
-                if len(row[title_iterator]) > len_col:
-                    len_col = len(row[title_iterator])
-
-            len_for_col.append(len_col)
-
-        how_wide = 0
-        for name in title_list:
-            x = (len_for_col[title_list.index(name)])
-            how_wide += (len(("|{: <" + str(x + 2) + "}").format(name)))
-        print('-' * how_wide)
-
-        for name in title_list:
-            print("|", end="")
-            x = (len_for_col[title_list.index(name)])
-            print(("{: <" + str(x + 2) + "}").format(name), end="")
-        print("|")
-        print('-' * how_wide)
-
-        for row in table:
-            print("|", end="")
-            for element in row:
-                x = (len_for_col[row.index(element)])
-                print(("{: <" + str(x + 2) + "}|").format(element), end="")
-            print()
-        print('-' * how_wide)
-
-    @staticmethod
-    def print_student_table(object_list, title):
-        '''
-        Displays table with data.
-        Args:
-            object_list: list of objects to unpack into table.
-            title: string containing main table header.
-        '''
-        os.system("clear")
-        print(title)
-        title_list = ['ID', 'Name', 'Surname', 'Email', 'Status', 'Team', 'Card']
-        table = []
-        for obj in object_list:
-            obj_atrr = [obj.id, obj.name, obj.surname, obj.email, obj.status, obj.team, obj.card]
-            table.append(obj_atrr)
-
-        len_for_col = []
-        for title_iterator in range(len(title_list)):
-            len_col = len(title_list[title_iterator])
-            for row in table:
-                if len(row[title_iterator]) > len_col:
-                    len_col = len(row[title_iterator])
+                if len(str(row[title_iterator])) > len_col:
+                    len_col = len(str(row[title_iterator]))
 
             len_for_col.append(len_col)
 
@@ -129,7 +78,7 @@ class Ui:
         print(title)
         input_table = []
         for label in list_labels:
-            input_table.append(input(label ))
+            input_table.append(input(label))
         return input_table
 
     @staticmethod
@@ -139,7 +88,6 @@ class Ui:
         Args:
             message(str): error message to be displayed.
         """
-
         print(message)
 
     @staticmethod
@@ -151,15 +99,11 @@ class Ui:
         """
         os.system("clear")
         print(title+'\n')
-        idx = 1
+        print("{:>15} {:>15} {:>15} {:>15} {:>15}"
+              .format('SEND DATE:', 'NAME:', 'GRADE:', 'GITHUB LINK:', 'STUDENT ID:'))
         for sub in submission_list:
-            print(idx,
-                  sub.send_date,
-                  sub.name,
-                  sub.grade,
-                  sub.github_link,
-                  sub.student_id)
-            idx += 1
+            print("{:>15} {:>15} {:>15} {:>15} {:>15}"
+                  .format(sub.send_date, sub.name, sub.grade, sub.github_link, sub.student_id))
         print('\n')
 
     @staticmethod
@@ -191,7 +135,6 @@ class Ui:
                   assign.start_date,
                   assign.end_date,
                   assign.assignment_name)
-
             idx += 1
 
     @classmethod
@@ -214,57 +157,15 @@ class Ui:
                     print(student.name, student.surname)
             print('\n')
 
-    @classmethod
-    def print_submissions(cls, submission_list):
-        '''
-        Displays assignments with grades for student.
-        '''
-        title = 'YOUR SUBMISSIONS'
-        title_list = ['Assignment name:', 'Grade:']
-        table = []
-        for sub in submission_list:
-            sub = [sub.name, sub.grade]
-            table.append(sub)
-
-        len_for_col = []
-        for title_iterator in range(len(title_list)):
-            len_col = len(title_list[title_iterator])
-            for row in table:
-                if len(str(row[title_iterator])) > len_col:
-                    len_col = len(row[title_iterator])
-
-            len_for_col.append(len_col)
-
-        how_wide = 0
-        for name in title_list:
-            x = (len_for_col[title_list.index(name)])
-            how_wide += (len(("|{: <" + str(x + 2) + "}").format(name)))
-        print('-' * how_wide)
-
-        for name in title_list:
-            print("|", end="")
-            x = (len_for_col[title_list.index(name)])
-            print(("{: <" + str(x + 2) + "}").format(name), end="")
-        print("|")
-        print('-' * how_wide)
-
-        for row in table:
-            print("|", end="")
-            for element in row:
-                x = (len_for_col[row.index(element)])
-                print(("{: <" + str(x + 2) + "}|").format(element), end="")
-            print()
-        print('-' * how_wide)
-
+    @staticmethod
     def print_student_average_grades(student_grades):
         '''
         Displays each students grades.
         '''
-
         os.system('clear')
         print("STUDENTS' GRADE AVERAGE:\n")
         for key, value in student_grades.items():
-            print( key, value[0], value[1], value[2])
+            print(key, value[0], value[1], value[2])
 
     @staticmethod
     def print_full_report_of_students_performance(performance, title):
@@ -273,13 +174,52 @@ class Ui:
         :param performance: list of students performance data
         :return: prints table with data
         """
-        os.system('clear')
-        print(title, '\n')
-        for row in performance:
-            print("{:>15} {:>15} {:>15} {:>15} {:>15}".format(row[0], row[1], row[2], row[3], row[4]))
-        print('\n')
-        Ui.get_inputs([''],'Enter to go back')
+        if len(performance) < 2:
+            os.system('clear')
+            print("There is no submissions in given date time :( \n\n\n")
+            Ui.get_inputs([''], 'Enter to go back')
+            os.system('clear')
+        else:
+            os.system('clear')
+            print(title, '\n')
+            for row in performance:
+                print("{:>15} {:>15} {:>15} {:>15} {:>15}".format(row[0], row[1], row[2], row[3], row[4]))
+            print('\n')
+            Ui.get_inputs([''],'Enter to go back')
+            os.system('clear')
 
+    @staticmethod
+    def create_person_table_to_print(object_list):
+        '''
+        Creates table to put into printing function for person.
+        '''
 
+        table =[]
+        for person in object_list:
+            person_attributes = list(map(str, [person.id, person.name, person.surname, person.email, person.status]))
+            table.append(person_attributes)
 
+        return table
 
+    @staticmethod
+    def create_student_table_to_print(object_list):
+        '''
+        Creates table to put into printing function for student
+        '''
+
+        table = []
+        for student in object_list:
+            student_attributes = [student.id, student.name, student.surname, student.email, student.status, student.team, student.card]
+            table.append(student_attributes)
+        return table
+
+    @staticmethod
+    def create_submission_table_to_print(object_list):
+        '''
+        Creates table to put into printing function for submission
+        '''
+        table = []
+        for submission in object_list:
+            sub = [submission.name, submission.grade]
+            table.append(sub)
+        return table

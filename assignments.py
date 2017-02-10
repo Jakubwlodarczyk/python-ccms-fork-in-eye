@@ -18,7 +18,6 @@ class Assignments:
     def __str__(self):
         return '{} {} {}'.format(self.start_date, self.end_date, self.assignment_name)
 
-
     @classmethod
     def create_objects_list_from_database(cls, table_name):    #  from database
         """
@@ -26,11 +25,8 @@ class Assignments:
         :param file_path:
         :return:
         """
-
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-
-
         name_q = "SELECT start_date, end_date, name  FROM assignements;"
         name_db = c.execute(name_q)
         conn.commit()
@@ -44,12 +40,8 @@ class Assignments:
 
             full_name = cls(start_date, end_date, name)
             assignments_list.append(full_name)
-
-
         conn.close()
-
         return assignments_list
-
 
     @staticmethod
     def view_assignment_list():
