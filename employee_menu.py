@@ -16,7 +16,7 @@ class EmployeeMenu:
         '''
         options = ["View students list", "Get toilet paper"]
         while True:
-            Ui.print_message(('\n...:::Logged in as {} {}:::...\n').format(user.name, user.surname))
+            Ui.print_message(('\n...:::Logged in as {}:::...\n').format(user))
             Ui.print_menu("\nWhat you want to do?", options, "Log out")
             inputs = Ui.get_inputs(["Please enter a number: "], "")
             option = inputs[0]

@@ -1,5 +1,5 @@
 from student import Student
-from user import User
+# from user import User
 from submission import Submission
 from assignments import Assignments
 from attendance import Attendance
@@ -12,10 +12,13 @@ from ui import Ui
 
 
 class MentorMenu:
+    
     """
     Handles navigation menu after logging as mentor.
     """
+
     @staticmethod
+
     def handle_menu(user):
         """
         It doesnt return anything, just handle menu for mentor
@@ -32,9 +35,16 @@ class MentorMenu:
                         'Add student to specific group',
                         'Show full report of students performance between provided dates']
         while True:
+
+            
+            
             os.system('clear')
-            Ui.print_message(('\n...:::Logged in as {} {}:::...\n').format(user.name, user.surname))
+        
+
+                       
+            Ui.print_message(('\n...:::Logged in as {}:::...\n').format(user))
             Ui.print_menu("What you want to do?", list_options, 'Log out')
+
             chose_option = Ui.get_inputs(["Please enter a number: "], "")
 
             if chose_option[0] == '1':

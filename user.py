@@ -26,6 +26,9 @@ class User:
         self.status = status  # status is overwritten by each child class
         self.id = id  # id is randomly generated when adding a new person
 
+    def __str__(self):
+        return "{} {} ".format(self.name, self.surname)
+
     @classmethod
     def create_objects_list_from_database(cls, table_name):    #  from database
         """
