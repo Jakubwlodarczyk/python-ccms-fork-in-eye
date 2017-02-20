@@ -92,6 +92,10 @@ class Attendance:
                 student_attendance = Ui.get_inputs(["Student status:\n   0 - upsent\n   1 - late\n   2 - present\n"], student)
                 if Common.error_integer_handling(student_attendance[0], 2):
                     student_status = student_attendance[0]
+                    if student_status == "1":
+                        student_status = "80"
+                    if student_status == "2":
+                        student_status = "100"
                     att = Attendance(day_str, student_status, student.id)
                     student.attendance_list.append(att)
                     Attendance.attendances_list.append(att)
@@ -203,7 +207,10 @@ class Attendance:
         os.system("clear")
         Ui.print_message("Please set up a date.")
         day_list = Attendance.set_date()
-        day_str = "-".join(day_list)
+        try:
+            day_str = "-".join(day_list)
+        except:
+            return
         option_list = Ui.get_inputs(["New status: "], "0 - upsent, 1 - late, 2 - present\n\n")
         if Common.error_integer_handling(option_list[0], 2):
             student_status = option_list[0]
