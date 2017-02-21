@@ -1,11 +1,10 @@
 body.loginBody {
 	text-align: center;
-	width:304px;
+	width: 60%;
 }
 
 .loginMenu {
 	border-radius: 15px;
-	width:  300px;
 	border: 1px solid black;
 	text-align: center;
 }
@@ -22,6 +21,7 @@ form.loginMenu .input {
 
 .input {
 	width: 250px;
+	background-color: papayawhip;
 }
 
 div.loginHead {
@@ -33,4 +33,8 @@ div.loginHead {
 	margin-top: 15px;
 	margin-bottom: 15px;
 	width: 250px;
+}
+
+div.errorMessage {
+	color: red;
 }
