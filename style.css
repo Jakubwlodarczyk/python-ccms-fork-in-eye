@@ -1,12 +1,124 @@
+/*MAIN STYLE SETTINGS*/
+
+html {
+    margin: 0;
+    padding: 0;
+    }
+
+body {
+    background-color:  #463C41;
+    font: 120% helvetica, sans-serif;
+	line-height: 1.5;
+	margin: 0;
+	padding: 0;
+    }
+
+p {
+    margin-top: 0;
+	text-align: justify;
+    }
+
+header {
+    display:  block;
+    width:  80%;
+    float: right;
+    background-color: #333;
+    }
+
+h1 {
+    font:  3em helvetica, sans-serif;
+    color: #8d7882;
+    text-align: center;
+    }
+
+h2 {
+    font: 2em helvetica;
+    letter-spacing: 10px;
+    color: #8d7882;
+    text-align: center;
+    }
+
+h3 {
+    font: 1em helvetica;
+    letter-spacing: 10px;
+    color: #8d7882;
+    text-align: center;
+    }
+
+/*MORE SPECIFIC STYLE SETTINGS*/
+
+/*MENU*/
+
+.solid_component {
+    background-color: #333;
+    width:  20%;
+    display: block;
+    float: left;
+    margin: auto;
+    }
+
+.solid_component .welcome_user img {
+    margin: auto;
+	border: none;
+    }
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    height: 100%; 
+    position: fixed;
+    overflow: auto; 
+    }
+
+    
+.active {
+    background-color: #8d7882;
+    color: white;
+    }
+
+.menu li {
+    text-align: center;
+    }  
+
+.menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    }
+
+.menu li a:hover {
+    background-color: #463c41;
+    }
+
+.menu a {
+    font: 3em helvetica, sans-serif;
+    letter-spacing: 10px;
+    text-decoration: none;
+    color: #333;
+    }
+
+/*LOG IN PAGE*/
+
 body.loginBody {
-	text-align: center;
-	width: 60%;
-}
+    text-align: center;
+    width:60%;
+    display: table; 
+    margin: auto;
+    }
 
 .loginMenu {
-	border-radius: 15px;
-	border: 1px solid black;
-	text-align: center;
+    border-radius: 15px;
+    border: 1px solid #333;
+    text-align: center;
+}
+
+.loginHead {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .loginHead {
@@ -15,8 +127,12 @@ body.loginBody {
 }
 
 form.loginMenu .input {
-	margin-top: 15px;
-	margin-bottom: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.input {
+    width: 60%;
 }
 
 .input {
@@ -25,16 +141,34 @@ form.loginMenu .input {
 }
 
 div.loginHead {
-	margin-top: 15px;
+    margin-top: 15px;
+}
+
+
+.loginBody input {
+	font: 1em helvetica;
+    color: #808080;
+    background-color: white;
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 
 .login.button {
-	border-radius: 10px;
-	margin-top: 15px;
-	margin-bottom: 15px;
-	width: 250px;
-}
+    background-color: #C33156;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 100px;
+    width: 250px;
+    }
 
-div.errorMessage {
-	color: red;
-}
