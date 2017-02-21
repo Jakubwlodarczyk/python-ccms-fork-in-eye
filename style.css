@@ -161,3 +161,13 @@ div.loginHead {
     width: 250px;
     }
 
+.content {
+    background-color: #8d7882;
+    display: table;
+    margin: auto;
+    width: 70%;
+    padding: 20px 40px;
+    border: 1px solid #8d7882;
+    border-radius: 12px;
+
+}
