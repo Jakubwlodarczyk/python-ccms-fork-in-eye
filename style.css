@@ -47,6 +47,8 @@ h3 {
 
 /*MORE SPECIFIC STYLE SETTINGS*/
 
+/*MENU*/
+
 .solid_component {
     background-color: #333;
     width:  20%;
@@ -99,15 +101,18 @@ h3 {
     color: #333;
     }
 
+/*LOG IN PAGE*/
+
 body.loginBody {
     text-align: center;
-    width:304px;
-}
+    width:60%;
+    display: table; 
+    margin: auto;
+    }
 
 .loginMenu {
     border-radius: 15px;
-    width:  300px;
-    border: 1px solid black;
+    border: 1px solid #333;
     text-align: center;
 }
 
@@ -122,16 +127,37 @@ form.loginMenu .input {
 }
 
 .input {
-    width: 250px;
+    width: 60%;
 }
 
 div.loginHead {
     margin-top: 15px;
 }
 
-.login.button {
-    border-radius: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    width: 250px;
+
+.loginBody input {
+	font: 1em helvetica;
+    color: #808080;
+    background-color: white;
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box
 }
+.login.button {
+    background-color: #C33156;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 100px;
+    width: 250px;
+    }
+
