@@ -1,9 +1,10 @@
 .content_show_people {
-    background-image: url(background_show_people.gif)
+    background-image: url(background_show_people.gif);
+    background-repeat: repeat;
 }
 
 
-table, th, td {
+.content_show_people table, th, td {
             
     border-radius: 5px;
     padding: 15px;
@@ -11,14 +12,17 @@ table, th, td {
 /*    font-family: "Arial", Georgia, Serif;*/
     font-family: "helvetica", Georgia, Serif;
     margin-left: 15%;
-    margin-bottom: 15%;
+    margin-bottom: 15px;
+
     
     
 }
-table {
+.content_show_people table {
 /*  border-collapse: collapse;*/
     border: 2px solid grey;
     background-color: azure;
+/*    padding-bottom: 10%;*/
+    margin-bottom: 15px;
     
 
 }
