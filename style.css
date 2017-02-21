@@ -276,8 +276,9 @@ border-radius: 5px;
 }
 
 .add-person-form-input:focus {
-background-color:coral;
+background-color: #9b9b9b;
 }
+
 
 .add-person-form-select {
 width: 500px;
@@ -309,6 +310,8 @@ margin-top: 10px;
 }
 
 .add-person-form-button {
+font-family: Helvetica, sans-serif;
+background-color: #eeeced;
 box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 1); 
 border-color: #eeeced #eeeced #9b9b9b;
 border-style: solid;
@@ -320,4 +323,9 @@ text-shadow:0px 1px 0px #fff;
 cursor:pointer;
 display: table;
 margin: auto;
+}
 
+
+.add-person-form-button:active {
+background-color:antiquewhite;
+}
