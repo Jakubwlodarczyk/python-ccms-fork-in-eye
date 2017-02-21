@@ -121,6 +121,11 @@ body.loginBody {
     margin-bottom: 15px;
 }
 
+.loginHead {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
 form.loginMenu .input {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -128,6 +133,11 @@ form.loginMenu .input {
 
 .input {
     width: 60%;
+}
+
+.input {
+	width: 250px;
+	background-color: papayawhip;
 }
 
 div.loginHead {
@@ -147,6 +157,7 @@ div.loginHead {
     border-radius: 8px;
     box-sizing: border-box;
 }
+
 .login.button {
     background-color: #C33156;
     border: none;
