@@ -117,11 +117,6 @@ body.loginBody {
 }
 
 .loginHead {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.loginHead {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
@@ -135,15 +130,9 @@ form.loginMenu .input {
     width: 60%;
 }
 
-.input {
-	width: 250px;
-	background-color: papayawhip;
-}
-
 div.loginHead {
     margin-top: 15px;
 }
-
 
 .loginBody input {
 	font: 1em helvetica;
