@@ -1,0 +1,59 @@
+.content_show_people {
+    background-image: url(background_show_people.gif)
+}
+
+
+table, th, td {
+            
+    border-radius: 5px;
+    padding: 15px;
+    border: 0px solid black;
+/*    font-family: "Arial", Georgia, Serif;*/
+    font-family: "helvetica", Georgia, Serif;
+    margin-left: 15%;
+    margin-bottom: 15%;
+    
+    
+}
+table {
+/*  border-collapse: collapse;*/
+    border: 2px solid grey;
+    background-color: azure;
+    
+
+}
+.header_table {
+    height: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+   
+        }
+        
+.header_table td {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    border: 1px solid chartreuse;
+
+            
+        
+        }
+        
+.content_show_people table tr {
+    background-color:lightgrey;
+    padding-left: 3px;
+    
+            
+        }
+
+.content_show_people h1 {
+/*    font-family: Arial;*/
+    color: #ff4411; font-size: 48px; font-family: 'Signika', sans-serif; padding-bottom: 10px;
+    padding-left: 10%;
+    padding-top: 20px;
+}
+
+.person_to_show {
+/*    you can add here something*/
+}
+
