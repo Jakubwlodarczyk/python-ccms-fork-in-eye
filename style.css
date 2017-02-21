@@ -1,0 +1,28 @@
+body.loginBody {
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	width:  300px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+form.loginMenu .input {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+div.loginHead {
+	margin-top: 15px;
+}
+
+.login.button {
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	width: 175px;
+}
