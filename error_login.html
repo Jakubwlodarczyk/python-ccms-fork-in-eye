@@ -9,15 +9,15 @@
 
 	<body class="loginBody">
 		<div class="loginHead">
-			Login to your account
+            <h2>Log in to your account</h2>
 		</div>
 		<div class="loginMenu">
+			<div class="errorLoginMessage">
+				E-mail address or password are invalid
+			</div>
 			<form class="loginMenu">
-				<div class="errorMessage">
-					Email address or password are invalid
-				</div>
-				<input class="email input" name="email" type="text" placeholder="E-mail address"><br/>
-				<input class="password input" name="password" type="password" placeholder="Password"><br/>
+				<input class="errorEmail email input" name="email" type="text" placeholder="E-mail address"><br/>
+				<input class="errorPassword password input" name="password" type="password" placeholder="Password"><br/>
 				<input class="login button" name="login" type="submit" value="Log in">
 			</form>
 		</div>

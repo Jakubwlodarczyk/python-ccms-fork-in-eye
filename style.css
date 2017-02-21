@@ -169,5 +169,8 @@ div.loginHead {
     padding: 20px 40px;
     border: 1px solid #8d7882;
     border-radius: 12px;
+}
 
+.errorLoginMessage {
+	color: red;
 }
