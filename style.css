@@ -1,15 +1,20 @@
 
 
 .attendance_class{
-    color: black;
-    font-size: 16px;
+    color: #FFE4C4;
+    font-size: 26px;
     font-style: calibri;
-    margin: 10px;
+    margin: 40px;
     padding: 20px;
+    float: left;
+    position: relative;
+    top: -80px;
+    
 }
 
 .attend_table{
     text-align: left;
+}
 
 html {
     margin: 50px;
@@ -145,7 +150,7 @@ tr.border_bottom td {
 #theSubmit{
     text-align: center;
     float: right;
-    margin: 15px;
+    margin: 65px;
 }
 
 div.loginHead {
@@ -288,7 +293,7 @@ background-color:antiquewhite;
             
     border-radius: 5px;
     padding: 15px;
-    color: yellow;
+    color: white;
     font-size: 14px;    
 }
 
@@ -327,6 +332,7 @@ background-color:antiquewhite;
   border-bottom-width: 2px;
   border-color: black;
   padding: 1px;
+}
 
 .header_table {
     height: 50px;
@@ -338,9 +344,8 @@ background-color:antiquewhite;
 .header_table td {
     background-color: #333;
     color: white;
-    font-weight: bold;
- 
-        }
+    font-weight: bold; 
+}
         
  table tr {
     background-color:lightgrey;
@@ -350,8 +355,31 @@ background-color:antiquewhite;
 .person_to_show {
     background-color:lightgrey;
     padding-left: 3px;
-/*    you can add here something*/
-
 }
 
+
+
+.border_bottom{
+    background-color:#333;
+}
+.navigation_codecool_class1 ul li{
+    display: inline;
+}
+.navigation_codecool_class1 ul{
+color: #FFE4C4;
+position: relative;
+top: 50px;
+}
+li:last-child{
+    float: right;
+    padding: 10px;
+    position: relative;
+    right: 160px;
+    top: -30px;
+    border-style: solid;
+    border-color: grey;
+    word-spacing: 30px;
+    margin: 20px;
+    padding: 10px;
+}
 
