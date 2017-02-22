@@ -243,6 +243,7 @@ cursor:pointer;
 border-radius: 5px;
 }
 
+
 label {
 font-family: Helvetica, sans-serif;
 color: #9b9b9b;
@@ -326,6 +327,31 @@ background-color:antiquewhite;
   border-bottom-width: 2px;
   border-color: black;
   padding: 1px;
+
+.header_table {
+    height: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+   
+        }
+        
+.header_table td {
+    background-color: #333;
+    color: white;
+    font-weight: bold;
+ 
+        }
+        
+ table tr {
+    background-color:lightgrey;
+    padding-left: 3px;
+        }
+
+.person_to_show {
+    background-color:lightgrey;
+    padding-left: 3px;
+/*    you can add here something*/
+
 }
 
 

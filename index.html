@@ -1,78 +1,23 @@
 <!DOCTYPE html>
 
 <html>
-<head> 
-      <title>Check attendence</title>
-      <link rel="stylesheet" href="style.css">
-      <h1 class="attendance_class">Attendance</h1>
-      <nav>    
-        <ul>
-            <li><p class=''Class</li>
-            <li>Date</li>                   
-        </ul>
-     </nav>   
+	<head>
+        <meta charset="utf-8">
+		<title>Codecool management system</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
 
-</head>
-<body>
-    
-    <div class='attend_table'>
-    <table>
-    <span class="attend_table_row1"> 
-    <tr class="border_bottom">
-        <td> <p>Jan Nowak</p></td>
-        <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Present<br>
-        </td>
-        <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Late<br>
-        </td>
-        <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Absent<br>
-        </td>
-    </tr>
-    </span>
-    <tr class="border_bottom">
-        <td> <p class="attend_table_row2">Krzysiek Kowalski</p></td>
-        <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Present<br>
-        </td>
-        <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Late<br>
-        </td>
-        <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Absent<br>
-        </td>
-    </tr>
-    <tr class="border_bottom">
-        <td> <p class="attend_table_row3">Jacek Prosty</p></td>
-        <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Present<br>
-        </td>
-        <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Late<br>
-        </td>
-        <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Absent<br>
-        </td>
-    </tr>
-    <tr class="border_bottom">
-        <td> <p class="attend_table_row4">Wiesiek Zielony</p></td>
-        <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Present<br>
-        </td>
-        <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Late<br>
-        </td>
-        <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Absent<br>
-        </td>
-    </tr>   
-    
-    </table>
-    </div>
-    <div id="theSubmit">
-        <input type="submit" value="  Submit  ">
-    </div>
+	<body class="loginBody">
+		<div class="loginHead">
+            <h2>Log in to your account</h2>
+		</div>
+		<div class="loginMenu">
+			<form class="loginMenu">
+				<input class="email input" name="email" type="text" placeholder="E-mail address"><br/>
+				<input class="password input" name="password" type="password" placeholder="Password"><br/>
+				<input class="login button" name="login" type="submit" value="Log in">
+			</form>
+		</div>
+	</body>
 
-</body>
 </html>
