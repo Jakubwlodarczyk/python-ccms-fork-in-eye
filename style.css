@@ -303,30 +303,20 @@ background-color:antiquewhite;
         }
         
 .header_table td {
-    background-color: #4CAF50;
+    background-color: #333;
     color: white;
     font-weight: bold;
-    border: 1px solid chartreuse;
-
-            
-        
+ 
         }
         
-.content_show_people table tr {
+ table tr {
     background-color:lightgrey;
     padding-left: 3px;
-    
-            
         }
 
-.content_show_people h1 {
-/*    font-family: Arial;*/
-    color: #ff4411; font-size: 48px; font-family: 'Signika', sans-serif; padding-bottom: 10px;
-    padding-left: 10%;
-    padding-top: 20px;
-}
-
 .person_to_show {
+    background-color:lightgrey;
+    padding-left: 3px;
 /*    you can add here something*/
 }
 
