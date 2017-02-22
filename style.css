@@ -74,6 +74,15 @@ table, th, td {
     background-color:lightgrey;
     padding-left: 3px;
 }
+.content {
+    background-color: #8d7882;
+    display: table;
+    margin: auto;
+    width: 70%;
+    padding: 20px 40px;
+    border: 1px solid #8d7882;
+    border-radius: 12px;
+}
 
 /*MORE SPECIFIC STYLE SETTINGS*/
 
@@ -126,7 +135,7 @@ table, th, td {
 
 .menu a {
     font: 2em helvetica, sans-serif;
-    letter-spacing: 10px;
+    letter-spacing: 5px;
     text-decoration: none;
     color: #333;
     }
@@ -149,15 +158,18 @@ body.loginBody {
 .loginHead {
 	margin-top: 15px;
 	margin-bottom: 15px;
+
 }
 
-form.loginMenu .input {
-    margin-top: 15px;
-    margin-bottom: 15px;
+tr.border_bottom td {
+  border-bottom:2pt solid black;
 }
 
-.input {
-    width: 60%;
+
+#theSubmit{
+    text-align: center;
+    float: right;
+    margin: 15px;
 }
 
 div.loginHead {
@@ -177,16 +189,6 @@ div.loginHead {
     box-sizing: border-box;
 }
 
-
-.content {
-    background-color: #8d7882;
-    display: table;
-    margin: auto;
-    width: 70%;
-    padding: 20px 40px;
-    border: 1px solid #8d7882;
-    border-radius: 12px;
-}
 
 .errorLoginMessage {
 	color: red;
@@ -261,6 +263,41 @@ background-color:antiquewhite;
 }
 
 
+.nav_attendance ul{
+ color: black; 
+ overflow: hidden;
+ text-align: center;
+ padding: 20px;
+ margin: 40px;
+  
+}
+
+.nav_attendance ul li{
+  padding: 10px;
+  
+  display: inline;
+}
+
+
+.attend_table_row ul{
+ color: black;
+ overflow: hidden;
+ text-align: center;
+ padding: 2px;
+ margin: 0;
+ border-bottom-style: solid;
+ border-bottom-width: 2px;
+ border-color: black;
+}
+
+.attend_table_row ul li{
+  padding: 10px;
+  display: inline-block;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-color: black;
+  padding: 1px;
+}
 
 .header_table {
     height: 50px;
@@ -280,6 +317,18 @@ background-color:antiquewhite;
     background-color:lightgrey;
     padding-left: 3px;
 /*    you can add here something*/
+
+}
+    .attendance_class{
+    color: black;
+    font-size: 16px;
+    font-style: calibri;
+    margin: 10px;
+    padding: 20px;
+}
+
+.attend_table {
+    text-align: left;
 }
 
 
