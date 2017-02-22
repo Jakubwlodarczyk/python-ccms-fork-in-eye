@@ -1,0 +1,66 @@
+.attendance_class{
+    color: black;
+    font-size: 16px;
+    font-style: calibri;
+    margin: 10px;
+    padding: 20px;
+}
+
+
+
+.attend_table{
+    text-align: left;
+}
+
+table{    
+    width: 100%;    
+}
+
+tr.border_bottom td {
+  border-bottom:2pt solid black;
+}
+
+#theSubmit{
+    text-align: center;
+    float: right;
+    margin: 15px;
+    padding: 15px;
+    color: yellow;
+    font-size: 14px;    
+}
+
+nav ul{
+ color: black;
+ 
+ overflow: hidden;
+ text-align: center;
+ padding: 20px;
+ margin: 40px;
+ 
+}
+
+nav ul li{
+  padding: 10px;
+  display: inline-block;
+}
+
+
+/*.attend_table_row ul{
+ color: black;
+ overflow: hidden;
+ text-align: center;
+ padding: 2px;
+ margin: 0;
+ /*border-bottom-style: solid;
+ border-bottom-width: 2px;
+ border-color: black;*/
+/*}
+
+.attend_table_row ul li{
+  padding: 10px;
+  display: inline-block;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-color: black;
+  padding: 1px;
+}*/
