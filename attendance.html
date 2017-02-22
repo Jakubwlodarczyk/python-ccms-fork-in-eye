@@ -1,27 +1,50 @@
 <!DOCTYPE html>
 
-<html>
+<html lang='en'>
 <head> 
-      <title>Check attendence</title>
+    <meta charset="utf-8"/>
+      <title>Codecool Management System</title>
       <link rel="stylesheet" href="style.css">
-      <h1 class="attendance_class">Attendance</h1>
-      
+        
 
 </head>
+    
 <body>  
-    <nav class="navigation_codecool_class1">
+    <header> 
+        <h1>Attendance</h1>
+    </header>
+    <section class='solid_component'>
+    <div class='welcome_user'>
+         <img src="http://bociek.blog.onet.pl/wp-content/blogs.dir/710479/files/blog_re_4728262_7216640_tr_gawron.jpg" width=100% height=100% alt='User'/>
+        <h3> Logged as User</h3>  
+
+        <div class='menu'>
         <ul>
-            <li>               
-                    <span>Class</span>
-                <select  name="select: ">
-                        <option selected>KRK 2016.1</option>        
-                        <option>KRK 2017.1</option>        
-                        </select>  
-                </li>
-            <li>Date: 2017-02-15</li>          
-            
+            <li><a href="menu.html">Home</a></li>
+
+            <li><a href='student_list.html'>Students</a></li>
+            <li><a href='teams.html'>Teams</a></li>
+
+            <li><a href='mentor_list.html'> Mentors</a></li>
+            <li><a href='assignment_list.html'>Assignments</a></li>
+            <li><a href='attendance.html'>Attendance</a></li>
+            <li><a href='index.html'>Log out</a></li>
         </ul>
-        </nav> 
+        </div>
+    </div>
+
+</section>
+<section class='content'>
+              
+    <label for="select-class" >Class</label>
+    <select  name="select-class">
+        <option selected>KRK 2016.1</option>        
+        <option>KRK 2017.1</option>        
+    </select>  
+     <br>    
+    <label for='choose-date'>Date</label>
+    <input name='choose-date' type="date">   
+  
 
     
     <div class='attend_table'>
@@ -30,58 +53,58 @@
     <tr class="border_bottom">
         <td> <p>Jan Nowak</p></td>
         <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Present<br>
+            <input type="radio" name="opt">Present<br>
         </td>
         <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Late<br>
+            <input type="radio" name="opt">Late<br>
         </td>
         <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Absent<br>
+            <input type="radio" name="opt">Absent<br>
         </td>
     </tr>
     </span>
     <tr class="border_bottom">
         <td> <p class="attend_table_row2">Krzysiek Kowalski</p></td>
         <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Present<br>
+            <input type="radio" name='option'>Present<br>
         </td>
         <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Late<br>
+            <input type="radio" name="option">Late<br>
         </td>
         <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Absent<br>
+            <input type="radio" name="option">Absent<br>
         </td>
     </tr>
     <tr class="border_bottom">
         <td> <p class="attend_table_row3">Jacek Prosty</p></td>
         <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Present<br>
+            <input type="radio" name="przycisk">Present<br>
         </td>
         <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Late<br>
+            <input type="radio" name="przycisk">Late<br>
         </td>
         <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Absent<br>
+            <input type="radio" name="przycisk">Absent<br>
         </td>
     </tr>
     <tr class="border_bottom">
         <td> <p class="attend_table_row4">Wiesiek Zielony</p></td>
         <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Present<br>
+            <input type="radio" name="choice">Present<br>
         </td>
         <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Late<br>
+            <input type="radio" name="choice" >Late<br>
         </td>
         <td>
-            <input type="checkbox" name="przycisk" value="przycisk">Absent<br>
+            <input type="radio" name="choice">Absent<br>
         </td>
     </tr>   
     
     </table>
     </div>
-    <div id="theSubmit">
-        <input type="submit" value="  Submit  ">
-    </div>
 
+        <button>Submit</button>
+
+    </section>
 </body>
 </html>
