@@ -117,11 +117,6 @@ body.loginBody {
 }
 
 .loginHead {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.loginHead {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
@@ -135,15 +130,9 @@ form.loginMenu .input {
     width: 60%;
 }
 
-.input {
-	width: 250px;
-	background-color: papayawhip;
-}
-
 div.loginHead {
     margin-top: 15px;
 }
-
 
 .loginBody input {
 	font: 1em helvetica;
@@ -180,7 +169,10 @@ div.loginHead {
     padding: 20px 40px;
     border: 1px solid #8d7882;
     border-radius: 12px;
+}
 
+.errorLoginMessage {
+	color: red;
 }
 
 /*ADD PERSON VIEW*/
@@ -330,4 +322,5 @@ background-color:antiquewhite;
 .person_to_show {
 /*    you can add here something*/
 }
+
 
