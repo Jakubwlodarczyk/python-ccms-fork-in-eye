@@ -1,4 +1,5 @@
 
+
 .attendance_class{
     color: black;
     font-size: 16px;
@@ -9,6 +10,127 @@
 
 .attend_table{
     text-align: left;
+
+html {
+    margin: 50px;
+    padding: 0;
+    }
+
+body {
+    background-color:  #463C41;
+    font: 120% helvetica, sans-serif;
+	line-height: 1.5;
+	margin: 0;
+	padding: 0;
+    }
+
+p {
+    margin-top: 0;
+	text-align: justify;
+    }
+
+header {
+    display:  block;
+    width:  80%;
+    float: right;
+    background-color: #333;
+    }
+
+h1 {
+    font:  3em helvetica, sans-serif;
+    color: #8d7882;
+    text-align: center;
+    }
+
+h2 {
+    font: 2em helvetica;
+    letter-spacing: 10px;
+    color: #8d7882;
+    text-align: center;
+    }
+
+h3 {
+    font: 1em helvetica;
+    letter-spacing: 10px;
+    color: #8d7882;
+    text-align: center;
+    }
+
+/*MORE SPECIFIC STYLE SETTINGS*/
+
+/*MENU*/
+
+.solid_component {
+    background-color: #333;
+    width:  20%;
+    display: block;
+    float: left;
+    margin: auto;
+    }
+
+.solid_component .welcome_user img {
+    margin: auto;
+	border: none;
+    }
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    height: 100%; 
+    overflow: auto;
+    }
+
+    
+.active {
+    background-color: #8d7882;
+    color: white;
+    }
+
+.menu li {
+    text-align: center;
+    }  
+
+.menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 1.5vw;
+    }
+
+.menu li a:hover {
+    background-color: #463c41;
+    }
+
+.menu a {
+    font: 2em helvetica, sans-serif;
+    letter-spacing: 10px;
+    text-decoration: none;
+    color: #333;
+    }
+
+/*LOG IN PAGE*/
+
+body.loginBody {
+    text-align: center;
+    width:60%;
+    display: table; 
+    margin: auto;
+    }
+
+.loginMenu {
+    border-radius: 15px;
+    border: 1px solid #333;
+    text-align: center;
+}
+
+.loginHead {
+	margin-top: 15px;
+	margin-bottom: 15px;
+
 }
 
 table{    
@@ -19,18 +141,158 @@ tr.border_bottom td {
   border-bottom:2pt solid black;
 }
 
+
 #theSubmit{
     text-align: center;
     float: right;
     margin: 15px;
+}
+
+div.loginHead {
+    margin-top: 15px;
+}
+
+.loginBody input {
+	font: 1em helvetica;
+    color: #808080;
+    background-color: white;
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.login.button {
+    background-color: #C33156;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 100px;
+    width: 250px;
+    }
+
+.content {
+    background-color: #8d7882;
+    display: table;
+    margin: auto;
+    width: 70%;
+    padding: 20px 40px;
+    border: 1px solid #8d7882;
+    border-radius: 12px;
+}
+
+.errorLoginMessage {
+	color: red;
+}
+
+/*ADD PERSON VIEW*/
+
+.add-person-view {
+margin-left: 100px;
+}
+
+.add-person-form
+{
+padding: 10px;
+}
+
+.add-person-form-element {
+display: block;
+}
+
+.add-person-form-input {
+width: 500px;
+font-family: Helvetica, sans-serif;
+font-size: 1.0em;
+margin: 0px 0px 10px 0px;
+border: 2px solid #ccc;
+padding: 5px;
+background: #f1f1f1;
+border: 0;
+box-shadow: 2px 2px 2px #888;
+transition: all .3s ease-in;
+border-radius: 5px;
+}
+
+.add-person-form-input:focus {
+background-color: #9b9b9b;
+}
+
+
+.add-person-form-select {
+width: 500px;
+font-family: Helvetica, sans-serif;
+font-size: 1.0em;
+margin: 0px 0px 10px 0px;
+border: 2px solid #ccc;
+padding: 5px;
+transition: all .3s ease-in;
+background: #f1f1f1;
+border: 0;
+box-shadow: 2px 2px 2px #888;
+vertical-align: middle;
+cursor:pointer;
+border-radius: 5px;
+}
+
+label {
+font-family: Helvetica, sans-serif;
+color: #9b9b9b;
+width: 400px;
+font-size: 0.8em;
+padding: 0;
+float: left;
+clear: both;
+text-align: right;
+margin-right: 10px;
+margin-top: 10px;
+}
+
+.add-person-form-button {
+font-family: Helvetica, sans-serif;
+background-color: #eeeced;
+box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 1); 
+border-color: #eeeced #eeeced #9b9b9b;
+border-style: solid;
+border-width: 1px;
+border-radius: 20px;
+padding:5px 30px;
+font-weight:bold;
+text-shadow:0px 1px 0px #fff;
+cursor:pointer;
+display: table;
+margin: auto;
+}
+
+
+.add-person-form-button:active {
+background-color:antiquewhite;
+}
+
+.content_show_people {
+    background-image: url(background_show_people.gif);
+    background-repeat: repeat;
+}
+
+
+.content_show_people table, th, td {
+            
+    border-radius: 5px;
     padding: 15px;
     color: yellow;
     font-size: 14px;    
 }
 
-nav ul{
- color: black;
- 
+.nav_attendance ul{
+ color: black; 
  overflow: hidden;
  text-align: center;
  padding: 20px;
@@ -39,22 +301,23 @@ nav ul{
  
 }
 
-nav ul li{
+.nav_attendance ul li{
   padding: 10px;
-  display: inline-block;
+  
+  display: inline;
 }
 
 
-/*.attend_table_row ul{
+.attend_table_row ul{
  color: black;
  overflow: hidden;
  text-align: center;
  padding: 2px;
  margin: 0;
- /*border-bottom-style: solid;
+ border-bottom-style: solid;
  border-bottom-width: 2px;
- border-color: black;*/
-/*}
+ border-color: black;
+}
 
 .attend_table_row ul li{
   padding: 10px;
@@ -63,5 +326,6 @@ nav ul li{
   border-bottom-width: 2px;
   border-color: black;
   padding: 1px;
-}*/
+}
+
 
