@@ -266,7 +266,7 @@ background-color:antiquewhite;
 }
 
 
-.content_show_people table, th, td {
+table, th, td {
             
     border-radius: 5px;
     padding: 15px;
@@ -279,7 +279,7 @@ background-color:antiquewhite;
     
     
 }
-.content_show_people table {
+table {
 /*  border-collapse: collapse;*/
     border: 2px solid grey;
     background-color: azure;
