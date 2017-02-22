@@ -328,6 +328,7 @@ background-color:antiquewhite;
   border-bottom-width: 2px;
   border-color: black;
   padding: 1px;
+}
 
 .header_table {
     height: 50px;
@@ -352,7 +353,19 @@ background-color:antiquewhite;
     background-color:lightgrey;
     padding-left: 3px;
 /*    you can add here something*/
-
 }
 
 
+.start_date {
+	width: 49%;	
+	float: left;
+}
+
+.end_date {
+	width: 49%;
+	float: right;
+}
+
+input[type=date] {
+	
+}
