@@ -46,7 +46,7 @@ h3 {
     }
 
 button {
-    background-color: #C33156;
+    background-color: #3C1428;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -56,9 +56,17 @@ button {
     display: table;
     margin: auto;
     font-size: 20px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     width: 250px;
     }
+li {
+    font: 1em helvetica;
+    color: #333;
+    
+}
+table {
+    width: auto;
+}
 
 table, th, td {
     
@@ -68,6 +76,7 @@ table, th, td {
     font-family: "helvetica", Georgia, Serif;
     margin-left: 15%;
     margin-bottom: 15px;
+    width: auto;
 }
 
  table tr {
@@ -83,6 +92,18 @@ table, th, td {
     border: 1px solid #8d7882;
     border-radius: 12px;
 }
+label {
+    font-family: Helvetica, sans-serif;
+    color: #333;
+    width: 400px;
+    font-size: 1em;
+    padding: 0;
+    float: left;
+    clear: both;
+    text-align: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    }
 
 /*MORE SPECIFIC STYLE SETTINGS*/
 
@@ -267,18 +288,7 @@ border-radius: 5px;
 
 
 
-label {
-font-family: Helvetica, sans-serif;
-color: #333;
-width: 400px;
-font-size: 1em;
-padding: 0;
-float: left;
-clear: both;
-text-align: right;
-margin-right: 10px;
-margin-top: 10px;
-}
+
 
 .add-person-form-button:active {
 background-color:antiquewhite;
@@ -354,7 +364,3 @@ background-color:antiquewhite;
     text-align: left;
 }
 
-.add-person-form-button.right {
-    float: right;
-
-}
