@@ -117,11 +117,6 @@ body.loginBody {
 }
 
 .loginHead {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.loginHead {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
@@ -135,15 +130,9 @@ form.loginMenu .input {
     width: 60%;
 }
 
-.input {
-	width: 250px;
-	background-color: papayawhip;
-}
-
 div.loginHead {
     margin-top: 15px;
 }
-
 
 .loginBody input {
 	font: 1em helvetica;
@@ -180,7 +169,10 @@ div.loginHead {
     padding: 20px 40px;
     border: 1px solid #8d7882;
     border-radius: 12px;
+}
 
+.errorLoginMessage {
+	color: red;
 }
 
 /*ADD PERSON VIEW*/
@@ -213,8 +205,9 @@ border-radius: 5px;
 }
 
 .add-person-form-input:focus {
-background-color:coral;
+background-color: #9b9b9b;
 }
+
 
 .add-person-form-select {
 width: 500px;
@@ -232,6 +225,7 @@ cursor:pointer;
 border-radius: 5px;
 }
 
+
 label {
 font-family: Helvetica, sans-serif;
 color: #9b9b9b;
@@ -246,6 +240,8 @@ margin-top: 10px;
 }
 
 .add-person-form-button {
+font-family: Helvetica, sans-serif;
+background-color: #eeeced;
 box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 1); 
 border-color: #eeeced #eeeced #9b9b9b;
 border-style: solid;
@@ -257,6 +253,11 @@ text-shadow:0px 1px 0px #fff;
 cursor:pointer;
 display: table;
 margin: auto;
+}
+
+
+.add-person-form-button:active {
+background-color:antiquewhite;
 }
 
 .content_show_people {
@@ -295,29 +296,21 @@ margin: auto;
         }
         
 .header_table td {
-    background-color: #4CAF50;
+    background-color: #333;
     color: white;
     font-weight: bold;
-    border: 1px solid chartreuse;
-
-            
-        
+ 
         }
         
-.content_show_people table tr {
+ table tr {
     background-color:lightgrey;
     padding-left: 3px;
-    
-            
         }
 
-.content_show_people h1 {
-/*    font-family: Arial;*/
-    color: #ff4411; font-size: 48px; font-family: 'Signika', sans-serif; padding-bottom: 10px;
-    padding-left: 10%;
-    padding-top: 20px;
-}
-
 .person_to_show {
+    background-color:lightgrey;
+    padding-left: 3px;
 /*    you can add here something*/
 }
+
+
