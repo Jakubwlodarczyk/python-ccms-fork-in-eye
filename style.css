@@ -45,6 +45,36 @@ h3 {
     text-align: center;
     }
 
+button {
+    background-color: #C33156;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: table;
+    margin: auto;
+    font-size: 20px;
+    margin-bottom: 100px;
+    width: 250px;
+    }
+
+table, th, td {
+    
+    border-radius: 5px;
+    padding: 15px;
+    border: 0px solid black;
+    font-family: "helvetica", Georgia, Serif;
+    margin-left: 15%;
+    margin-bottom: 15px;
+}
+
+ table tr {
+    background-color:lightgrey;
+    padding-left: 3px;
+}
+
 /*MORE SPECIFIC STYLE SETTINGS*/
 
 /*MENU*/
@@ -147,19 +177,6 @@ div.loginHead {
     box-sizing: border-box;
 }
 
-.login.button {
-    background-color: #C33156;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    border-radius: 8px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
-    margin-bottom: 100px;
-    width: 250px;
-    }
 
 .content {
     background-color: #8d7882;
@@ -228,9 +245,9 @@ border-radius: 5px;
 
 label {
 font-family: Helvetica, sans-serif;
-color: #9b9b9b;
+color: #333;
 width: 400px;
-font-size: 0.8em;
+font-size: 1em;
 padding: 0;
 float: left;
 clear: both;
@@ -239,55 +256,12 @@ margin-right: 10px;
 margin-top: 10px;
 }
 
-.add-person-form-button {
-font-family: Helvetica, sans-serif;
-background-color: #eeeced;
-box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 1); 
-border-color: #eeeced #eeeced #9b9b9b;
-border-style: solid;
-border-width: 1px;
-border-radius: 20px;
-padding:5px 30px;
-font-weight:bold;
-text-shadow:0px 1px 0px #fff;
-cursor:pointer;
-display: table;
-margin: auto;
-}
-
-
 .add-person-form-button:active {
 background-color:antiquewhite;
 }
 
-.content_show_people {
-    background-image: url(background_show_people.gif);
-    background-repeat: repeat;
-}
 
 
-table, th, td {
-            
-    border-radius: 5px;
-    padding: 15px;
-    border: 0px solid black;
-/*    font-family: "Arial", Georgia, Serif;*/
-    font-family: "helvetica", Georgia, Serif;
-    margin-left: 15%;
-    margin-bottom: 15px;
-
-    
-    
-}
-table {
-/*  border-collapse: collapse;*/
-    border: 2px solid grey;
-    background-color: azure;
-/*    padding-bottom: 10%;*/
-    margin-bottom: 15px;
-    
-
-}
 .header_table {
     height: 50px;
     text-align: center;
@@ -300,11 +274,6 @@ table {
     color: white;
     font-weight: bold;
  
-        }
-        
- table tr {
-    background-color:lightgrey;
-    padding-left: 3px;
         }
 
 .person_to_show {
