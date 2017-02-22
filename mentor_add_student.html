@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <title>Codecool Management System</title>
+    </head>
+
+    <body>
+        
+        <header>
+            <h1>Manage your life<br>At least try</h1>
+        </header>
+
+        <section class='solid_component'>
+            <div class='welcome_user'>
+                 <img src="http://bociek.blog.onet.pl/wp-content/blogs.dir/710479/files/blog_re_4728262_7216640_tr_gawron.jpg" width=100% height=100% alt='User'/>
+                <h3> Logged as User</h3>  
+
+                <div class='menu'>
+                    <ul>
+                        <li><a class="active" href="menu.html">Home</a></li>
+                        <li><a href='#student'>Student</a></li>
+                        <li><a href="#mentor">Mentor</a></li>
+                        <li><a href="#employee">Employee</a></li>
+                        <li><a href="#Jurek">Jurek</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class='content'>
+            <section class="section-add-person-form">
+          <form class="add-person-form"
+                name="add-person-form" method="post">
+            <br>
+            <label for="login" class="add-person-form-element">
+              <span>Login</span></label>
+              <input name="name" class="add-person-form-input" type="text"
+                     placeholder="LOGIN">
+            <label class="add-person-form-element">
+              <span>Email</span></label>
+              <input email="email" class="add-person-form-input" 
+                     placeholder="EMAIL" name="email">
+            <label class="add-person-form-element">
+              <span>First name</span></label>
+              <input name="name" class="add-person-form-input" type="text"
+                     placeholder="FIRST NAME">
+            <label class="add-person-form-element">
+              <span>Last name</span></label>
+              <input name="name" class="add-person-form-input" type="text"
+                     placeholder="LAST NAME">
+            <label class="add-person-form-element">
+              <span>Group</span></label>
+                  <select class="add-person-form-input add-person-form-select" name="select-class">
+                    <option selected>--select class--</option>
+                    <option>group1</option>
+                    <option>group2</option>
+                    <option>group3</option>
+                  </select>
+            <br><button class="add-person-form-button" type="submit" value="send">SAVE</button>
+          </form>
+       </section>
+        </section>
+        
+        
+    </body>
+</html>
+

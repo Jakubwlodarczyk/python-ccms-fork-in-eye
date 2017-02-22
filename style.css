@@ -1,16 +1,4 @@
-
-
-.attendance_class{
-    color: black;
-    font-size: 16px;
-    font-style: calibri;
-    margin: 10px;
-    padding: 20px;
-}
-
-.attend_table {
-    text-align: left;
-}
+/*MAIN STYLE SETTINGS*/
 
 html {
     margin: 50px;
@@ -56,6 +44,45 @@ h3 {
     color: #8d7882;
     text-align: center;
     }
+
+button {
+    background-color: #C33156;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: table;
+    margin: auto;
+    font-size: 20px;
+    margin-bottom: 100px;
+    width: 250px;
+    }
+
+table, th, td {
+    
+    border-radius: 5px;
+    padding: 15px;
+    border: 0px solid black;
+    font-family: "helvetica", Georgia, Serif;
+    margin-left: 15%;
+    margin-bottom: 15px;
+}
+
+ table tr {
+    background-color:lightgrey;
+    padding-left: 3px;
+}
+.content {
+    background-color: #8d7882;
+    display: table;
+    margin: auto;
+    width: 70%;
+    padding: 20px 40px;
+    border: 1px solid #8d7882;
+    border-radius: 12px;
+}
 
 /*MORE SPECIFIC STYLE SETTINGS*/
 
@@ -134,9 +161,6 @@ body.loginBody {
 
 }
 
-table{    
-    width: 100%;    
-}
 
 tr.border_bottom td {
   border-bottom:2pt solid black;
@@ -166,29 +190,6 @@ div.loginHead {
     box-sizing: border-box;
 }
 
-.login.button {
-    background-color: #C33156;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    border-radius: 8px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
-    margin-bottom: 100px;
-    width: 250px;
-    }
-
-.content {
-    background-color: #8d7882;
-    display: table;
-    margin: auto;
-    width: 70%;
-    padding: 20px 40px;
-    border: 1px solid #8d7882;
-    border-radius: 12px;
-}
 
 .errorLoginMessage {
 	color: red;
@@ -245,12 +246,33 @@ cursor:pointer;
 border-radius: 5px;
 }
 
+.add-person-form-input.add-person-form-select.mentor-show-students {
+    
+    width: 100px;
+    
+}
+
+.mentor-give-card .green-card {
+        background: #00FF00;
+}
+
+.mentor-give-card .red-card {
+        background: red;
+}
+
+.mentor-give-card .yellow-card {
+        background: yellow;
+}
+
+
+
+
 
 label {
 font-family: Helvetica, sans-serif;
-color: #9b9b9b;
+color: #333;
 width: 400px;
-font-size: 0.8em;
+font-size: 1em;
 padding: 0;
 float: left;
 clear: both;
@@ -259,40 +281,10 @@ margin-right: 10px;
 margin-top: 10px;
 }
 
-.add-person-form-button {
-font-family: Helvetica, sans-serif;
-background-color: #eeeced;
-box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 1); 
-border-color: #eeeced #eeeced #9b9b9b;
-border-style: solid;
-border-width: 1px;
-border-radius: 20px;
-padding:5px 30px;
-font-weight:bold;
-text-shadow:0px 1px 0px #fff;
-cursor:pointer;
-display: table;
-margin: auto;
-}
-
-
 .add-person-form-button:active {
 background-color:antiquewhite;
 }
 
-.content_show_people {
-    background-image: url(background_show_people.gif);
-    background-repeat: repeat;
-}
-
-
-.content_show_people table, th, td {
-            
-    border-radius: 5px;
-    padding: 15px;
-    color: yellow;
-    font-size: 14px;    
-}
 
 .nav_attendance ul{
  color: black; 
@@ -300,8 +292,7 @@ background-color:antiquewhite;
  text-align: center;
  padding: 20px;
  margin: 40px;
- 
- 
+  
 }
 
 .nav_attendance ul li{
@@ -329,6 +320,7 @@ background-color:antiquewhite;
   border-bottom-width: 2px;
   border-color: black;
   padding: 1px;
+}
 
 .header_table {
     height: 50px;
@@ -343,11 +335,7 @@ background-color:antiquewhite;
     font-weight: bold;
  
         }
-        
- table tr {
-    background-color:lightgrey;
-    padding-left: 3px;
-        }
+
 
 .person_to_show {
     background-color:lightgrey;
@@ -355,5 +343,19 @@ background-color:antiquewhite;
 /*    you can add here something*/
 
 }
+    .attendance_class{
+    color: black;
+    font-size: 16px;
+    font-style: calibri;
+    margin: 10px;
+    padding: 20px;
+}
 
+.attend_table {
+    text-align: left;
+}
 
+.add-person-form-button.right {
+    float: right;
+
+}
