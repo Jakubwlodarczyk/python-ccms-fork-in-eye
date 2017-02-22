@@ -1,22 +1,4 @@
-
-
-
-.attendance_class{
-    color: #FFE4C4;
-    font-size: 26px;
-    font-style: calibri;
-    margin: 40px;
-    padding: 20px;
-    float: left;
-    position: relative;
-    top: -80px;
-    
-}
-
-.attend_table{
-    text-align: left;
-}
-
+/*MAIN STYLE SETTINGS*/
 
 html {
     margin: 50px;
@@ -269,7 +251,7 @@ div.loginHead {
 }
 
 
-.add-person-form-select {
+select {
     width: 500px;
     font-family: Helvetica, sans-serif;
     font-size: 1.0em;
@@ -305,20 +287,13 @@ div.loginHead {
 
 
 
-.content_show_people table, th, td {
-            
-    border-radius: 5px;
-    padding: 15px;
-    color: white;
-    font-size: 14px;    
-}
-
 .add-person-form-button:active {
     background-color:antiquewhite;
 
 }
 
 
+/*
 .nav_attendance ul{
  color: black; 
  overflow: hidden;
@@ -327,6 +302,7 @@ div.loginHead {
  margin: 40px;
   
 }
+*/
 
 .nav_attendance ul li{
   padding: 10px;
@@ -335,6 +311,7 @@ div.loginHead {
 }
 
 
+/*
 .attend_table_row ul{
  color: black;
  overflow: hidden;
@@ -345,7 +322,9 @@ div.loginHead {
  border-bottom-width: 2px;
  border-color: black;
 }
+*/
 
+/*
 .attend_table_row ul li{
   padding: 10px;
   display: inline-block;
@@ -353,6 +332,7 @@ div.loginHead {
   border-bottom-width: 2px;
   border-color: black;
   padding: 1px;
+*/
 }
 
 .header_table {
@@ -372,34 +352,14 @@ div.loginHead {
  table tr {
     background-color:lightgrey;
     padding-left: 3px;
-
-
-    font-weight: bold;
- 
         }
 
-
-
-.person_to_show {
-    background-color:lightgrey;
-    padding-left: 3px;
-}
-    .attendance_class{
-    color: black;
-    font-size: 16px;
-    font-style: calibri;
-    margin: 10px;
-    padding: 20px;
-}
 
 .attend_table {
     text-align: left;
 }
 
 
-.border_bottom{
-    background-color:#333;
-}
 .navigation_codecool_class1 ul li{
     display: inline;
 }
@@ -408,16 +368,21 @@ color: #FFE4C4;
 position: relative;
 top: 50px;
 }
-li:last-child{
-    float: right;
-    padding: 10px;
-    position: relative;
-    right: 160px;
-    top: -30px;
-    border-style: solid;
-    border-color: grey;
-    word-spacing: 30px;
-    margin: 20px;
-    padding: 10px;
-}
 
+
+input[date]{
+    width: 500px;
+    font-family: Helvetica, sans-serif;
+    font-size: 1.0em;
+    margin: 0px 0px 10px 0px;
+    border: 2px solid #ccc;
+    padding: 5px;
+    transition: all .3s ease-in;
+    background: #f1f1f1;
+    border: 0;
+    box-shadow: 2px 2px 2px #888;
+    vertical-align: middle;
+    cursor:pointer;
+    border-radius: 5px;
+}
+}
