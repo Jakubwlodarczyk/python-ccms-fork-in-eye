@@ -34,16 +34,17 @@ h1 {
 h2 {
     font: 2em helvetica;
     letter-spacing: 10px;
-    color: #8d7882;
+    color: #333;
     text-align: center;
     }
 
 h3 {
     font: 1em helvetica;
-    letter-spacing: 10px;
-    color: #8d7882;
-    text-align: center;
+    letter-spacing: 2px;
+    color: #333;
+    text-align: left;
     }
+
 
 button {
     background-color: #C33156;
@@ -66,7 +67,7 @@ table, th, td {
     padding: 15px;
     border: 0px solid black;
     font-family: "helvetica", Georgia, Serif;
-    margin-left: 15%;
+    margin-left: 0%;
     margin-bottom: 15px;
 }
 
