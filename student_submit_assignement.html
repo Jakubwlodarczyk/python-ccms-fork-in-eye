@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <title>Codecool Management System</title>
+    </head>
+
+    <body>
+        
+        <header>
+            <h1>Submit assignement</h1>
+        </header>
+
+        <section class='solid_component'>
+            <div class='welcome_user'>
+                 <img src="https://s-media-cache-ak0.pinimg.com/736x/9f/71/a3/9f71a3ad199ec1ca31806aa641aa7485.jpg" width=100% height=100% alt='User'/>
+                <h3> Logged as Student</h3>  
+
+                <div class='menu'>
+                    <ul>
+                        <li><a class="active" href="menu.html">Home</a></li>
+                        <li><a href='student_show_grades.html'> Grades</a></li>
+                        <li><a href='student_submit_assignement.html'>Submit </a></li>
+                        <li><a href='student_show_attendence.html'> Attendance</a></li>
+                        <li><a href='menu.html'>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class='content'>
+            <p>Ready are you? What know you of ready? </p>
+                      <form class="add-person-form"
+                name="add-person-form" method="post">
+            <br>
+            <label class="add-person-form-element">
+              <span>SELECT ASSIGNEMENT</span></label>
+                  <select class="add-person-form-input add-person-form-select" name="select-class">
+                    <option selected>--assignement name--</option>
+                    <option>Ccms</option>
+                    <option>OOP</option>
+                    <option>Scratch game</option>
+                    <option>Create your html</option>
+                  </select>
+            <label class="add-person-form-element">
+              <span>Link to repository</span></label>
+              <input name="name" class="add-person-form-input" type="text"
+                     placeholder="paste link to your assignement">
+            <label class="add-person-form-element">
+              <span>Email</span></label>
+              <input email="email" class="add-person-form-input" 
+                     placeholder="EMAIL" name="email">
+            <br><button class="add-person-form-button" type="submit" value="send">SUBMIT ASSIGNEMENT</button>
+          </form>
+       </section>
+        </section>
+
+        
+        
+    </body>
+</html>

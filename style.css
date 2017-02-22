@@ -1,5 +1,6 @@
 
 
+
 .attendance_class{
     color: #FFE4C4;
     font-size: 26px;
@@ -15,6 +16,7 @@
 .attend_table{
     text-align: left;
 }
+
 
 html {
     margin: 50px;
@@ -59,6 +61,66 @@ h3 {
     letter-spacing: 10px;
     color: #8d7882;
     text-align: center;
+    }
+
+button {
+    background-color: #3C1428;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: table;
+    margin: auto;
+    font-size: 20px;
+    margin-bottom: 50px;
+    width: 250px;
+    }
+li {
+    font: 1em helvetica;
+    color: #333;
+    
+}
+table {
+    width: auto;
+}
+
+table, th, td {
+    
+    border-radius: 5px;
+    padding: 15px;
+    border: 0px solid black;
+    font-family: "helvetica", Georgia, Serif;
+    margin-left: 15%;
+    margin-bottom: 15px;
+    width: auto;
+}
+
+ table tr {
+    background-color:lightgrey;
+    padding-left: 3px;
+}
+.content {
+    background-color: #8d7882;
+    display: table;
+    margin: auto;
+    width: 70%;
+    padding: 20px 40px;
+    border: 1px solid #8d7882;
+    border-radius: 12px;
+}
+label {
+    font-family: Helvetica, sans-serif;
+    color: #333;
+    width: 400px;
+    font-size: 1em;
+    padding: 0;
+    float: left;
+    clear: both;
+    text-align: right;
+    margin-right: 10px;
+    margin-top: 10px;
     }
 
 /*MORE SPECIFIC STYLE SETTINGS*/
@@ -112,7 +174,7 @@ h3 {
 
 .menu a {
     font: 2em helvetica, sans-serif;
-    letter-spacing: 10px;
+    letter-spacing: 5px;
     text-decoration: none;
     color: #333;
     }
@@ -138,9 +200,6 @@ body.loginBody {
 
 }
 
-table{    
-    width: 100%;    
-}
 
 tr.border_bottom td {
   border-bottom:2pt solid black;
@@ -170,29 +229,6 @@ div.loginHead {
     box-sizing: border-box;
 }
 
-.login.button {
-    background-color: #C33156;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    border-radius: 8px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
-    margin-bottom: 100px;
-    width: 250px;
-    }
-
-.content {
-    background-color: #8d7882;
-    display: table;
-    margin: auto;
-    width: 70%;
-    padding: 20px 40px;
-    border: 1px solid #8d7882;
-    border-radius: 12px;
-}
 
 .errorLoginMessage {
 	color: red;
@@ -200,93 +236,73 @@ div.loginHead {
 
 /*ADD PERSON VIEW*/
 
+
 .add-person-view {
-margin-left: 100px;
+    margin-left: 100px;
 }
 
 .add-person-form
 {
-padding: 10px;
+    padding: 10px;
 }
 
 .add-person-form-element {
-display: block;
+    display: block;
 }
 
 .add-person-form-input {
-width: 500px;
-font-family: Helvetica, sans-serif;
-font-size: 1.0em;
-margin: 0px 0px 10px 0px;
-border: 2px solid #ccc;
-padding: 5px;
-background: #f1f1f1;
-border: 0;
-box-shadow: 2px 2px 2px #888;
-transition: all .3s ease-in;
-border-radius: 5px;
+    width: 500px;
+    font-family: Helvetica, sans-serif;
+    font-size: 1.0em;
+    margin: 0px 0px 10px 0px;
+    border: 2px solid #ccc;
+    padding: 5px;
+    background: #f1f1f1;
+    border: 0;
+    box-shadow: 2px 2px 2px #888;
+    transition: all .3s ease-in;
+    border-radius: 5px;
 }
 
 .add-person-form-input:focus {
-background-color: #9b9b9b;
+    background-color: #9b9b9b;
 }
 
 
 .add-person-form-select {
-width: 500px;
-font-family: Helvetica, sans-serif;
-font-size: 1.0em;
-margin: 0px 0px 10px 0px;
-border: 2px solid #ccc;
-padding: 5px;
-transition: all .3s ease-in;
-background: #f1f1f1;
-border: 0;
-box-shadow: 2px 2px 2px #888;
-vertical-align: middle;
-cursor:pointer;
-border-radius: 5px;
+    width: 500px;
+    font-family: Helvetica, sans-serif;
+    font-size: 1.0em;
+    margin: 0px 0px 10px 0px;
+    border: 2px solid #ccc;
+    padding: 5px;
+    transition: all .3s ease-in;
+    background: #f1f1f1;
+    border: 0;
+    box-shadow: 2px 2px 2px #888;
+    vertical-align: middle;
+    cursor:pointer;
+    border-radius: 5px;
 }
 
-
-label {
-font-family: Helvetica, sans-serif;
-color: #9b9b9b;
-width: 400px;
-font-size: 0.8em;
-padding: 0;
-float: left;
-clear: both;
-text-align: right;
-margin-right: 10px;
-margin-top: 10px;
+.add-person-form-input.add-person-form-select.mentor-show-students {
+    
+    width: 100px;
+    
 }
 
-.add-person-form-button {
-font-family: Helvetica, sans-serif;
-background-color: #eeeced;
-box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 1); 
-border-color: #eeeced #eeeced #9b9b9b;
-border-style: solid;
-border-width: 1px;
-border-radius: 20px;
-padding:5px 30px;
-font-weight:bold;
-text-shadow:0px 1px 0px #fff;
-cursor:pointer;
-display: table;
-margin: auto;
+.mentor-give-card .green-card {
+        background: #00FF00;
 }
 
-
-.add-person-form-button:active {
-background-color:antiquewhite;
+.mentor-give-card .red-card {
+        background: red;
 }
 
-.content_show_people {
-    background-image: url(background_show_people.gif);
-    background-repeat: repeat;
+.mentor-give-card .yellow-card {
+        background: yellow;
 }
+
 
 
 .content_show_people table, th, td {
@@ -297,14 +313,19 @@ background-color:antiquewhite;
     font-size: 14px;    
 }
 
+.add-person-form-button:active {
+    background-color:antiquewhite;
+
+}
+
+
 .nav_attendance ul{
  color: black; 
  overflow: hidden;
  text-align: center;
  padding: 20px;
  margin: 40px;
- 
- 
+  
 }
 
 .nav_attendance ul li{
@@ -344,19 +365,36 @@ background-color:antiquewhite;
 .header_table td {
     background-color: #333;
     color: white;
+
     font-weight: bold; 
 }
         
  table tr {
     background-color:lightgrey;
     padding-left: 3px;
+
+
+    font-weight: bold;
+ 
         }
+
+
 
 .person_to_show {
     background-color:lightgrey;
     padding-left: 3px;
 }
+    .attendance_class{
+    color: black;
+    font-size: 16px;
+    font-style: calibri;
+    margin: 10px;
+    padding: 20px;
+}
 
+.attend_table {
+    text-align: left;
+}
 
 
 .border_bottom{
