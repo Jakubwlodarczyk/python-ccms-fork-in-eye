@@ -136,6 +136,7 @@ body.loginBody {
 
 table{    
     width: 100%;    
+    
 }
 
 tr.border_bottom td {
@@ -306,11 +307,10 @@ background-color:antiquewhite;
 }
 
 
-.content_show_people table, th, td {
+table, th, td {
             
     border-radius: 5px;
     padding: 15px;
-    color: yellow;
     font-size: 14px;    
 }
 
@@ -349,6 +349,7 @@ background-color:antiquewhite;
   border-bottom-width: 2px;
   border-color: black;
   padding: 1px;
+}
 
 .header_table {
     height: 50px;
@@ -367,6 +368,7 @@ background-color:antiquewhite;
  table tr {
     background-color:lightgrey;
     padding-left: 3px;
+    border-radius: 5px;
         }
 
 .person_to_show {
