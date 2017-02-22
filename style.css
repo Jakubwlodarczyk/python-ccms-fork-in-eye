@@ -1,4 +1,15 @@
-/*MAIN STYLE SETTINGS*/
+
+
+.attendance_class{
+    color: black;
+    font-size: 16px;
+    font-style: calibri;
+    margin: 10px;
+    padding: 20px;
+}
+
+.attend_table{
+    text-align: left;
 
 html {
     margin: 50px;
@@ -119,15 +130,22 @@ body.loginBody {
 .loginHead {
 	margin-top: 15px;
 	margin-bottom: 15px;
+
 }
 
-form.loginMenu .input {
-    margin-top: 15px;
-    margin-bottom: 15px;
+table{    
+    width: 100%;    
 }
 
-.input {
-    width: 60%;
+tr.border_bottom td {
+  border-bottom:2pt solid black;
+}
+
+
+#theSubmit{
+    text-align: center;
+    float: right;
+    margin: 15px;
 }
 
 div.loginHead {
@@ -225,6 +243,7 @@ cursor:pointer;
 border-radius: 5px;
 }
 
+
 label {
 font-family: Helvetica, sans-serif;
 color: #9b9b9b;
@@ -269,24 +288,46 @@ background-color:antiquewhite;
             
     border-radius: 5px;
     padding: 15px;
-    border: 0px solid black;
-/*    font-family: "Arial", Georgia, Serif;*/
-    font-family: "helvetica", Georgia, Serif;
-    margin-left: 15%;
-    margin-bottom: 15px;
-
-    
-    
+    color: yellow;
+    font-size: 14px;    
 }
-.content_show_people table {
-/*  border-collapse: collapse;*/
-    border: 2px solid grey;
-    background-color: azure;
-/*    padding-bottom: 10%;*/
-    margin-bottom: 15px;
-    
 
+.nav_attendance ul{
+ color: black; 
+ overflow: hidden;
+ text-align: center;
+ padding: 20px;
+ margin: 40px;
+ 
+ 
 }
+
+.nav_attendance ul li{
+  padding: 10px;
+  
+  display: inline;
+}
+
+
+.attend_table_row ul{
+ color: black;
+ overflow: hidden;
+ text-align: center;
+ padding: 2px;
+ margin: 0;
+ border-bottom-style: solid;
+ border-bottom-width: 2px;
+ border-color: black;
+}
+
+.attend_table_row ul li{
+  padding: 10px;
+  display: inline-block;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-color: black;
+  padding: 1px;
+
 .header_table {
     height: 50px;
     text-align: center;
@@ -295,31 +336,22 @@ background-color:antiquewhite;
         }
         
 .header_table td {
-    background-color: #4CAF50;
+    background-color: #333;
     color: white;
     font-weight: bold;
-    border: 1px solid chartreuse;
-
-            
-        
+ 
         }
         
-.content_show_people table tr {
+ table tr {
     background-color:lightgrey;
     padding-left: 3px;
-    
-            
         }
 
-.content_show_people h1 {
-/*    font-family: Arial;*/
-    color: #ff4411; font-size: 48px; font-family: 'Signika', sans-serif; padding-bottom: 10px;
-    padding-left: 10%;
-    padding-top: 20px;
-}
-
 .person_to_show {
+    background-color:lightgrey;
+    padding-left: 3px;
 /*    you can add here something*/
+
 }
 
 
