@@ -1,3 +1,4 @@
+
 .attendance_class{
     color: black;
     font-size: 16px;
@@ -5,8 +6,6 @@
     margin: 10px;
     padding: 20px;
 }
-
-
 
 .attend_table{
     text-align: left;
@@ -37,6 +36,7 @@ nav ul{
  padding: 20px;
  margin: 40px;
  
+ 
 }
 
 nav ul li{
@@ -64,3 +64,4 @@ nav ul li{
   border-color: black;
   padding: 1px;
 }*/
+
