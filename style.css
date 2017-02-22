@@ -161,6 +161,7 @@ body.loginBody {
 
 }
 
+
 tr.border_bottom td {
   border-bottom:2pt solid black;
 }
@@ -244,6 +245,27 @@ cursor:pointer;
 border-radius: 5px;
 }
 
+.add-person-form-input.add-person-form-select.mentor-show-students {
+    
+    width: 100px;
+    
+}
+
+.mentor-give-card .green-card {
+        background: #00FF00;
+}
+
+.mentor-give-card .red-card {
+        background: red;
+}
+
+.mentor-give-card .yellow-card {
+        background: yellow;
+}
+
+
+
+
 
 label {
 font-family: Helvetica, sans-serif;
@@ -313,6 +335,7 @@ background-color:antiquewhite;
  
         }
 
+
 .person_to_show {
     background-color:lightgrey;
     padding-left: 3px;
@@ -331,4 +354,7 @@ background-color:antiquewhite;
     text-align: left;
 }
 
+.add-person-form-button.right {
+    float: right;
 
+}
