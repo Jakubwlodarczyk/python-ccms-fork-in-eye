@@ -3,35 +3,16 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://www.w3schools.com/lib/w3data.js"></script> 
         <title>Codecool Management System</title>
     </head>
 
     <body>
-        
+        <div w3-include-html="sidebar.html"></div>
         <header>
             <h1>Manage your life<br>At least try</h1>
         </header>
 
-        <section class='solid_component'>
-            <div class='welcome_user'>
-                 <img src="http://bociek.blog.onet.pl/wp-content/blogs.dir/710479/files/blog_re_4728262_7216640_tr_gawron.jpg" width=100% height=100% alt='User'/>
-                <h3> Logged as User</h3>  
-
-                <div class='menu'>
-                <ul>
-                    <li><a href="menu.html">Home</a></li>
-
-                    <li><a href='show_students_list.html'>Students</a></li>
-                    <li><a href='teams.html'>Teams</a></li>
-                    <li><a href='show_mentors_list.html'> Mentors</a></li>
-                    <li><a href='show_assignments.html'>Assignments</a></li>
-                    <li><a href='attendance.html'>Attendance</a></li>
-                    <li><a href='index.html'>Log out</a></li>
-                </ul>
-                </div>
-            </div>
-
-        </section>
 <section class='content'>
 TUTAJ POWINNISMY WYSWIETLIC SREDNIĄ OBECNOSC STUDENTOW 
 	+ DODAĆ PRZYCISK Z ODNOŚNIKIEM DO SPRAWDZENIA OBECNOSCI DNIA BIERZĄCEGO(LUB Z WYBRANEJ DATY)
@@ -48,8 +29,15 @@ TUTAJ POWINNISMY WYSWIETLIC SREDNIĄ OBECNOSC STUDENTOW
     
     <div class='attend_table'>
     <table>
+        <tr class="border_main_row">
+            <th> <p></p></th>
+            <th><p id="full_name">Full Name</p></th>
+            <th colspan="3">Status</th>
+            
+        </tr>
     <span class="attend_table_row1"> 
     <tr class="border_bottom">
+        <td> <p>1</p></td>
         <td> <p>Jan Nowak</p></td>
         <td>
             <input type="radio" name="opt">Present<br>
@@ -63,6 +51,7 @@ TUTAJ POWINNISMY WYSWIETLIC SREDNIĄ OBECNOSC STUDENTOW
     </tr>
     </span>
     <tr class="border_bottom">
+        <td> <p>2</p></td>
         <td> <p class="attend_table_row2">Krzysiek Kowalski</p></td>
         <td>
             <input type="radio" name='option'>Present<br>
@@ -75,6 +64,7 @@ TUTAJ POWINNISMY WYSWIETLIC SREDNIĄ OBECNOSC STUDENTOW
         </td>
     </tr>
     <tr class="border_bottom">
+        <td> <p>3</p></td>
         <td> <p class="attend_table_row3">Jacek Prosty</p></td>
         <td>
             <input type="radio" name="przycisk">Present<br>
@@ -87,6 +77,7 @@ TUTAJ POWINNISMY WYSWIETLIC SREDNIĄ OBECNOSC STUDENTOW
         </td>
     </tr>
     <tr class="border_bottom">
+        <td> <p>4</p></td>
         <td> <p class="attend_table_row4">Wiesiek Zielony</p></td>
         <td>
             <input type="radio" name="choice">Present<br>
@@ -105,5 +96,8 @@ TUTAJ POWINNISMY WYSWIETLIC SREDNIĄ OBECNOSC STUDENTOW
         <button>Submit</button>
 
     </section>
+     <script>
+     w3IncludeHTML();
+    </script>   
 </body>
 </html>
