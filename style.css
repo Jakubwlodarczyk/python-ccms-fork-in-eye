@@ -328,9 +328,9 @@ select {
     display: inline;
 }
 .navigation_codecool_class1 ul{
-color: #FFE4C4;
-position: relative;
-top: 50px;
+    color: #FFE4C4;
+    position: relative;
+    top: 50px;
 }
 
 
@@ -348,4 +348,14 @@ input[date]{
     vertical-align: middle;
     cursor:pointer;
     border-radius: 5px;
+}
+
+.border_main_row {
+    text-align: center;
+    color: #333;
+    font-size: 14px;
+}
+#full_name{
+    position: relative;
+    top: 10px;
 }
