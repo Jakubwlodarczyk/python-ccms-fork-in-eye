@@ -386,4 +386,13 @@ input[date]{
     cursor:pointer;
     border-radius: 5px;
 }
+.border_main_row {
+    text-align: center;
+    color: #333;
+    font-size: 14px;
 }
+#full_name{
+    position: relative;
+    top: 10px;
+}
+
