@@ -41,8 +41,9 @@ h2 {
 h3 {
     font: 1em helvetica;
     letter-spacing: 2px;
-    color: #333;
+    color: #8d7882;
     text-align: left;
+    padding-left: 5px;
     }
 
 
@@ -277,11 +278,11 @@ select {
 }
 
 .mentor-give-card .green-card {
-        background: #00FF00;
+        background: red;
 }
 
 .mentor-give-card .red-card {
-        background: red;
+        background: #00FF00;
 }
 
 .mentor-give-card .yellow-card {
