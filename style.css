@@ -250,6 +250,20 @@ div.loginHead {
     border-radius: 5px;
 }
 
+.little-input {
+    width: 100px;
+    font-family: Helvetica, sans-serif;
+    font-size: 1.0em;
+    margin: 0px 0px 10px 0px;
+    border: 2px solid #ccc;
+    padding: 5px;
+    background: #f1f1f1;
+    border: 0;
+    box-shadow: 2px 2px 2px #888;
+    transition: all .3s ease-in;
+    border-radius: 5px;
+}
+
 .add-person-form-input:focus {
     background-color: #9b9b9b;
 }
@@ -270,6 +284,7 @@ select {
     cursor:pointer;
     border-radius: 5px;
 }
+
 
 .add-person-form-input.add-person-form-select.mentor-show-students {
     
