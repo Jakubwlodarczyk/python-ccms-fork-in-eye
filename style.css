@@ -13,6 +13,10 @@ p {
     margin-top: 0;
 	text-align: justify;
     }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
 header {
     display:  block;
@@ -29,7 +33,7 @@ h1 {
 
 h2 {
     font: 2em helvetica;
-    letter-spacing: 10px;
+    letter-spacing: 8px;
     color: #333;
     text-align: center;
     }
@@ -63,7 +67,7 @@ li {
     
 }
 table {
-    width: auto;
+    width:100%;
 }
 
 table, th, td {
@@ -85,7 +89,7 @@ table, th, td {
     background-color: #8d7882;
     display: table;
     margin: auto;
-    width: auto;
+    width: 70%;
     padding: 2% 3%;
     border: 1px solid #8d7882;
     border-radius: 12px;
@@ -292,13 +296,6 @@ select {
 }
 
 
-.nav_attendance ul li{
-  padding: 10px;
-  
-  display: inline;
-}
-
-
 .header_table {
     height: 50px;
     text-align: center;
@@ -359,3 +356,4 @@ input[date]{
     position: relative;
     top: 10px;
 }
+
