@@ -395,4 +395,6 @@ input[date]{
     position: relative;
     top: 10px;
 }
-
+#select_submission{
+    float: center;
+}
