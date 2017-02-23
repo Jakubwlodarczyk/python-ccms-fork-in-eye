@@ -386,3 +386,17 @@ input[date]{
         top: 15px;
         margin-bottom: 40px;
     } 
+
+#class_label_attendance{
+    height:34px;
+    width: 180px;
+}
+.attend_table{
+    background-color: grey;
+}
+table important{
+    margin: 39px;
+    padding: 0;
+    background-color: grey;
+
+}
