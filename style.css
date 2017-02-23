@@ -386,4 +386,7 @@ input[date]{
     cursor:pointer;
     border-radius: 5px;
 }
+
+#submit-link {
+    width: 700px;
 }
