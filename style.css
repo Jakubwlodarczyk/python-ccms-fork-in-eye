@@ -2,8 +2,9 @@
 
 
 body {
-    background-color:  #463C41;
-    font: 120% helvetica, sans-serif;
+    background-color:  #E0E0DF;
+    font: 120% Abel, sans-serif;
+    color: #5B5B5B; 
 	line-height: 1.5;
 	margin: 5%;
 	padding: 0;
@@ -22,33 +23,35 @@ header {
     display:  block;
     width:  80%;
     float: right;
-    background-color: #333;
+    background-image: url('https://s-media-cache-ak0.pinimg.com/originals/1d/a8/63/1da86316ddbe7855de601d64798e5e97.jpg');
+    background-blend-mode:overlay;
+    box-shadow: 5px 5px 2px #888888
     }
 
 h1 {
-    font:  3rem helvetica, sans-serif;
-    color: #8d7882;
+    font:  4rem 'Lobster', cursive;
+    color: #707070;
     text-align: center;
     }
 
 h2 {
-    font: 2rem helvetica;
+    font: 2rem Abel, sans-serif;
     letter-spacing: 8px;
-    color: #333;
+    color: #707070;
     text-align: center;
     }
 
 h3 {
-    font: 1rem helvetica;
+    font: 1.5rem Abel, sans-serif;
     letter-spacing: 5px;
-    color: #8d7882;
+    color: #707070;
     text-align: center;
     padding-left: 5px;
     }
 
 
 button {
-    background-color: #3C1428;
+    background-color: #D67477;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -60,44 +63,50 @@ button {
     font-size: 20px;
     margin-bottom: 50px;
     width: 250px;
+    box-shadow: 5px 5px 2px #888888;
     }
 
 li {
-    font: 1em helvetica;
-    color: #333;
+    font: 1em Abel, sans-serif;
+    color: inherit;
     
 }
 table {
     width:100%;
+    
+
     }
 
 table, th, td {
-    
-    border-radius: 5px;
     padding: 15px;
-    c
-    font-family: "helvetica", Georgia, Serif;
+    font-family: inherit;
     margin-left: 0%;
     margin-bottom: 15px;
     width: auto;
 }
+    th, td {
+    
+    box-shadow: 5px 5px 2px #888888;
+}
 
  table tr {
-    background-color:lightgrey;
+
+    background-color: #6E6E69;
     padding-left: 3px;
 }
 .content {
-    background-color: #8d7882;
+    background-color: #D1D2D2;
     display: table;
     margin: auto;
     width: auto;
     padding: 2% 3%;
-    border: 1px solid #8d7882;
-    border-radius: 12px;
+    box-shadow: 5px 5px 2px #888888;
+    border:none;
+    border-radius: 8px;
 }
 
 label {
-    font-family: Helvetica, sans-serif;
+    font-family: inherit;
     color: #333;
     width: 400px;
     font-size: 1rem;
@@ -113,7 +122,7 @@ label {
 /*MENU*/
 
 .solid_component {
-    background-color: #333;
+    background-color: #E0E0DF;
     width:  20%;
     display: block;
     float: left;
@@ -123,30 +132,31 @@ label {
 .solid_component .welcome_user img {
     margin: auto;
 	border: none;
+    border-radius: 8px;
+    box-shadow: 5px 5px 2px #888888
     }
 
 .menu ul {
     list-style-type: none;
     margin: auto;
     padding: 5%;
-    background-color: #333;
+    background-color: #E0E0DF;
     height: 100%; 
     overflow: auto;
+    color: #333;
     }
 
-    
-.active {
-    background-color: #8d7882;
-    color: white;
-    }
+
 
 .menu li {
     text-align: center;
+    box-shadow: 5px 5px 2px #888888
+    
     }  
 
 .menu li a {
     display: block;
-    color: white;
+    background-color: inherit;
     text-align: center;
     padding: 5%;
     text-decoration: none;
@@ -154,7 +164,8 @@ label {
     }
 
 .menu li a:hover {
-    background-color: #463c41;
+    background-color: #FBA3A6;
+    color: white;
     }
 
 .menu a {
@@ -331,10 +342,6 @@ select {
 
 .attend_table {
     text-align: left;
-    /*position: relative;*/
-    /*right: -60px;*/
-    /*float: center;*/
-
 }
 
 
