@@ -280,7 +280,7 @@ select {
     box-shadow: 2px 2px 2px #888;
     vertical-align: middle;
     cursor:pointer;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
 }
 
 
@@ -386,24 +386,26 @@ input[date]{
     ;
 }
 
-#select_submission1{
- 
-        height:34px;
-        width: 230px;
-        line-height:30px;
-        background:#f4f4f4;
-        text-align: center;
-        margin: 4px;
-        position: relative;
-        top: 15px;
-        margin-bottom: 40px;
+#select_submission1{ 
+    height:34px;
+    width: 230px;
+    line-height:30px;
+    background:#f4f4f4;
+    text-align: center;
+    margin: 4px;
+    position: relative;
+    top: 15px;
+    margin-bottom: 40px;
     } 
 
 #class_label_attendance{
     height:34px;
     width: 180px;
 }
-.attend_table{
-    background-color: grey;
+.attend_table{    
+    background:grey;
+    margin: 30px;
+    padding: 0;
+    border-width: 3px;
 }
 
