@@ -352,6 +352,7 @@ input[date]{
 
 #submit-link {
     width: 700px;
+}
 
 .border_main_row {
     text-align: center;
@@ -362,9 +363,25 @@ input[date]{
     position: relative;
     top: 10px;
 }
-<<<<<<< HEAD
+
 #select_submission{
     float: center;
 }
-=======
->>>>>>> 8a83f025669dd64f7c2527662fb819fb33bf1497
+#select_submission {
+    position: relative;
+    right: -170px;
+    float: center;
+}
+
+#select_submission1{
+ 
+        height:34px;
+        width: 230px;
+        line-height:30px;
+        background:#f4f4f4;
+        text-align: center;
+        margin: 4px;
+        position: relative;
+        top: 15px;
+        margin-bottom: 40px;
+    } 
