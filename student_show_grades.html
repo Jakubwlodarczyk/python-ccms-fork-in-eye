@@ -3,31 +3,17 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://www.w3schools.com/lib/w3data.js"></script> 
         <title>Codecool Management System</title>
     </head>
 
     <body>
-        
+        <div w3-include-html="sidebar.html"></div>
         <header>
             <h1>Show grades</h1>
         </header>
 
-        <section class='solid_component'>
-            <div class='welcome_user'>
-                 <img src="https://s-media-cache-ak0.pinimg.com/736x/9f/71/a3/9f71a3ad199ec1ca31806aa641aa7485.jpg" width=100% height=100% alt='User'/>
-                <h3> Logged as Student</h3>  
 
-                <div class='menu'>
-                    <ul>
-                        <li><a class="active" href="menu.html">Home</a></li>
-                        <li><a href='student_show_grades.html'> Grades</a></li>
-                        <li><a href='student_submit_assignement.html'>Submit </a></li>
-                        <li><a href='student_show_attendence.html'> Attendance</a></li>
-                        <li><a href='menu.html'>Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
         <section class='content'>
             <p>Grades for LOGGED STUDENT</p>
              <table>
@@ -66,6 +52,8 @@
     <br>
         </section>
         
-        
+        <script>
+        w3IncludeHTML();
+        </script>     
     </body>
 </html>

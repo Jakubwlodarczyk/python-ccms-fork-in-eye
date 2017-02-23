@@ -3,35 +3,16 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://www.w3schools.com/lib/w3data.js"></script> 
         <title>Codecool Management System</title>
     </head>
 
     <body>
-        
+        <div w3-include-html="sidebar.html"></div>
         <header>
             <h1>Manage your life<br>At least try</h1>
         </header>
 
-        <section class='solid_component'>
-            <div class='welcome_user'>
-                 <img src="http://bociek.blog.onet.pl/wp-content/blogs.dir/710479/files/blog_re_4728262_7216640_tr_gawron.jpg" width=100% height=100% alt='User'/>
-                <h3> Logged as User</h3>  
-
-                <div class='menu'>
-                <ul>
-                    <li><a href="menu.html">Home</a></li>
-
-                    <li><a href='show_students_list.html'>Students</a></li>
-                    <li><a href='teams.html'>Teams</a></li>
-                    <li><a href='show_mentors_list.html'> Mentors</a></li>
-                    <li><a href='show_assignments.html'>Assignments</a></li>
-                    <li><a href='student_show_attendence.html'>Attendance</a></li>
-                    <li><a href='index.html'>Log out</a></li>
-                </ul>
-                </div>
-            </div>
-
-        </section>
 <section class='content'>
 TUTAJ POWINNISMY WYSWIETLIC SREDNIĄ OBECNOSC STUDENTOW 
 	+ DODAĆ PRZYCISK Z ODNOŚNIKIEM DO SPRAWDZENIA OBECNOSCI DNIA BIERZĄCEGO(LUB Z WYBRANEJ DATY)
@@ -105,5 +86,8 @@ TUTAJ POWINNISMY WYSWIETLIC SREDNIĄ OBECNOSC STUDENTOW
         <button>Submit</button>
 
     </section>
+     <script>
+     w3IncludeHTML();
+    </script>   
 </body>
 </html>
