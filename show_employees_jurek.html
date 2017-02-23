@@ -3,35 +3,16 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://www.w3schools.com/lib/w3data.js"></script> 
         <title>Codecool Management System</title>
     </head>
 
     <body>
-        
+        <div w3-include-html="sidebar.html"></div>
         <header>
             <h1>List of employees</h1>
         </header>
 
-        <section class='solid_component'>
-            <div class='welcome_user'>
-                 <img src="http://bociek.blog.onet.pl/wp-content/blogs.dir/710479/files/blog_re_4728262_7216640_tr_gawron.jpg" width=100% height=100% alt='User'/>
-                <h3> Logged as User</h3>  
-
-                <div class='menu'>
-                <ul>
-                    <li><a href="menu.html">Home</a></li>
-
-                    <li><a href='student_list.html'>Students</a></li>
-                    <li><a href='teams.html'>Teams</a></li>
-
-                    <li><a href='mentor_list.html'> Mentors</a></li>
-                    <li><a href='assignment_list.html'>Assignments</a></li>
-                    <li><a href='attendance.html'>Attendance</a></li>
-                    <li><a href='index.html'>Log out</a></li>
-                </ul>
-                </div>
-            </div>
-        </section>
         <section class='content'>
             <a href="edit_employee.html">
                 <button type="button" value="send">Add a new employee</button></a>
@@ -71,6 +52,8 @@
 
     </section>
         
-        
+        <script>
+        w3IncludeHTML();
+        </script>
     </body>
 </html>
