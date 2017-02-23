@@ -3,39 +3,26 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://www.w3schools.com/lib/w3data.js"></script> 
         <title>Codecool Management System</title>
     </head>
 
     <body>
-        
+        div w3-include-html="sidebar.html"></div>
         <header>
             <h1>You're the boss!<br>Yes, you are. Yes, you are!</h1>
         </header>
 
-        <section class='solid_component'>
-            <div class='welcome_user'>
-                 <img src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAf5AAAAJDFlY2Q2M2MzLWFiZDItNGRmOC1iODZhLTc0MjYzZDhiOGNkOA.jpg" width=100% height=100% alt='Jurek'/>
-                <h3> Logged as Jurek</h3>  
 
-                <div class='menu'>
-                    <ul>
-                        <li><a class="active"  href="jurek_menu.html">Home</a></li>
-                        <li><a   href='show_mentors_jurek.html'>Show mentors</a></li>
-                        <li><a  href='show_employees_jurek.html'>Show employees</a></li>
-                        <li><a href='show_students_jurek.html'>Show students</a></li>
-                        <li><a href='#student'>View student's grades</a></li>
-                        <li><a href='menu.html'>Log out</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
         <section class='content'>
             <p>Home page of Jurek the manager.
             Welcome.
             Here goes some content.</p>
         </section>
         
-        
+        <script>
+        w3IncludeHTML();
+        </script>  
     </body>
 </html>
 
