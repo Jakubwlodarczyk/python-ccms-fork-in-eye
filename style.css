@@ -75,7 +75,7 @@ table, th, td {
     
     border-radius: 5px;
     padding: 15px;
-    border: 0px solid #333;
+    c
     font-family: "helvetica", Georgia, Serif;
     margin-left: 0%;
     margin-bottom: 15px;
@@ -378,6 +378,37 @@ input[date]{
     top: 10px;
 }
 
+#codecool-img {
+    float:right;
+    height: 200px;
+    width: 200px;
+    position: relative;
+    top: 15px;
+    right: 20px;
+        -webkit-animation:spin 16s linear infinite;
+    -moz-animation:spin 16s linear infinite;
+    animation:spin 16s linear infinite;
+}
+
+.codecool_krk {
+    height: 200px;
+    width: 300px;
+    border: 3px solid #333;
+    border-radius: 5px;
+    float: right;
+    margin-left: 10px;
+    
+}
+
+#left-p-menu {
+    justify-content: center;
+    margin-right: 10px
+
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 
 .select_submission {
