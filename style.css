@@ -259,6 +259,20 @@ div.loginHead {
     border-radius: 5px;
 }
 
+.little-input {
+    width: 100px;
+    font-family: Helvetica, sans-serif;
+    font-size: 1.0em;
+    margin: 0px 0px 10px 0px;
+    border: 2px solid #ccc;
+    padding: 5px;
+    background: #f1f1f1;
+    border: 0;
+    box-shadow: 2px 2px 2px #888;
+    transition: all .3s ease-in;
+    border-radius: 5px;
+}
+
 .add-person-form-input:focus {
     background-color: #9b9b9b;
 }
@@ -279,6 +293,7 @@ select {
     cursor:pointer;
     border-radius: 5px;
 }
+
 
 .add-person-form-input.add-person-form-select.mentor-show-students {
     
@@ -327,10 +342,6 @@ select {
 
 .attend_table {
     text-align: left;
-    /*position: relative;*/
-    /*right: -60px;*/
-    /*float: center;*/
-
 }
 
 
@@ -374,6 +385,37 @@ input[date]{
     top: 10px;
 }
 
+#codecool-img {
+    float:right;
+    height: 200px;
+    width: 200px;
+    position: relative;
+    top: 15px;
+    right: 20px;
+        -webkit-animation:spin 16s linear infinite;
+    -moz-animation:spin 16s linear infinite;
+    animation:spin 16s linear infinite;
+}
+
+.codecool_krk {
+    height: 200px;
+    width: 300px;
+    border: 3px solid #333;
+    border-radius: 5px;
+    float: right;
+    margin-left: 10px;
+    
+}
+
+#left-p-menu {
+    justify-content: center;
+    margin-right: 10px
+
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 
 .select_submission {
@@ -394,3 +436,21 @@ input[date]{
         top: 15px;
         margin-bottom: 40px;
     } 
+
+.add-team {
+	float: left;
+	margin-right: 10px;
+}
+
+.edit-team {
+	float: right;
+	margin-left: 10px;
+}
+
+.email.input {
+	background-color: rgb(255, 100, 90);
+}
+
+.password.input {
+	background-color: rgb(255, 100, 90);
+}
