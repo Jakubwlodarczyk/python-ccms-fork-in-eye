@@ -3,7 +3,7 @@
 
 body {
     background-color:  #463C41;
-    font: 120% helvetica, sans-serif;
+    font: 120% Abel, sans-serif;
 	line-height: 1.5;
 	margin: 5%;
 	padding: 0;
@@ -26,20 +26,20 @@ header {
     }
 
 h1 {
-    font:  3rem helvetica, sans-serif;
+    font:  3rem 'Lobster', cursive;
     color: #8d7882;
     text-align: center;
     }
 
 h2 {
-    font: 2rem helvetica;
+    font: 2rem Abel, sans-serif;
     letter-spacing: 8px;
     color: #333;
     text-align: center;
     }
 
 h3 {
-    font: 1rem helvetica;
+    font: 1rem Abel, sans-serif;
     letter-spacing: 5px;
     color: #8d7882;
     text-align: center;
@@ -63,7 +63,7 @@ button {
     }
 
 li {
-    font: 1em helvetica;
+    font: 1em Abel, sans-serif;
     color: #333;
     
 }
@@ -76,7 +76,7 @@ table, th, td {
     border-radius: 5px;
     padding: 15px;
     border: 0px solid #333;
-    font-family: "helvetica", Georgia, Serif;
+    font-family: inherit;
     margin-left: 0%;
     margin-bottom: 15px;
     width: auto;
