@@ -1,15 +1,11 @@
 /*MAIN STYLE SETTINGS*/
 
-html {
-    margin: 50px;
-    padding: 0;
-    }
 
 body {
     background-color:  #463C41;
     font: 120% helvetica, sans-serif;
 	line-height: 1.5;
-	margin: 0;
+	margin: 5%;
 	padding: 0;
     }
 
@@ -60,6 +56,7 @@ button {
     margin-bottom: 50px;
     width: 250px;
     }
+
 li {
     font: 1em helvetica;
     color: #333;
@@ -73,7 +70,7 @@ table, th, td {
     
     border-radius: 5px;
     padding: 15px;
-    border: 0px solid black;
+    border: 0px solid #333;
     font-family: "helvetica", Georgia, Serif;
     margin-left: 0%;
     margin-bottom: 15px;
@@ -88,11 +85,12 @@ table, th, td {
     background-color: #8d7882;
     display: table;
     margin: auto;
-    width: 70%;
-    padding: 20px 40px;
+    width: auto;
+    padding: 2% 3%;
     border: 1px solid #8d7882;
     border-radius: 12px;
 }
+
 label {
     font-family: Helvetica, sans-serif;
     color: #333;
@@ -125,8 +123,8 @@ label {
 
 .menu ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin: auto;
+    padding: 5%;
     background-color: #333;
     height: 100%; 
     overflow: auto;
@@ -146,7 +144,7 @@ label {
     display: block;
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 5%;
     text-decoration: none;
     font-size: 1.5vw;
     }
@@ -294,47 +292,12 @@ select {
 }
 
 
-/*
-.nav_attendance ul{
- color: black; 
- overflow: hidden;
- text-align: center;
- padding: 20px;
- margin: 40px;
-  
-}
-*/
-
 .nav_attendance ul li{
   padding: 10px;
   
   display: inline;
 }
 
-
-/*
-.attend_table_row ul{
- color: black;
- overflow: hidden;
- text-align: center;
- padding: 2px;
- margin: 0;
- border-bottom-style: solid;
- border-bottom-width: 2px;
- border-color: black;
-}
-*/
-
-/*
-.attend_table_row ul li{
-  padding: 10px;
-  display: inline-block;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-color: black;
-  padding: 1px;
-*/
-}
 
 .header_table {
     height: 50px;
@@ -385,5 +348,4 @@ input[date]{
     vertical-align: middle;
     cursor:pointer;
     border-radius: 5px;
-}
 }
