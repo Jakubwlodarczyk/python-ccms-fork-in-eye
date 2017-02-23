@@ -380,14 +380,19 @@ input[date]{
 
 #codecool-img {
     float:right;
-    height: 200px;
-    width: 200px;
-    position: relative;
-    top: 15px;
+    height: 90%;
+/*    width: 200px;*/
+/*    position: relative;*/
+    top: auto;
     right: 20px;
         -webkit-animation:spin 16s linear infinite;
     -moz-animation:spin 16s linear infinite;
     animation:spin 16s linear infinite;
+    vertical-align: middle;
+    margin: 15px;
+    
+
+    
 }
 
 .codecool_krk {
@@ -397,6 +402,7 @@ input[date]{
     border-radius: 5px;
     float: right;
     margin-left: 10px;
+    
     
 }
 
@@ -429,3 +435,8 @@ input[date]{
         top: 15px;
         margin-bottom: 40px;
     } 
+
+.header-menu {
+    height: 250px;
+}
+    
