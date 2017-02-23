@@ -321,6 +321,9 @@ select {
 
 .attend_table {
     text-align: left;
+    position: relative;
+    right: 200px;
+    float: center;
 }
 
 
@@ -367,7 +370,7 @@ input[date]{
 #select_submission{
     float: center;
 }
-#select_submission {
+.select_submission {
     position: relative;
     right: -170px;
     float: center;
