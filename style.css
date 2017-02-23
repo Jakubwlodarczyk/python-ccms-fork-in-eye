@@ -26,23 +26,23 @@ header {
     }
 
 h1 {
-    font:  3em helvetica, sans-serif;
+    font:  3rem helvetica, sans-serif;
     color: #8d7882;
     text-align: center;
     }
 
 h2 {
-    font: 2em helvetica;
+    font: 2rem helvetica;
     letter-spacing: 8px;
     color: #333;
     text-align: center;
     }
 
 h3 {
-    font: 1em helvetica;
-    letter-spacing: 2px;
+    font: 1rem helvetica;
+    letter-spacing: 5px;
     color: #8d7882;
-    text-align: left;
+    text-align: center;
     padding-left: 5px;
     }
 
@@ -69,8 +69,7 @@ li {
 }
 table {
     width:100%;
-    vertical-align: middle;
-}
+    }
 
 table, th, td {
     
@@ -91,7 +90,7 @@ table, th, td {
     background-color: #8d7882;
     display: table;
     margin: auto;
-    width: 70%;
+    width: auto;
     padding: 2% 3%;
     border: 1px solid #8d7882;
     border-radius: 12px;
@@ -101,9 +100,8 @@ label {
     font-family: Helvetica, sans-serif;
     color: #333;
     width: 400px;
-    font-size: 1em;
+    font-size: 1rem;
     padding: 0;
-    float: left;
     clear: both;
     text-align: right;
     margin-right: 10px;
@@ -152,7 +150,7 @@ label {
     text-align: center;
     padding: 5%;
     text-decoration: none;
-    font-size: 1.5vw;
+    font-size: 1.5rem;
     }
 
 .menu li a:hover {
@@ -160,7 +158,6 @@ label {
     }
 
 .menu a {
-    font: 2em helvetica, sans-serif;
     letter-spacing: 5px;
     text-decoration: none;
     color: #333;
@@ -251,6 +248,20 @@ div.loginHead {
     border-radius: 5px;
 }
 
+.little-input {
+    width: 100px;
+    font-family: Helvetica, sans-serif;
+    font-size: 1.0em;
+    margin: 0px 0px 10px 0px;
+    border: 2px solid #ccc;
+    padding: 5px;
+    background: #f1f1f1;
+    border: 0;
+    box-shadow: 2px 2px 2px #888;
+    transition: all .3s ease-in;
+    border-radius: 5px;
+}
+
 .add-person-form-input:focus {
     background-color: #9b9b9b;
 }
@@ -272,6 +283,7 @@ select {
     border-radius: 5px;
 }
 
+
 .add-person-form-input.add-person-form-select.mentor-show-students {
     
     width: 100px;
@@ -289,7 +301,6 @@ select {
 .mentor-give-card .yellow-card {
         background: yellow;
 }
-
 
 
 .add-person-form-button:active {
@@ -320,6 +331,10 @@ select {
 
 .attend_table {
     text-align: left;
+    /*position: relative;*/
+    /*right: -60px;*/
+    /*float: center;*/
+
 }
 
 
@@ -394,3 +409,23 @@ input[date]{
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+
+.select_submission {
+    position: relative;
+    right: -170px;
+    ;
+}
+
+#select_submission1{
+ 
+        height:34px;
+        width: 230px;
+        line-height:30px;
+        background:#f4f4f4;
+        text-align: center;
+        margin: 4px;
+        position: relative;
+        top: 15px;
+        margin-bottom: 40px;
+    } 

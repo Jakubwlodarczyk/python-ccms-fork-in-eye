@@ -12,13 +12,23 @@
         <header>
             <h1>All submissions</h1>
         </header>
-
+        
         <section class='content'>
+
             
             <h2>
             Total: <em> average %</em>
             
             </h2>
+
+            <div class="select_submission"
+            <label for="select-class" >Choose assignment: </label>
+            <select id="select_submission1" name="select-class">
+                <option selected>Assignment 1</option>        
+                <option>Assignment 2</option>        
+            </select> 
+        </div> 
+
             <table>
             
             <tr class="header_table">
@@ -27,6 +37,7 @@
                 <td>Student name</td>
                 <td>Github link</td>
                 <td>Grade</td>
+                <td>Action</td>
             
             </tr>
 
@@ -36,6 +47,10 @@
                 <td>Row 2, cell 3</td>
                 <td>Row 2, cell 4</td>
                 <td>Row 2, cell 5</td>
+                <td><label><span>
+                    Grade</span></label>
+                    <input name="grade" class="little-input" type="text">
+                </td>
             </tr>
             <tr>
                 <td>Row 3, cell 1</td>
@@ -43,6 +58,11 @@
                 <td>Row 3, cell 3</td>
                 <td>Row 3, cell 4</td>
                 <td>Row 3, cell 5</td>
+                <td><label><span>
+                    Grade</span></label>
+                    <input name="grade" class="little-input" type="text">
+                    
+                </td>
             </tr>
             <tr>
                 <td>Row 4, cell 1</td>
@@ -50,8 +70,13 @@
                 <td>Row 4, cell 3</td>
                 <td>Row 4, cell 4</td>
                 <td>Row 4, cell 5</td>
+                <td><label><span>
+                    Grade</span></label>
+                    <input name="grade" class="little-input" type="text">    
+                </td>
             </tr>
         </table>
+            <br><button type="save">SAVE GRADES</button>
     <br>
         </section>
         
