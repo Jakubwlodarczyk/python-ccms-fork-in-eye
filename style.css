@@ -398,3 +398,21 @@ input[date]{
         top: 15px;
         margin-bottom: 40px;
     } 
+
+.add-team {
+	float: left;
+	margin-right: 10px;
+}
+
+.edit-team {
+	float: right;
+	margin-left: 10px;
+}
+
+.email.input {
+	background-color: rgb(255, 100, 90);
+}
+
+.password.input {
+	background-color: rgb(255, 100, 90);
+}
