@@ -6,49 +6,48 @@
         <script src="https://www.w3schools.com/lib/w3data.js"></script> 
         <title>Codecool Management System</title>
     </head>
-
     <body>
-        
         <div w3-include-html="sidebar.html"></div>
         <header>
             <h1>Assignments list</h1>
         </header>
-
-
         <section class='content'>
-
         <div class="select_submission">
-            <label for="select-class">Choose assignment: </label>
-            <select id="select_submission1" name="select-class">
-                <option selected>Assignment 1</option>        
+            <label for="select-assignment">Choose assignment: </label>
+            <select name="select-assignment">
+                <option selected>--select--</option>
+                <option>Assignment 1</option>
                 <option>Assignment 2</option>        
             </select> 
         </div>      
 		<table>
-            <tr class="header_table">
-                <td>#</td>
-                <td>Name</td>
-                <td>Link</td>
-                <td>Start date</td>
-                <td>End date</td>
-                <td>Action</td>
-            </tr>
-
-            <tr class="person_to_show">
-                <td>1</td>
-                <td>CCMS</td>
-                <td>https://github.com/CodecoolKrakow20161/python-ccms-fork-in-eye/tree/views</td>
-                <td>21.01.2017</td>
-                <td>03.02.2017</td>
-                <td>
-				<a href="student_submit_assignement.html">Submit</a>
-                </td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Link</th>
+                    <th>Start date</th>
+                    <th>End date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="person_to_show">
+                    <td>1</td>
+                    <td>CCMS</td>
+                    <td>https://github.com/CodecoolKrakow20161/python-ccms-fork-in-eye/tree/views</td>
+                    <td>21.01.2017</td>
+                    <td>03.02.2017</td>
+                    <td>
+                    <a href="submit_form.html"><button class='little-button'>Submit</button></a>               
+                    </td>
+                </tr>
+            </tbody>
         </table> 
-        </section>
-        <script>
+    </section>
+    <script>
         w3IncludeHTML();
-        </script> 
+    </script> 
     </body>
 </html>
 
