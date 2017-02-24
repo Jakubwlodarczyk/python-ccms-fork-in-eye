@@ -25,7 +25,9 @@ header {
     float: right;
     background-image: url('https://s-media-cache-ak0.pinimg.com/originals/1d/a8/63/1da86316ddbe7855de601d64798e5e97.jpg');
     background-blend-mode:overlay;
-    box-shadow: 5px 5px 2px #888888
+    box-shadow: 5px 5px 2px #888888;
+    border: none;
+    border-radius: 8px;
     }
 
 h1 {
@@ -51,7 +53,7 @@ h3 {
 
 
 button {
-    background-color: #D67477;
+    background-color: #978585;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -69,12 +71,26 @@ button {
 li {
     font: 1em Abel, sans-serif;
     color: inherit;
-    
-}
+    }
+
+select {
+    width: 500px;
+    font-family: inherit;
+    font-size: 1.0em;
+    margin: 0px 0px 10px 0px;
+    border: 2px solid #ccc;
+    padding: 5px;
+    transition: all .3s ease-in;
+    background: #f1f1f1;
+    border: 0;
+    box-shadow: 2px 2px 2px #888;
+    vertical-align: middle;
+    cursor:pointer;
+    border-radius: 5px;
+    }
+
 table {
     width:100%;
-    
-
     }
 
 table, th, td {
@@ -84,16 +100,17 @@ table, th, td {
     margin-bottom: 15px;
     width: auto;
 }
-    th, td {
+
+th, td {
     
     box-shadow: 5px 5px 2px #888888;
 }
 
  table tr {
-
-    background-color: #6E6E69;
+    background-color:lightgrey;
     padding-left: 3px;
-}
+    }
+
 .content {
     background-color: #D1D2D2;
     display: table;
@@ -146,8 +163,6 @@ label {
     color: #333;
     }
 
-
-
 .menu li {
     text-align: center;
     box-shadow: 5px 5px 2px #888888
@@ -164,7 +179,7 @@ label {
     }
 
 .menu li a:hover {
-    background-color: #FBA3A6;
+    background-color: #978585;
     color: white;
     }
 
@@ -185,19 +200,19 @@ body.loginBody {
 
 .loginMenu {
     border-radius: 15px;
-    border: 1px solid #333;
+    border: 1px solid #978585;
     text-align: center;
+    box-shadow: 2px 2px 2px #888;
 }
 
 .loginHead {
 	margin-top: 15px;
 	margin-bottom: 15px;
-
 }
 
 
 tr.border_bottom td {
-  border-bottom:2pt solid black;
+    border-bottom:2pt solid black;
 }
 
 
@@ -247,7 +262,7 @@ div.loginHead {
 
 .add-person-form-input {
     width: 500px;
-    font-family: Helvetica, sans-serif;
+    font-family: inherit;
     font-size: 1.0em;
     margin: 0px 0px 10px 0px;
     border: 2px solid #ccc;
@@ -261,7 +276,7 @@ div.loginHead {
 
 .little-input {
     width: 100px;
-    font-family: Helvetica, sans-serif;
+    font-family: inherit;
     font-size: 1.0em;
     margin: 0px 0px 10px 0px;
     border: 2px solid #ccc;
@@ -278,6 +293,7 @@ div.loginHead {
 }
 
 
+
 select {
     width: 500px;
     font-family: Helvetica, sans-serif;
@@ -291,8 +307,9 @@ select {
     box-shadow: 2px 2px 2px #888;
     vertical-align: middle;
     cursor:pointer;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
 }
+
 
 
 .add-person-form-input.add-person-form-select.mentor-show-students {
@@ -302,15 +319,15 @@ select {
 }
 
 .mentor-give-card .green-card {
-        background: red;
+    background: red;
 }
 
 .mentor-give-card .red-card {
-        background: #00FF00;
+    background: #00FF00;
 }
 
 .mentor-give-card .yellow-card {
-        background: yellow;
+    background: yellow;
 }
 
 
@@ -319,26 +336,19 @@ select {
 
 }
 
-
 .header_table {
     height: 50px;
     text-align: center;
     margin-bottom: 10px;
-   
-        }
+    }
         
 .header_table td {
     background-color: #333;
     color: white;
-
+    font: inherit;
     font-weight: bold; 
 }
         
- table tr {
-    background-color:lightgrey;
-    padding-left: 3px;
-        }
-
 
 .attend_table {
     text-align: left;
@@ -357,7 +367,7 @@ select {
 
 input[date]{
     width: 500px;
-    font-family: Helvetica, sans-serif;
+    font-family: inherit;
     font-size: 1.0em;
     margin: 0px 0px 10px 0px;
     border: 2px solid #ccc;
@@ -388,18 +398,14 @@ input[date]{
 #codecool-img {
     float:right;
     height: 90%;
-/*    width: 200px;*/
-/*    position: relative;*/
     top: auto;
     right: 20px;
-        -webkit-animation:spin 16s linear infinite;
+    -webkit-animation:spin 16s linear infinite;
     -moz-animation:spin 16s linear infinite;
     animation:spin 16s linear infinite;
     vertical-align: middle;
     margin: 15px;
-    
-
-    
+        
 }
 
 .codecool_krk {
@@ -409,8 +415,7 @@ input[date]{
     border-radius: 5px;
     float: right;
     margin-left: 10px;
-    
-    
+     
 }
 
 #left-p-menu {
@@ -427,21 +432,28 @@ input[date]{
 .select_submission {
     position: relative;
     right: -170px;
-    ;
-}
+    }
+
 
 #select_submission1{
  
-        height:34px;
-        width: 230px;
-        line-height:30px;
-        background:#f4f4f4;
-        text-align: center;
-        margin: 4px;
-        position: relative;
-        top: 15px;
-        margin-bottom: 40px;
+    height:34px;
+    width: 230px;
+    line-height:30px;
+    background:#f4f4f4;
+    text-align: center;
+    margin: 4px;
+    position: relative;
+    top: 15px;
+    margin-bottom: 40px;
     } 
+
+
+#class_label_attendance{
+    height:34px;
+    width: 180px;
+}
+
 
 
 .header-menu {
@@ -465,5 +477,16 @@ input[date]{
 
 .password.input {
 	background-color: rgb(255, 100, 90);
+
 }
+.border_main_row{
+    background-color: #333;    
+    color: white;
+    height: 50px;
+    font-weight: bold;
+    font-size: 18px;
+
+}
+
+
 
