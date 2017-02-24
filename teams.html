@@ -18,48 +18,33 @@
             <a href="add_new_team.html">
             <button class="add-team" type="button" value="send">Add a new team</button>
             </a>
-			<a href="edit_team_name.html">
-            <button class="edit-team" type="button" value="send">Edit team name</button>
-            </a>
+
+            
             <table>  
-
-            <tr class="header_table">
-                <td>#</td>
-                <td>Team name</td>
-				<td>Member</td>
+            <thead>
+                <tr></tr>
+                    <th>#</th>
+                    <th>Team name</th>
+                    <th>Members</th>
+                </tr>
+            </thead>
+            
+			<tr class="person_to_show">
+<!--                dwa pierwsze mają być scalone żeby obejmowały wszystkich członków grupy-->
+				<td rowspan="3">1</td>
+                <td rowspan="3">FORk in eye <a href="edit_team_name.html"><button class="little-button" type="button" value="send">Edit</button></a></td>
+<!--                pierwszy członek grupy (członkowie są w osobych rzędach)-->
+				<td>Yan Novac <button class="little-button">Remove</button></td>
             </tr>
-			<tr class="person_to_show">
-				<td>1</td>
-				<td>FORk in eye</td>
-				<td>Jan nowak</td>
-			</tr>
-			<tr class="person_to_show">
-				<td>1</td>
-				<td>FORk in eye</td>
-				<td>Waldek Kowalski</td>
-			</tr>
-			<tr class="person_to_show">
-				<td>1</td>
-				<td>FORk in eye</td>
-				<td>Yoda Adoy</td>
-			</tr>
-			<tr class="person_to_show">
-				<td>2</td>
-				<td>Dziwny team</td>
-				<td>Janusz Dziwny</td>
-			</tr>
-			<tr class="person_to_show">
-				<td>2</td>
-				<td>Dziwny team</td>
-				<td>Andrzej Dziwniejszy</td>
-			</tr>
-		
-
+<!--            kolejni członkowie w kolejnych rzędach-->
+            <tr><td>Huan Kovalsky <button class="little-button">Remove</button></td></tr>
+            <tr><td>Ivo Niewiem <button class="little-button">Remove</button></td></tr>
+			
             </table>
 
         </section>
         <script>
-        w3IncludeHTML();
+            w3IncludeHTML();
         </script>
     </body>
 </html>
