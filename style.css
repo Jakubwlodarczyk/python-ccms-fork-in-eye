@@ -485,8 +485,15 @@ input[date]{
     height: 50px;
     font-weight: bold;
     font-size: 18px;
+    text-align: center;
 
 }
+
+ .full_name_table_attend{
+     position: relative;
+     top: 10px;
+ }
+
 
 
 
