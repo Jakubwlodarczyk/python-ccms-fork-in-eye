@@ -10,85 +10,38 @@
     <body>
         <div w3-include-html="sidebar.html"></div>
         <header>
-            <h1>Manage your life<br>At least try</h1>
+            <h1>Roll call<br>Attendance</h1>
         </header>
 
-<section class='content'>
-    <span id="class_selector_1">
-
-    <label>Class</label>
-    <select id="class_label_attendance" name="select-class">
-        <option selected>KRK 2016.1</option>        
-        <option>KRK 2017.1</option>        
-    </select> 
-    </span>
-    <br>    
-    <label for='choose-date'>Date</label>
+<section class="content">
+    <label for="choose-date">Date</label>
     <input name='choose-date' type="date"> 
     
     <table>
-        <table>
-        <tr class="border_main_row">
-            
-            <th> <p class="full_name_table_attend">#</p></th>
-           
-            <th><p class="full_name_table_attend">Full Name</p></th>
-            <th colspan="3">Status</th>           
-        </tr>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th colspan="3">Status</th>           
+            </tr>
 
         <tr class="border_bottom">
-            <td> <p>1</p></td>
-            <td> <p>Jan Nowak</p></td>
+            <td>1</td>
+            <td>Jan Nowak</td>
             <td>
-                <input type="radio" name="opt">Present<br>
+                <input id="radio-present" type="radio" name="option" value="Present">
+                <label for="radio-present">Present</label>
             </td>
             <td>
-                <input type="radio" name="opt">Late<br>
+                <input id="radio-late" type="radio" name="option" value="Late">
+                <label for="radio-late">Late</label>
             </td>
             <td>
-                <input type="radio" name="opt">Absent<br>
+                <input id="radio-absent" type="radio" name="option" value="Absent">
+                <label for="radio-absent">Absent</label>
             </td>
         </tr>
 
-        <tr class="border_bottom">
-            <td> <p>2</p></td>
-            <td> <p class="attend_table_row2">Krzysiek Kowalski</p></td>
-            <td>
-                <input type="radio" name='option'>Present<br>
-            </td>
-            <td>
-                <input type="radio" name="option">Late<br>
-            </td>
-            <td>
-                <input type="radio" name="option">Absent<br>
-            </td>
-        </tr>
-        <tr class="border_bottom">
-            <td> <p>3</p></td>
-            <td> <p class="attend_table_row3">Jacek Prosty</p></td>
-            <td>
-                <input type="radio" name="przycisk">Present<br>
-            </td>
-            <td>
-                <input type="radio" name="przycisk">Late<br>
-            </td>
-            <td>
-                <input type="radio" name="przycisk">Absent<br>
-            </td>
-        </tr>
-        <tr class="border_bottom">
-            <td> <p>4</p></td>
-            <td> <p class="attend_table_row4">Wiesiek Zielony</p></td>
-            <td>
-                <input type="radio" name="choice">Present<br>
-            </td>
-            <td>
-                <input type="radio" name="choice" >Late<br>
-            </td>
-            <td>
-                <input type="radio" name="choice">Absent<br>
-            </td>
-        </tr>
     </table>
     </div>
         <button>SAVE</button>
