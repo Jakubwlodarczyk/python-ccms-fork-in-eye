@@ -252,6 +252,26 @@ class Attendance:
         Ui.get_inputs([""], "")
 
     @staticmethod
+    def student_presence(student_obj):
+        """
+        :param student_obj: student object
+        :return: tuple with counted presence
+        """
+        present = 0
+        late = 0
+        absent = 0
+
+        for day in student_obj.attendance_list:
+            if day.status == "1":
+                late += 1
+            if day.status == "2":
+                present += 1
+            if day.status == "0":
+                absent += 1
+
+        return present, late, absent
+
+    @staticmethod
     def attendance_mini_menu():
         """
         Allows user to control what he wants to do
@@ -279,3 +299,6 @@ class Attendance:
                 if int(option_list[0]) == 0:
                     os.system("clear")
                     break
+
+
+Attendance.student_presence(Student.student_list[0])
