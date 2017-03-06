@@ -2,13 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="style.css"/>
-        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
         <title>Codecool Management System</title>
     </head>
 
     <body>
-        <div w3-include-html="sidebar.html"></div>
         <header>
             <h1>List of students</h1>
         </header>
@@ -16,34 +14,33 @@
         <section class='content'>
 
             <a href="add.html">
-            <button class="add-person-form-button right" type="button" value="send">Add a new student</button>
+                <button class="add-person-form-button right" type="button" value="send">Add a new student</button>
             </a>
 
 
             <table>
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Full name</th>
-                <th>Email</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Full name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+            {% for student in students %}
             <tr class="person_to_show">
-                <td>1</td>
-                <td>Jan Dupsko</td>
-                <td>Dupeczka@dupa.pl</td>
+                <td>{{ loop.index }}</td>
+                <td>{{ student.name }} {{ student.surname }}</td>
+                <td>{{ student.email }}</td>
                 <td>
                     <a href="edit_person_data.html">| Edit</a>
                     | Remove |
                     <select class="add-person-form-input add-person-form-select mentor-show-students" name="select-class">
                     <option selected>Team</option>
-                    <option>group1</option>
-                    <option>group2</option>
-                    <option>group3</option>
-                  </select>
-
+                        <option>group1</option>
+                        <option>group2</option>
+                        <option>group3</option>
+                    </select>
                                         |
 
                     <select class="add-person-form-input add-person-form-select mentor-show-students mentor-give-card" name="select-class">
@@ -54,71 +51,12 @@
                   </select>
                 </td>
             </tr>
+            {% endfor %}
 
-            <tr class="person_to_show">
-                <td>2</td>
-                <td>Row 3, cell 2</td>
-                <td>Row 3, cell 3</td>
-                <td>
-                    <a href="mentor_add_student.html">| Edit</a>
-                    | Remove |
-
-
-
-                    <select class="add-person-form-input add-person-form-select mentor-show-students" name="select-class">
-                    <option selected>Team</option>
-                    <option>group1</option>
-                    <option>group2</option>
-                    <option>group3</option>
-                  </select>
-
-                                        |
-
-                    <select class="add-person-form-input add-person-form-select mentor-show-students mentor-give-card" name="select-class">
-                        <option selected>Card</option>
-                        <option class="green-card">Red</option>
-                        <option class="red-card">Green</option>
-                        <option class="yellow-card">Yellow</option>
-                  </select>
-
-                </td>
-            </tr>
-            <tr class="person_to_show" >
-                <td>3</td>
-                <td>Row 4, cell 2</td>
-                <td>Row 4, cell 3</td>
-                <td>
-                    <a href="mentor_add_student.html">| Edit</a>
-                    | Remove |
-
-                    <select class="add-person-form-input add-person-form-select mentor-show-students" name="select-class">
-                    <option selected>Team</option>
-                    <option>group1</option>
-                    <option>group2</option>
-                    <option>group3</option>
-                  </select>
-
-                    |
-
-                    <select class="add-person-form-input add-person-form-select mentor-show-students mentor-give-card" name="select-class">
-                        <option selected>Card</option>
-                        <option class="green-card">Green</option>
-                        <option class="red-card">Red</option>
-                        <option class="yellow-card">Yellow</option>
-                  </select>
-
-                </td>
-            </tr>
         </table>
-
-
-                        <a href="#">
-            <button class="add-person-form-button right" type="submit" value="send">Submit</button>
+            <a href="#">
+                <button class="add-person-form-button right" type="submit" value="send">Submit</button>
             </a>
         </section>
-
-        <script>
-        w3IncludeHTML();
-        </script>
     </body>
 </html>

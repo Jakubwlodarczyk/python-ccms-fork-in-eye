@@ -1,13 +1,13 @@
-from user import User
-from assignments import Assignments
-from ui import Ui
-from Common import Common
-from submission import Submission
-import sys
-import os
-import datetime
+from models.user import User
+# from assignments import Assignments
+# from ui import Ui
+# from Common import Common
+# from submission import Submission
+# import sys
+# import os
+# import datetime
 import sqlite3
-import time
+# import time
 
 class Student(User):
 
@@ -56,7 +56,7 @@ class Student(User):
 
 
     @classmethod
-    def create_objects_list_from_database(cls, table_name):  # from database
+    def students_all(cls):  # from database
         """
         Creates abjects based on data from database.
         :param file_path:
