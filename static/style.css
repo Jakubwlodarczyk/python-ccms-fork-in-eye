@@ -1,0 +1,420 @@
+/*MAIN STYLE SETTINGS*/
+
+
+body {
+    background-color: #E0E0DF;
+    color: #5B5B5B; 
+    font: 1.5rem Abel, sans-serif;
+    line-height: 1.5rem;
+    margin: 5%;
+    padding: 0;
+}
+
+p {
+    margin-top: 0;
+	text-align: justify;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+ }
+
+header {
+    background-image: url("https://s-media-cache-ak0.pinimg.com/originals/1d/a8/63/1da86316ddbe7855de601d64798e5e97.jpg");
+    border-radius: 8px;
+    border: none;
+    box-shadow: 5px 5px 2px #888888;
+    display:  block;
+    flex:1 ;
+    float: right;
+    width:  80%;
+}
+
+h1 {
+    color: #707070;
+    font:  4rem 'Lobster', cursive;
+    text-align: center;
+}
+
+h2 {
+    color: #707070;
+    font: 2rem Abel, sans-serif;
+    letter-spacing: 8px;
+    text-align: center;
+}
+
+h3 {
+    font: 1.5rem Abel, sans-serif;
+    letter-spacing: 5px;
+    color: #707070;
+    text-align: center;
+    padding-left: 5px;
+}
+
+
+button {
+    background-color: #3F4461;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 5px 5px 2px #888888;
+    color: white;
+    display: table;
+    font-size: 20px;
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    width: 250px;
+}
+
+    button.little-button {
+        background-color: #3F4461;
+        display:flex;
+        margin-bottom: 0;
+        margin-top: 0;
+        margin-right: 5px;
+        padding: 2%;
+        text-align: center;
+        width: 100px;  
+    }
+
+li {
+    color: inherit;
+    font: 1em Abel, sans-serif;
+}
+
+select {
+    background: #f1f1f1;
+    border-radius: 5px;
+    border: 0;
+    border: 2px solid #ccc;
+    box-shadow: 2px 2px 2px #888;
+    cursor:pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    margin: auto;
+    padding: 5px;
+    transition: all .3s ease-in;
+    vertical-align: middle;
+    width: auto;
+    }
+
+table {
+    width:100%;
+    margin-top: 50px;
+}
+
+    table th, td {box-shadow: 5px 5px 2px #888888}
+
+    table th {
+    background-color: #333;
+    color: white;
+    font-size: 1.5rem;
+    font-family: inherit;
+    padding: 10px;
+    }
+
+    table td {
+        font: inherit;
+        margin: auto;
+        padding: 10px;
+        width: auto;
+    }
+
+    table tr {background-color:lightgrey;}
+
+.content {
+    background-color: #D1D2D2;
+    border-radius: 8px;
+    border:none;
+    box-shadow: 5px 5px 2px #888888;
+    display: table;
+    flex: 1;
+    margin: auto;
+    padding: 2% 3%;
+    width: 70%;
+}
+
+label {
+    clear: both;
+    color: #333;
+    font: inherit;
+    font-size: 1.5rem;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 0;
+    text-align: left;
+    width: 400px;
+}
+
+.little-input {
+    width: 100px;
+    font-family: inherit;
+    font-size: 1.0em;
+    margin: 0px 0px 10px 0px;
+    border: 2px solid #ccc;
+    padding: 5px;
+    background: #f1f1f1;
+    border: 0;
+    box-shadow: 2px 2px 2px #888;
+    transition: all .3s ease-in;
+    border-radius: 5px;
+}
+
+/*MORE SPECIFIC STYLE SETTINGS*/
+
+/*MENU*/
+
+.solid_component {
+    background-color: #E0E0DF;
+    display: block;
+    flex: 1;
+    float: left;
+    margin: auto;
+    width:  20%;
+}
+
+    .solid_component .welcome_user img {
+        flex: inherit;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 5px 5px 2px #888888;
+        margin: auto;
+    }
+
+.menu ul {
+    background-color: #E0E0DF;
+    color: #333;
+    flex: 1;
+    height: 100%; 
+    list-style-type: none;
+    margin: auto;
+    overflow: auto;
+    padding: 5%;
+}
+
+    .menu li {
+        box-shadow: 5px 5px 2px #888888;
+        text-align: center;
+    }  
+
+        .menu li a {
+            background-color: inherit;
+            display: block;
+            flex: 1;
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            padding: 5%;
+            text-align: center;
+            text-decoration: none;
+            }
+
+            .menu li a:hover {
+                background-color: #3F4461;
+                color: white;
+            }
+
+/*LOG IN PAGE*/
+
+.loginBody {
+    display: table; 
+    margin: auto;
+    text-align: center;
+    width:60%;
+}
+    .loginBody input {
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: inherit;
+        box-sizing: border-box;
+        color: #808080;
+        display: inline-block;
+        font: inherit;
+        margin: 8px 0;
+        padding: 12px 20px;
+        width: 60%;
+    }
+
+.loginMenu {
+    border-radius: 10px;
+    border: 1px solid #978585;
+    box-shadow: 2px 2px 2px #888;
+    text-align: center;
+}
+
+.loginHead {
+    margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+
+.errorLoginMessage {
+    font: inherit;
+	color: red;
+}
+.email.input {background-color: #F4B3AD;}
+
+.password.input {background-color: #F4B3AD;}
+
+/*ADD PERSON VIEW*/
+
+
+.add-person-view {margin: auto;}
+
+.add-person-form { padding: 10px; }
+
+.add-person-form-element {
+    display: block;
+}
+
+.add-person-form-input {
+    background: #f1f1f1;
+    border-radius: 5px;
+    border: 0;
+    border: 2px solid #ccc;
+    box-shadow: 2px 2px 2px #888;
+    font-family: inherit;
+    font-size: 1.0em;
+    margin: 0px 0px 10px 0px;
+    padding: 5px;
+    transition: all .3s ease-in;
+    width: 500px;
+}
+
+    .add-person-form-input:focus {background-color: #D2D3D4;
+}
+
+/*TUTAJ SKONCZYLAM, NIE MAM SILY XD ~Ania */
+/*proszę to uporządkować. czy te wszystkie klasy są potrzebne?*/
+
+.add-person-form-input.add-person-form-select.mentor-show-students {
+    
+    width: 100px;
+    
+}
+
+.mentor-give-card .green-card {
+    background: red;
+}
+
+.mentor-give-card .red-card {
+    background: #00FF00;
+}
+
+.mentor-give-card .yellow-card {
+    background: yellow;
+}
+
+
+.add-person-form-button:active {
+    background-color:antiquewhite;
+
+}
+
+
+.navigation_codecool_class1 ul li{
+    display: inline;
+}
+.navigation_codecool_class1 ul{
+    color: #FFE4C4;
+    position: relative;
+    top: 50px;
+}
+
+/*TUTAJ ZNOWU ZACZELAM*/
+
+input[type=date]{
+    background: #f1f1f1;
+    border-radius: 5px;
+    border: 0;
+    border: 2px solid #ccc;
+    box-shadow: 2px 2px 2px #888;
+    cursor:pointer;
+    margin-bottom: auto;
+    padding: 5px;
+    transition: all .3s ease-in;
+    vertical-align: middle;
+    width: 500px;
+}
+
+
+/*FATEFUL SPINNING BAGEL :///*/
+
+/*TO NAJWIDOCZNIEJ TRZYMA OBWAŻANKA W RYZACH XDDD*/
+
+.header-menu {
+    height: 250px;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+#codecool-img {
+    -moz-animation:spin 16s linear infinite;
+    -webkit-animation:spin 16s linear infinite;
+    animation:spin 16s linear infinite;
+    float:right;
+    height: 90%;
+    margin: 15px;
+    right: 20px;
+    top: auto;
+    vertical-align: middle;
+    
+}
+
+.codecool_krk {
+    border-radius: 5px;
+    border: 3px solid #333;
+    float: right;
+    height: 200px;
+    margin-left: 10px;
+    width: 300px;
+     
+}
+/*
+czo to jest? to wszystko niepotrzebne! 
+#left-p-menu {
+    justify-content: center;
+    margin-right: 10px
+
+}
+*/
+
+
+/*
+.select_submission {
+    position: relative;
+    right: -170px;
+    }
+
+
+#select_submission1{
+ 
+    height:34px;
+    width: 230px;
+    line-height:30px;
+    background:#f4f4f4;
+    text-align: center;
+    margin: 4px;
+    position: relative;
+    top: 15px;
+    margin-bottom: 40px;
+    } 
+*/
+
+
+
+/*
+#class_label_attendance{
+    height:34px;
+    width: 180px;
+}
+*/
+
+
+
