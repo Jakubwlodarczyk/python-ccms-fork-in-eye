@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://www.w3schools.com/lib/w3data.js"></script> 
+        <title>Codecool Management System</title>
+    </head>
+
+    <body>
+        <div w3-include-html="sidebar.html"></div>
+        <header>
+            <h1>All submissions</h1>
+        </header>
+        
+        <section class="content">
+            <h2>
+            Total: <em> average %</em>
+            </h2>
+            <div class="select_submission">
+            <label for="select-class" >Choose assignment: </label>
+            <select id="select_submission1" name="select-class">
+                <option selected>--select--</option>        
+                <option>Assignment 1</option>   
+                <option>Assignment 1</option>  
+            </select> 
+        	</div> 
+
+            <table>
+            <thead>
+                <tr>
+                    <th>Submission name</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Student name</th>
+                    <th>Github link</th>
+                    <th>Grade</th>
+                    <th>Action</th>
+            </thead>
+
+            <tr class="person_to_show">
+                <td>Row 2, cell 1</td>
+                <td>Row 2, cell 2</td>
+                <td>not graded</td>
+                <td>Row 2, cell 3</td>
+                <td>Row 2, cell 4</td>
+                <td>Row 2, cell 5</td>
+                <td><label for="grade">Grade</label>
+                    <input name="grade" class="little-input" type="text">
+                </td>
+            </tr>
+        	</table>
+            <button type="save">SAVE GRADES</button>
+    	<br>
+        </section>
+        <script>
+            w3IncludeHTML();
+        </script> 
+    </body>
+</html>

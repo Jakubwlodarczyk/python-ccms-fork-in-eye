@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        <title>Codecool Management System</title>
+    </head>
+
+    <body>
+        <div w3-include-html="sidebar.html"></div>
+        <header>
+            <h1>List of mentors</h1>
+        </header>
+        <section class='content'>
+        <a href="add.html">
+            <button class="add-person-form-button right" type="button" value="send">Add a new mentor</button></a>
+    <table>
+        <thead>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tr class="person_to_show">
+            <td>Mateusz</td>
+            <td>Ostafil</td>
+            <td>mateusz.ostafil@gmail.com</td>
+            <td><a href='edit_mentor.html'>Edit</a> | Remove</td>
+        </tr>
+
+        <tr>
+            <td>Marcin</td>
+            <td>Izworkski</td>
+            <td>marcin.izworkski@gmail.com</td>
+            <td><a href='edit_mentor.html'>Edit</a> | Remove</td>
+        </tr>
+
+        <tr>
+            <td>Rafal</td>
+            <td>Stepien</td>
+            <td>rafal.stepien@gmail.com</td>
+            <td><a href='edit_mentor.html'>Edit</a> | Remove</td>
+        </tr>
+
+        <tr>
+            <td>Przemyslaw</td>
+            <td>Ciacka</td>
+            <td>przemek.ciacka@gmail.com</td>
+            <td><a href='edit_mentor.html'>Edit</a> | Remove</td>
+        </tr>
+
+    </table>
+        <br>
+    </section>
+        <script>
+        w3IncludeHTML();
+        </script>
+    </body>
+</html>

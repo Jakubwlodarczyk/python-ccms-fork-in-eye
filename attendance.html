@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://www.w3schools.com/lib/w3data.js"></script> 
+        <title>Codecool Management System</title>
+    </head>
+
+    <body>
+        <div w3-include-html="sidebar.html"></div>
+        <header>
+            <h1>Roll call<br>Attendance</h1>
+        </header>
+
+<section class="content">
+    <label for="choose-date">Date</label>
+    <input name='choose-date' type="date"> 
+    
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th colspan="3">Status</th>           
+            </tr>
+
+        <tr class="border_bottom">
+            <td>1</td>
+            <td>Jan Nowak</td>
+            <td>
+                <input id="radio-present" type="radio" name="option" value="Present">
+                <label for="radio-present">Present</label>
+            </td>
+            <td>
+                <input id="radio-late" type="radio" name="option" value="Late">
+                <label for="radio-late">Late</label>
+            </td>
+            <td>
+                <input id="radio-absent" type="radio" name="option" value="Absent">
+                <label for="radio-absent">Absent</label>
+            </td>
+        </tr>
+
+    </table>
+    </div>
+        <button>SAVE</button>
+</section>
+    <script>
+     w3IncludeHTML();
+    </script>   
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        <title>Codecool Management System</title>
+    </head>
+
+    <body>
+        <div w3-include-html="sidebar.html"></div>
+        <header>
+            <h1>Attendance of students</h1>
+        </header>
+
+        <section class='content'>
+            <form action="attendance.html" method="post">
+            <br>
+	    <button type="submit" value="send">CHECK ATTENDENCE</button>
+    	    </form>
+
+        <table>
+
+            <thead>
+            <tr>
+                <th>Full name</th>
+                <th>Total</th>
+                <th>Present</th>
+                <th>Late</th>
+                <th>Absent</th>
+                <th>Current score</th>
+            </tr>
+        </thead>
+            <tr class="person_to_show">
+                <td>Row 2, cell 1</td>
+                <td>Row 2, cell 2</td>
+                <td>Row 2, cell 3</td>
+                <td>Row 2, cell 4</td>
+                <td>Row 2, cell 5</td>
+                <td>Row 2, cell 6</td>
+            </tr>
+
+            </table>
+            </section>
+        <script>
+        w3IncludeHTML();
+        </script>
+    </body>
+</html>

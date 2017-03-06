@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <script src="https://www.w3schools.com/lib/w3data.js"></script> 
+        <title>Codecool Management System</title>
+    </head>
+    <body>
+        <div w3-include-html="sidebar.html"></div>
+        <header>
+            <h1>Add new person</h1>
+        </header>
+        <section class='content'>
+            <section class="section-add-person-form">
+          	<form class="add-person-form"
+            	name="add-person-form" method="post">
+				<label for="email" class="add-person-form-element"> Email</label>
+                    <input email="email" class="add-person-form-input" 
+                    placeholder="EMAIL" name="email">
+				<label for="fname" class="add-person-form-element">First name </label>
+					<input name="fname" class="add-person-form-input" type="text" placeholder="FIRST NAME">
+				<label for="lname" class="add-person-form-element">Last name</label>
+					<input name="lname" class="add-person-form-input" type="text" placeholder="LAST NAME">
+				<label for="select-class" class="add-person-form-element">Group</label>
+					<select class="add-person-form-input add-person-form-select" name="select-class">
+						<option selected>--select--</option>
+						<option>group1</option>
+						<option>group2</option>
+						<option>group3</option>
+					</select>
+				<button>SAVE</button>
+          	</form>
+       		</section>
+        </section> 
+    <script>
+        w3IncludeHTML();
+    </script>      
+    </body>
+</html>
+

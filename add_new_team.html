@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+		<script src="https://www.w3schools.com/lib/w3data.js"></script> 
+        <title>Codecool Management System</title>
+    </head>
+
+    <body>
+        <div w3-include-html="sidebar.html"></div>
+        <header>
+            <h1>Add new team</h1>
+        </header>
+       	<section class='content'>
+          <form class="add-team-form"
+                name="add-team-form" method="post">
+          <label for="new-team-name" class="add-team-form-element">Team name</label>
+              <input name="new-team-name" class="add-person-form-input" type="text" placeholder="New Team Name">
+			  <button type="submit">ADD</button>
+          </form>
+		</section>
+
+		<script>
+		  w3IncludeHTML();
+		</script> 
+
+    </body>
+</html>
+
