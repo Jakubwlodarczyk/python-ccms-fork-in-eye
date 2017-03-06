@@ -82,7 +82,7 @@ class Common:
 
         for obj in obj_list:
             params = [obj.start_date, obj.end_date, obj.assignment_name]
-            c.execute("INSERT INTO assignements (start_date, end_date, name) VALUES (?, ?, ?)", params)
+            c.execute("INSERT INTO assignements (start_date, end_date, name, link) VALUES (?, ?, ?)", params)
             conn.commit()
 
         conn.close()

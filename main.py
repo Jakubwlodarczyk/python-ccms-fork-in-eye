@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from models.student import Student
+from models.assignments import Assignments
 app = Flask(__name__)
 
 
@@ -17,6 +18,13 @@ def teams_list():
     teams = Student.create_teams_list()
     students = Student.students_all()
     return render_template("teams.html", teams=teams, students=students)
+
+
+@app.route("/assignments")
+def assignments_list():
+    """ Shows list of students """
+    assignments = Assignments.assignments_all()
+    return render_template("show_assignments.html", assignments=assignments)
 
 
 if __name__ == "__main__":
