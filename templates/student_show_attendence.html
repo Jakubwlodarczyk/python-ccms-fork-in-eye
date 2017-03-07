@@ -45,7 +45,11 @@
             </tr>
             {% endfor %}
 
+
             </table>
+            {% for day in attendances %}
+                {{day.date}}
+            {% endfor %}
             </section>
         <script>
         w3IncludeHTML();

@@ -1,4 +1,4 @@
-from ui import Ui
+# from ui import Ui
 import os
 import sqlite3
 
@@ -10,16 +10,17 @@ class Assignments:
     """
     assignments_list = []
 
-    def __init__(self, start_date, end_date, assignment_name):
+    def __init__(self, start_date, end_date, assignment_name, link):
         self.start_date = str(start_date)  # sample date "2017-01-01"
         self.end_date = str(end_date)  # sample date "2017-01-01"
         self.assignment_name = str(assignment_name)  # sample name "OOP_SI_exercise"
+        self.link = link
 
     def __str__(self):
         return '{} {} {}'.format(self.start_date, self.end_date, self.assignment_name)
 
     @classmethod
-    def create_objects_list_from_database(cls, table_name):    #  from database
+    def assignments_all(cls):    #  from database
         """
         Creates abjects based on data from database.
         :param file_path:
@@ -27,7 +28,7 @@ class Assignments:
         """
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-        name_q = "SELECT start_date, end_date, name  FROM assignements;"
+        name_q = "SELECT start_date, end_date, name, link  FROM assignments;"
         name_db = c.execute(name_q)
         conn.commit()
 
@@ -37,11 +38,12 @@ class Assignments:
             start_date = row[0]
             end_date = row[1]
             name = row[2]
+            link = row[3]
 
-            full_name = cls(start_date, end_date, name)
+            full_name = cls(start_date, end_date, name, link)   # instancja objektu
             assignments_list.append(full_name)
         conn.close()
-        return assignments_list
+        return assignments_list    # list with objects
 
     @staticmethod
     def view_assignment_list():

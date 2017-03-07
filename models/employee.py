@@ -1,4 +1,4 @@
-from user import *
+from models.user import User
 
 
 class Employee(User):
@@ -9,9 +9,6 @@ class Employee(User):
 
     employees_list = []
 
-    def __init__(self, *args, **kwargs):
-        super(Employee, self).__init__(*args, **kwargs)
+    def __init__(self, id, name, surname, email, password, status):
+        User.__init__(self, id, name, surname, email, password, status)
         self.status = 'employee'
-
-    def __str__(self):
-        return "{} {}, email: {}".format(self.name, self.surname, self.email)

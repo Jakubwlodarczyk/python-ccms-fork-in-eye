@@ -15,8 +15,8 @@ class Student(User):
     teams_list = []
     counted_days = 0
 
-    def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
-            User.__init__(self, name, surname, email, password, status, id)
+    def __init__(self, id, name, surname, email, password, status, card="none", team="none",):
+            User.__init__(self, id, name, surname, email, password, status)
             self.status = 'student'
             self.attendance_list = []
             self.team = team
@@ -42,11 +42,13 @@ class Student(User):
         name_q = "SELECT name FROM teams_list;"
         name_db = c.execute(name_q)
         conn.commit()
+        teams_list = []
 
         for row in name_db:
             name = row[0]
-            Student.teams_list.append(name)
+            teams_list.append(name)
         conn.close()
+        return teams_list
 
     @staticmethod
     def add_team():
@@ -87,6 +89,34 @@ class Student(User):
             students_list.append(full_name)
         conn.close()
         return students_list
+
+    # @classmethod
+    # def students_get_all(cls):
+    #     """
+    #     Creates abjects based on data from database.
+    #     :param file_path:
+    #     :return:
+    #     """
+    #     conn = sqlite3.connect("database.db")
+    #     c = conn.cursor()
+    #     query = "SELECT id, name, surname, email, password, status, card, team FROM student;"
+    #     name_db = c.execute(query)
+    #     conn.commit()
+    #     student_list = []
+    #     for row in name_db:
+    #         id = row[0]
+    #         name = row[1]
+    #         surname = row[2]
+    #         email = row[3]
+    #         password = row[4]
+    #         status = row[5]
+    #         card = row[6]
+    #         team = row[7]
+    #         full_name = Student(name, surname, email, password, status, card, team)
+    #         student_list.append(full_name)
+    #     conn.close()
+    #     return student_list
+
 
     @staticmethod
     def add_attendance_to_student(attendances_obj_list):

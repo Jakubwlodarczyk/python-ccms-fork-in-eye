@@ -13,55 +13,17 @@ class User:
     '''
     all_users = []
 
-    def __init__(self, name, surname, email, password, status, id):
+    def __init__(self, id, name, surname, email, password, status):
         '''
-        Initializing an object with data validation.
+        Initializing an object.
         '''
-        not_valid = True
 
+        self.id = id
         self.name = name
         self.surname = surname
         self.email = email
         self.password = password
-        self.status = status  # status is overwritten by each child class
-        self.id = id  # id is randomly generated when adding a new person
-
-    def __str__(self):
-        return "{} {} ".format(self.name, self.surname)
-
-    @classmethod
-    def create_objects_list_from_database(cls, table_name):    #  from database
-        """
-        Creates abjects based on data from database.
-        :param file_path:
-        :return:
-        """
-        conn = sqlite3.connect("database.db")
-        c = conn.cursor()
-        name_q = "SELECT name, surname, email, password, status, staff_id  FROM staff;"
-        name_db = c.execute(name_q)
-        conn.commit()
-        mentors_list = []
-        manager_list = []
-        employee_list = []
-
-        for row in name_db:
-            name = row[0]
-            surname = row[1]
-            email = row[2]
-            password = row[3]
-            status = row[4]
-            staff_id = row[5]
-            full_name = cls(name, surname, email, password, status, staff_id)
-            if status == "mentor":
-                mentors_list.append(full_name)
-            if status == "manager":
-                manager_list.append(full_name)
-            if status == "employee":
-                employee_list.append(full_name)
-        conn.close()
-
-        return mentors_list, manager_list, employee_list
+        self.status = status
 
     @classmethod
     def user_password_check(cls, email, password):
