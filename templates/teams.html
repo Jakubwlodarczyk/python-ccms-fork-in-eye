@@ -2,49 +2,39 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="style.css"/>
-        <script src="https://www.w3schools.com/lib/w3data.js"></script> 
+        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
         <title>Codecool Management System</title>
     </head>
-
     <body>
-        <div w3-include-html="sidebar.html"></div>
         <header>
             <h1>List of teams</h1>
         </header>
-
         <section class='content'>
-
             <a href="add_new_team.html">
-            <button class="add-team" type="button" value="send">Add a new team</button>
+                <button class="add-team" type="button" value="send">Add a new team</button>
             </a>
-    
-            <table>  
-            <thead>
-                <tr></tr>
-                    <th>#</th>
-                    <th>Team name</th>
-                    <th>Members</th>
-                </tr>
-            </thead>
-            
-			<tr class="person_to_show">
-<!--                dwa pierwsze mają być scalone żeby obejmowały wszystkich członków grupy-->
-				<td rowspan="3">1</td>
-                <td rowspan="3">FORk in eye <a href="edit_team_name.html"><button class="little-button" type="button" value="send">Edit</button></a></td>
-<!--                pierwszy członek grupy (członkowie są w osobych rzędach)-->
-				<td>Yan Novac <button class="little-button">Remove</button></td>
-            </tr>
-<!--            kolejni członkowie w kolejnych rzędach-->
-            <tr><td>Huan Kovalsky <button class="little-button">Remove</button></td></tr>
-            <tr><td>Ivo Niewiem <button class="little-button">Remove</button></td></tr>
-			
-            </table>
+            <table>
+                {% for team in teams %}
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>{{ team }}<a href="edit_team_name.html">
+                            <button class="little-button" type="button" value="send">Edit</button></a></th>
+                    </tr>
+                </thead>
+                    {% for student in students %}
+                        {% if student.team == team %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ student.name }} {{ student.surname }}
+                                    <button class="little-button">Remove</button></td>
+                            </tr>
 
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+            </table>
         </section>
-        <script>
-            w3IncludeHTML();
-        </script>
     </body>
 </html>
 
