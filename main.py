@@ -43,5 +43,6 @@ def assignments_list():
     assignments = Assignments.assignments_all()
     return render_template("show_assignments.html", assignments=assignments)
 
+
 if __name__ == "__main__":
     app.run(debug=True)
