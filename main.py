@@ -43,14 +43,14 @@ def edit_student(student_id):
         new_name = request.form['new_fname']
         new_surname = request.form['new_lname']
         new_email = request.form['new_email']
-        update = Model.update_student_data(student_id, new_name, new_surname, new_email)
+        Model.update_student_data(student_id, new_name, new_surname, new_email)
     return redirect(url_for('students_list'))
 
 
 @app.route("/remove_student/<student_id>")
 def remove_student(student_id):
     """ Removes student with selected id from the database """
-    delete = Model.delete_student(student_id)
+    Model.delete_student(student_id)
     return redirect(url_for('students_list'))
 
 
@@ -91,13 +91,13 @@ def edit_mentor(mentor_id):
         new_surname = request.form['new_lname']
         new_email = request.form['new_email']
         Model.update_mentor_data(mentor_id, new_name, new_surname, new_email)
-    return redirect(url_for('mentors_list'))
+        return redirect(url_for('mentors_list'))
 
 
 @app.route("/remove_mentor/<mentor_id>")
 def remove_mentor(mentor_id):
     """ Removes student with selected id from the database """
-    delete = Model.delete_mentor(mentor_id)
+    Model.delete_mentor(mentor_id)
     return redirect(url_for('mentors_list'))
 
 
@@ -148,8 +148,7 @@ def add_student():
         person.append([request.form["fname"], request.form["lname"],
                        request.form["email"]])
         Model.save_new_student(person)
-        students = Model.students_get_all()
-        return render_template("show_students_list.html", students=students)
+        return redirect(url_for('students_list'))
 
 
 @app.route("/add_team", methods=['GET', 'POST'])
