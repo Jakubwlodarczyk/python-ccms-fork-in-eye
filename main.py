@@ -31,8 +31,10 @@ def submissions_list():
 @app.route("/teams")
 def teams_list():
     """ Shows list of teams"""
+
     teams = Model.create_teams_list()
     students = Model.students_get_all()
+
     return render_template("teams.html", teams=teams, students=students)
 
 
@@ -42,6 +44,18 @@ def assignments_list():
     assignments = Assignments.assignments_all()
     return render_template("show_assignments.html", assignments=assignments)
 
+@app.route("/add_student", methods=['POST', "GET"])
+def add_student():
+    """ Add student to database """
+    if request.method == "GET":
+        return render_template("add.html")
+    if request.method == "POST":
+        person = []
+        person.append([request.form["fname"], request.form["lname"], 
+        request.form["student_email"]])
+        Model.save_new_student(person)
+        students = Model.students_get_all()
+        return render_template("show_students_list.html", students=students)
 
 if __name__ == "__main__":
     app.run(debug=True)

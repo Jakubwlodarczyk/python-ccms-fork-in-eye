@@ -96,3 +96,18 @@ class Submission:
                     average_grades[key] = [student.name, student.surname, student_grades[key]]
 
         return average_grades
+
+    @staticmethod
+    def join_student_id_and_name():
+        '''
+        :return: student name based on submission and id
+        '''
+        conn = sqlite3.connect("database.db")
+        with conn:
+            c = conn.cursor()
+            name = c.execute("""SELECT student.name
+                         FROM student
+                         INNER JOIN submission
+                         ON student.student_id=submission.student_id""")
+            conn.commit()
+        return student_selected
