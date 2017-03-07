@@ -31,9 +31,8 @@ def submissions_list():
 @app.route("/teams")
 def teams_list():
     """ Shows list of teams"""
-
-    teams = Student.create_teams_list()
-    students = Student.students_all()
+    teams = Model.create_teams_list()
+    students = Model.students_get_all()
     return render_template("teams.html", teams=teams, students=students)
 
 
