@@ -25,7 +25,8 @@ def mentors_list():
 def submissions_list():
     """Shows list of submissions"""
     submissions = Submission.submission_all()
-    return render_template("submission_table.html", submissions=submissions)
+    students = Model.students_get_all()
+    return render_template("submission_table.html", submissions=submissions, students=students)
 
 
 @app.route("/teams")
