@@ -17,7 +17,7 @@
                 {% for team in teams %}
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>{{ loop.index }}</th>
                         <th>{{ team }}<a href="edit_team_name.html">
                             <button class="little-button" type="button" value="send">Edit</button></a></th>
                     </tr>
@@ -25,9 +25,8 @@
                     {% for student in students %}
                         {% if student.team == team %}
                             <tr>
-                                <td>{{ loop.index }}</td>
-                                <td>{{ student.name }} {{ student.surname }}
-                                    <button class="little-button">Remove</button></td>
+                                <td><button class="little-button">Remove</button></td>
+                                <td>{{ student.name }} {{ student.surname }}</td>
                             </tr>
 
                             {% endif %}
