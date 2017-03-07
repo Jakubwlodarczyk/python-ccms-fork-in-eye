@@ -122,3 +122,17 @@ class Model:
             teams_list.append(name)
         conn.close()
         return teams_list
+
+
+    @classmethod
+    def save_new_student(cls, students):
+        """
+        save new student to the database.
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        for student in students:
+            params = [student[0], student[1], student[2]]
+        c.execute("INSERT INTO student (name, surname, email) VALUES (?, ?, ?);", params)
+        conn.commit()
+        conn.close()

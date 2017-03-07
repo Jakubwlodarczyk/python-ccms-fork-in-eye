@@ -52,10 +52,11 @@ def add_student():
         return render_template("add.html")
     if request.method == "POST":
         person = []
-        person.append([request.form["student_email"], 
-        request.form["lname"], request.form["lname"]])
-
-        return render_template("show_students_list.html")
+        person.append([request.form["fname"], request.form["lname"], 
+        request.form["student_email"]])
+        Model.save_new_student(person)
+        students = Model.students_get_all()
+        return render_template("show_students_list.html", students=students)
 
 if __name__ == "__main__":
     app.run(debug=True)
