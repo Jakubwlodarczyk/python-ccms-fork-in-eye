@@ -34,7 +34,6 @@ class Student(User):
     def create_teams_list(cls):  # from database
         """
         Reads teams based on data from database.
-        :param table_name
         """
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
@@ -312,6 +311,7 @@ class Student(User):
         Ui.print_full_report_of_students_performance(list_of_performance, title_of_table, top_of_table)
 
 
+
     @staticmethod
     def count_days():
         dates = []
@@ -352,5 +352,4 @@ class Student(User):
             points += (student.late * 80)
 
             student.score = (points / Student.count_days())
-
 
