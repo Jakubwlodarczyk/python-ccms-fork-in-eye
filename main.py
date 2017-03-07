@@ -132,7 +132,7 @@ def edit_team_name():
         old_name = request.args['team_name']
         new_name = request.form['name']
         Model.update_team_name(old_name, new_name)
-        return redirect('/teams')
+        return redirect(url_for('teams_list'))
     else:
         team_id = request.args['team_id']
         team_name = request.args['team_name']
@@ -161,7 +161,7 @@ def add_team():
     else:
         team_name = request.form['new-team-name']
         Model.add_team(team_name)
-        return redirect('/teams')
+        return redirect(url_for('teams_list'))
 
 
 @app.route("/remove_student_team")
@@ -173,12 +173,12 @@ def remove_student_from_team():
     for student in students:
         if student.id == student_id:
             Model.remove_student_team(student_id)
-    return redirect('/teams')
+    return redirect(url_for('teams_list'))
 
 
 @app.route("/submit_changes")
 def submit_students_changes():
-    return "TROL!"
+    return "<h2>TROLololololOoOOo !!!!!!</h2>"
 
 
 if __name__ == "__main__":
