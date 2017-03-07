@@ -136,3 +136,22 @@ class Model:
         c.execute("INSERT INTO student (name, surname, email) VALUES (?, ?, ?);", params)
         conn.commit()
         conn.close()
+
+
+    @classmethod
+    def create_submission_list(cls):  # from database
+        """
+        Reads teams based on data from database.
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+        name_q = "SELECT DISTINCT name FROM submission;"
+        name_db = c.execute(name_q)
+        conn.commit()
+        sub_list = []
+
+        for row in name_db:
+            sub_list.append(row[0])
+        conn.close()
+        return sub_list

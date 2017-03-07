@@ -21,11 +21,20 @@ def mentors_list():
     return render_template("show_mentors_list.html", mentors=mentors)
 
 
-@app.route("/submissions")
+@app.route("/submissions", methods=['POST', "GET"])
 def submissions_list():
     """Shows list of submissions"""
-    submissions = Submission.submission_all()
-    return render_template("submission_table.html", submissions=submissions)
+    options = Model.create_submission_list()
+    if request.method == "GET":
+        submissions = Submission.submission_all()
+        options = Model.create_submission_list()
+        return render_template("submission_table.html", submissions=submissions, options=options)
+    if request.method == "POST":
+        option = request.form["select-submission"]
+        print(option)
+        select_option = "--select--"
+        submissions = Submission.submission_all()
+        return render_template("submission_table.html", submissions=submissions, option=option, options=options, select_option=select_option)
 
 
 @app.route("/teams")
@@ -34,7 +43,6 @@ def teams_list():
 
     teams = Model.create_teams_list()
     students = Model.students_get_all()
-
     return render_template("teams.html", teams=teams, students=students)
 
 
