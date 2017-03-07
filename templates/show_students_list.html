@@ -41,10 +41,10 @@
                     <a href="{{  url_for('remove_student', student_id=student.id)  }}">
                     | Remove |</a>
                     <select class="add-person-form-input add-person-form-select mentor-show-students" name="select-class">
-                    <option selected>Team</option>
-                        <option>group1</option>
-                        <option>group2</option>
-                        <option>group3</option>
+                        <option selected>{{ student.team }}</option>
+                            {% for team in teams %}
+                                <option>{{ team }}</option>
+                                {% endfor %}
                     </select>
                                         |
 
@@ -57,10 +57,8 @@
                 </td>
             </tr>
             {% endfor %}
-            <!--<p>{{email}}</p>-->
-
         </table>
-            <a href="#">
+            <a href="{{ url_for('submit_students_changes') }}">
                 <button class="add-person-form-button right" type="submit" value="send">Submit</button>
             </a>
         </section>
