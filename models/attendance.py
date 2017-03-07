@@ -1,8 +1,8 @@
-from ui import Ui
-import os
-import datetime
-from Common import Common
-from student import Student
+# from models.ui import Ui
+# import os
+# import datetime
+# from models.Common import Common
+from models.student import Student
 import sqlite3
 
 
@@ -32,7 +32,7 @@ class Attendance:
         return "{} {} {}".format(remember, self.data, remember_status)
 
     @classmethod
-    def create_objects_list_from_database(cls, table_name):    #  from database
+    def create_objects_list_from_database(cls):  #, table_name): # from database
         """
         Creates abjects based on data from database.
         :param file_path:
@@ -250,6 +250,26 @@ class Attendance:
                 average_attendance = attendance_points / counter
                 Ui.print_message("{}: {}".format(student, average_attendance))
         Ui.get_inputs([""], "")
+
+    @staticmethod
+    def student_presence(student_obj):
+        """
+        :param student_obj: student object
+        :return: tuple with counted presence
+        """
+        present = 0
+        late = 0
+        absent = 0
+
+        for day in student_obj.attendance_list:
+            if day.status == "1":
+                late += 1
+            if day.status == "2":
+                present += 1
+            if day.status == "0":
+                absent += 1
+
+        return present, late, absent
 
     @staticmethod
     def attendance_mini_menu():
