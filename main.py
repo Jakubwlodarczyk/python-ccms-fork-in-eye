@@ -48,6 +48,16 @@ def mentors_list():
     mentors = Model.mentors_get_all()
     return render_template("show_mentors_list.html", mentors=mentors)
 
+@app.route("/add_mentor", methods=['POST', "GET"])
+def add_mentor():
+    if request.method == 'GET':
+        return render_template('add.html')
+    elif request.method == 'POST':
+        name = request.form['fname']
+        surname = request.form['lname']
+        email = request.form['email']
+        Model.add_new_mentor(name, surname, email)
+        return redirect(url_for('mentors_list'))
 
 @app.route("/edit_mentor/<mentor_id>", methods=['GET', 'POST'])
 def edit_mentor(mentor_id):
@@ -110,7 +120,7 @@ def add_student():
     if request.method == "POST":
         person = []
         person.append([request.form["fname"], request.form["lname"],
-                       request.form["student_email"]])
+                       request.form["email"]])
         Model.save_new_student(person)
         students = Model.students_get_all()
         return render_template("show_students_list.html", students=students)

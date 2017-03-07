@@ -78,6 +78,16 @@ class Model:
         conn.close()
 
     @classmethod
+    def add_new_mentor(cls, name, surname, email ):
+        """ Adds new mentor to database """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        query = ("INSERT INTO staff (name, surname, email, password, status ) values ('{}', '{}', '{}', 'password','mentor' )".format(name, surname, email))
+        database = c.execute(query)
+        conn.commit()
+        conn.close()
+
+    @classmethod
     def mentors_get_all(cls):
         """
         Creates abjects based on data from database.
