@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
 from models.model import Model
-from models.student import Student
 from models.submission import Submission
 from models.assignments import Assignments
 
