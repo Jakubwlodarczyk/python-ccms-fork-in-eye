@@ -23,8 +23,8 @@ def students_attendance():
     students = Student.student_presence(attendances, students_bad)
     counted_days = Student.count_days()  #Student.counted_days
     Student.current_score(students)
-
     return render_template("student_show_attendence.html", students=students, attendances=attendances, counted_days = counted_days)
+
 
 @app.route("/edit_student/<student_id>", methods=['GET', 'POST'])
 def edit_student(student_id):
@@ -54,12 +54,12 @@ def remove_student(student_id):
     return redirect(url_for('students_list'))
 
 
-
 @app.route("/mentors")
 def mentors_list():
     """ Shows list of mentors """
     mentors = Model.mentors_get_all()
     return render_template("show_mentors_list.html", mentors=mentors)
+
 
 @app.route("/add_mentor", methods=['POST', "GET"])
 def add_mentor():
@@ -71,6 +71,7 @@ def add_mentor():
         email = request.form['email']
         Model.add_new_mentor(name, surname, email)
         return redirect(url_for('mentors_list'))
+
 
 @app.route("/edit_mentor/<mentor_id>", methods=['GET', 'POST'])
 def edit_mentor(mentor_id):
@@ -111,10 +112,8 @@ def submissions_list():
 @app.route("/teams")
 def teams_list():
     """ Shows list of teams"""
-
     teams = Model.create_teams_list()
     students = Model.students_get_all()
-
     return render_template("teams.html", teams=teams, students=students)
 
 
@@ -151,6 +150,17 @@ def add_student():
         Model.save_new_student(person)
         students = Model.students_get_all()
         return render_template("show_students_list.html", students=students)
+
+
+@app.route("/add_team", methods=['GET', 'POST'])
+def add_team():
+    """ Add new team """
+    if request.method == 'GET':
+        return render_template("add_new_team.html")
+    else:
+        team_name = request.form['new-team-name']
+        Model.add_team(team_name)
+        return redirect('/teams')
 
 
 if __name__ == "__main__":
