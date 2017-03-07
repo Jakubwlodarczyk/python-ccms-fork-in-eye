@@ -275,3 +275,4 @@ class Student(User):
         title_of_table = 'FULL REPORT OF STUDENTS PERFORMANCE:'
         top_of_table = ('SUB. SEND DATE', 'SUB. NAME', 'STUDENT NAME', 'SURNAME', 'GRADE')
         Ui.print_full_report_of_students_performance(list_of_performance, title_of_table, top_of_table)
+
