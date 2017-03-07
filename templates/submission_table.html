@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
         <script src="https://www.w3schools.com/lib/w3data.js"></script> 
         <title>Codecool Management System</title>
     </head>
@@ -29,26 +29,27 @@
             <table>
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Submission name</th>
                     <th>Date</th>
-                    <th>Status</th>
-                    <th>Student name</th>
+                    <th>TEMPORARY</th>
                     <th>Github link</th>
                     <th>Grade</th>
                     <th>Action</th>
             </thead>
-
-            <tr class="person_to_show">
-                <td>Row 2, cell 1</td>
-                <td>Row 2, cell 2</td>
-                <td>not graded</td>
-                <td>Row 2, cell 3</td>
-                <td>Row 2, cell 4</td>
-                <td>Row 2, cell 5</td>
-                <td><label for="grade">Grade</label>
-                    <input name="grade" class="little-input" type="text">
-                </td>
-            </tr>
+                {% for sumbission in submissions %}
+                <tr class="person_to_show">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ sumbission.name }}</td>
+                    <td>{{ sumbission.send_date }}</td>
+                    <td>{{ sumbission.student_id }}</td>
+                    <<td>{{ sumbission.github_link}}</td>
+                    <td>{{ sumbission.grade }}</td>
+                    <td><label for="grade">Grade</label>
+                        <input name="grade" class="little-input" type="text">
+                    </td>
+                </tr>
+                {% endfor %}
         	</table>
             <button type="save">SAVE GRADES</button>
     	<br>
