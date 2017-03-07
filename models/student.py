@@ -36,11 +36,13 @@ class Student(User):
         name_q = "SELECT name FROM teams_list;"
         name_db = c.execute(name_q)
         conn.commit()
+        teams_list = []
 
         for row in name_db:
             name = row[0]
-            Student.teams_list.append(name)
+            teams_list.append(name)
         conn.close()
+        return teams_list
 
     @staticmethod
     def add_team():

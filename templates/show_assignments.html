@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}">
         <script src="https://www.w3schools.com/lib/w3data.js"></script> 
         <title>Codecool Management System</title>
     </head>
@@ -14,14 +14,19 @@
         <section class='content'>
         <div class="select_submission">
             <label for="select-assignment">Choose assignment: </label>
-            <select name="select-assignment">
+            
+           
+            
+            
+            <!--<select name="select-assignment">
                 <option selected>--select--</option>
                 <option>Assignment 1</option>
                 <option>Assignment 2</option>        
-            </select> 
+            </select> -->
         </div>      
 		<table>
             <thead>
+                 
                 <tr>
                     <th>#</th>
                     <th>Name</th>
@@ -30,18 +35,21 @@
                     <th>End date</th>
                     <th>Action</th>
                 </tr>
+                
             </thead>
             <tbody>
+                {% for assignment in assignments %}
                 <tr class="person_to_show">
-                    <td>1</td>
-                    <td>CCMS</td>
-                    <td>https://github.com/CodecoolKrakow20161/python-ccms-fork-in-eye/tree/views</td>
-                    <td>21.01.2017</td>
-                    <td>03.02.2017</td>
+                    <td>{{ loop.index }}</td>
+                    <td>{{assignment.assignment_name}}</td>
+                    <td>{{assignment.link}}</td>
+                    <td>{{assignment.start_date}}</td>
+                    <td>{{assignment.end_date}}</td>
                     <td>
                     <a href="submit_form.html"><button class='little-button'>Submit</button></a>               
                     </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table> 
     </section>
