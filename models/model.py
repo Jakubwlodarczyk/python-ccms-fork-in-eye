@@ -199,3 +199,11 @@ class Model:
         conn.commit()
         conn.close()
 
+    @classmethod
+    def add_team(cls, team_name):
+        """ Adds new team to database """
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()
+        cursor.execute("INSERT INTO teams_list (name) VALUES ('{}')".format(team_name))
+        data.commit()
+        data.close()
