@@ -67,7 +67,7 @@ class Submission:
         conn.close()
         return submission_list
 
-    def get_by_id(cls, id):
+    def get_submission_by_id(cls, id):
         """ Retrieves submission item with given id from database.
         Args:
             id(int): item id
