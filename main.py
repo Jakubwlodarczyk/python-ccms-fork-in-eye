@@ -41,5 +41,19 @@ def assignments_list():
     assignments = Assignments.assignments_all()
     return render_template("show_assignments.html", assignments=assignments)
 
+
+@app.route("/edit_team_name", methods=['GET', 'POST'])
+def edit_team_name():
+    """ Edit name of team"""
+    if request.method == "POST":
+        old_name = request.args['team_name']
+        new_name = request.form['name']
+        Model.update_team_name(old_name, new_name)
+        return redirect('/teams')
+    else:
+        team_id = request.args['team_id']
+        team_name = request.args['team_name']
+        return render_template("edit_team_name.html", team_id=team_id, team_name=team_name)
+
 if __name__ == "__main__":
     app.run(debug=True)
