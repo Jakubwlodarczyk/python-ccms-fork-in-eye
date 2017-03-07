@@ -1,6 +1,7 @@
 import sqlite3
 from models.student import Student
 from models.mentor import Mentor
+from models.team import Team
 
 
 class Model:
@@ -112,13 +113,24 @@ class Model:
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
 
-        name_q = "SELECT name FROM teams_list;"
+        name_q = "SELECT ID, name FROM teams_list;"
         name_db = c.execute(name_q)
         conn.commit()
         teams_list = []
 
         for row in name_db:
-            name = row[0]
-            teams_list.append(name)
+            id = row[0]
+            name = row[1]
+            team = Team(id, name)
+            teams_list.append(team)
         conn.close()
         return teams_list
+
+    @classmethod
+    def update_team_name(cls, old_name, new_name):
+        """ Update team name in database """
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()
+        cursor.execute("UPDATE teams_list SET name = '{}' WHERE name = '{}'".format(new_name, old_name))
+        data.commit()
+        data.close()
