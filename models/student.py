@@ -11,8 +11,9 @@ import sqlite3
 
 class Student(User):
 
-    student_list = []
+    students_list = []
     teams_list = []
+    counted_days = 0
 
     def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
             User.__init__(self, name, surname, email, password, status, id)
@@ -20,6 +21,11 @@ class Student(User):
             self.attendance_list = []
             self.team = team
             self.card = card
+            self.present = 0
+            self.late = 0
+            self.absent = 0
+            self.score = 0
+
 
     def __str__(self):
         return "{} {} ".format(self.name, self.surname)
@@ -56,7 +62,7 @@ class Student(User):
 
 
     @classmethod
-    def students_all(cls):  # from database
+    def students_get_all(cls):  # from database
         """
         Creates abjects based on data from database.
         :param file_path:
@@ -67,7 +73,7 @@ class Student(User):
         name_q = "SELECT name, surname, email, password, status, card, team, student_id FROM student;"
         name_db = c.execute(name_q)
         conn.commit()
-        student_list = []
+        students_list = []
         for row in name_db:
             name = row[0]
             surname = row[1]
@@ -78,9 +84,9 @@ class Student(User):
             team = row[6]
             student_id = row[7]
             full_name = cls(name, surname, email, password, status, student_id, team, card)
-            student_list.append(full_name)
+            students_list.append(full_name)
         conn.close()
-        return student_list
+        return students_list
 
     @staticmethod
     def add_attendance_to_student(attendances_obj_list):
@@ -274,3 +280,47 @@ class Student(User):
         title_of_table = 'FULL REPORT OF STUDENTS PERFORMANCE:'
         top_of_table = ('SUB. SEND DATE', 'SUB. NAME', 'STUDENT NAME', 'SURNAME', 'GRADE')
         Ui.print_full_report_of_students_performance(list_of_performance, title_of_table, top_of_table)
+
+
+    @staticmethod
+    def count_days():
+        dates = []
+        conn = sqlite3.connect("database.db")
+        with conn:
+            c = conn.cursor()
+            days = c.execute("SELECT * FROM attendance;")
+
+            for day in days.fetchall():
+                if day[1] not in dates:
+                    dates.append(day[1])
+            conn.commit()
+
+        return len(dates)
+
+
+    @staticmethod
+    def student_presence(attendance_list, all_students):
+
+        for day in attendance_list:
+            Student.counted_days += 1
+            for student in all_students:
+                if day.status == 80 and day.id == student.id:
+                    student.late += 1
+
+                if day.status == 100 and day.id == student.id:
+                    student.present += 1
+
+                if day.status == 0 and day.id == student.id:
+                    student.absent += 1
+        return all_students
+
+    @staticmethod
+    def current_score(all_students):
+        for student in all_students:
+            points = 0
+            points += (student.present * 100)
+            points += (student.late * 80)
+
+            student.score = (points / Student.count_days())
+
+

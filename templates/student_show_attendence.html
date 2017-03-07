@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
         <script src="https://www.w3schools.com/lib/w3data.js"></script>
         <title>Codecool Management System</title>
     </head>
@@ -22,6 +22,8 @@
         <table>
 
             <thead>
+
+
             <tr>
                 <th>Full name</th>
                 <th>Total</th>
@@ -31,14 +33,17 @@
                 <th>Current score</th>
             </tr>
         </thead>
+            {% for student in students %}
+
             <tr class="person_to_show">
-                <td>Row 2, cell 1</td>
-                <td>Row 2, cell 2</td>
-                <td>Row 2, cell 3</td>
-                <td>Row 2, cell 4</td>
-                <td>Row 2, cell 5</td>
-                <td>Row 2, cell 6</td>
+                <td>{{student.name}} {{student.surname}} </td>
+                <td><center>{{counted_days}}</center></td>
+                <td><center>{{student.present}}</center></td>
+                <td><center>{{student.late}}</center></td>
+                <td><center>{{student.absent}}</center></td>
+                <td><center>{{student.score}}</center></td>
             </tr>
+            {% endfor %}
 
             </table>
             </section>
