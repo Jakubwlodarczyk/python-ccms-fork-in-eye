@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}" />
         <script src="https://www.w3schools.com/lib/w3data.js"></script> 
         <title>Codecool Management System</title>
     </head>
@@ -16,7 +16,7 @@
           	<form class="add-person-form"
             	name="add-person-form" method="post">
 				<label for="email" class="add-person-form-element"> Email</label>
-                    <input email="email" class="add-person-form-input" 
+                    <input name="student_email" email="email" class="add-person-form-input" 
                     placeholder="EMAIL" name="email">
 				<label for="fname" class="add-person-form-element">First name </label>
 					<input name="fname" class="add-person-form-input" type="text" placeholder="FIRST NAME">
