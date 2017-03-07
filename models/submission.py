@@ -67,6 +67,22 @@ class Submission:
         conn.close()
         return submission_list
 
+    def get_submission_by_id(cls, id):
+        """ Retrieves submission item with given id from database.
+        Args:
+            id(int): item id
+        Returns:
+            Submission: submission object with a given id
+        """
+        data = sqlite3.connect('database.db')
+        cursor = data.cursor()
+        data = cursor.execute("SELECT ID FROM submission WHERE ID='{}'".format(id))
+        for row in data:
+            ID = row[0]
+            submission_id = cls(ID)
+        data.close()
+        return submission_id
+
 
     @classmethod
     def get_students_average_grades(cls, submission_list):
