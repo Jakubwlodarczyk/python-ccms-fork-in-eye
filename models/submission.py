@@ -1,4 +1,4 @@
-from ui import Ui
+#from ui import Ui
 import sqlite3
 
 
@@ -7,7 +7,6 @@ class Submission:
     class Submission
     handle submissions objects (submissions list)
     """
-
     submission_list = []
 
     def __init__(self, send_date, grade, name, github_link, student_id):
@@ -16,6 +15,8 @@ class Submission:
         self.student_id = student_id
         self.name = name
         self.github_link = github_link
+
+
 
     @classmethod
     def grade_an_submission(cls):
@@ -42,7 +43,7 @@ class Submission:
             Ui.print_message('Wrong submission name or ID')
 
     @classmethod
-    def create_objects_list_from_database(cls, table_name):
+    def submission_all(cls):
         """
         Creates abjects based on data from database.
         :param table_name : name of table
@@ -52,6 +53,7 @@ class Submission:
         name_q = "SELECT send_date, grade, name, github_link, student_id FROM submission;"
         name_db = c.execute(name_q)
         conn.commit()
+        submission_list = []
 
         for row in name_db:
             send_date = row[0]
@@ -60,9 +62,11 @@ class Submission:
             github_link = row[3]
             student_id = row[4]
             full_name = cls(send_date, grade, name, github_link, student_id)
-            Submission.submission_list.append(full_name)
+            submission_list.append(full_name)
 
         conn.close()
+        return submission_list
+
 
     @classmethod
     def get_students_average_grades(cls, submission_list):
