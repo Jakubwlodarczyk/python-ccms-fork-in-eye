@@ -2,61 +2,46 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="style.css"/>
-        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
         <title>Codecool Management System</title>
     </head>
 
     <body>
-        <div w3-include-html="sidebar.html"></div>
         <header>
             <h1>List of mentors</h1>
         </header>
+
         <section class='content'>
-        <a href="add.html">
-            <button class="add-person-form-button right" type="button" value="send">Add a new mentor</button></a>
-    <table>
-        <thead>
-        <tr>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tr class="person_to_show">
-            <td>Mateusz</td>
-            <td>Ostafil</td>
-            <td>mateusz.ostafil@gmail.com</td>
-            <td><a href='edit_mentor.html'>Edit</a> | Remove</td>
-        </tr>
 
-        <tr>
-            <td>Marcin</td>
-            <td>Izworkski</td>
-            <td>marcin.izworkski@gmail.com</td>
-            <td><a href='edit_mentor.html'>Edit</a> | Remove</td>
-        </tr>
+            <a href="add.html">
+                <button class="add-person-form-button right" type="button" value="send">Add a new mentor</button>
+            </a>
 
-        <tr>
-            <td>Rafal</td>
-            <td>Stepien</td>
-            <td>rafal.stepien@gmail.com</td>
-            <td><a href='edit_mentor.html'>Edit</a> | Remove</td>
-        </tr>
 
-        <tr>
-            <td>Przemyslaw</td>
-            <td>Ciacka</td>
-            <td>przemek.ciacka@gmail.com</td>
-            <td><a href='edit_mentor.html'>Edit</a> | Remove</td>
-        </tr>
+            <table>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Full name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+            {% for mentor in mentors %}
+            <tr class="person_to_show">
+                <td>{{ loop.index }}</td>
+                <td>{{ mentor.name }} {{ mentor.surname }}</td>
+                <td>{{ mentor.email }}</td>
+                <td>
+                    <a href="edit_person_data.html">| Edit</a>
+                    | Remove |
 
-    </table>
-        <br>
-    </section>
-        <script>
-        w3IncludeHTML();
-        </script>
+            {% endfor %}
+
+        </table>
+            <a href="#">
+                <button class="add-person-form-button right" type="submit" value="send">Submit</button>
+            </a>
+        </section>
     </body>
 </html>
