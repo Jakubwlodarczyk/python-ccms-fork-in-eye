@@ -12,8 +12,9 @@ app = Flask(__name__)
 @app.route("/students")
 def students_list():
     """ Shows list of students """
+    teams = Model.create_teams_list()
     students = Model.students_get_all()
-    return render_template("show_students_list.html", students=students)
+    return render_template("show_students_list.html", students=students, teams=teams)
 
 
 @app.route("/students-attendance")
@@ -169,12 +170,15 @@ def remove_student_from_team():
     students = Model.students_get_all()
     student_id = request.args['student_id']
     student_id = int(student_id)
-    print(type(student_id))
     for student in students:
         if student.id == student_id:
-            print(student_id)
             Model.remove_student_team(student_id)
     return redirect('/teams')
+
+
+@app.route("/submit_changes")
+def submit_students_changes():
+    return "TROL!"
 
 
 if __name__ == "__main__":
