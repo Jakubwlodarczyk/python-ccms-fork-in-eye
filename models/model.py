@@ -26,7 +26,7 @@ class Model:
             card = row[6]
             team = row[7]
             full_name = Student(id, name, surname, email, password, status, card, team)
-            student_list.append(full_name)
+            students_list.append(full_name)
         conn.close()
         return students_list
 
@@ -103,3 +103,22 @@ class Model:
 
             selected = Mentor(id, name, surname, email, password, status)
         return selected
+
+    @classmethod
+    def create_teams_list(cls):  # from database
+        """
+        Reads teams based on data from database.
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+        name_q = "SELECT name FROM teams_list;"
+        name_db = c.execute(name_q)
+        conn.commit()
+        teams_list = []
+
+        for row in name_db:
+            name = row[0]
+            teams_list.append(name)
+        conn.close()
+        return teams_list
