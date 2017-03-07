@@ -33,8 +33,9 @@
                 <td>{{ student.name }} {{ student.surname }}</td>
                 <td>{{ student.email }}</td>
                 <td>
-                    <a href="edit_person_data.html">| Edit</a>
-                    | Remove |
+                    <a href="{{  url_for('edit_student', student_id=student.id)  }}">| Edit</a>
+                    <a href="{{  url_for('remove_student', student_id=student.id)  }}">
+                    | Remove |</a>
                     <select class="add-person-form-input add-person-form-select mentor-show-students" name="select-class">
                     <option selected>Team</option>
                         <option>group1</option>

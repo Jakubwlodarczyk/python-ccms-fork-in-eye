@@ -8,7 +8,7 @@ class Model:
     def students_get_all(cls):
         """
         Creates abjects based on data from database.
-        :return:
+        :return: list of students
         """
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
@@ -26,7 +26,7 @@ class Model:
             card = row[6]
             team = row[7]
             full_name = Student(id, name, surname, email, password, status, card, team)
-            student_list.append(full_name)
+            students_list.append(full_name)
         conn.close()
         return students_list
 
@@ -57,6 +57,27 @@ class Model:
         return selected
 
     @classmethod
+    def update_student_data(cls, student_id, new_name, new_surname, new_email):
+        """ Updates student's data in the database.db """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        query = ("UPDATE student SET name='{}', surname = '{}', email='{}' WHERE ID={}".format(new_name, new_surname,
+                                                                                               new_email, student_id))
+        update = c.execute(query)
+        conn.commit()
+        conn.close()
+
+    @classmethod
+    def delete_student(cls, student_id):
+        """ Removes student from the database """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        query = ("DELETE FROM student WHERE ID ={};".format(student_id))
+        database = c.execute(query)
+        conn.commit()
+        conn.close()
+
+    @classmethod
     def mentors_get_all(cls):
         """
         Creates abjects based on data from database.
@@ -81,6 +102,16 @@ class Model:
         return mentors_list
 
     @classmethod
+    def update_mentor_data(cls, mentor_id, new_name, new_surname, new_email):
+        """ Updates mentor's data in the database.db """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        query = ("UPDATE staff SET name='{}', surname = '{}', email='{}' WHERE status='mentor' AND ID={}".format(new_name, new_surname, new_email, mentor_id))
+        update = c.execute(query)
+        conn.commit()
+        conn.close()
+
+    @classmethod
     def get_mentor_by_id(cls, id):
         """ Retrieves mentor with given id from database.
         Args:
@@ -103,3 +134,13 @@ class Model:
 
             selected = Mentor(id, name, surname, email, password, status)
         return selected
+
+    @classmethod
+    def delete_mentor(cls, mentor_id):
+        """ Removes mentor from the database """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        query = ("DELETE FROM staff WHERE status='mentor' AND ID ={};".format(mentor_id))
+        database = c.execute(query)
+        conn.commit()
+        conn.close()
