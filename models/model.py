@@ -144,3 +144,34 @@ class Model:
         database = c.execute(query)
         conn.commit()
         conn.close()
+
+    def create_teams_list(cls):
+        """
+        Reads teams based on data from database.
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+        name_q = "SELECT name FROM teams_list;"
+        name_db = c.execute(name_q)
+        conn.commit()
+        teams_list = []
+
+        for row in name_db:
+            name = row[0]
+            teams_list.append(name)
+        conn.close()
+        return teams_list
+
+    @classmethod
+    def save_new_student(cls, students):
+        """
+        save new student to the database.
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        for student in students:
+            params = [student[0], student[1], student[2]]
+        c.execute("INSERT INTO student (name, surname, email) VALUES (?, ?, ?);", params)
+        conn.commit()
+        conn.close()
