@@ -1,4 +1,4 @@
-from employee import *
+from models.employee import Employee
 
 
 class Mentor(Employee):
@@ -9,8 +9,8 @@ class Mentor(Employee):
 
     mentors_list = []
 
-    def __init__(self, *args, **kwargs):
-        super(Mentor, self).__init__(*args, **kwargs)
+    def __init__(self, id, name, surname, email, password, status ):
+        Employee.__init__(self, id, name, surname, email, password, status)
         self.status = 'mentor'
 
     def __str__(self):
