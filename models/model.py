@@ -207,3 +207,13 @@ class Model:
         cursor.execute("INSERT INTO teams_list (name) VALUES ('{}')".format(team_name))
         data.commit()
         data.close()
+
+    @classmethod
+    def remove_student_team(cls, student_id):
+        """ Remove student from team"""
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()
+        cursor.execute("UPDATE student SET team = '{}' WHERE ID = '{}'".format('none', student_id))
+        data.commit()
+        data.close()
+
