@@ -14,8 +14,8 @@ class Student(User):
     student_list = []
     teams_list = []
 
-    def __init__(self, name, surname, email, password, status, id, team="none", card="none"):
-            User.__init__(self, name, surname, email, password, status, id)
+    def __init__(self, id, name, surname, email, password, status, card="none", team="none",):
+            User.__init__(self, id, name, surname, email, password, status)
             self.status = 'student'
             self.attendance_list = []
             self.team = team
@@ -55,32 +55,32 @@ class Student(User):
         os.system("clear")
 
 
-    @classmethod
-    def students_all(cls):  # from database
-        """
-        Creates abjects based on data from database.
-        :param file_path:
-        :return:
-        """
-        conn = sqlite3.connect("database.db")
-        c = conn.cursor()
-        name_q = "SELECT name, surname, email, password, status, card, team, student_id FROM student;"
-        name_db = c.execute(name_q)
-        conn.commit()
-        student_list = []
-        for row in name_db:
-            name = row[0]
-            surname = row[1]
-            email = row[2]
-            password = row[3]
-            status = row[4]
-            card = row[5]
-            team = row[6]
-            student_id = row[7]
-            full_name = cls(name, surname, email, password, status, student_id, team, card)
-            student_list.append(full_name)
-        conn.close()
-        return student_list
+    # @classmethod
+    # def students_get_all(cls):
+    #     """
+    #     Creates abjects based on data from database.
+    #     :param file_path:
+    #     :return:
+    #     """
+    #     conn = sqlite3.connect("database.db")
+    #     c = conn.cursor()
+    #     query = "SELECT id, name, surname, email, password, status, card, team FROM student;"
+    #     name_db = c.execute(query)
+    #     conn.commit()
+    #     student_list = []
+    #     for row in name_db:
+    #         id = row[0]
+    #         name = row[1]
+    #         surname = row[2]
+    #         email = row[3]
+    #         password = row[4]
+    #         status = row[5]
+    #         card = row[6]
+    #         team = row[7]
+    #         full_name = Student(name, surname, email, password, status, card, team)
+    #         student_list.append(full_name)
+    #     conn.close()
+    #     return student_list
 
     @staticmethod
     def add_attendance_to_student(attendances_obj_list):
