@@ -28,7 +28,6 @@ class Student(User):
     def create_teams_list(cls):  # from database
         """
         Reads teams based on data from database.
-        :param table_name
         """
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
