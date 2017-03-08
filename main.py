@@ -26,20 +26,30 @@ def students_list():
 
 @app.route("/students-attendance")
 def students_attendance():
-    students_bad = Model.students_get_all() #it's from database
+    students_bad = Model.students_get_all()
     attendances = Attendance.create_objects_list_from_database()
     students = Student.student_presence(attendances, students_bad)
-    counted_days = Student.count_days()  #Student.counted_days
+    counted_days = Student.count_days()  # Student.counted_days
     Student.current_score(students)
-    return render_template("student_show_attendence.html", students=students, attendances=attendances, counted_days = counted_days)
+    return render_template("student_show_attendence.html", students=students, attendances=attendances, counted_days=counted_days)
 
 
-@app.route("/students_grades")
+@app.route("/students_grades", methods=['GET', 'POST'])
 def show_students_grades():
     """ Shows students grades """
-    students = Model.students_get_all()
-    grades = Model.get_average()
-    return render_template("show_grades.html", students=students, grades=grades)
+    if request.method == "GET":
+        students = Model.students_get_all()
+        grades = Model.get_average()
+        return render_template("show_grades.html", students=students, grades=grades)
+    elif request.method == 'POST':
+        start = request.form['start_date']
+        end = request.form['end_date']
+        student_id = request.form['student_id']
+        performance = Model.get_performance(student_id, start, end)
+        if performance:
+            return render_template('get_performance.html', performance=performance)
+        return redirect(url_for('show_students_grades'))
+
 
 
 @app.route("/edit_student/<student_id>", methods=['GET', 'POST'])
@@ -82,7 +92,7 @@ def submissions_list():
     """Shows list of submissions"""
     options = Model.create_submission_list()
     submissions = Submission.submission_all()
-    
+
     if request.method == "GET":
         return render_template("submission_table.html", submissions=submissions, options=options)
     if request.method == "POST":

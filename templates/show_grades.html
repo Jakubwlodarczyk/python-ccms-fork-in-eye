@@ -7,45 +7,48 @@
     </head>
 
     <body>
+
         <header>
-            <h1>List of students</h1>
+            <h1>Students grades</h1>
         </header>
 
         <section class='content'>
-        <form class="add-person-form"
-            name="add-person-form"
-            action="/add_student">
-
-                <button class="add-person-form-button right" type=
-                value="send">Add a new student</button>
-            </a>
-        </form>
-
 
             <table>
                 <thead>
                 <tr>
-                    <th>#</th>
+                    <th> # </th>
                     <th>Full name</th>
                     <th>Email</th>
                     <th>Card</th>
                     <th>Average</td>
+                    <th>Performance</th>
                 </tr>
                 </thead>
             {% for student in students %}
                 {% for key, value in grades.items() %}
                     {% if student.id == key %}
             <tr class="person_to_show">
-                <td>{{ loop.index }}</td>
+                <td> {{ loop.index }}
                 <td>{{ student.name }} {{ student.surname }}</td>
                 <td>{{ student.email }}</td>
                 <td>{{ student.card  }}</td>
                 <td> {{ value }} </td>
+                <td>
+                    <form class='performance' method='POST'>
+                        Start date
+                        <input class='little-input' name='start_date' type='date'>
+                        End date
+                        <input class='little-input' name='end_date' type='date'>
+                        <input type='hidden' value="{{  student.id }}" name='student_id'>
+                        <br>
+                        <br>
+                        <button class='little-button' type='submit'>show</button>
 
-                </td>
+                    </form>
             </tr>
-            {% endif %}
-            {% endfor %}
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
 
         </table>
