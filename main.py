@@ -9,12 +9,19 @@ from models.assignments import Assignments
 app = Flask(__name__)
 
 
-@app.route("/students")
+@app.route("/students", methods=['GET', 'POST'])
 def students_list():
     """ Shows list of students """
-    teams = Model.create_teams_list()
-    students = Model.students_get_all()
-    return render_template("show_students_list.html", students=students, teams=teams)
+    if request.method == "POST":
+        student_id = request.form['student_id']
+        card = request.form['select-card']
+        team = request.form['select-team']
+        return '{} {} {}'.format(team, card, student_id)
+    else:
+        teams = Model.create_teams_list()
+        students = Model.students_get_all()
+        cards = ['green', 'yellow', 'red']
+        return render_template("show_students_list.html", students=students, teams=teams, cards=cards)
 
 
 @app.route("/students-attendance")
@@ -173,11 +180,6 @@ def remove_student_from_team():
         if student.id == student_id:
             Model.remove_student_team(student_id)
     return redirect(url_for('teams_list'))
-
-
-@app.route("/submit_changes")
-def submit_students_changes():
-    return "<h2>TROLololololOoOOo !!!!!!</h2>"
 
 
 if __name__ == "__main__":
