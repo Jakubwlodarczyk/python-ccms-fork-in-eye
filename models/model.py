@@ -79,6 +79,16 @@ class Model:
         conn.close()
 
     @classmethod
+    def add_new_mentor(cls, name, surname, email ):
+        """ Adds new mentor to database """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        query = ("INSERT INTO staff (name, surname, email, password, status ) values ('{}', '{}', '{}', 'password','mentor' )".format(name, surname, email))
+        database = c.execute(query)
+        conn.commit()
+        conn.close()
+
+    @classmethod
     def mentors_get_all(cls):
         """
         Creates abjects based on data from database.
@@ -191,6 +201,7 @@ class Model:
 
 
 
+
     @classmethod
     def create_submission_list(cls):  # from database
         """
@@ -208,4 +219,24 @@ class Model:
             sub_list.append(row[0])
         conn.close()
         return sub_list
+
+
+    @classmethod
+    def add_team(cls, team_name):
+        """ Adds new team to database """
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()
+        cursor.execute("INSERT INTO teams_list (name) VALUES ('{}')".format(team_name))
+        data.commit()
+        data.close()
+
+    @classmethod
+    def remove_student_team(cls, student_id):
+        """ Remove student from team"""
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()
+        cursor.execute("UPDATE student SET team = '{}' WHERE ID = '{}'".format('none', student_id))
+        data.commit()
+        data.close()
+
 

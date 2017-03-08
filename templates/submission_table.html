@@ -68,7 +68,10 @@
               {% else %}
 
               {% for submission in submissions %}
+              <h3>{{submission.name}}</h3>
+              <h3>{{option}}</h3>
               {% if submission.name == option %}
+                        
 
                 <tr class="person_to_show">
                     <td>{{ loop.index }}</td>
