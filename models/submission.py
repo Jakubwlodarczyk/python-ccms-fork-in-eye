@@ -50,7 +50,7 @@ class Submission:
         """
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-        name_q = "SELECT send_date, grade, name, github_link, student_id FROM submission;"
+        name_q = "SELECT ID, send_date, grade, name, github_link, student_id FROM submission;"
         name_db = c.execute(name_q)
         conn.commit()
         submission_list = []
