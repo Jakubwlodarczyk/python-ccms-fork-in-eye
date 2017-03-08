@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, abort, flash
+import os
 from models.model import Model
 from models.student import Student
 from models.attendance import Attendance
@@ -7,6 +8,28 @@ from models.assignments import Assignments
 
 
 app = Flask(__name__)
+
+
+@app.route('/')
+def home():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        return "LOGGED IN, HURRAY!!!! <a href='/logout'>Log out</a>"
+
+
+@app.route('/login', methods=['POST'])
+def do_admin_login():
+    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+        session['logged_in'] = True
+    else:
+        flash('wrong password!')
+    return home()
+
+@app.route("/logout")
+def logout():
+    session['logged_in'] = False
+    return home()
 
 
 @app.route("/students", methods=['GET', 'POST'])
@@ -208,4 +231,5 @@ def remove_student_from_team():
 
 
 if __name__ == "__main__":
+    app.secret_key = os.urandom(12)
     app.run(debug=True)

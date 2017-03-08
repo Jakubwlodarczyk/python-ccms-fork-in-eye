@@ -269,6 +269,6 @@ class Model:
         for record in data:
             performance.append(list(record))
 
-        coon.close()
+        conn.close()
         if performance:
             return performance
