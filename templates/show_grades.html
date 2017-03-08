@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
+        <title>Codecool Management System</title>
+    </head>
+
+    <body>
+        <header>
+            <h1>List of students</h1>
+        </header>
+
+        <section class='content'>
+        <form class="add-person-form"
+            name="add-person-form"
+            action="/add_student">
+
+                <button class="add-person-form-button right" type=
+                value="send">Add a new student</button>
+            </a>
+        </form>
+
+
+            <table>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Full name</th>
+                    <th>Email</th>
+                    <th>Card</th>
+                    <th>Average</td>
+                </tr>
+                </thead>
+            {% for student in students %}
+                {% for key, value in grades.items() %}
+                    {% if student.id == key %}
+            <tr class="person_to_show">
+                <td>{{ loop.index }}</td>
+                <td>{{ student.name }} {{ student.surname }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.card  }}</td>
+                <td> {{ value }} </td>
+
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+
+        </table>
+        </section>
+    </body>
+</html>

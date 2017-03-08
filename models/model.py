@@ -185,7 +185,7 @@ class Model:
         cursor.execute("UPDATE teams_list SET name = '{}' WHERE name = '{}'".format(new_name, old_name))
         data.commit()
         data.close()
-    
+
     @classmethod
     def save_new_student(cls, students):
         """
@@ -217,3 +217,16 @@ class Model:
         data.commit()
         data.close()
 
+    @classmethod
+    def get_average(cls):
+        """ Gets averages of all students """
+        conn = sqlite3.connect("database.db")
+        cursor = conn.cursor()
+        data = cursor.execute("""SELECT student.ID, AVG(submission.grade) FROM student JOIN submission WHERE submission.student_id=student.ID GROUP BY submission.student_id;""")
+        grades = {}
+        for record in data:
+            grades[record[0]] = record[1]
+        conn.close()
+        return grades
+
+    

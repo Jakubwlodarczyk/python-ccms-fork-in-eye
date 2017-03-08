@@ -25,6 +25,12 @@ def students_attendance():
     Student.current_score(students)
     return render_template("student_show_attendence.html", students=students, attendances=attendances, counted_days = counted_days)
 
+@app.route("/students_grades")
+def show_students_grades():
+    """ Shows students grades """
+    students = Model.students_get_all()
+    grades = Model.get_average()
+    return render_template("show_grades.html", students=students, grades=grades)
 
 @app.route("/edit_student/<student_id>", methods=['GET', 'POST'])
 def edit_student(student_id):
