@@ -26,12 +26,29 @@ def students_attendance():
     Student.current_score(students)
     return render_template("student_show_attendence.html", students=students, attendances=attendances, counted_days = counted_days)
 
-@app.route("/students_grades")
+@app.route("/students_grades", methods=['GET', 'POST'])
 def show_students_grades():
     """ Shows students grades """
     students = Model.students_get_all()
     grades = Model.get_average()
     return render_template("show_grades.html", students=students, grades=grades)
+
+@app.route("/students_performance",methods=['GET', 'POST'])
+def get_performance():
+    """ Shows students performace between provided dates """
+    if request.method == 'GET':
+        students = Model.students_get_all()
+        grades = Model.get_average()
+        return render_template("performance.html", students=students, grades=grades)
+    elif request.method == 'POST':
+        start = request.form['start_date']
+        end = request.form['end_date']
+        performance = Model.get_performance(start, end)
+        if performance:
+            return render_template("get_performance.html", performance=performance)
+        return redirect(url_for('get_performance'))
+
+
 
 @app.route("/edit_student/<student_id>", methods=['GET', 'POST'])
 def edit_student(student_id):
@@ -74,7 +91,7 @@ def submissions_list():
     """Shows list of submissions"""
     options = Model.create_submission_list()
     submissions = Submission.submission_all()
-    
+
     if request.method == "GET":
         return render_template("submission_table.html", submissions=submissions, options=options)
     if request.method == "POST":

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
+        <title>Codecool Management System</title>
+    </head>
+
+    <body>
+        <header>
+            <h1>Students performance</h1>
+        </header>
+
+        <section class='content'>
+            <a href= "{{  url_for('get_performance')  }}">
+                <button>Go back</button>
+            </a>
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Assignment name</th>
+                    <th>Sent date</th>
+                    <th>Grade</td>
+                </tr>
+                </thead>
+            {% for record in performance %}
+                <tr>
+                    <td>{{ record[2] }}</td>
+                    <td>{{ record[3] }}
+                    <td>{{ record[1]}}</td>
+                    <td>{{ record[0]}}</td>
+                    <td>{{ record[4]}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        </section>
+    </body>
+</html>

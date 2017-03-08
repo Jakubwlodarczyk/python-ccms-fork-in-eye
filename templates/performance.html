@@ -7,15 +7,23 @@
     </head>
 
     <body>
-
         <header>
             <h1>Students grades</h1>
         </header>
 
         <section class='content'>
-            <a href="{{url_for('get_performance')}}">
-            <button>Show performance of students</button>
-            </a>
+
+            <form class='performance' method='POST'>
+                <label for='start_date'>Start date</label>
+                <input class='little-input' name='start_date' type='date'>
+                <br>
+                <br>
+                <label for='end_date'>End date</label>
+                <input class='little-input' name='end_date' type='date'>
+
+                <button type='submit'>show</button>
+
+            </form>
             <table>
                 <thead>
                 <tr>
@@ -23,7 +31,7 @@
                     <th>Email</th>
                     <th>Card</th>
                     <th>Average</td>
-                </tr>
+                    </tr>
                 </thead>
             {% for student in students %}
                 {% for key, value in grades.items() %}
@@ -33,6 +41,7 @@
                 <td>{{ student.email }}</td>
                 <td>{{ student.card  }}</td>
                 <td> {{ value }} </td>
+
             </tr>
                     {% endif %}
                 {% endfor %}

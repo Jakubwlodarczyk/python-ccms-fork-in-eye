@@ -250,3 +250,19 @@ class Model:
             grades[record[0]] = record[1]
         conn.close()
         return grades
+
+    @classmethod
+    def get_performance(cls, start, end):
+        conn = sqlite3.connect("database.db")
+        cursor = conn.cursor()
+        data = cursor.execute("""SELECT submission.send_date, submission.name, student.name, student.surname, submission.grade\
+                     FROM submission\
+                     INNER JOIN student\
+                     ON submission.student_id=student.id\
+                     WHERE submission.send_date BETWEEN '{}' AND '{}';""".format(start, end))
+        performance = []
+        for record in data:
+            performance.append(list(record))
+
+        if performance:
+            return performance
