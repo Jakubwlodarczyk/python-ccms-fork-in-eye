@@ -39,7 +39,8 @@ def students_list():
         student_id = request.form['student_id']
         card = request.form['select-card']
         team = request.form['select-team']
-        return '{} {} {}'.format(team, card, student_id)
+        Model.update_students_team(student_id, team, card)
+        return redirect(url_for('students_list'))
     else:
         teams = Model.create_teams_list()
         students = Model.students_get_all()
@@ -72,6 +73,7 @@ def show_students_grades():
         if performance:
             return render_template('get_performance.html', performance=performance)
         return redirect(url_for('show_students_grades'))
+
 
 
 @app.route("/edit_student/<student_id>", methods=['GET', 'POST'])
@@ -134,7 +136,6 @@ def add_mentor():
         email = request.form['email']
         Model.add_new_mentor(name, surname, email)
         return redirect(url_for('mentors_list'))
-
 
 
 @app.route("/edit_mentor/<mentor_id>", methods=['GET', 'POST'])
