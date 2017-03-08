@@ -70,17 +70,10 @@ def submissions_list():
     submissions = Submission.submission_all()
     
     if request.method == "GET":
-        # submissions = Submission.submission_all()
-        # options = Model.create_submission_list()
-        for row in submissions:
-            print(row.github_link)
         return render_template("submission_table.html", submissions=submissions, options=options)
     if request.method == "POST":
         option = request.form["select-submission"]
         select_option = "--select--"
-        for row in submissions:
-            print(row.github_link)
-        # submissions = Submission.submission_all()
         return render_template("submission_table.html", submissions=submissions, option=option, options=options, select_option=select_option)
 
 
