@@ -63,14 +63,10 @@
                         <input name="grade" class="little-input" type="text">
                     </td>
                 </tr>      
-                {% endfor %}   
-                      
-              {% else %}
-
-              {% for submission in submissions %}
-              <h3>{{submission.name}}</h3>
-              <h3>{{option}}</h3>
-              {% if submission.name == option %}
+                {% endfor %}                         
+                {% else %}
+                {% for submission in submissions %}             
+                {% if submission.name == option %}
                         
 
                 <tr class="person_to_show">
