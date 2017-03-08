@@ -13,7 +13,7 @@
 
         <section class='content'>
 
-            <a href="add.html">
+            <a href="/add_mentor">
                 <button class="add-person-form-button right" type="button" value="send">Add a new mentor</button>
             </a>
 
@@ -33,17 +33,16 @@
                 <td>{{ mentor.name }} {{ mentor.surname }}</td>
                 <td>{{ mentor.email }}</td>
                 <td>
-                    <a href="{{  url_for('edit_mentor', mentor_id=mentor.id)  }}">| Edit</a>
+                    <a href="{{  url_for('edit_mentor', mentor_id=mentor.id)  }}">
+                        <button class="little-button">Edit</button>
+                    </a>
+                    <br>
                     <a href="{{  url_for('remove_mentor', mentor_id=mentor.id)  }}">
-                    | Remove |</a>
-
-
+                        <button class="little-button">Remove</button>
+                    </a>
+                </td>
             {% endfor %}
-
         </table>
-            <a href="#">
-                <button class="add-person-form-button right" type="submit" value="send">Submit</button>
-            </a>
         </section>
     </body>
 </html>
