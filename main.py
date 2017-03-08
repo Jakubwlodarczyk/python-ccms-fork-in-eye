@@ -26,35 +26,29 @@ def students_list():
 
 @app.route("/students-attendance")
 def students_attendance():
-    students_bad = Model.students_get_all() #it's from database
+    students_bad = Model.students_get_all()
     attendances = Attendance.create_objects_list_from_database()
     students = Student.student_presence(attendances, students_bad)
-    counted_days = Student.count_days()  #Student.counted_days
+    counted_days = Student.count_days()  # Student.counted_days
     Student.current_score(students)
-    return render_template("student_show_attendence.html", students=students, attendances=attendances, counted_days = counted_days)
+    return render_template("student_show_attendence.html", students=students, attendances=attendances, counted_days=counted_days)
+
 
 @app.route("/students_grades", methods=['GET', 'POST'])
 def show_students_grades():
     """ Shows students grades """
-    students = Model.students_get_all()
-    grades = Model.get_average()
-    return render_template("show_grades.html", students=students, grades=grades)
-
-@app.route("/students_performance",methods=['GET', 'POST'])
-def get_performance():
-    """ Shows students performace between provided dates """
-    if request.method == 'GET':
+    if request.method == "GET":
         students = Model.students_get_all()
         grades = Model.get_average()
-        return render_template("performance.html", students=students, grades=grades)
+        return render_template("show_grades.html", students=students, grades=grades)
     elif request.method == 'POST':
         start = request.form['start_date']
         end = request.form['end_date']
-        performance = Model.get_performance(start, end)
+        student_id = request.form['student_id']
+        performance = Model.get_performance(student_id, start, end)
         if performance:
-            return render_template("get_performance.html", performance=performance)
-        return redirect(url_for('get_performance'))
-
+            return render_template('get_performance.html', performance=performance)
+        return redirect(url_for('show_students_grades'))
 
 
 @app.route("/edit_student/<student_id>", methods=['GET', 'POST'])
@@ -90,7 +84,6 @@ def mentors_list():
     """ Shows list of mentors """
     mentors = Model.mentors_get_all()
     return render_template("show_mentors_list.html", mentors=mentors)
-
 
 
 @app.route("/submissions", methods=['POST', "GET"])
@@ -147,7 +140,6 @@ def remove_mentor(mentor_id):
     """ Removes student with selected id from the database """
     Model.delete_mentor(mentor_id)
     return redirect(url_for('mentors_list'))
-
 
 
 @app.route("/teams")

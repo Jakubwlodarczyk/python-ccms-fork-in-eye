@@ -13,26 +13,39 @@
         </header>
 
         <section class='content'>
-            <a href="{{url_for('get_performance')}}">
-            <button>Show performance of students</button>
-            </a>
+
             <table>
                 <thead>
                 <tr>
+                    <th> # </th>
                     <th>Full name</th>
                     <th>Email</th>
                     <th>Card</th>
                     <th>Average</td>
+                    <th>Performance</th>
                 </tr>
                 </thead>
             {% for student in students %}
                 {% for key, value in grades.items() %}
                     {% if student.id == key %}
             <tr class="person_to_show">
+                <td> {{ loop.index }}
                 <td>{{ student.name }} {{ student.surname }}</td>
                 <td>{{ student.email }}</td>
                 <td>{{ student.card  }}</td>
                 <td> {{ value }} </td>
+                <td>
+                    <form class='performance' method='POST'>
+                        Start date
+                        <input class='little-input' name='start_date' type='date'>
+                        End date
+                        <input class='little-input' name='end_date' type='date'>
+                        <input type='hidden' value="{{  student.id }}" name='student_id'>
+                        <br>
+                        <br>
+                        <button class='little-button' type='submit'>show</button>
+
+                    </form>
             </tr>
                     {% endif %}
                 {% endfor %}

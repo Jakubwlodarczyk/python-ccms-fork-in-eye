@@ -12,26 +12,24 @@
         </header>
 
         <section class='content'>
-            <a href= "{{  url_for('get_performance')  }}">
+            <a href= "{{  url_for('show_students_grades')  }}">
                 <button>Go back</button>
             </a>
             <table>
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Assignment name</th>
+                    <th>#</th>
+                    <th>Assignement name</th>
                     <th>Sent date</th>
                     <th>Grade</td>
                 </tr>
                 </thead>
             {% for record in performance %}
                 <tr>
-                    <td>{{ record[2] }}</td>
-                    <td>{{ record[3] }}
-                    <td>{{ record[1]}}</td>
-                    <td>{{ record[0]}}</td>
-                    <td>{{ record[4]}}</td>
+                    <td> {{ loop.index }}
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[0] }}
+                    <td>{{ record[2]}}</td>
                 </tr>
             {% endfor %}
         </table>

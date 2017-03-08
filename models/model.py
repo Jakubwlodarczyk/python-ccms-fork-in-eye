@@ -79,7 +79,7 @@ class Model:
         conn.close()
 
     @classmethod
-    def add_new_mentor(cls, name, surname, email ):
+    def add_new_mentor(cls, name, surname, email):
         """ Adds new mentor to database """
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
@@ -244,7 +244,11 @@ class Model:
         """ Gets averages of all students """
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
-        data = cursor.execute("""SELECT student.ID, AVG(submission.grade) FROM student JOIN submission WHERE submission.student_id=student.ID GROUP BY submission.student_id;""")
+        data = cursor.execute("""SELECT student.ID, AVG(submission.grade)\
+                                 FROM student\
+                                 JOIN submission\
+                                 WHERE submission.student_id=student.ID\
+                                 GROUP BY submission.student_id;""")
         grades = {}
         for record in data:
             grades[record[0]] = record[1]
@@ -252,17 +256,19 @@ class Model:
         return grades
 
     @classmethod
-    def get_performance(cls, start, end):
+    def get_performance(cls, student_id, start, end):
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
-        data = cursor.execute("""SELECT submission.send_date, submission.name, student.name, student.surname, submission.grade\
-                     FROM submission\
-                     INNER JOIN student\
-                     ON submission.student_id=student.id\
-                     WHERE submission.send_date BETWEEN '{}' AND '{}';""".format(start, end))
+        data = cursor.execute("""SELECT submission.send_date, submission.name, submission.grade\
+                                 FROM submission\
+                                 INNER JOIN student\
+                                 ON submission.student_id=student.id\
+                                 WHERE submission.send_date BETWEEN '{}' AND '{}' AND student.id =='{}'\
+                                 ORDER BY student.surname ASC;""".format(start, end, student_id))
         performance = []
         for record in data:
             performance.append(list(record))
 
+        coon.close()
         if performance:
             return performance
