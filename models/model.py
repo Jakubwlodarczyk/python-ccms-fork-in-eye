@@ -199,6 +199,28 @@ class Model:
         conn.commit()
         conn.close()
 
+
+
+
+    @classmethod
+    def create_submission_list(cls):  # from database
+        """
+        Reads teams based on data from database.
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+        name_q = "SELECT DISTINCT name FROM submission;"
+        name_db = c.execute(name_q)
+        conn.commit()
+        sub_list = []
+
+        for row in name_db:
+            sub_list.append(row[0])
+        conn.close()
+        return sub_list
+
+
     @classmethod
     def add_team(cls, team_name):
         """ Adds new team to database """
@@ -228,5 +250,3 @@ class Model:
             grades[record[0]] = record[1]
         conn.close()
         return grades
-
-    

@@ -64,24 +64,12 @@ class Submission:
             full_name = cls(send_date, grade, name, github_link, student_id)
             submission_list.append(full_name)
 
+                            # send_date, grade, name, github_link, student_id
+
+
+
         conn.close()
         return submission_list
-
-    def get_submission_by_id(cls, id):
-        """ Retrieves submission item with given id from database.
-        Args:
-            id(int): item id
-        Returns:
-            Submission: submission object with a given id
-        """
-        data = sqlite3.connect('database.db')
-        cursor = data.cursor()
-        data = cursor.execute("SELECT ID FROM submission WHERE ID='{}'".format(id))
-        for row in data:
-            ID = row[0]
-            submission_id = cls(ID)
-        data.close()
-        return submission_id
 
 
     @classmethod

@@ -12,8 +12,9 @@ app = Flask(__name__)
 @app.route("/students")
 def students_list():
     """ Shows list of students """
+    teams = Model.create_teams_list()
     students = Model.students_get_all()
-    return render_template("show_students_list.html", students=students)
+    return render_template("show_students_list.html", students=students, teams=teams)
 
 
 @app.route("/students-attendance")
@@ -67,8 +68,24 @@ def mentors_list():
     return render_template("show_mentors_list.html", mentors=mentors)
 
 
+
+@app.route("/submissions", methods=['POST', "GET"])
+def submissions_list():
+    """Shows list of submissions"""
+    options = Model.create_submission_list()
+    submissions = Submission.submission_all()
+    
+    if request.method == "GET":
+        return render_template("submission_table.html", submissions=submissions, options=options)
+    if request.method == "POST":
+        option = request.form["select-submission"]
+        select_option = "--select--"
+        return render_template("submission_table.html", submissions=submissions, option=option, options=options, select_option=select_option)
+
+
 @app.route("/add_mentor", methods=['POST', "GET"])
 def add_mentor():
+    """Shows list of submissions"""
     if request.method == 'GET':
         return render_template('add.html')
     elif request.method == 'POST':
@@ -77,6 +94,7 @@ def add_mentor():
         email = request.form['email']
         Model.add_new_mentor(name, surname, email)
         return redirect(url_for('mentors_list'))
+
 
 
 @app.route("/edit_mentor/<mentor_id>", methods=['GET', 'POST'])
@@ -107,13 +125,6 @@ def remove_mentor(mentor_id):
     return redirect(url_for('mentors_list'))
 
 
-@app.route("/submissions")
-def submissions_list():
-    """Shows list of submissions"""
-    submissions = Submission.submission_all()
-    students = Model.students_get_all()
-    return render_template("submission_table.html", submissions=submissions, students=students)
-
 
 @app.route("/teams")
 def teams_list():
@@ -137,7 +148,7 @@ def edit_team_name():
         old_name = request.args['team_name']
         new_name = request.form['name']
         Model.update_team_name(old_name, new_name)
-        return redirect('/teams')
+        return redirect(url_for('teams_list'))
     else:
         team_id = request.args['team_id']
         team_name = request.args['team_name']
@@ -165,7 +176,7 @@ def add_team():
     else:
         team_name = request.form['new-team-name']
         Model.add_team(team_name)
-        return redirect('/teams')
+        return redirect(url_for('teams_list'))
 
 
 @app.route("/remove_student_team")
@@ -174,12 +185,15 @@ def remove_student_from_team():
     students = Model.students_get_all()
     student_id = request.args['student_id']
     student_id = int(student_id)
-    print(type(student_id))
     for student in students:
         if student.id == student_id:
-            print(student_id)
             Model.remove_student_team(student_id)
-    return redirect('/teams')
+    return redirect(url_for('teams_list'))
+
+
+@app.route("/submit_changes")
+def submit_students_changes():
+    return "<h2>TROLololololOoOOo !!!!!!</h2>"
 
 
 if __name__ == "__main__":
