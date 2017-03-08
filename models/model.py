@@ -199,9 +199,6 @@ class Model:
         conn.commit()
         conn.close()
 
-
-
-
     @classmethod
     def create_submission_list(cls):  # from database
         """
@@ -219,7 +216,6 @@ class Model:
             sub_list.append(row[0])
         conn.close()
         return sub_list
-
 
     @classmethod
     def add_team(cls, team_name):
@@ -269,6 +265,15 @@ class Model:
         for record in data:
             performance.append(list(record))
 
-        coon.close()
+        conn.close()
         if performance:
             return performance
+
+    @classmethod
+    def update_students_team(cls, student_id, team, card):
+        """ Updates student team, and card in database """
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()
+        cursor.execute("UPDATE student SET team = '{}', card = '{}'WHERE ID = '{}'".format(team, card, student_id))
+        data.commit()
+        data.close()
