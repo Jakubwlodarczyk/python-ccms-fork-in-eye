@@ -16,7 +16,8 @@ def students_list():
         student_id = request.form['student_id']
         card = request.form['select-card']
         team = request.form['select-team']
-        return '{} {} {}'.format(team, card, student_id)
+        Model.update_students_team(student_id, team, card)
+        return redirect(url_for('students_list'))
     else:
         teams = Model.create_teams_list()
         students = Model.students_get_all()
