@@ -33,8 +33,10 @@
                 <td>{{ mentor.name }} {{ mentor.surname }}</td>
                 <td>{{ mentor.email }}</td>
                 <td>
-                    <a href="edit_person_data.html">| Edit</a>
-                    | Remove |
+                    <a href="{{  url_for('edit_mentor', mentor_id=mentor.id)  }}">| Edit</a>
+                    <a href="{{  url_for('remove_mentor', mentor_id=mentor.id)  }}">
+                    | Remove |</a>
+
 
             {% endfor %}
 

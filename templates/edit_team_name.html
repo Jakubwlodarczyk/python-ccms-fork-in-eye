@@ -1,37 +1,24 @@
 <!DOCTYPE html>
+
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="style.css"/>
-		<script src="https://www.w3schools.com/lib/w3data.js"></script> 
+        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
         <title>Codecool Management System</title>
     </head>
 
     <body>
-        <div w3-include-html="sidebar.html"></div>
         <header>
             <h1>Rename team</h1>
         </header>
+
        	<section class='content'>
-          <form class="add-team-form"
-                name="add-team-form" method="post">
-			 <select id="select_team_name" name="select-team-name">
-                <option selected>FORk in eye</option>
-                <option>Dziwny team</option>        
-            </select> 
-            <br>
-            <label for="login" class="add-team-form-element">
-              <span>New team name</span></label><br/>
-              <input name="name" class="add-person-form-input" type="text" placeholder="name">
-            <br/>
-			<br/>
-			<br/>
-			  <button class="add-team-form-button" type="submit">RENAME</button>
+            <form class="add-team-form" name="add-team-form" method="post">
+                <label for="login" class="add-team-form-element">New team name</label><br/>
+                <input name="name" class="add-person-form-input" type="text" placeholder="{{ team_name }}">
+                <button class="add-team-form-button" type="submit">RENAME</button>
           </form>
 		</section>
-		<script>
-		w3IncludeHTML();
-		</script> 
     </body>
 </html>
 
