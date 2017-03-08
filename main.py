@@ -33,12 +33,14 @@ def students_attendance():
     Student.current_score(students)
     return render_template("student_show_attendence.html", students=students, attendances=attendances, counted_days = counted_days)
 
+
 @app.route("/students_grades")
 def show_students_grades():
     """ Shows students grades """
     students = Model.students_get_all()
     grades = Model.get_average()
     return render_template("show_grades.html", students=students, grades=grades)
+
 
 @app.route("/edit_student/<student_id>", methods=['GET', 'POST'])
 def edit_student(student_id):
@@ -75,7 +77,6 @@ def mentors_list():
     return render_template("show_mentors_list.html", mentors=mentors)
 
 
-
 @app.route("/submissions", methods=['POST', "GET"])
 def submissions_list():
     """Shows list of submissions"""
@@ -101,7 +102,6 @@ def add_mentor():
         email = request.form['email']
         Model.add_new_mentor(name, surname, email)
         return redirect(url_for('mentors_list'))
-
 
 
 @app.route("/edit_mentor/<mentor_id>", methods=['GET', 'POST'])
@@ -130,7 +130,6 @@ def remove_mentor(mentor_id):
     """ Removes student with selected id from the database """
     Model.delete_mentor(mentor_id)
     return redirect(url_for('mentors_list'))
-
 
 
 @app.route("/teams")
