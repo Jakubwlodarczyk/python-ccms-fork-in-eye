@@ -15,14 +15,22 @@
             <h2>
             Total: <em> average %</em>
             </h2>
-            <div class="select_submission">
-            <label for="select-class" >Choose assignment: </label>
-            <select id="select_submission1" name="select-class">
-                <option selected>--select--</option>        
-                <option>Assignment 1</option>   
-                <option>Assignment 1</option>  
+            <!--<div class="select_submission">-->
+            <label for="select-class" >Choose assignment: </label> 
+            
+            
+            <form  method="post" action="/submissions">
+            <select name="select-submission" class="select_submission1">                
+                <option selected>--select--</option>  
+                {% for opt in options %}            
+                <option value="{{ opt }}">{{ opt }}</option>
+                {% endfor %}
             </select> 
-        	</div> 
+         
+            <button  class="select_button_filter" type="submit" 
+                value="send">Filter</button>
+            
+            </form>
 
             <table>
             <thead>
@@ -35,7 +43,28 @@
                     <th>Grade</th>
                     <th>Action</th>
             </thead>
-                {% for submission in submissions %}
+
+                {% if option == select_option %} 
+                {% for sumbission in submissions %}
+             
+           
+                <tr class="person_to_show">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ sumbission.name }}</td>
+                    <td>{{ sumbission.send_date }}</td>
+                    <td>{{ sumbission.student_id }}</td>
+                    <<td>{{ sumbission.github_link}}</td>
+                    <td>{{ sumbission.grade }}</td>
+                    <td><label for="grade">Grade</label>
+                        <input name="grade" class="little-input" type="text">
+                    </td>
+                </tr>      
+                {% endfor %}                         
+                {% else %}
+                {% for submission in submissions %}             
+                {% if submission.name == option %}
+                        
+
                 <tr class="person_to_show">
                     <td>{{ loop.index }}</td>
                     <td>{{ submission.name }}</td>
@@ -50,8 +79,13 @@
                     <td><label for="grade">Grade</label>
                         <input name="grade" class="little-input" type="text">
                     </td>
-                </tr>
+                </tr>                
+                {% endif %}
+              
+            
+                 
                 {% endfor %}
+                 {% endif %}
         	</table>
             <button type="save">SAVE GRADES</button>
     	<br>

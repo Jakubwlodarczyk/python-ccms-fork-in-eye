@@ -100,6 +100,8 @@ select {
     transition: all .3s ease-in;
     vertical-align: middle;
     width: auto;
+    position: relative;
+    right: -25em;
     }
 
 table {
@@ -375,6 +377,12 @@ input[type=date]{
     margin-left: 10px;
     width: 300px;
      
+}
+
+
+.select_button_filter {
+    float: left;
+
 }
 /*
 czo to jest? to wszystko niepotrzebne! 
