@@ -2,9 +2,58 @@ import sqlite3
 from models.student import Student
 from models.mentor import Mentor
 from models.team import Team
+from models.user import User
 
 
 class Model:
+    @classmethod
+    def find_user(cls, username, password, status):
+        """
+        Args:
+        username: str, data from form
+        password: str, data from form
+        status: str, data from form
+        Checks if given username and password exists in database
+        Returns: person with given username and password
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        staff = ['mentor', 'maganer', 'employee_menu']
+        if status in staff:
+            query = """SELECT id, name, surname, email, password, status\
+                        FROM staff WHERE status='{}' AND email='{}' AND password='{}';""".format(status, username, password)
+            data = c.execute(query)
+            try:
+                for row in data:
+                    id = row[0]
+                    name = row[1]
+                    surname = row[2]
+                    email = row[3]
+                    password = row[4]
+                    status = row[5]
+                    person = User(id, name, surname, email, password, status)
+                return person
+            except:
+                return None
+        else:
+            query = """SELECT id, name, surname, email, password, status, card, team\
+                        FROM student WHERE email='{}' AND password='{}';""".format(username, password)
+            data = c.execute(query)
+            try:
+                for row in data:
+                    id = row[0]
+                    name = row[1]
+                    surname = row[2]
+                    email = row[3]
+                    password = row[4]
+                    status = row[5]
+                    card = row[6]
+                    team = row[7]
+                    person = Student(id, name, surname, email, password, status, card, team)
+                return person
+            except:
+                return None
+
     @classmethod
     def students_get_all(cls):
         """
@@ -13,9 +62,8 @@ class Model:
         """
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-        query = "SELECT id, name, surname, email, password, status, card, team FROM student;"
+        query = "SELECT ID, name, surname, email, password, status, card, team FROM student;"
         name_db = c.execute(query)
-        conn.commit()
         students_list = []
         for row in name_db:
             id = row[0]
@@ -79,6 +127,16 @@ class Model:
         conn.close()
 
     @classmethod
+    def add_new_mentor(cls, name, surname, email):
+        """ Adds new mentor to database """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        query = ("INSERT INTO staff (name, surname, email, password, status ) values ('{}', '{}', '{}', 'password','mentor' )".format(name, surname, email))
+        database = c.execute(query)
+        conn.commit()
+        conn.close()
+
+    @classmethod
     def mentors_get_all(cls):
         """
         Creates abjects based on data from database.
@@ -86,7 +144,7 @@ class Model:
         """
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-        query = "SELECT id, name, surname, email, password, status FROM staff where status='mentor';"
+        query = "SELECT ID, name, surname, email, password, status FROM staff where status='mentor';"
         name_db = c.execute(query)
         conn.commit()
         mentors_list = []
@@ -173,9 +231,10 @@ class Model:
         data = sqlite3.connect("database.db")
         cursor = data.cursor()
         cursor.execute("UPDATE teams_list SET name = '{}' WHERE name = '{}'".format(new_name, old_name))
+        cursor.execute("UPDATE student SET team = '{}' WHERE team = '{}'".format(new_name, old_name))
         data.commit()
         data.close()
-    
+
     @classmethod
     def save_new_student(cls, students):
         """
@@ -184,10 +243,109 @@ class Model:
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
         for student in students:
-            params = [student[0], student[1], student[2]]
-        c.execute("INSERT INTO student (name, surname, email) VALUES (?, ?, ?);", params)
+            status = 'student'
+            params = [student[0], student[1], student[0], status, student[2]]
+        c.execute("INSERT INTO student (name, surname, password, status, email) VALUES (?, ?, ?, ?, ?);", params)
         conn.commit()
         conn.close()
+
+    @classmethod
+    def create_submission_list(cls):  # from database
+        """
+        Reads teams based on data from database.
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+        name_q = "SELECT DISTINCT name FROM submission;"
+        name_db = c.execute(name_q)
+        conn.commit()
+        sub_list = []
+
+        for row in name_db:
+            sub_list.append(row[0])
+        conn.close()
+        return sub_list
+
+    @classmethod
+    def add_team(cls, team_name):
+        """ Adds new team to database """
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()
+        cursor.execute("INSERT INTO teams_list (name) VALUES ('{}')".format(team_name))
+        data.commit()
+        data.close()
+
+    @classmethod
+    def remove_student_team(cls, student_id):
+        """ Remove student from team"""
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()
+        cursor.execute("UPDATE student SET team = '{}' WHERE ID = '{}'".format('none', student_id))
+        data.commit()
+        data.close()
+
+    @classmethod
+    def get_average(cls):
+        """ Gets averages of all students """
+        conn = sqlite3.connect("database.db")
+        cursor = conn.cursor()
+        data = cursor.execute("""SELECT student.ID, AVG(submission.grade)\
+                                 FROM student\
+                                 JOIN submission\
+                                 WHERE submission.student_id=student.ID\
+                                 GROUP BY submission.student_id;""")
+        grades = {}
+        for record in data:
+            grades[record[0]] = record[1]
+        conn.close()
+        return grades
+
+    @classmethod
+    def get_performance(cls, student_id, start, end):
+        conn = sqlite3.connect("database.db")
+        cursor = conn.cursor()
+        data = cursor.execute("""SELECT submission.send_date, submission.name, submission.grade\
+                                 FROM submission\
+                                 INNER JOIN student\
+                                 ON submission.student_id=student.id\
+                                 WHERE submission.send_date BETWEEN '{}' AND '{}' AND student.id =='{}'\
+                                 ORDER BY student.surname ASC;""".format(start, end, student_id))
+        performance = []
+        for record in data:
+            performance.append(list(record))
+
+        conn.close()
+        if performance:
+            return performance
+
+    @classmethod
+    def update_students_team(cls, student_id, team, card):
+        """ Updates student team, and card in database """
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()
+        cursor.execute("UPDATE student SET team = '{}', card = '{}'WHERE ID = '{}'".format(team, card, student_id))
+        data.commit()
+        data.close()
+
+    @classmethod
+    def update_grades(cls, student_id, grade):
+        """ Updates submissions names in database"""
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()
+        cursor.execute("UPDATE submission SET grade = '{}' WHERE student_id = '{}'".format(grade, student_id))
+        data.commit()
+        data.close()
+
+    @classmethod
+    def delete_team(cls, team_id, team_name):
+        """ Delete team from database """
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()
+        cursor.execute("DELETE FROM teams_list WHERE ID = '{}';".format(team_id))
+        cursor.execute("UPDATE student SET team = 'None' WHERE team = '{}'".format(team_name))
+        data.commit()
+        data.close()
 
     @staticmethod
     def create_attendance(values, chosen_date, ids): # values = list, date = str (2017-03-15), ids = list

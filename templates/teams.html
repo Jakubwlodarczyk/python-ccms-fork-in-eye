@@ -10,7 +10,7 @@
             <h1>List of teams</h1>
         </header>
         <section class='content'>
-            <a href="add_new_team.html">
+            <a href="{{ url_for('add_team') }}">
                 <button class="add-team" type="button" value="send">Add a new team</button>
             </a>
             <table>
@@ -18,14 +18,15 @@
                 <thead>
                     <tr>
                         <th>{{ loop.index }}</th>
-                        <th><a href="{{ url_for('edit_team_name', team_id=team.id, team_name=team.name)}}">
+                        <th><a href="{{ url_for('edit_team_name', team_id=team.id, team_name=team.name) }}">
                             {{ team.name }}</a></th>
                     </tr>
                 </thead>
                     {% for student in students %}
                         {% if student.team == team.name %}
                             <tr>
-                                <td><button class="little-button">Remove</button></td>
+                                <td><a href="{{ url_for('remove_student_from_team', student_id=student.id) }}" >
+                                    <button class="little-button">Remove</button></a></td>
                                 <td>{{ student.name }} {{ student.surname }}</td>
                             </tr>
 

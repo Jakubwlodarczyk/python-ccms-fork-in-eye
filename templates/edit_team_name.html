@@ -14,10 +14,15 @@
 
        	<section class='content'>
             <form class="add-team-form" name="add-team-form" method="post">
-                <label for="login" class="add-team-form-element">New team name</label><br/>
+                <label class="add-team-form-element">New team name</label><br/>
                 <input name="name" class="add-person-form-input" type="text" placeholder="{{ team_name }}">
-                <button class="add-team-form-button" type="submit">RENAME</button>
-          </form>
+                <button type="submit">RENAME</button>
+            </form>
+                <form method="POST" action="/remove_team">
+                    <input type="hidden" value="{{ team_name }}" name="team_name">
+                    <input type="hidden" value="{{ team_id }}" name="team_id">
+                    <button type="submit">DELETE</button>
+                </form>
 		</section>
     </body>
 </html>

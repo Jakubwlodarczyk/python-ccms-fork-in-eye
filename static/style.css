@@ -3,7 +3,7 @@
 
 body {
     background-color: #E0E0DF;
-    color: #5B5B5B; 
+    color: #5B5B5B;
     font: 1rem Abel, sans-serif;
     line-height: 1.5rem;
     margin: 5%;
@@ -78,7 +78,7 @@ button {
         margin-right: 5px;
         padding: 2%;
         text-align: center;
-        width: 100px;  
+        width: 100px;
     }
 
 li {
@@ -100,6 +100,8 @@ select {
     transition: all .3s ease-in;
     vertical-align: middle;
     width: auto;
+    position: relative;
+    right: -25em;
     }
 
 table {
@@ -189,7 +191,7 @@ label {
     background-color: #E0E0DF;
     color: #333;
     flex: 1;
-    height: 100%; 
+    height: 100%;
     list-style-type: none;
     margin: auto;
     overflow: auto;
@@ -199,7 +201,7 @@ label {
     .menu li {
         box-shadow: 5px 5px 2px #888888;
         text-align: center;
-    }  
+    }
 
         .menu li a {
             background-color: inherit;
@@ -220,7 +222,7 @@ label {
 /*LOG IN PAGE*/
 
 .loginBody {
-    display: table; 
+    display: table;
     margin: auto;
     text-align: center;
     width:60%;
@@ -292,9 +294,9 @@ label {
 /*proszę to uporządkować. czy te wszystkie klasy są potrzebne?*/
 
 .add-person-form-input.add-person-form-select.mentor-show-students {
-    
+
     width: 100px;
-    
+
 }
 
 .mentor-give-card .green-card {
@@ -364,7 +366,7 @@ input[type=date]{
     right: 20px;
     top: auto;
     vertical-align: middle;
-    
+
 }
 
 .codecool_krk {
@@ -374,46 +376,37 @@ input[type=date]{
     height: 200px;
     margin-left: 10px;
     width: 300px;
-     
+
 }
+
+
+.select_button_filter {
+    float: left;
+}
+
 /*
-czo to jest? to wszystko niepotrzebne! 
+czo to jest? to wszystko niepotrzebne!
 #left-p-menu {
     justify-content: center;
     margin-right: 10px
-
-}
 */
 
+select.large-select {
+    background: white
+    border-radius: 5px;
+    border: 0;
+    border: 2px solid #ccc;
+    box-shadow: 2px 2px 2px #888;
+    cursor:pointer;
+    font-family: inherit;
+    font-size: 1.5rem;
+    margin: auto;
+    padding: 5px;
+    position:static;
+    transition: all .3s ease-in;
+    vertical-align: middle;
+    width: 60%;
+    right: -25em;
 
-/*
-.select_submission {
-    position: relative;
-    right: -170px;
     }
-
-
-#select_submission1{
- 
-    height:34px;
-    width: 230px;
-    line-height:30px;
-    background:#f4f4f4;
-    text-align: center;
-    margin: 4px;
-    position: relative;
-    top: 15px;
-    margin-bottom: 40px;
-    } 
-*/
-
-
-
-/*
-#class_label_attendance{
-    height:34px;
-    width: 180px;
-}
-*/
-
 

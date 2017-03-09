@@ -297,12 +297,13 @@ class Student(User):
         conn = sqlite3.connect("database.db")
         with conn:
             c = conn.cursor()
-            db = c.execute("SELECT submission.send_date, submission.name, student.name, student.surname, submission.grade\
+            db = c.execute("SELECT submission.send_date, submission.name, submission.grade\
                          FROM submission\
                          INNER JOIN student\
-                         ON submission.student_id=student.student_id\
+                         ON submission.student_id=student.id\
                          WHERE submission.send_date BETWEEN (?) AND (?)\
-                         ORDER BY student.surname ASC;", (st_end_date[0], st_end_date[1]))
+                         AND student.id\
+                         ORDER BY submission.name ASC;", (st_end_date[0], st_end_date[1]))
             conn.commit()
         for row in db:
             list_of_performance.append(row)
@@ -352,4 +353,3 @@ class Student(User):
             points += (student.late * 80)
 
             student.score = (points / Student.count_days())
-

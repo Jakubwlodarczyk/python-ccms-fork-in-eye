@@ -12,15 +12,11 @@
         </header>
 
         <section class='content'>
-        <form class="add-person-form"
-            name="add-person-form"             
-            action="/add_student">
-    
-                <button class="add-person-form-button right" type= 
-                value="send">Add a new student</button>
+        <form class="add-person-form" name="add-person-form" action="/add_student">
+            <a>
+                <button class="add-person-form-button right" value="send">Add a new student</button>
             </a>
         </form>
-
 
             <table>
                 <thead>
@@ -40,29 +36,29 @@
                     <a href="{{  url_for('edit_student', student_id=student.id)  }}">| Edit</a>
                     <a href="{{  url_for('remove_student', student_id=student.id)  }}">
                     | Remove |</a>
-                    <select class="add-person-form-input add-person-form-select mentor-show-students" name="select-class">
-                    <option selected>Team</option>
-                        <option>group1</option>
-                        <option>group2</option>
-                        <option>group3</option>
-                    </select>
-                                        |
 
-                    <select class="add-person-form-input add-person-form-select mentor-show-students mentor-give-card" name="select-class">
-                        <option selected>Card</option>
-                        <option class="green-card">Red</option>
-                        <option class="red-card">Green</option>
-                        <option class="yellow-card">Yellow</option>
-                  </select>
+                    <form method="post">
+                        <select class="add-person-form-input add-person-form-select mentor-show-students" name="select-team">
+                            <option selected>{{ student.team }}</option>
+                                {% for team in teams %}
+                                    <option>{{ team }}</option>
+                                    {% endfor %}
+                        </select>
+                        |
+                        <select class="add-person-form-input add-person-form-select mentor-show-students mentor-give-card" name="select-card">
+                            <option selected>{{ student.card }}</option>
+                                {% for card in cards %}
+                                    <option name="card">{{ card }}</option>
+                                    {% endfor %}
+                        </select>
+                        <input type="hidden" value="{{ student.id }}" name="student_id">
+                        <button class="little-button" type="submit">Update</button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}
-            <!--<p>{{email}}</p>-->
-
         </table>
-            <a href="#">
-                <button class="add-person-form-button right" type="submit" value="send">Submit</button>
-            </a>
+
         </section>
     </body>
 </html>
