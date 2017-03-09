@@ -16,6 +16,14 @@
 			<form action="/login" class="loginMenu" method="POST">
 				<input class="email_input" name="username" type="text" placeholder="E-mail address"><br/>
 				<input class="password_input" name="password" type="password" placeholder="Password"><br/>
+				<select class="large-select" name="status">
+					<option selected>---status---</option>
+						<option>manager</option>
+						<option>employee</option>
+						<option>mentor</option>
+						<option>student</option>
+				</select>
+				<br/>
 				<input type="submit" value="Log in">
 			</form>
 		</div>
