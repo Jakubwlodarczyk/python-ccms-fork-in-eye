@@ -20,6 +20,12 @@ a {
     text-decoration: none;
  }
 
+a.link-to-pdf {
+    right: 0;
+    text-align: right;
+    text-decoration-color: #333333;
+}
+
 header {
     background-image: url("https://s-media-cache-ak0.pinimg.com/originals/1d/a8/63/1da86316ddbe7855de601d64798e5e97.jpg");
     border-radius: 8px;
@@ -165,6 +171,21 @@ table.two_button_table {
         margin: 0;
         width: 100%;
         text-align: center;
+    }
+
+    .content.home {
+        display: table;
+        width: 80%;
+        margin-top: 20px;
+    }
+
+    a.aleft {
+        float: left;
+        width: 45%;
+    }
+
+    .logo {
+        vertical-align: middle;
     }
 
 label {
