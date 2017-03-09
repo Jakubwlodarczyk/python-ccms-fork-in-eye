@@ -346,3 +346,4 @@ class Model:
         cursor.execute("UPDATE student SET team = 'None' WHERE team = '{}'".format(team_name))
         data.commit()
         data.close()
+
