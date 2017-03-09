@@ -18,21 +18,41 @@ class Model:
         """
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-        query = """SELECT id, name, surname, email, password, status\
-                    FROM staff WHERE status='{}' AND email='{}' AND password='{}';""".format(status, username, password)
-        data = c.execute(query)
-        try:
-            for row in data:
-                id = row[0]
-                name = row[1]
-                surname = row[2]
-                email = row[3]
-                password = row[4]
-                status = row[5]
-                person = User(id, name, surname, email, password, status)
-            return person
-        except:
-            return None
+        staff = ['mentor', 'maganer', 'employee_menu']
+        if status in staff:
+            query = """SELECT id, name, surname, email, password, status\
+                        FROM staff WHERE status='{}' AND email='{}' AND password='{}';""".format(status, username, password)
+            data = c.execute(query)
+            try:
+                for row in data:
+                    id = row[0]
+                    name = row[1]
+                    surname = row[2]
+                    email = row[3]
+                    password = row[4]
+                    status = row[5]
+                    person = User(id, name, surname, email, password, status)
+                return person
+            except:
+                return None
+        else:
+            query = """SELECT id, name, surname, email, password, status, card, team\
+                        FROM student WHERE email='{}' AND password='{}';""".format(username, password)
+            data = c.execute(query)
+            try:
+                for row in data:
+                    id = row[0]
+                    name = row[1]
+                    surname = row[2]
+                    email = row[3]
+                    password = row[4]
+                    status = row[5]
+                    card = row[6]
+                    team = row[7]
+                    person = Student(id, name, surname, email, password, status, card, team)
+                return person
+            except:
+                return None
 
     @classmethod
     def students_get_all(cls):
