@@ -52,7 +52,6 @@ def show_students_grades():
         return redirect(url_for('show_students_grades'))
 
 
-
 @app.route("/edit_student/<student_id>", methods=['GET', 'POST'])
 def edit_student(student_id):
     """ Edits student with selected id in the database
