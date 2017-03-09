@@ -83,7 +83,12 @@ button {
         display: inline;
 
         width: 100px;
+    }
 
+    button.little-button.button-to-remove {
+        text-align: center;
+        margin: auto;
+        display: block;
     }
 
 li {

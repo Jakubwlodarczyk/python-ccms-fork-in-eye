@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
-        <title>Codecool Management System</title>
-    </head>
-    <body>
-        <header>
-            <h1>List of teams</h1>
-        </header>
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block header %}
+<h1> List of teams </h1>
+{% endblock %}
+
+{% block solid_component %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
         <section class='content'>
             <a href="{{ url_for('add_team') }}">
                 <button class="add-team" type="button" value="send">Add a new team</button>
@@ -26,7 +29,7 @@
                         {% if student.team == team.name %}
                             <tr>
                                 <td><a href="{{ url_for('remove_student_from_team', student_id=student.id) }}" >
-                                    <button class="little-button">Remove</button></a></td>
+                                    <button class="little-button button-to-remove">Remove</button></a></td>
                                 <td>{{ student.name }} {{ student.surname }}</td>
                             </tr>
 
@@ -35,7 +38,4 @@
                     {% endfor %}
             </table>
         </section>
-    </body>
-</html>
-
-
+{% endblock %}

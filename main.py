@@ -71,7 +71,7 @@ def students_attendance():
         return render_template("student_show_attendence.html", students=students, attendances=attendances,
                                counted_days=counted_days, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
     else:
-        values = [] # students presence
+        values = []
         for index, student in enumerate(students):
             option = request.form[str(index + 1)]
             values.append(option)
@@ -88,7 +88,7 @@ def check_attendance():
     attendances = Attendance.create_objects_list_from_database()
     students = Student.student_presence(attendances, students_bad)
     current_date = str(datetime.date.today())
-    return render_template("attendance.html", students=students, current_date = current_date)
+    return render_template("attendance.html", students=students, current_date=current_date)
 
 
 @app.route("/edit_student/<student_id>", methods=['GET', 'POST'])
@@ -123,7 +123,8 @@ def remove_student(student_id):
 def mentors_list():
     """ Shows list of mentors """
     mentors = Model.mentors_get_all()
-    return render_template("show_mentors_list.html", mentors=mentors)
+    return render_template("show_mentors_list.html", mentors=mentors, user_id=session['user_id'],
+                           user_status=session['user_status'], user=session['user'])
 
 
 @app.route("/submissions", methods=['POST', "GET"])
@@ -132,15 +133,15 @@ def submissions_list():
     options = Model.submission_list_distinct()
     submissions = Submission.submission_all()
     students = Model.students_get_all()
-    for student in students:
-        print(student.name)
     if request.method == "GET":
-        return render_template("submission_table.html", submissions=submissions, options=options, students=students)
+        return render_template("submission_table.html", submissions=submissions, options=options, students=students,
+                               user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
     if request.method == "POST":
         option = request.form["select-submission"]
         select_option = "--select--"
         return render_template("submission_table.html", submissions=submissions, option=option,
-                               options=options, select_option=select_option, students=students)
+                               options=options, select_option=select_option, students=students,
+                               user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
 
 
 @app.route("/add_mentor", methods=['POST', "GET"])
@@ -189,14 +190,16 @@ def teams_list():
     """ Shows list of teams"""
     teams = Model.create_teams_list()
     students = Model.students_get_all()
-    return render_template("teams.html", teams=teams, students=students)
+    return render_template("teams.html", teams=teams, students=students, user_id=session['user_id'],
+                           user_status=session['user_status'], user=session['user'])
 
 
 @app.route("/assignments")
 def assignments_list():
     """ Shows list of students """
     assignments = Assignments.assignments_all()
-    return render_template("show_assignments.html", assignments=assignments)
+    return render_template("show_assignments.html", assignments=assignments, user_id=session['user_id'],
+                           user_status=session['user_status'], user=session['user'])
 
 
 @app.route("/edit_team_name", methods=['GET', 'POST'])
@@ -210,15 +213,16 @@ def edit_team_name():
     else:
         team_id = request.args['team_id']
         team_name = request.args['team_name']
-        return render_template("edit_team_name.html", team_id=team_id, team_name=team_name)
+        return render_template("edit_team_name.html", team_id=team_id, team_name=team_name, )
 
 
 @app.route("/add_student", methods=['POST', "GET"])
 def add_student():
     """ Add student to database """
     if request.method == "GET":
-        return render_template("add.html", user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
-    if request.method == "POST":
+        return render_template("add.html", user_id=session['user_id'], user_status=session['user_status'],
+                               user=session['user'])
+    elif request.method == "POST":
         person = []
         person.append([request.form["fname"], request.form["lname"],
                        request.form["email"]])
@@ -230,7 +234,8 @@ def add_student():
 def add_team():
     """ Add new team """
     if request.method == 'GET':
-        return render_template("add_new_team.html", user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
+        return render_template("add_new_team.html", user_id=session['user_id'], user_status=session['user_status'],
+                               user=session['user'])
     else:
         team_name = request.form['new-team-name']
         Model.add_team(team_name)
@@ -303,6 +308,23 @@ def remove_team():
     team_id = request.form['team_id']
     Model.delete_team(team_id, team_name)
     return redirect(url_for('teams_list'))
+
+
+@app.route("/students_grades", methods=['GET', 'POST'])
+def show_students_grades():
+    """ Shows students grades """
+    if request.method == "GET":
+        students = Model.students_get_all()
+        grades = Model.get_average()
+        return render_template("show_grades.html", students=students, grades=grades, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
+    elif request.method == 'POST':
+        start = request.form['start_date']
+        end = request.form['end_date']
+        student_id = request.form['student_id']
+        performance = Model.get_performance(student_id, start, end)
+        if performance:
+            return render_template("get_performance.html", performance=performance, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
+        return redirect(url_for('get_performance'))
 
 
 if __name__ == "__main__":

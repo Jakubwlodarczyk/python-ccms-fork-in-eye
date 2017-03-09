@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
-        <title>Codecool Management System</title>
-    </head>
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
 
-    <body>
-        <header>
-            <h1>Add new team</h1>
-        </header>
+{% block header %}
+<h1> Add new team </h1>
+{% endblock %}
 
+{% block solid_component %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
        	<section class='content'>
             <form class="add-team-form" name="add-team-form" method="post">
                 <label for="new-team-name" class="add-team-form-element">Team name</label><br/>
@@ -18,6 +19,4 @@
                 <button type="submit">ADD</button>
             </form>
 		</section>
-    </body>
-</html>
-
+{% endblock %}
