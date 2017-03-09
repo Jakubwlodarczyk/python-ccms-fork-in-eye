@@ -319,8 +319,7 @@ def show_students_grades():
         performance = Model.get_performance(student_id, start, end)
         if performance:
             return render_template("get_performance.html", performance=performance, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
-        return "DUPA"
-        # return redirect(url_for('get_performance'))
+        return redirect(url_for('get_performance'))
 
 
 if __name__ == "__main__":
