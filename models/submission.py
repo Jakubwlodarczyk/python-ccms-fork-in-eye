@@ -64,10 +64,6 @@ class Submission:
             full_name = cls(send_date, grade, name, github_link, student_id)
             submission_list.append(full_name)
 
-                            # send_date, grade, name, github_link, student_id
-
-
-
         conn.close()
         return submission_list
 
