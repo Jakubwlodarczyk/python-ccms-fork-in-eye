@@ -10,14 +10,11 @@
         <header>
             <h1>All submissions</h1>
         </header>
-        
         <section class="content">
             <h2>
                 Total: <em> average %</em>
             </h2>
             <label for="select-class">Choose assignment: </label>
-            
-            
             <form  method="post" action="/submissions">
                 <select name="select-submission" class="select_submission1">
                     <option selected>--select--</option>
@@ -39,7 +36,7 @@
                     <th>Grade</th>
                     <th>Action</th>
             </thead>
-                {% if option == select_option %} 
+                {% if option == select_option %}
                 {% for submission in submissions %}
                 <tr class="person_to_show">
                     <td>{{ loop.index }}</td>
@@ -52,15 +49,21 @@
                         {% endfor %}
                     <td>{{ submission.github_link}}</td>
                     <td>{{ submission.grade }}</td>
-                    <td><label for="grade">Grade</label>
-                        <input name="grade" class="little-input" type="text">
+                    <td>
+                        <form method="POST" action="/update_grade" name="grade">
+                            {% for student in students %}
+                                {% if student.id == submission.student_id %}
+                                    <input type="hidden" value="{{ student.id }}" name="student_id">
+                                    <input name="grade" class="little-input" type="text">
+                                    <button class="little-button" type="submit">Grade</button>
+                            {% endif %}
+                            {% endfor %}
+                        </form>
                     </td>
                 </tr>
-                {% endfor %}                         
+                {% endfor %}
                 {% else %}
-
-
-                {% for submission in submissions %}             
+                {% for submission in submissions %}
                 {% if submission.name == option %}
                 <tr class="person_to_show">
                     <td>{{ loop.index }}</td>
@@ -74,15 +77,22 @@
                         {% endfor %}
                     <td>{{ submission.github_link}}</td>
                     <td>{{ submission.grade }}</td>
-                    <td><label for="grade">Grade</label>
-                        <input name="grade" class="little-input" type="text">
+                    <td>
+                        <form method="POST" action="/update_grade" name="grade">
+                            {% for student in students %}
+                                {% if student.id == submission.student_id %}
+                                    <input name="grade" class="little-input" type="text">
+                                    <input type="hidden" value="{{ student.id }}" name="student_id">
+                                    <button class="little-button" type="submit">Grade</button>
+                            {% endif %}
+                            {% endfor %}
+                        </form>
                     </td>
-                </tr>                
+                </tr>
                 {% endif %}
                 {% endfor %}
                  {% endif %}
         	</table>
-            <button type="save">SAVE GRADES</button>
     	<br>
         </section>
     </body>

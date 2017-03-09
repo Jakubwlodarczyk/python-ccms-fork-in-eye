@@ -57,6 +57,8 @@ class Attendance:
         conn.close()
         return attendances_list
 
+
+
     @staticmethod
     def date_control():
         """

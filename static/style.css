@@ -104,8 +104,8 @@ select {
     padding: 5px;
     transition: all .3s ease-in;
     vertical-align: middle;
-    width: auto;
-    position: relative;
+    /*width: auto;*/
+    position: static;
     right: -25em;
     }
 
@@ -353,6 +353,10 @@ input[type=date]{
     width: 500px;
 }
 
+#dateinputatt {
+    width: 150px;
+}
+
 
 /*FATEFUL SPINNING BAGEL :///*/
 
@@ -392,8 +396,8 @@ input[type=date]{
 
 .select_button_filter {
     float: left;
-
 }
+
 
 .submit_assignment_select{
     position: relative;
@@ -409,42 +413,29 @@ input[type=date]{
     font-size: 1em;
 }
 
+
 /*
 czo to jest? to wszystko niepotrzebne!
 #left-p-menu {
     justify-content: center;
     margin-right: 10px
-
-}
 */
 
+select.large-select {
+    background: white;
+    border-radius: 5px;
+    border: 0;
+    border: 2px solid #ccc;
+    box-shadow: 2px 2px 2px #888;
+    cursor:pointer;
+    font-family: inherit;
+    font-size: 1.5rem;
+    margin: auto;
+    padding: 5px;
+    position:static;
+    transition: all .3s ease-in;
+    vertical-align: middle;
+    width: 60%;
+    right: -25em;
 
-/*
-.select_submission {
-    position: relative;
-    right: -170px;
     }
-
-
-#select_submission1{
-
-    height:34px;
-    width: 230px;
-    line-height:30px;
-    background:#f4f4f4;
-    text-align: center;
-    margin: 4px;
-    position: relative;
-    top: 15px;
-    margin-bottom: 40px;
-    }
-*/
-
-
-
-/*
-#class_label_attendance{
-    height:34px;
-    width: 180px;
-}
-*/
