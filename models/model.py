@@ -18,7 +18,7 @@ class Model:
         """
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-        staff = ['mentor', 'maganer', 'employee']
+        staff = ['mentor', 'manager', 'employee']
         if status in staff:
             query = """SELECT id, name, surname, email, password, status\
                         FROM staff WHERE status='{}' AND email='{}' AND password='{}';""".format(status, username, password)

@@ -1,28 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}" />
-        <title>Codecool Management System</title>
-    </head>
-    <body>
-        <header>
-            <h1>Add new person</h1>
-        </header>
-        <section class='content'>
-            <section class="section-add-person-form">
-          	<form class="add-person-form"
-            	name="add-person-form" method="post">
-				<label for="email" class="add-person-form-element"> Email</label>
-                    <input name="email" email="email" class="add-person-form-input"
-                    placeholder="EMAIL" name="email">
-				<label for="fname" class="add-person-form-element">First name </label>
-					<input name="fname" class="add-person-form-input" type="text" placeholder="FIRST NAME">
-				<label for="lname" class="add-person-form-element">Last name</label>
-					<input name="lname" class="add-person-form-input" type="text" placeholder="LAST NAME">
-				<button>SAVE</button>
-          	</form>
-       		</section>
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block header %}
+<h1> Add new person </h1>
+{% endblock %}
+
+{% block solid_component %}
+{{ super() }}
+{% endblock%}
+
+{% if session['user_status'] == 'mentor' or session['user_status'] == 'manager' %}
+
+    {% block content %}
+        <section class="section-add-person-form">
+        <form class="add-person-form"
+            name="add-person-form" method="post">
+            <label for="email" class="add-person-form-element"> Email</label>
+                <input name="email" email="email" class="add-person-form-input"
+                placeholder="EMAIL" name="email">
+            <label for="fname" class="add-person-form-element">First name </label>
+                <input name="fname" class="add-person-form-input" type="text" placeholder="FIRST NAME">
+            <label for="lname" class="add-person-form-element">Last name</label>
+                <input name="lname" class="add-person-form-input" type="text" placeholder="LAST NAME">
+            <button>SAVE</button>
+        </form>
         </section>
-    </body>
-</html>
+    {% endblock %}
+    
+{% endif %}

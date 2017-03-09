@@ -2,57 +2,85 @@
 {% block head %}
 {{ super() }}
 {% endblock %}
-        <header>
-            <h1>List of students</h1>
-        </header>
 
-        {% block content %}
-        <form class="add-person-form" name="add-person-form" action="/add_student">
-            <a>
-                <button class="add-person-form-button right" value="send">Add a new student</button>
-            </a>
-        </form>
+{% block header %}
+<h1> List of students </h1>
+{% endblock %}
 
-            <table>
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Full name</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-            {% for student in students %}
-            <tr class="person_to_show">
-                <td>{{ loop.index }}</td>
-                <td>{{ student.name }} {{ student.surname }}</td>
-                <td>{{ student.email }}</td>
-                <td>
-                    <a href="{{  url_for('edit_student', student_id=student.id)  }}">| Edit</a>
-                    <a href="{{  url_for('remove_student', student_id=student.id)  }}">
-                    | Remove |</a>
 
-                    <form method="post">
-                        <select class="add-person-form-input add-person-form-select mentor-show-students" name="select-team">
-                            <option selected>{{ student.team }}</option>
-                                {% for team in teams %}
-                                    <option>{{ team }}</option>
-                                    {% endfor %}
-                        </select>
-                        |
-                        <select class="add-person-form-input add-person-form-select mentor-show-students mentor-give-card" name="select-card">
-                            <option selected>{{ student.card }}</option>
-                                {% for card in cards %}
-                                    <option name="card">{{ card }}</option>
-                                    {% endfor %}
-                        </select>
-                        <input type="hidden" value="{{ student.id }}" name="student_id">
-                        <button class="little-button" type="submit">Update</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+{% block solid_component %}
+{{ super() }}
+{% endblock%}
 
-        </section>
-        {% endblock %}
+{% block content %}
+
+{% if session['user_status'] == 'mentor'%}
+<form class="add-person-form" name="add-person-form" action="/add_student">
+    <a>
+        <button class="add-person-form-button right" value="send">Add a new student</button>
+    </a>
+</form>
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Full name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+    {% for student in students %}
+    <tr class="person_to_show">
+        <td>{{ loop.index }}</td>
+        <td>{{ student.name }} {{ student.surname }}</td>
+        <td>{{ student.email }}</td>
+        <td>
+            <a href="{{  url_for('edit_student', student_id=student.id)  }}">| Edit</a>
+            <a href="{{  url_for('remove_student', student_id=student.id)  }}">
+            | Remove |</a>
+
+            <form method="post">
+                <select class="add-person-form-input add-person-form-select mentor-show-students" name="select-team">
+                    <option selected>{{ student.team }}</option>
+                        {% for team in teams %}
+                            <option>{{ team }}</option>
+                            {% endfor %}
+                </select>
+                |
+                <select class="add-person-form-input add-person-form-select mentor-show-students mentor-give-card" name="select-card">
+                    <option selected>{{ student.card }}</option>
+                        {% for card in cards %}
+                            <option name="card">{{ card }}</option>
+                            {% endfor %}
+                </select>
+                <input type="hidden" value="{{ student.id }}" name="student_id">
+                <button class="little-button" type="submit">Update</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% elif session['user_status'] == 'employee' or session['user_status'] == 'manager' %}
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Full name</th>
+            <th>Email</th>
+            <th>Team</th>
+        </tr>
+        </thead>
+    {% for student in students %}
+    <tr class="person_to_show">
+        <td>{{ loop.index }}</td>
+        <td>{{ student.name }} {{ student.surname }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.team }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif%}
+
+
+{% endblock %}

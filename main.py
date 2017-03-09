@@ -16,7 +16,7 @@ def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-        return render_template('home.html', user_id=session['user_id'], user_status=session['user_status'])
+        return render_template('home.html', user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
 
 
 
@@ -31,6 +31,7 @@ def user_check():
     session['logged_in'] = True
     session['user_id'] = person.id
     session['user_status'] = person.status
+    session['user'] = person.name + ' ' + person.surname
     return home()
 
 
@@ -39,6 +40,7 @@ def logout():
     session['logged_in'] = False
     session['user_id'] = None
     session['user_status'] = None
+    session['user'] = None
     return home()
 
 
