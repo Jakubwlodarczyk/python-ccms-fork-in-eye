@@ -2,7 +2,9 @@ import sqlite3
 from models.student import Student
 from models.mentor import Mentor
 from models.team import Team
+from models.submission import Submission
 from models.user import User
+
 
 
 class Model:
@@ -252,7 +254,7 @@ class Model:
         conn.close()
 
     @classmethod
-    def create_submission_list(cls):  # from database
+    def submission_list_distinct(cls):  # from database
         """
         Reads teams based on data from database.
         """
@@ -268,6 +270,29 @@ class Model:
             sub_list.append(row[0])
         conn.close()
         return sub_list
+
+
+
+    @classmethod
+    def create_submission_list(cls):  # from database
+        """
+        Reads teams based on data from database.
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+        name_q = "SELECT * FROM submission;"
+        name_db = c.execute(name_q)
+
+        conn.commit()
+        sub_list = []
+
+        for row in name_db:
+            submission = Submission(row[1], row[2], row[3], row[4], row[5])
+            sub_list.append(submission)
+        conn.close()
+        return sub_list
+
 
     @classmethod
     def add_team(cls, team_name):
@@ -289,6 +314,29 @@ class Model:
         data.commit()
         data.close()
 
+    @classmethod
+    def add_submission(cls, submission):
+        
+
+
+
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()    
+        submission_list = cls.create_submission_list()    
+        print(submission.name)
+        print(submission.student_id)
+        for sub in submission_list:
+            if sub.name == submission.name:
+                if sub.student_id == submission.student_id:
+                    return False
+
+        cursor.execute("INSERT INTO submission (send_date, grade, name, github_link, student_id) VALUES (?, ?, ?, ?, ?)", 
+        [submission.send_date, submission.grade, submission.name, submission.github_link, submission.student_id])    
+        data.commit()
+        data.close()
+        return True
+
+    
     @classmethod
     def get_average(cls):
         """ Gets averages of all students """

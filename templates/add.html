@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "layout.html" %}
 {% block head %}
 {{ super() }}
@@ -15,18 +16,18 @@
 
     {% block content %}
         <section class="section-add-person-form">
-        <form class="add-person-form"
-            name="add-person-form" method="post">
-            <label for="email" class="add-person-form-element"> Email</label>
-                <input name="email" email="email" class="add-person-form-input"
-                placeholder="EMAIL" name="email">
-            <label for="fname" class="add-person-form-element">First name </label>
-                <input name="fname" class="add-person-form-input" type="text" placeholder="FIRST NAME">
-            <label for="lname" class="add-person-form-element">Last name</label>
-                <input name="lname" class="add-person-form-input" type="text" placeholder="LAST NAME">
-            <button>SAVE</button>
-        </form>
+            <form class="add-person-form"
+                name="add-person-form" method="post">
+                <label for="email" class="add-person-form-element"> Email</label>
+                    <input name="email" email="email" class="add-person-form-input"
+                    placeholder="EMAIL" name="email">
+                <label for="fname" class="add-person-form-element">First name </label>
+                    <input name="fname" class="add-person-form-input" type="text" placeholder="FIRST NAME">
+                <label for="lname" class="add-person-form-element">Last name</label>
+                    <input name="lname" class="add-person-form-input" type="text" placeholder="LAST NAME">
+                <button>SAVE</button>
+            </form>
         </section>
     {% endblock %}
-    
+
 {% endif %}

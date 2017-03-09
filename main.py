@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, abort, flash
+from flask import Flask, render_template, request, redirect, url_for, session, abort
 import os
 from models.model import Model
 from models.student import Student
@@ -17,7 +17,6 @@ def home():
         return render_template('login.html')
     else:
         return render_template('home.html', user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
-
 
 
 @app.route('/login', methods=['POST'])
@@ -92,7 +91,6 @@ def check_attendance():
     return render_template("attendance.html", students=students, current_date = current_date)
 
 
-
 @app.route("/edit_student/<student_id>", methods=['GET', 'POST'])
 def edit_student(student_id):
     """ Edits student with selected id in the database
@@ -131,9 +129,11 @@ def mentors_list():
 @app.route("/submissions", methods=['POST', "GET"])
 def submissions_list():
     """Shows list of submissions"""
-    options = Model.create_submission_list()
+    options = Model.submission_list_distinct()
     submissions = Submission.submission_all()
     students = Model.students_get_all()
+    for student in students:
+        print(student.name)
     if request.method == "GET":
         return render_template("submission_table.html", submissions=submissions, options=options, students=students)
     if request.method == "POST":
@@ -154,7 +154,6 @@ def add_mentor():
         email = request.form['email']
         Model.add_new_mentor(name, surname, email)
         return redirect(url_for('mentors_list'))
-
 
 
 @app.route("/edit_mentor/<mentor_id>", methods=['GET', 'POST'])
@@ -248,6 +247,42 @@ def remove_student_from_team():
         if student.id == student_id:
             Model.remove_student_team(student_id)
     return redirect(url_for('teams_list'))
+
+
+@app.route("/submit_form", methods=["POST"])
+def submission_form():
+    if request.method == 'POST':
+        sub_name = request.form["submission_name"]
+        sub_link = request.form["submission_link"]
+        sub_start_date = request.form["submission_start_date"]
+        sub_end_date = request.form["submission_end_date"]
+        return render_template("submission_form.html", sub_name=sub_name, sub_link=sub_link,
+                               sub_start_date=sub_start_date, sub_end_date=sub_end_date)
+
+
+@app.route("/submit_assignment", methods=['POST'])
+def submit_assignment():
+    """ Add submission to submission list"""
+
+    student_example = Student("the_id", "name", "surname", "email", "password", "status", "green", "Miszczowie")
+    students = Model.students_get_all()
+    name = request.form["submission_name"]
+    link = request.form["submission_link"]
+    end_date = request.form["submission_end_date"]
+    if request.method == 'POST':
+        if request.form["select_form"] == "Submit assignment":           
+            my_submission = Submission(end_date, '0', name, link, student_example.id)
+            submission_status = Model.add_submission(my_submission)
+            return render_template("submit_assignment_information.html", submission_status=submission_status)
+        else:
+            my_submission = Submission(end_date, '0', name, link, student_example.id)
+            Model.add_submission(my_submission)
+            Model.create_submission_list()
+            for student in students:
+                if student.team == student_example.team:
+                    my_submission = Submission(end_date, '0', name, link, student.id)
+                    submission_status = Model.add_submission(my_submission)
+            return render_template("submit_assignment_information.html", submission_status=submission_status)
 
 
 @app.route("/update_grade", methods=['POST'])
