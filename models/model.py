@@ -228,6 +228,8 @@ class Model:
     @classmethod
     def update_team_name(cls, old_name, new_name):
         """ Update team name in database """
+        if new_name == '':
+            new_name = "_"
         data = sqlite3.connect("database.db")
         cursor = data.cursor()
         cursor.execute("UPDATE teams_list SET name = '{}' WHERE name = '{}'".format(new_name, old_name))
@@ -270,6 +272,8 @@ class Model:
     @classmethod
     def add_team(cls, team_name):
         """ Adds new team to database """
+        if team_name == '':
+            team_name = '_'
         data = sqlite3.connect("database.db")
         cursor = data.cursor()
         cursor.execute("INSERT INTO teams_list (name) VALUES ('{}')".format(team_name))
