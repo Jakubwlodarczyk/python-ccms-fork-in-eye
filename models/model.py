@@ -13,7 +13,7 @@ class Model:
         """
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-        query = "SELECT id, name, surname, email, password, status, card, team FROM student;"
+        query = "SELECT ID, name, surname, email, password, status, card, team FROM student;"
         name_db = c.execute(query)
         conn.commit()
         students_list = []
@@ -96,7 +96,7 @@ class Model:
         """
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-        query = "SELECT id, name, surname, email, password, status FROM staff where status='mentor';"
+        query = "SELECT ID, name, surname, email, password, status FROM staff where status='mentor';"
         name_db = c.execute(query)
         conn.commit()
         mentors_list = []
@@ -194,8 +194,9 @@ class Model:
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
         for student in students:
-            params = [student[0], student[1], student[2]]
-        c.execute("INSERT INTO student (name, surname, email) VALUES (?, ?, ?);", params)
+            status = 'student'
+            params = [student[0], student[1], student[0], status, student[2]]
+        c.execute("INSERT INTO student (name, surname, password, status, email) VALUES (?, ?, ?, ?, ?);", params)
         conn.commit()
         conn.close()
 
