@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Codecool Management System</title>
+    {% endblock %}
+  </head>
+  <body>
+      <body class="loginBody">
+  		{% block loginBody %}
+  		<div class="loginHead">
+              <h1>Log in to your account</h1>
+  		</div>
+  		<div class="loginMenu">
+  			<form action="/login" class="loginMenu" method="POST">
+  				<input class="email_input" name="username" type="text" placeholder="E-mail address"><br/>
+  				<input class="password_input" name="password" type="password" placeholder="Password"><br/>
+  				<select class="large-select" name="status">
+  					<option selected>---status---</option>
+  						<option>manager</option>
+  						<option>employee</option>
+  						<option>mentor</option>
+  						<option>student</option>
+  				</select>
+  				<br/>
+  				<input type="submit" value="Log in">
+  			</form>
+  		</div>
+  	{% endblock %}
+  </body>
+</html>
