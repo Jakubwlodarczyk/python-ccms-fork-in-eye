@@ -123,7 +123,7 @@ def remove_student(student_id):
 def mentors_list():
     """ Shows list of mentors """
     mentors = Model.mentors_get_all()
-    return render_template("show_mentors_list.html", mentors=mentors)
+    return render_template("show_mentors_list.html", mentors=mentors, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
 
 
 @app.route("/submissions", methods=['POST', "GET"])
@@ -132,15 +132,15 @@ def submissions_list():
     options = Model.submission_list_distinct()
     submissions = Submission.submission_all()
     students = Model.students_get_all()
-    for student in students:
-        print(student.name)
     if request.method == "GET":
-        return render_template("submission_table.html", submissions=submissions, options=options, students=students)
+        return render_template("submission_table.html", submissions=submissions, options=options, students=students,
+                               user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
     if request.method == "POST":
         option = request.form["select-submission"]
         select_option = "--select--"
         return render_template("submission_table.html", submissions=submissions, option=option,
-                               options=options, select_option=select_option, students=students)
+                               options=options, select_option=select_option, students=students, user_id=session['user_id'],
+                               user_status=session['user_status'], user=session['user'])
 
 
 @app.route("/add_mentor", methods=['POST', "GET"])
