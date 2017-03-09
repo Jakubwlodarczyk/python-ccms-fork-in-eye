@@ -316,13 +316,13 @@ class Model:
 
     @classmethod
     def add_submission(cls, submission):
-        
+
 
 
 
         data = sqlite3.connect("database.db")
-        cursor = data.cursor()    
-        submission_list = cls.create_submission_list()    
+        cursor = data.cursor()
+        submission_list = cls.create_submission_list()
         print(submission.name)
         print(submission.student_id)
         for sub in submission_list:
@@ -330,19 +330,19 @@ class Model:
                 if sub.student_id == submission.student_id:
                     return False
 
-        cursor.execute("INSERT INTO submission (send_date, grade, name, github_link, student_id) VALUES (?, ?, ?, ?, ?)", 
-        [submission.send_date, submission.grade, submission.name, submission.github_link, submission.student_id])    
+        cursor.execute("INSERT INTO submission (send_date, grade, name, github_link, student_id) VALUES (?, ?, ?, ?, ?)",
+        [submission.send_date, submission.grade, submission.name, submission.github_link, submission.student_id])
         data.commit()
         data.close()
         return True
 
-    
+
     @classmethod
     def get_average(cls):
         """ Gets averages of all students """
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
-        data = cursor.execute("""SELECT student.ID, AVG(submission.grade)\
+        data = cursor.execute("""SELECT student.ID, ROUND(AVG(submission.grade), 2)\
                                  FROM student\
                                  JOIN submission\
                                  WHERE submission.student_id=student.ID\
