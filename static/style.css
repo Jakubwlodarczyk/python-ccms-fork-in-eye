@@ -99,7 +99,7 @@ select {
     padding: 5px;
     transition: all .3s ease-in;
     vertical-align: middle;
-    width: auto;
+    /*width: auto;*/
     position: static;
     right: -25em;
     }
@@ -409,4 +409,3 @@ select.large-select {
     right: -25em;
 
     }
-

@@ -15,7 +15,8 @@ def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-        return "LOGGED IN, HURRAY!!!! <a href='/logout'>Log out</a>"
+        return render_template('home.html', user_id=session['user_id'], user_status=session['user_status'])
+
 
 @app.route('/login', methods=['POST'])
 def user_check():
@@ -26,12 +27,16 @@ def user_check():
     if not person:
         return render_template('error_login.html')
     session['logged_in'] = True
+    session['user_id'] = person.id
+    session['user_status'] = person.status
     return home()
 
 
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
+    session['user_id'] = None
+    session['user_status'] = None
     return home()
 
 
