@@ -1,29 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
-        <script src="https://www.w3schools.com/lib/w3data.js"></script>
-        <title>Codecool Management System</title>
-    </head>
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block header %}
+<h1>Attendance</h1>
+{% endblock %}
+{% block solid_component %}
+{{ super() }}
+{% endblock%}
+{% block content %}
 
-    <body>
-        <div w3-include-html="sidebar.html"></div>
-        <header>
-            <h1>Attendance of students</h1>
-        </header>
-
-        <section class='content'>
-            <form action="/check_attendance" method = "GET">
+{% if user_status == 'mentor' %}
+<form action="/check_attendance" method = "GET">
             <br>
 	    <button type="submit" value="send">CHECK ATTENDENCE</button>
     	    </form>
 
         <table>
-
             <thead>
+                <tr>
+                    <th>Full name</th>
+                    <th>Total</th>
+                    <th>Present</th>
+                    <th>Late</th>
+                    <th>Absent</th>
+                    <th>Current score</th>
+                </tr>
+            </thead>
 
+            {% for student in students %}
 
+                <tr class="person_to_show">
+                    <td><b>{{student.name}} {{student.surname}}</b> </td>
+                    <td><center><b>{{counted_days}}</b></center></td>
+                    <td><center><b>{{student.present}}</b></center></td>
+                    <td><center><b>{{student.late}}</b></center></td>
+                    <td><center><b>{{student.absent}}</b></center></td>
+                    <td><center><b>{{'%0.2f'| format(student.score|float)}}</b></center></td>
+                </tr>
+            {% endfor %}
+            </table>
+            {% for day in attendances %}
+                {{day.date}}
+            {% endfor %}
+{% endif %}
+
+{% if user_status == 'student' %}
+
+        <table>
+            <thead>
             <tr>
                 <th>Full name</th>
                 <th>Total</th>
@@ -34,25 +59,41 @@
             </tr>
         </thead>
             {% for student in students %}
-
-            <tr class="person_to_show">
-                <td><b>{{student.name}} {{student.surname}}</b> </td>
-                <td><center><b>{{counted_days}}</b></center></td>
-                <td><center><b>{{student.present}}</b></center></td>
-                <td><center><b>{{student.late}}</b></center></td>
-                <td><center><b>{{student.absent}}</b></center></td>
-                <td><center><b>{{'%0.2f'| format(student.score|float)}}</b></center></td>
-            </tr>
+                {% if student.id == user_id %}
+                    <tr class="person_to_show">
+                    <td><b>{{student.name}} {{student.surname}}</b> </td>
+                    <td><center><b>{{counted_days}}</b></center></td>
+                    <td><center><b>{{student.present}}</b></center></td>
+                    <td><center><b>{{student.late}}</b></center></td>
+                    <td><center><b>{{student.absent}}</b></center></td>
+                    <td><center><b>{{'%0.2f'| format(student.score|float)}}</b></center></td>
+                    </tr>
+                {% endif %}
             {% endfor %}
+{% endif %}
+{% endblock %}
 
 
-            </table>
-            {% for day in attendances %}
-                {{day.date}}
-            {% endfor %}
-            </section>
-        <script>
-        w3IncludeHTML();
-        </script>
-    </body>
-</html>
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+    <!--<head>-->
+        <!--<meta charset="utf-8"/>-->
+        <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>-->
+        <!--<script src="https://www.w3schools.com/lib/w3data.js"></script>-->
+        <!--<title>Codecool Management System</title>-->
+    <!--</head>-->
+
+    <!--<body>-->
+        <!--<div w3-include-html="sidebar.html"></div>-->
+        <!--<header>-->
+            <!--<h1>Attendance of students</h1>-->
+        <!--</header>-->
+
+        <!--<section class='content'>-->
+
+            <!--</section>-->
+    <!--</body>-->
+<!--</html>-->
