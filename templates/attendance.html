@@ -19,8 +19,7 @@
     <label for="choose-date">Date:</label>
 
     <form action="/students-attendance", method="POST">
-    <input name='choose-date' type="date" class="dateinputatt" required>
-
+    <input name='choose-date' type="date" id="dateinputatt" max="{{current_date}}" required>
 
     <table>
         <thead>
