@@ -92,13 +92,14 @@ def submissions_list():
     """Shows list of submissions"""
     options = Model.create_submission_list()
     submissions = Submission.submission_all()
-
+    students = Model.students_get_all()
     if request.method == "GET":
-        return render_template("submission_table.html", submissions=submissions, options=options)
+        return render_template("submission_table.html", submissions=submissions, options=options, students=students)
     if request.method == "POST":
         option = request.form["select-submission"]
         select_option = "--select--"
-        return render_template("submission_table.html", submissions=submissions, option=option, options=options, select_option=select_option)
+        return render_template("submission_table.html", submissions=submissions, option=option,
+                               options=options, select_option=select_option, students=students)
 
 
 @app.route("/add_mentor", methods=['POST', "GET"])
