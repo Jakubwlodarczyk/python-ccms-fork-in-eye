@@ -14,7 +14,7 @@
         </header>
 
         <section class='content'>
-            <form action="attendance.html" method="post">
+            <form action="/check_attendance" method = "GET">
             <br>
 	    <button type="submit" value="send">CHECK ATTENDENCE</button>
     	    </form>
@@ -36,12 +36,12 @@
             {% for student in students %}
 
             <tr class="person_to_show">
-                <td>{{student.name}} {{student.surname}} </td>
-                <td><center>{{counted_days}}</center></td>
-                <td><center>{{student.present}}</center></td>
-                <td><center>{{student.late}}</center></td>
-                <td><center>{{student.absent}}</center></td>
-                <td><center>{{student.score}}</center></td>
+                <td><b>{{student.name}} {{student.surname}}</b> </td>
+                <td><center><b>{{counted_days}}</b></center></td>
+                <td><center><b>{{student.present}}</b></center></td>
+                <td><center><b>{{student.late}}</b></center></td>
+                <td><center><b>{{student.absent}}</b></center></td>
+                <td><center><b>{{'%0.2f'| format(student.score|float)}}</b></center></td>
             </tr>
             {% endfor %}
 
