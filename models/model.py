@@ -2,6 +2,7 @@ import sqlite3
 from models.student import Student
 from models.mentor import Mentor
 from models.team import Team
+from models.submission import Submission
 
 
 class Model:
@@ -203,7 +204,7 @@ class Model:
 
 
     @classmethod
-    def create_submission_list(cls):  # from database
+    def submission_list_distinct(cls):  # from database
         """
         Reads teams based on data from database.
         """
@@ -220,6 +221,27 @@ class Model:
         conn.close()
         return sub_list
 
+
+
+    @classmethod
+    def create_submission_list(cls):  # from database
+        """
+        Reads teams based on data from database.
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+
+        name_q = "SELECT * FROM submission;"
+        name_db = c.execute(name_q)
+
+        conn.commit()
+        sub_list = []
+
+        for row in name_db:
+            submission = Submission(row[1], row[2], row[3], row[4], row[5])
+            sub_list.append(submission)
+        conn.close()
+        return sub_list
 
     @classmethod
     def add_team(cls, team_name):
@@ -239,4 +261,12 @@ class Model:
         data.commit()
         data.close()
 
-
+    @classmethod
+    def add_submission(cls, submission):
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()        
+        cursor.execute("INSERT INTO submission (send_date, grade, name, github_link, student_id) VALUES (?, ?, ?, ?, ?)", 
+        [submission.send_date, submission.grade, submission.name, submission.github_link, submission.student_id])        
+        
+        data.commit()
+        data.close()

@@ -70,9 +70,9 @@
                     <td>{{ submission.name }}</td>
                     <td>{{ submission.send_date }}</td>
                     {% for student in students %}
-                        {% if student.id == submission.student_id %}
+                       
                             <td>{{ student.name }} {{ student.surname }}</td>
-                            {% endif %}
+                       
                         {% endfor %}
                     <td>{{ submission.github_link}}</td>
                     <td>{{ submission.grade }}</td>

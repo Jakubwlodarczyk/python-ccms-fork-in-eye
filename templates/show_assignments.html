@@ -14,15 +14,6 @@
         <section class='content'>
         <div class="select_submission">
             <label for="select-assignment">Choose assignment: </label>
-            
-           
-            
-            
-            <!--<select name="select-assignment">
-                <option selected>--select--</option>
-                <option>Assignment 1</option>
-                <option>Assignment 2</option>        
-            </select> -->
         </div>      
 		<table>
             <thead>
@@ -38,17 +29,28 @@
                 
             </thead>
             <tbody>
-                {% for assignment in assignments %}
+                
+               
                 <tr class="person_to_show">
+                     {% for assignment in assignments %}
                     <td>{{ loop.index }}</td>
                     <td>{{assignment.assignment_name}}</td>
                     <td>{{assignment.link}}</td>
                     <td>{{assignment.start_date}}</td>
                     <td>{{assignment.end_date}}</td>
-                    <td>
-                    <a href="submit_form.html"><button class='little-button'>Submit</button></a>               
+                    <td>     
+                        <form method="post"
+                        action="/submit_assignment/{{assignment.assignment_name}}/{{assignment.link}}/{{assignment.start_date}}/{{assignment.end_date}}">                 
+                        <button class='little-button' name="select_submit_assignment" 
+                        type="submit" value="send">Submit</button>  
+                        <form method="post"
+                        action="/submit_assignment/{{assignment.assignment_name}}/{{assignment.link}}/{{assignment.start_date}}/{{assignment.end_date}}">                 
+                        <button class='little-button' name="select_submit_assignment_as_a_team" 
+                        type="submit" value="send">Submit as a team</button>                     
+                       
                     </td>
                 </tr>
+                 </form>
                 {% endfor %}
             </tbody>
         </table> 

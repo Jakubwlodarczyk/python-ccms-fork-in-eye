@@ -66,7 +66,7 @@ def mentors_list():
 @app.route("/submissions", methods=['POST', "GET"])
 def submissions_list():
     """Shows list of submissions"""
-    options = Model.create_submission_list()
+    options = Model.submission_list_distinct()
     submissions = Submission.submission_all()
     
     if request.method == "GET":
@@ -188,6 +188,32 @@ def remove_student_from_team():
 @app.route("/submit_changes")
 def submit_students_changes():
     return "<h2>TROLololololOoOOo !!!!!!</h2>"
+
+
+@app.route("/submit_assignment/<name>/<link>/<start_date>/<end_date>", methods=['POST'])
+def submit_asignment(name, link, start_date, end_date):
+    """ Add submission to submission list"""
+    if request.method == 'POST':
+        submission = request.form["select_submit_assignment"]
+        submission2 = request.form["select_submit_assignment_as_a_team"]
+        print(submission)
+        print(submission2)
+        student = Student("the_id", "name", "surname", "email", "password", "status")
+
+        my_submission = Submission(end_date, '0', name, link, student.id)
+        submits_from_db = Model.create_submission_list()
+        for submit in submits_from_db:
+            if submit.name == my_submission.name:
+                if submit.student_id == my_submission.student_id:
+                    return "<h2>Assignment is already submitted</h2>"
+
+
+
+        Model.add_submission(my_submission)
+        return render_template("submit_assignment_information.html")
+
+
+
 
 
 if __name__ == "__main__":
