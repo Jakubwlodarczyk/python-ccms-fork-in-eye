@@ -56,7 +56,7 @@ def students_list():
         teams = Model.create_teams_list()
         students = Model.students_get_all()
         cards = ['green', 'yellow', 'red']
-        return render_template("show_students_list.html", students=students, teams=teams, cards=cards)
+        return render_template("show_students_list.html", students=students, teams=teams, cards=cards, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
 
 
 @app.route("/students-attendance", methods=['GET', 'POST'])
@@ -69,7 +69,7 @@ def students_attendance():
 
     if request.method == "GET":
         return render_template("student_show_attendence.html", students=students, attendances=attendances,
-                               counted_days=counted_days)
+                               counted_days=counted_days, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
     else:
         values = [] # students presence
         for index, student in enumerate(students):
@@ -217,7 +217,7 @@ def edit_team_name():
 def add_student():
     """ Add student to database """
     if request.method == "GET":
-        return render_template("add.html")
+        return render_template("add.html", user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
     if request.method == "POST":
         person = []
         person.append([request.form["fname"], request.form["lname"],
@@ -230,7 +230,7 @@ def add_student():
 def add_team():
     """ Add new team """
     if request.method == 'GET':
-        return render_template("add_new_team.html")
+        return render_template("add_new_team.html", user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
     else:
         team_name = request.form['new-team-name']
         Model.add_team(team_name)
@@ -257,7 +257,8 @@ def submission_form():
         sub_start_date = request.form["submission_start_date"]
         sub_end_date = request.form["submission_end_date"]
         return render_template("submission_form.html", sub_name=sub_name, sub_link=sub_link,
-                               sub_start_date=sub_start_date, sub_end_date=sub_end_date)
+                               sub_start_date=sub_start_date, sub_end_date=sub_end_date,
+                               user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
 
 
 @app.route("/submit_assignment", methods=['POST'])
@@ -270,10 +271,11 @@ def submit_assignment():
     link = request.form["submission_link"]
     end_date = request.form["submission_end_date"]
     if request.method == 'POST':
-        if request.form["select_form"] == "Submit assignment":           
+        if request.form["select_form"] == "Submit assignment":
             my_submission = Submission(end_date, '0', name, link, student_example.id)
             submission_status = Model.add_submission(my_submission)
-            return render_template("submit_assignment_information.html", submission_status=submission_status)
+            return render_template("submit_assignment_information.html", submission_status=submission_status,
+                                   user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
         else:
             my_submission = Submission(end_date, '0', name, link, student_example.id)
             Model.add_submission(my_submission)
@@ -282,7 +284,8 @@ def submit_assignment():
                 if student.team == student_example.team:
                     my_submission = Submission(end_date, '0', name, link, student.id)
                     submission_status = Model.add_submission(my_submission)
-            return render_template("submit_assignment_information.html", submission_status=submission_status)
+            return render_template("submit_assignment_information.html", submission_status=submission_status,
+                                   user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
 
 
 @app.route("/update_grade", methods=['POST'])
