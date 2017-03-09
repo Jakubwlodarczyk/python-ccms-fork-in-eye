@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
-        <title>Codecool Management System</title>
-    </head>
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block header %}
+<h1> List od mentors</h1>
+{% endblock %}
 
-    <body>
-        <header>
-            <h1>List of mentors</h1>
-        </header>
+{% block solid_component %}
+{{ super() }}
+{% endblock%}
 
-        <section class='content'>
-
+{% block content %}
             <a href="/add_mentor">
                 <button class="add-person-form-button right" type="button" value="send">Add a new mentor</button>
             </a>
@@ -43,6 +41,4 @@
                 </td>
             {% endfor %}
         </table>
-        </section>
-    </body>
-</html>
+{% endblock %}
