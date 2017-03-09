@@ -39,8 +39,14 @@
                     <td>{{assignment.start_date}}</td>
                     <td>{{assignment.end_date}}</td>
                     <td>     
+
                         <form method="post"
-                        action="/submit_assignment/{{assignment.assignment_name}}/{{assignment.link}}/{{assignment.start_date}}/{{assignment.end_date}}">                 
+                    """""""action=""""/submit_assignment/{{assignment.assignment_name}}/{{assignment.link}}/{{assignment.start_date}}/{{assignment.end_date}}"""  
+                    action="/submit_form">
+                    <input type="hidden" value="{{assignment.assignment_name}}" name="submission_name">
+                    <input type="hidden" value="{{assignment.link}}" name="submission_link">
+                    <input type="hidden" value="{{assignment.start_date}}" name="submission_start_date">
+                    <input type="hidden" value="{{assignment.end_date}}" name="submission_end_date">
                         <button class='little-button' name="select_submit_assignment" 
                         type="submit" value="send">Submit</button>  
                                             

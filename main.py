@@ -93,6 +93,8 @@ def submissions_list():
     options = Model.submission_list_distinct()
     submissions = Submission.submission_all()
     students = Model.students_get_all()
+    for student in students:
+        print(student.name)
     if request.method == "GET":
         return render_template("submission_table.html", submissions=submissions, options=options, students=students)
     if request.method == "POST":
@@ -213,24 +215,47 @@ def submit_students_changes():
     return "<h2>TROLololololOoOOo !!!!!!</h2>"
 
 
-@app.route("/submit_assignment/<name>/<link>/<start_date>/<end_date>", methods=['POST'])
-def submit_asignment(name, link, start_date, end_date):
-    """ Add submission to submission list"""
+
+
+@app.route("/submit_form", methods=["POST"])
+def submission_form():
     if request.method == 'POST':
-        
-        student = Student("the_id", "name", "surname", "email", "password", "status")
-
-        my_submission = Submission(end_date, '0', name, link, student.id)
-        submits_from_db = Model.create_submission_list()
-        for submit in submits_from_db:
-            if submit.name == my_submission.name:
-                if submit.student_id == my_submission.student_id:
-                    return "<h2>Assignment is already submitted</h2>"
+        sub_name = request.form["submission_name"]
+        sub_link = request.form["submission_link"]
+        sub_start_date = request.form["submission_start_date"]
+        sub_end_date = request.form["submission_end_date"]
+        return render_template("submission_form.html", sub_name=sub_name, sub_link=sub_link,
+                              sub_start_date=sub_start_date, sub_end_date=sub_end_date)
 
 
 
-        Model.add_submission(my_submission)
-        return render_template("submit_assignment_information.html")
+@app.route("/submit_assignment", methods=['POST'])
+def submit_assignment():
+    """ Add submission to submission list"""
+
+    student_example = Student("the_id", "name", "surname", "email", "password", "status", "green", "Fork in eye")
+    students = Model.students_get_all()
+    name = request.form["submission_name"]
+    link = request.form["submission_link"]
+    end_date = request.form["submission_end_date"]
+    if request.method == 'POST':
+        if request.form["select_form"] == "Submit assignment":           
+            my_submission = Submission(end_date, '0', name, link, student_example.id)
+            submission_status = Model.add_submission(my_submission)
+            return render_template("submit_assignment_information.html", submission_status=submission_status)
+        else:    
+            my_submission = Submission(end_date, '0', name, link, student_example.id)
+            Model.add_submission(my_submission)
+            submits_from_db = Model.create_submission_list()
+            # for submit in submits_from_db:
+            for student in students:
+                if student.team == student_example.team:
+                    print(student.name, student.team)
+                    my_submission = Submission(end_date, '0', name, link, student.id)
+                    submission_status = Model.add_submission(my_submission)
+                    print(submission_status)
+            return render_template("submit_assignment_information.html", submission_status=submission_status)
+
 
 
 

@@ -262,10 +262,26 @@ class Model:
 
     @classmethod
     def add_submission(cls, submission):
+        
+
+
+
         data = sqlite3.connect("database.db")
-        cursor = data.cursor()        
+        cursor = data.cursor()    
+        submission_list = cls.create_submission_list()    
+        print(submission.name)
+        print(submission.student_id)
+        for sub in submission_list:
+            if sub.name == submission.name:
+                if sub.student_id == submission.student_id:
+                    return False
+
         cursor.execute("INSERT INTO submission (send_date, grade, name, github_link, student_id) VALUES (?, ?, ?, ?, ?)", 
-        [submission.send_date, submission.grade, submission.name, submission.github_link, submission.student_id])        
+        [submission.send_date, submission.grade, submission.name, submission.github_link, submission.student_id])    
+        data.commit()
+        data.close()
+        return True
+
     
     @classmethod
     def get_average(cls):

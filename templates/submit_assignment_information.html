@@ -6,5 +6,13 @@
         <title>Submission</title>
     </head>
     <body>
-        <h3 class="submited_assignment">Assignment was succesfully submitted</h3>
+        <h2 class="submited_assignment">{% if submission_status %}
+            Assignment succesfully submitted
+            {% else %}
+            Assignment already submitted
+            {% endif %}
+        </h2>
+         <form action="/assignments" method="get">
+  <button type="submit">back to assignments</button><br>
+</form> 
     </body>

@@ -114,6 +114,11 @@ table {
     margin-top: 50px;
 }
 
+table.two_button_table {
+    width:30%;
+    margin-top: 10px;
+}
+
     table th, td {box-shadow: 5px 5px 2px #888888}
 
     table th {
@@ -389,6 +394,21 @@ input[type=date]{
     float: left;
 
 }
+
+.submit_assignment_select{
+    position: relative;
+    float: left;
+    margin-left: 0px;
+
+}
+
+.submission_form li{
+    text-align: center;    
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+}
+
 /*
 czo to jest? to wszystko niepotrzebne!
 #left-p-menu {
