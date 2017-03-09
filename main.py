@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, abort, flash
+import os
 from models.model import Model
 from models.student import Student
 from models.attendance import Attendance
@@ -9,6 +10,30 @@ from models.assignments import Assignments
 app = Flask(__name__)
 
 
+@app.route('/')
+def home():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        return "LOGGED IN, HURRAY!!!! <a href='/logout'>Log out</a>"
+
+@app.route('/login', methods=['POST'])
+def user_check():
+    username = request.form['username']
+    password = request.form['password']
+    status = request.form['status']
+    person = Model.find_user(username, password, status)
+    if not person:
+        return render_template('error_login.html')
+    session['logged_in'] = True
+    return home()
+
+
+@app.route("/logout")
+def logout():
+    session['logged_in'] = False
+    return home()
+
 @app.route("/students", methods=['GET', 'POST'])
 def students_list():
     """ Shows list of students """
@@ -16,8 +41,7 @@ def students_list():
         student_id = request.form['student_id']
         card = request.form['select-card']
         team = request.form['select-team']
-        Model.update_students_team(student_id, team, card)
-        return redirect(url_for('students_list'))
+        return '{} {} {}'.format(team, card, student_id)
     else:
         teams = Model.create_teams_list()
         students = Model.students_get_all()
@@ -113,6 +137,7 @@ def add_mentor():
         email = request.form['email']
         Model.add_new_mentor(name, surname, email)
         return redirect(url_for('mentors_list'))
+
 
 
 @app.route("/edit_mentor/<mentor_id>", methods=['GET', 'POST'])
@@ -226,4 +251,5 @@ def remove_team():
 
 
 if __name__ == "__main__":
+    app.secret_key = os.urandom(12)
     app.run(debug=True)

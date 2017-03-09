@@ -3,21 +3,16 @@
 <html>
 	<head>
         <meta charset="utf-8">
-		<link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 		<title>Codecool management system</title>
         <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
 	</head>
-
 	<body class="loginBody">
 		<div class="loginHead">
             <h1>Log in to your account</h1>
 		</div>
-
-			<div class="errorLoginMessage">
-				<h2>E-mail address or password are invalid</h2>
-			</div>
-			<div class="loginMenu">
+		<div class="loginMenu">
 			<form action="/login" class="loginMenu" method="POST">
 				<input class="email_input" name="username" type="text" placeholder="E-mail address"><br/>
 				<input class="password_input" name="password" type="password" placeholder="Password"><br/>
@@ -32,6 +27,6 @@
 				<input type="submit" value="Log in">
 			</form>
 		</div>
-	</body>
 
+	</body>
 </html>
