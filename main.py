@@ -123,7 +123,8 @@ def remove_student(student_id):
 def mentors_list():
     """ Shows list of mentors """
     mentors = Model.mentors_get_all()
-    return render_template("show_mentors_list.html", mentors=mentors, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
+    return render_template("show_mentors_list.html", mentors=mentors, user_id=session['user_id'],
+                           user_status=session['user_status'], user=session['user'])
 
 
 @app.route("/submissions", methods=['POST', "GET"])
@@ -139,8 +140,8 @@ def submissions_list():
         option = request.form["select-submission"]
         select_option = "--select--"
         return render_template("submission_table.html", submissions=submissions, option=option,
-                               options=options, select_option=select_option, students=students, user_id=session['user_id'],
-                               user_status=session['user_status'], user=session['user'])
+                               options=options, select_option=select_option, students=students,
+                               user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
 
 
 @app.route("/add_mentor", methods=['POST', "GET"])
@@ -189,14 +190,16 @@ def teams_list():
     """ Shows list of teams"""
     teams = Model.create_teams_list()
     students = Model.students_get_all()
-    return render_template("teams.html", teams=teams, students=students)
+    return render_template("teams.html", teams=teams, students=students, user_id=session['user_id'],
+                           user_status=session['user_status'], user=session['user'])
 
 
 @app.route("/assignments")
 def assignments_list():
     """ Shows list of students """
     assignments = Assignments.assignments_all()
-    return render_template("show_assignments.html", assignments=assignments)
+    return render_template("show_assignments.html", assignments=assignments, user_id=session['user_id'],
+                           user_status=session['user_status'], user=session['user'])
 
 
 @app.route("/edit_team_name", methods=['GET', 'POST'])
@@ -210,14 +213,15 @@ def edit_team_name():
     else:
         team_id = request.args['team_id']
         team_name = request.args['team_name']
-        return render_template("edit_team_name.html", team_id=team_id, team_name=team_name)
+        return render_template("edit_team_name.html", team_id=team_id, team_name=team_name, )
 
 
 @app.route("/add_student", methods=['POST', "GET"])
 def add_student():
     """ Add student to database """
     if request.method == "GET":
-        return render_template("add.html", user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
+        return render_template("add.html", user_id=session['user_id'], user_status=session['user_status'],
+                               user=session['user'])
     if request.method == "POST":
         person = []
         person.append([request.form["fname"], request.form["lname"],
@@ -230,7 +234,8 @@ def add_student():
 def add_team():
     """ Add new team """
     if request.method == 'GET':
-        return render_template("add_new_team.html", user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
+        return render_template("add_new_team.html", user_id=session['user_id'], user_status=session['user_status'],
+                               user=session['user'])
     else:
         team_name = request.form['new-team-name']
         Model.add_team(team_name)
