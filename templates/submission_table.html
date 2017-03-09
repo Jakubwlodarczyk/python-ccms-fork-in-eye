@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
-        <title>Codecool Management System</title>
-    </head>
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block header %}
 
-    <body>
-        <header>
-            <h1>All submissions</h1>
-        </header>
-        <section class="content">
+<h1> All submissions</h1>
+{% endblock %}
+
+{% block solid_component %}
+{{ super() }}
+{% endblock%}
+
+{% block content %}
             <h2>
                 Total: <em> average %</em>
             </h2>
@@ -94,6 +95,5 @@
                  {% endif %}
         	</table>
     	<br>
-        </section>
-    </body>
-</html>
+
+{% endblock %}
