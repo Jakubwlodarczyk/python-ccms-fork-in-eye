@@ -324,9 +324,8 @@ def show_students_grades():
         student_id = request.form['student_id']
         performance = Model.get_performance(student_id, start, end)
         if performance:
-            return render_template("get_performance.html", performance=performance, user_id=session['user_id'],
-                                   user_status=session['user_status'], user=session['user'])
-        return redirect(url_for('get_performance'))
+            return render_template("get_performance.html", performance=performance, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
+        return redirect(url_for('show_students_grades'))
 
 
 if __name__ == "__main__":
