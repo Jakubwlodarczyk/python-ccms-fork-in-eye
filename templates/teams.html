@@ -12,11 +12,11 @@
 {% endblock %}
 
 {% block content %}
-        <section class='content'>
+        <section class='content team'>
             <a href="{{ url_for('add_team') }}">
                 <button class="add-team" type="button" value="send">Add a new team</button>
             </a>
-            <table>
+            <table class="team-table">
                 {% for team in teams %}
                 <thead>
                     <tr>
