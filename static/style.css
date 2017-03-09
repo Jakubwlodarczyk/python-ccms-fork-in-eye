@@ -100,7 +100,7 @@ select {
     transition: all .3s ease-in;
     vertical-align: middle;
     width: auto;
-    position: relative;
+    position: static;
     right: -25em;
     }
 
