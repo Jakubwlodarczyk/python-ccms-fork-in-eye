@@ -1,38 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
-        <title>Codecool Management System</title>
-    </head>
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
 
-    <body>
-        <header>
-            <h1>Students performance</h1>
-        </header>
+{% block header %}
+<h1> Get students performance</h1>
+{% endblock %}
 
-        <section class='content'>
-            <a href= "{{  url_for('show_students_grades')  }}">
-                <button>Go back</button>
-            </a>
-            <table>
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Assignement name</th>
-                    <th>Sent date</th>
-                    <th>Grade</td>
-                </tr>
-                </thead>
-            {% for record in performance %}
-                <tr>
-                    <td> {{ loop.index }}
-                    <td>{{ record[1] }}</td>
-                    <td>{{ record[0] }}
-                    <td>{{ record[2]}}</td>
-                </tr>
-            {% endfor %}
-        </table>
-        </section>
+{% block solid_component %}
+{{ super() }}
+{% endblock%}
+
+{% block content %}
+{% if session['user_status'] == 'mentor'%}
+    <a href= "{{  url_for('show_students_grades')  }}">
+        <button>Go back</button>
+    </a>
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Assignement name</th>
+            <th>Sent date</th>
+            <th>Grade</td>
+        </tr>
+        </thead>
+    {% for record in performance %}
+        <tr>
+            <td> {{ loop.index }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[0] }}
+            <td>{{ record[2]}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endif%}
+{% endblock %}
+
     </body>
 </html>
