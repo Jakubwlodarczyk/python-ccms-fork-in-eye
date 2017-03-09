@@ -233,6 +233,23 @@ def remove_student_from_team():
     return redirect(url_for('teams_list'))
 
 
+@app.route("/update_grade", methods=['POST'])
+def update_grade():
+    """ Update grade of student submission in database """
+    grade = request.form['grade']
+    student_id = request.form['student_id']
+    Model.update_grades(student_id, grade)
+    return redirect(url_for('submissions_list'))
+
+
+@app.route("/remove_team", methods=["POST"])
+def remove_team():
+    team_name = request.form['team_name']
+    team_id = request.form['team_id']
+    Model.delete_team(team_id, team_name)
+    return redirect(url_for('teams_list'))
+
+
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
     app.run(debug=True)
