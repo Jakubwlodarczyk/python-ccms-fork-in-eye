@@ -80,7 +80,7 @@ class Model:
         conn.close()
 
     @classmethod
-    def add_new_mentor(cls, name, surname, email ):
+    def add_new_mentor(cls, name, surname, email):
         """ Adds new mentor to database """
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
@@ -186,7 +186,7 @@ class Model:
         cursor.execute("UPDATE teams_list SET name = '{}' WHERE name = '{}'".format(new_name, old_name))
         data.commit()
         data.close()
-    
+
     @classmethod
     def save_new_student(cls, students):
         """
@@ -199,9 +199,6 @@ class Model:
         c.execute("INSERT INTO student (name, surname, email) VALUES (?, ?, ?);", params)
         conn.commit()
         conn.close()
-
-
-
 
     @classmethod
     def submission_list_distinct(cls):  # from database
@@ -243,6 +240,7 @@ class Model:
         conn.close()
         return sub_list
 
+
     @classmethod
     def add_team(cls, team_name):
         """ Adds new team to database """
@@ -267,6 +265,46 @@ class Model:
         cursor = data.cursor()        
         cursor.execute("INSERT INTO submission (send_date, grade, name, github_link, student_id) VALUES (?, ?, ?, ?, ?)", 
         [submission.send_date, submission.grade, submission.name, submission.github_link, submission.student_id])        
-        
+    
+    @classmethod
+    def get_average(cls):
+        """ Gets averages of all students """
+        conn = sqlite3.connect("database.db")
+        cursor = conn.cursor()
+        data = cursor.execute("""SELECT student.ID, AVG(submission.grade)\
+                                 FROM student\
+                                 JOIN submission\
+                                 WHERE submission.student_id=student.ID\
+                                 GROUP BY submission.student_id;""")
+        grades = {}
+        for record in data:
+            grades[record[0]] = record[1]
+        conn.close()
+        return grades
+
+    @classmethod
+    def get_performance(cls, student_id, start, end):
+        conn = sqlite3.connect("database.db")
+        cursor = conn.cursor()
+        data = cursor.execute("""SELECT submission.send_date, submission.name, submission.grade\
+                                 FROM submission\
+                                 INNER JOIN student\
+                                 ON submission.student_id=student.id\
+                                 WHERE submission.send_date BETWEEN '{}' AND '{}' AND student.id =='{}'\
+                                 ORDER BY student.surname ASC;""".format(start, end, student_id))
+        performance = []
+        for record in data:
+            performance.append(list(record))
+
+        conn.close()
+        if performance:
+            return performance
+
+    @classmethod
+    def update_students_team(cls, student_id, team, card):
+        """ Updates student team, and card in database """
+        data = sqlite3.connect("database.db")
+        cursor = data.cursor()
+        cursor.execute("UPDATE student SET team = '{}', card = '{}'WHERE ID = '{}'".format(team, card, student_id))
         data.commit()
         data.close()
