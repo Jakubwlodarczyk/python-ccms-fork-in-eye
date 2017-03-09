@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}"/>
-        <title>Codecool Management System</title>
-    </head>
-
-    <body>
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
         <header>
             <h1>List of students</h1>
         </header>
 
-        <section class='content'>
+        {% block content %}
         <form class="add-person-form" name="add-person-form" action="/add_student">
             <a>
                 <button class="add-person-form-button right" value="send">Add a new student</button>
@@ -60,5 +55,4 @@
         </table>
 
         </section>
-    </body>
-</html>
+        {% endblock %}
