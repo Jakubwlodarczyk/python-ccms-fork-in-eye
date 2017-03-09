@@ -2,9 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
         <script src="https://www.w3schools.com/lib/w3data.js"></script> 
         <title>Codecool Management System</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     </head>
 
     <body>
@@ -14,9 +16,12 @@
         </header>
 
 <section class="content">
-    <label for="choose-date">Date</label>
-    <input name='choose-date' type="date"> 
-    
+    <label for="choose-date">Date:</label>
+
+    <form action="/students-attendance", method="POST">
+    <input name='choose-date' type="date" class="dateinputatt" required>
+
+
     <table>
         <thead>
             <tr>
@@ -25,29 +30,57 @@
                 <th colspan="3">Status</th>           
             </tr>
 
+        {% for student in students %}
         <tr class="border_bottom">
-            <td>1</td>
-            <td>Jan Nowak</td>
+
+            <td><center><b>{{ loop.index }}</b></center></td>
+            <td><b>{{student.name}} {{student.surname}}</b></td>
             <td>
-                <input id="radio-present" type="radio" name="option" value="Present">
+                <input id="radio-present" class="attendance-radio" type="radio" name="{{ loop.index }}" value="Present">
                 <label for="radio-present">Present</label>
             </td>
             <td>
-                <input id="radio-late" type="radio" name="option" value="Late">
+                <input id="radio-late" class="attendance-radio" type="radio" name="{{ loop.index }}" value="Late">
                 <label for="radio-late">Late</label>
             </td>
             <td>
-                <input id="radio-absent" type="radio" name="option" value="Absent">
+                <input id="radio-absent" class="attendance-radio" type="radio" name="{{ loop.index }}" value="Absent">
                 <label for="radio-absent">Absent</label>
             </td>
         </tr>
+        {% endfor %}
 
     </table>
-    </div>
-        <button>SAVE</button>
+
+
+        <button id="btn" type="submit" value="submit" >SAVE</button>
+    </form>
+
+
 </section>
     <script>
      w3IncludeHTML();
-    </script>   
+    </script>
+    <script>
+$('#btn').click(function(event) {
+
+    var checked = $(".attendance-radio:checked");
+    console.log(checked)
+    var groups = [];
+    $(".attendance-radio").each(function() {
+        if (groups.indexOf(this.name) < 0) {
+            groups.push(this.name);
+        }
+    });
+    if (groups.length == checked.length) {
+    }
+    else {
+        event.preventDefault();
+        var total = groups.length - checked.length;
+        alert(total + ' student(s) are not selected');
+
+    }
+});
+    </script>
 </body>
 </html>

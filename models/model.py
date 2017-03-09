@@ -189,3 +189,38 @@ class Model:
         conn.commit()
         conn.close()
 
+    @staticmethod
+    def create_attendance(values, chosen_date, ids): # values = list, date = str (2017-03-15), ids = list
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        status_id_dict = {}
+        correct_values_list = []
+        for value in values:
+            if value == "Present":
+                correct_values_list.append(100)
+            if value == "Late":
+                correct_values_list.append(80)
+            if value == "Absent":
+                correct_values_list.append(0)
+
+        dates = []
+        dates_obj = c.execute('SELECT date FROM attendance;')
+        for date in dates_obj:
+            if date[0] not in dates:
+                dates.append(date[0])
+
+        for student_id, value in enumerate(correct_values_list):
+            status_id_dict[ids[student_id]] = value
+
+        if chosen_date in dates:
+            for student_id, value in status_id_dict.items():
+                c.execute('UPDATE attendance SET status = {} WHERE date = "{}" AND student_id = {};'.format(value, chosen_date, student_id))
+        else:
+            for student_id, value in status_id_dict.items():
+                c.execute('INSERT INTO attendance (date, status, student_id) VALUES ("{}", {}, {});'.format(chosen_date,
+                                                                                                            value,
+                                                                                                            student_id))
+
+        conn.commit()
+        conn.close()
+
