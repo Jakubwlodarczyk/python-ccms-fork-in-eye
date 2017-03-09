@@ -316,14 +316,16 @@ def show_students_grades():
     if request.method == "GET":
         students = Model.students_get_all()
         grades = Model.get_average()
-        return render_template("show_grades.html", students=students, grades=grades, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
+        return render_template("show_grades.html", students=students, grades=grades, user_id=session['user_id'],
+                               user_status=session['user_status'], user=session['user'])
     elif request.method == 'POST':
         start = request.form['start_date']
         end = request.form['end_date']
         student_id = request.form['student_id']
         performance = Model.get_performance(student_id, start, end)
         if performance:
-            return render_template("get_performance.html", performance=performance, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
+            return render_template("get_performance.html", performance=performance, user_id=session['user_id'],
+                                   user_status=session['user_status'], user=session['user'])
         return redirect(url_for('get_performance'))
 
 
