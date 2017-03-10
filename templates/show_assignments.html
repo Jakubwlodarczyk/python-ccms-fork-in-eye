@@ -1,66 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}">
-        <script src="https://www.w3schools.com/lib/w3data.js"></script> 
-        <title>Codecool Management System</title>
-    </head>
-    <body>
-        <div w3-include-html="sidebar.html"></div>
-        <header>
-            <h1>Assignments list</h1>
-        </header>
-        <section class='content'>
-        <div class="select_submission">
-            <label for="select-assignment">Choose assignment: </label>
-        </div>      
-		<table>
-            <thead>
-                 
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Link</th>
-                    <th>Start date</th>
-                    <th>End date</th>
-                    <th>Action</th>
-                </tr>
-                
-            </thead>
-            <tbody>
-                
-               
-                <tr class="person_to_show">
-                     {% for assignment in assignments %}
-                    <td>{{ loop.index }}</td>
-                    <td>{{assignment.assignment_name}}</td>
-                    <td>{{assignment.link}}</td>
-                    <td>{{assignment.start_date}}</td>
-                    <td>{{assignment.end_date}}</td>
-                    <td>     
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block header %}
+<h1>Assignments</h1>
+{% endblock %}
+{% block solid_component %}
+{{ super() }}
+{% endblock%}
+{% block content %}
 
-                        <form method="post"
-                    """""""action=""""/submit_assignment/{{assignment.assignment_name}}/{{assignment.link}}/{{assignment.start_date}}/{{assignment.end_date}}"""  
-                    action="/submit_form">
-                    <input type="hidden" value="{{assignment.assignment_name}}" name="submission_name">
-                    <input type="hidden" value="{{assignment.link}}" name="submission_link">
-                    <input type="hidden" value="{{assignment.start_date}}" name="submission_start_date">
-                    <input type="hidden" value="{{assignment.end_date}}" name="submission_end_date">
-                        <button class='little-button' name="select_submit_assignment" 
-                        type="submit" value="send">Submit</button>  
-                                            
-                       
-                    </td>
-                </tr>
-                 </form>
-                {% endfor %}
-            </tbody>
-        </table> 
-    </section>
-    <script>
-        w3IncludeHTML();
-    </script> 
-    </body>
-</html>
+       <div class="select_submission">
+           <label for="select-assignment">Choose assignment: </label>
+       </div>
+       <table>
+           <thead>
+
+               <tr>
+                   <th>#</th>
+                   <th>Name</th>
+                   <th>Link</th>
+                   <th>Start date</th>
+                   <th>End date</th>
+                   {% if session['user_status'] == 'student' %} <th>Action</th> {% endif %}
+               </tr>
+
+           </thead>
+           <tbody>
+
+
+               <tr class="person_to_show">
+                    {% for assignment in assignments %}
+                   <td>{{ loop.index }}</td>
+                   <td>{{assignment.assignment_name}}</td>
+                   <td>{{assignment.link}}</td>
+                   <td>{{assignment.start_date}}</td>
+                   <td>{{assignment.end_date}}</td>
+                   {% if session['user_status'] == 'student'%}<td>
+                       <form method="post"
+
+                   action="/submit_form">
+                   <input type="hidden" value="{{assignment.assignment_name}}" name="submission_name">
+                   <input type="hidden" value="{{assignment.link}}" name="submission_link">
+                   <input type="hidden" value="{{assignment.start_date}}" name="submission_start_date">
+                   <input type="hidden" value="{{assignment.end_date}}" name="submission_end_date">
+                       <button class='little-button' name="select_submit_assignment"
+                       type="submit" value="send">Submit</button>
+                       </form>
+                   </td>
+                   {% endif %}
+               </tr>
+                    {% endfor %}
+           </tbody>
+       </table>
+
+{% endblock %}
+
 
