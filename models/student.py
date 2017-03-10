@@ -1,4 +1,5 @@
 from models.user import User
+import sqlite3
 
 
 class Student(User):

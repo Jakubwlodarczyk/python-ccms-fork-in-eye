@@ -1,42 +1,46 @@
-<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
 
-<html>
-<head>
- <meta charset="utf-8"/>
- <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}">
- <title>Submission form</title>
-</head>
-<body>
-    <h2>Submission form</h2>
+{% block header %}
+<h1>Submission form</h1>
+{% endblock %}
+
+
+{% block solid_component %}
+{{ super() }}
+{% endblock%}
+
+{% block content %}
+
+{% if session['user_status'] == 'student'%}
 
     <form class="Submission_form"
     method="POST" action='/submit_assignment'>
     <table>
         <tr><td>Submission name</td><td>{{sub_name}}</td></tr>
         <tr><td>Submission link</td>
-        <td><input name="submission_link" type="text"></td></tr>
-        
-        <tr><td></td>
-         <td>
-        <table class="two_button_table">
-                 <tr><td>
-                     <a><button type="submit" name="submit_as_one">Submit</button></a>
-                     </td>
-                     <td>
-                 <select class ="submit_assignment_select" name="select_form">
-                    <option value="Submit assignment">Submit assignment</option>
-                    <option value="Submit as a team">Submit as a team</option>
-                    </select></td></tr>
-                    
+            <td><input name="submission_link" type="text"> </td></tr>
+        <tr><td>Submit as:</td>
+            <td>
+                <select class ="submit_assignment_select" name="select_form">
+                <option value="Submit assignment">Submit assignment</option>
+                <option value="Submit as a team">Submit as a team</option>
+                </select>
+            </td>
+        </tr>
         </table>
-              </td></tr>
-    </table>
+        <br/>
+            <a><button type="submit" name="submit_as_one">Submit</button></a>
+
+
+
         <input type="hidden" value="{{sub_name}}" name="submission_name">
         <input type="hidden" value="{{sub_start_date}}" name="submission_start_date">
         <input type="hidden" value="{{sub_end_date}}" name="submission_end_date">
 
 
     </form>
-</body>
-
-</html>
+{% endif%}
+{% endblock %}

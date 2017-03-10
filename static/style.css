@@ -441,6 +441,7 @@ input[type=date]{
     position: relative;
     float: left;
     margin-left: 0px;
+    left: 0;
 
 }
 
