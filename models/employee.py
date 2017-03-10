@@ -9,3 +9,6 @@ class Employee(User):
     def __init__(self, id, name, surname, email, password, status):
         User.__init__(self, id, name, surname, email, password, status)
         self.status = 'employee'
+
+    def __str__(self):
+        return "{}".format(self.name)

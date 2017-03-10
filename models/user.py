@@ -9,3 +9,6 @@ class User:
         self.email = email
         self.password = password
         self.status = status
+
+    def __str__(self):
+        return "{}".format(self.name)
