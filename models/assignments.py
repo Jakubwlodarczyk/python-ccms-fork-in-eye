@@ -14,6 +14,9 @@ class Assignments:
         self.assignment_name = str(assignment_name)
         self.link = link
 
+    def __str__(self):
+        return "{}".format(self.name)
+
     @classmethod
     def assignments_all(cls):
         """

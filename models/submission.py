@@ -15,6 +15,9 @@ class Submission:
         self.name = name
         self.github_link = github_link
 
+    def __str__(self):
+        return "{}".format(self.name)
+
     @classmethod
     def submission_all(cls):
         """

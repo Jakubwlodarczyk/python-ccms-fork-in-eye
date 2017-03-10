@@ -22,6 +22,9 @@ class Student(User):
             self.absent = 0
             self.score = 0
 
+    def __str__(self):
+        return "{}".format(self.name)
+
     @classmethod
     def create_teams_list(cls):  # from database
         """

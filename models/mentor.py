@@ -9,3 +9,6 @@ class Mentor(Employee):
     def __init__(self, id, name, surname, email, password, status):
         Employee.__init__(self, id, name, surname, email, password, status)
         self.status = 'mentor'
+
+    def __str__(self):
+        return "{}".format(self.name)
