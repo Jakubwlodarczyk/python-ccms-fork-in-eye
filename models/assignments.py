@@ -1,14 +1,7 @@
-#from main import db
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../database.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+from main import db
 from sqlalchemy.orm import sessionmaker
 Session = sessionmaker(bind=db)
 session = Session()
-
 
 
 class Assignments(db.Model):
@@ -38,7 +31,3 @@ class Assignments(db.Model):
         assignment = Assignments(start_date=start_date, end_date=end_date, assignment_name=assignment_name, link=link)
         db.session.add(assignment)
         db.session.commit()
-
-
-Assignments.add_assignment(1, 1, "yeah", "bla")
-print("yeah")
