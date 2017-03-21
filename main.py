@@ -206,15 +206,15 @@ def assignments_list():
 def add_assignment():
     """ add assignment to db """
     if request.method == "GET":
-        return render_template("add.html",user_status=session['user_status'],
+        return render_template("add_assignment.html",user_status=session['user_status'],
                                user=session['user'])
 
     elif request.method == "POST":
-        person = []
-        person.append([request.form["fname"], request.form["lname"],
-                       request.form["email"]])
-        Model.save_new_student(person)
-        return redirect(url_for('students_list'))
+        assignment = []
+        assignment.append([request.form["start_date"], request.form["end_date"],
+                       request.form["assignment_name"], request.form['assignment_link']])
+        Model.save_new_assignment(assignment)
+        return redirect(url_for('assignments_list'))
 
 
 @app.route("/edit_team_name", methods=['GET', 'POST'])

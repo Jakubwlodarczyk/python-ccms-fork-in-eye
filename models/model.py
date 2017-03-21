@@ -253,6 +253,20 @@ class Model:
         conn.commit()
         conn.close()
 
+
+    @classmethod
+    def save_new_assignment(cls, assignment):
+        """
+        save new assignment to the database.
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        for assign in assignment:
+            params = [assign[0], assign[1], assign[2], assign[3]]
+        c.execute("INSERT INTO assignments (start_date, end_date, name, link) VALUES (?, ?, ?, ?);", params)
+        conn.commit()
+        conn.close()
+
     @classmethod
     def submission_list_distinct(cls):  # from database
         """
