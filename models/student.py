@@ -3,12 +3,16 @@ from main import db
 
 
 class Student(db.Model):
+    """
+    Class representing student.
+    Reads data from database.
+    """
     __tablename__ = 'student'
-    id = db.Column(db.Integer, primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String, nullable=False)
     surname = db.Column(db.String, nullable=False)
-    email = db.Column(db.String)
-    password = db.Column(db.String)
+    email = db.Column(db.String, nullable=False)
+    password = db.Column(db.String, nullable=False)
     status = db.Column(db.String)
     card = db.Column(db.String)
     team = db.Column(db.String)
@@ -18,7 +22,7 @@ class Student(db.Model):
         self.surname = surname
         self.email = email
         self.password = password
-        self.status = status
+        self.status = 'student'
         self.card = card
         self.team = team
 
@@ -116,5 +120,3 @@ class Student(db.Model):
             points += (student.late * 80)
 
             student.score = (points / Student.count_days())
-
-
