@@ -22,12 +22,12 @@ class Student(db.Model):
     card = db.Column(db.String)
     team = db.Column(db.String)
 
-    def __init__(self, name, surname, email, password, status, card=None, team=None):
+    def __init__(self, name, surname, email, password, status='student', card=None, team=None):
         self.name = name
         self.surname = surname
         self.email = email
         self.password = password
-        self.status = 'student'
+        self.status = status
         self.card = card
         self.team = team
 
