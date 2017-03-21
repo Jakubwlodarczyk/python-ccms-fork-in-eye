@@ -1,4 +1,9 @@
 from main import db
+from sqlalchemy.orm import sessionmaker
+
+
+Session = sessionmaker(bind=db)
+session = Session()
 
 
 class Manager(db.Model):

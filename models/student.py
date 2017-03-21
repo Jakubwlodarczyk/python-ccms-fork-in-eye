@@ -1,4 +1,3 @@
-import sqlite3
 from main import db
 from sqlalchemy.orm import sessionmaker
 
