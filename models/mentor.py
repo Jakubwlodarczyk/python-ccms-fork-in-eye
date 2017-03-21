@@ -1,14 +1,28 @@
-from models.employee import Employee
+from main import db
+from sqlalchemy.orm import sessionmaker
+
+Session = sessionmaker(bind=db)
+session = Session()
 
 
-class Mentor(Employee):
-    """
-    Class: mentor
-    parent class: Employee
-    """
-    def __init__(self, id, name, surname, email, password, status):
-        Employee.__init__(self, id, name, surname, email, password, status)
-        self.status = 'mentor'
+class Mentor(db.Model):
+    """ Class handle students objects, reads from database """
+    __tablename__ = 'mentor'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String)
+    surname = db.Column(db.String)
+    email = db.Column(db.String, nullable=False)
+    password = db.Column(db.String, nullable=False)
+    status = db.Column(db.String)
 
-    def __str__(self):
-        return "{}".format(self.name)
+    def __init__(self, name, surname, email, password, status):
+        self.name = name
+        self.surname = surname
+        self.email = email
+        self.password = password
+        self.status = status
+
+    def __repr__(self):
+        return '{} {} {} {} {} {}'.format(self.id, self.name, self.surname, self.email, self.password,
+                                                self.status)
+
