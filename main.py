@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, abort
 import os
-from models.model import Model
+# from models.model import Model
 from models.submission import Submission
-from models.assignments import Assignments
 import datetime
 from flask_sqlalchemy import SQLAlchemy
 
@@ -14,6 +13,9 @@ db = SQLAlchemy(app)
 
 from models.student import *
 from models.attendance import *
+from models.team import *
+from models.assignments import Assignments
+from models.model import *
 
 
 @app.route('/')
@@ -58,7 +60,8 @@ def students_list():
         Model.update_students_team(student_id, team, card)
         return redirect(url_for('students_list'))
     else:
-        teams = Model.create_teams_list()
+        teams = Team.all()
+        # teams = Model.create_teams_list()
         students = Model.students_get_all()
         cards = ['green', 'yellow', 'red']
         return render_template("show_students_list.html", students=students, teams=teams, cards=cards, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
@@ -193,7 +196,7 @@ def remove_mentor(mentor_id):
 @app.route("/teams")
 def teams_list():
     """ Shows list of teams"""
-    teams = Model.create_teams_list()
+    teams = Team.all()
     students = Model.students_get_all()
     return render_template("teams.html", teams=teams, students=students, user_id=session['user_id'],
                            user_status=session['user_status'], user=session['user'])
@@ -213,7 +216,7 @@ def edit_team_name():
     if request.method == "POST":
         old_name = request.args['team_name']
         new_name = request.form['name']
-        Model.update_team_name(old_name, new_name)
+        Team.edit_team(old_name, new_name)
         return redirect(url_for('teams_list'))
     else:
         team_id = request.args['team_id']
@@ -243,7 +246,7 @@ def add_team():
                                user=session['user'])
     else:
         team_name = request.form['new-team-name']
-        Model.add_team(team_name)
+        Team.add_team(team_name)
         return redirect(url_for('teams_list'))
 
 
@@ -311,7 +314,7 @@ def update_grade():
 def remove_team():
     team_name = request.form['team_name']
     team_id = request.form['team_id']
-    Model.delete_team(team_id, team_name)
+    Team.remove_team(team_id, team_name)
     return redirect(url_for('teams_list'))
 
 

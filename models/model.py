@@ -206,38 +206,6 @@ class Model:
         conn.commit()
         conn.close()
 
-    @classmethod
-    def create_teams_list(cls):
-        """
-        Reads teams based on data from database.
-        """
-        conn = sqlite3.connect("database.db")
-        c = conn.cursor()
-
-        name_q = "SELECT ID, name FROM teams_list;"
-        name_db = c.execute(name_q)
-        conn.commit()
-        teams_list = []
-
-        for row in name_db:
-            id = row[0]
-            name = row[1]
-            team = Team(id, name)
-            teams_list.append(team)
-        conn.close()
-        return teams_list
-
-    @classmethod
-    def update_team_name(cls, old_name, new_name):
-        """ Update team name in database """
-        if new_name == '':
-            new_name = "_"
-        data = sqlite3.connect("database.db")
-        cursor = data.cursor()
-        cursor.execute("UPDATE teams_list SET name = '{}' WHERE name = '{}'".format(new_name, old_name))
-        cursor.execute("UPDATE student SET team = '{}' WHERE team = '{}'".format(new_name, old_name))
-        data.commit()
-        data.close()
 
     @classmethod
     def save_new_student(cls, students):
@@ -293,17 +261,6 @@ class Model:
         conn.close()
         return sub_list
 
-
-    @classmethod
-    def add_team(cls, team_name):
-        """ Adds new team to database """
-        if team_name == '':
-            team_name = '_'
-        data = sqlite3.connect("database.db")
-        cursor = data.cursor()
-        cursor.execute("INSERT INTO teams_list (name) VALUES ('{}')".format(team_name))
-        data.commit()
-        data.close()
 
     @classmethod
     def remove_student_team(cls, student_id):
@@ -389,15 +346,6 @@ class Model:
         data.commit()
         data.close()
 
-    @classmethod
-    def delete_team(cls, team_id, team_name):
-        """ Delete team from database """
-        data = sqlite3.connect("database.db")
-        cursor = data.cursor()
-        cursor.execute("DELETE FROM teams_list WHERE ID = '{}';".format(team_id))
-        cursor.execute("UPDATE student SET team = 'None' WHERE team = '{}'".format(team_name))
-        data.commit()
-        data.close()
 
     @staticmethod
     def create_attendance(values, chosen_date, ids): # values = list, date = str (2017-03-15), ids = list
