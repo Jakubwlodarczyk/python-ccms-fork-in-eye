@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, abort
 import os
 from models.model import Model
-from models.student import Student
-from models.attendance import Attendance
 from models.submission import Submission
 from models.assignments import Assignments
 import datetime
