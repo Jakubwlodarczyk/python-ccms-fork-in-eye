@@ -1,4 +1,4 @@
-import sqlite3
+from main import db
 
 
 class Assignments:
@@ -6,7 +6,12 @@ class Assignments:
     Class Assignments
     handle assignments objects (assignment list)
     """
-    assignments_list = []
+    __tablename__ = 'assignments'
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    start_date = db.Column(db.String, nullable=False)
+    end_date = db.Column(db.String, nullable=False)
+    name = db.Column(db.String. nullable=False)
+    link = db.Column(db.String, nullable=False)
 
     def __init__(self, start_date, end_date, assignment_name, link):
         self.start_date = str(start_date)
@@ -14,30 +19,6 @@ class Assignments:
         self.assignment_name = str(assignment_name)
         self.link = link
 
-    def __str__(self):
-        return "{}".format(self.name)
 
-    @classmethod
-    def assignments_all(cls):
-        """
-        Creates abjects based on data from database.
-        :param file_path:
-        :return:
-        """
-        conn = sqlite3.connect("database.db")
-        c = conn.cursor()
-        name_q = "SELECT start_date, end_date, name, link  FROM assignments;"
-        name_db = c.execute(name_q)
-        conn.commit()
-
-        assignments_list = []
-
-        for row in name_db:
-            start_date = row[0]
-            end_date = row[1]
-            name = row[2]
-            link = row[3]
-            full_name = cls(start_date, end_date, name, link)
-            assignments_list.append(full_name)
-        conn.close()
-        return assignments_list
+    def __repr__(self):
+        return '{} {} {} {}'.format(self.start_date, self.end_date, self.assignment_name, self.link)
