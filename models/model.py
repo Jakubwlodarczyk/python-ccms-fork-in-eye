@@ -1,9 +1,9 @@
 import sqlite3
-from models.student import Student
-from models.mentor import Mentor
-from models.team import Team
-from models.submission import Submission
-from models.user import User
+# from models.student import Student
+# from models.mentor import Mentor
+# from models.team import Team
+# from models.submission import Submission
+# from models.user import User
 
 
 
@@ -173,14 +173,10 @@ class Model:
     @classmethod
     def add_submission(cls, submission):
 
-
-
-
         data = sqlite3.connect("database.db")
         cursor = data.cursor()
         submission_list = cls.create_submission_list()
-        print(submission.name)
-        print(submission.student_id)
+        
         for sub in submission_list:
             if sub.name == submission.name:
                 if sub.student_id == submission.student_id:

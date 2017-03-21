@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session, abort
 import os
 from models.model import Model
-from models.submission import Submission
-from models.assignments import Assignments
+# from models.submission import Submission
+# from models.assignments import Assignments
 import datetime
 from flask_sqlalchemy import SQLAlchemy
 
@@ -12,8 +12,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-from models.student import *
-from models.attendance import *
+# from models.student import *
+# from models.attendance import *
 
 
 @app.route('/')
