@@ -1,14 +1,27 @@
 from models.user import User
+from main import db
 
 
-class Employee(User):
+class Employee(db.Model):
     """
-    Class Employee
-    Parent class: User
+    Class representing employees.
+    Reads data from database.
     """
-    def __init__(self, id, name, surname, email, password, status):
-        User.__init__(self, id, name, surname, email, password, status)
+    __tablename__ = 'employee'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String, nullable=False)
+    surname = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, nullable=False)
+    password = db.Column(db.String, nullable=False)
+    status = db.Column(db.String)
+
+    def __init__(self, name, surname, email, password, status, card, team):
+        self.name = name
+        self.surname = surname
+        self.email = email
+        self.password = password
         self.status = 'employee'
 
-    def __str__(self):
-        return "{}".format(self.name)
+    def __repr__(self):
+        return '{} {} {} {} {} {} {} {}'.format(self.id, self.name, self.surname, self.email, self.password,
+                                                self.status)

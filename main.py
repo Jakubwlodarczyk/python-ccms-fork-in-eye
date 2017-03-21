@@ -6,9 +6,16 @@ from models.attendance import Attendance
 from models.submission import Submission
 from models.assignments import Assignments
 import datetime
+from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../database.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+from models.student import *
+from models.attendance import *
 
 
 @app.route('/')

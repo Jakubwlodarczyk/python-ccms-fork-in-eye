@@ -1,29 +1,35 @@
-from models.user import User
 import sqlite3
+from main import db
 
 
-class Student(User):
+class Student(db.Model):
     """
-    Class Student
-    Parent class: User
+    Class representing student.
+    Reads data from database.
     """
+    __tablename__ = 'student'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String, nullable=False)
+    surname = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, nullable=False)
+    password = db.Column(db.String, nullable=False)
+    status = db.Column(db.String)
+    card = db.Column(db.String)
+    team = db.Column(db.String)
 
-    teams_list = []
-    counted_days = 0
+    def __init__(self, name, surname, email, password, status, card, team):
+        self.name = name
+        self.surname = surname
+        self.email = email
+        self.password = password
+        self.status = 'student'
+        self.card = card
+        self.team = team
 
-    def __init__(self, id, name, surname, email, password, status, card="none", team="none",):
-            User.__init__(self, id, name, surname, email, password, status)
-            self.status = 'student'
-            self.attendance_list = []
-            self.team = team
-            self.card = card
-            self.present = 0
-            self.late = 0
-            self.absent = 0
-            self.score = 0
 
-    def __str__(self):
-        return "{}".format(self.name)
+    def __repr__(self):
+        return '{} {} {} {} {} {} {} {}'.format(self.id, self.name, self.surname, self.email, self.password,
+                                                self.status, self.card, self.team)
 
     @classmethod
     def create_teams_list(cls):  # from database

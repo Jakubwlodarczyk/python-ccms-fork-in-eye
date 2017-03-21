@@ -1,31 +1,18 @@
-from models.student import Student
 import sqlite3
+from main import db
 
 
-class Attendance:
-    """
-    Creates objects of student's attendance. Each object is a separate day.
-    """
-    attendances_list = []
+class Attendance(db.Model):
+    __tablename__ = 'attendance'
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    date = db.Column(db.String)
+    status = db.Column(db.Integer)
+    student_id = db.Column(db.Integer)
 
-    def __init__(self, data, status, id=None):
-        self.data = data
+    def __init__(self, date, status, student_id):
+        self.date = date
         self.status = status
-        self.id = id
-
-    def __str__(self):
-        remember = ""
-        remember_status = None
-
-        if self.status == "1":
-            remember_status = 80
-        elif self.status == "2":
-            remember_status = 100
-
-        for student in Student.student_list:
-            if student.id == self.id:
-                remember = student
-        return "{} {} {}".format(remember, self.data, remember_status)
+        self.student_id = student_id
 
     @classmethod
     def create_objects_list_from_database(cls):
