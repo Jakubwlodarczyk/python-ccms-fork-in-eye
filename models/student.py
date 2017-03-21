@@ -57,6 +57,7 @@ class Student(db.Model):
         student = db.session.query(Student).get(student_id)
         db.session.delete(student)
         db.session.commit()
+        
 
     @staticmethod
     def add_attendance_to_student(attendances_obj_list):
@@ -69,6 +70,7 @@ class Student(db.Model):
                 if attendance.id == student.id:
                     student.attendance_list.append(attendance)
 
+
     def view_grades(self):
         '''
         Allows to view grades for all student's assignments.
@@ -78,6 +80,7 @@ class Student(db.Model):
             if sub.student_id == self.id:
                 my_submiss.append(sub)
         return my_submiss
+
 
     def check_attendence(self, data):
         """
