@@ -10,12 +10,15 @@
 {% endblock%}
 {% block content %}
 
+{% if session['user_status'] == 'mentor'%}
+
 <form class="add-person-form" name="add-person-form" action="/add_assignment">
     <a>
         <button class="add-person-form-button right" value="send">Add new assignment</button>
     </a>
 </form>
 
+{% endif %}
 
        <table>
            <thead>
