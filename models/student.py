@@ -1,5 +1,10 @@
 import sqlite3
 from main import db
+from sqlalchemy.orm import sessionmaker
+
+
+Session = sessionmaker(bind=db)
+session = Session()
 
 
 class Student(db.Model):
@@ -17,7 +22,7 @@ class Student(db.Model):
     card = db.Column(db.String)
     team = db.Column(db.String)
 
-    def __init__(self, name, surname, email, password, status, card, team):
+    def __init__(self, name, surname, email, password, status, card=None, team=None):
         self.name = name
         self.surname = surname
         self.email = email
@@ -26,29 +31,32 @@ class Student(db.Model):
         self.card = card
         self.team = team
 
-
     def __repr__(self):
         return '{} {} {} {} {} {} {} {}'.format(self.id, self.name, self.surname, self.email, self.password,
                                                 self.status, self.card, self.team)
 
-    @classmethod
-    def create_teams_list(cls):  # from database
-        """
-        Reads teams based on data from database.
-        """
-        conn = sqlite3.connect("database.db")
-        c = conn.cursor()
+    @staticmethod
+    def add_student(name, surname, email):
+        password = name.lower()
+        status = 'student'
+        student = Student(name=name, surname=surname, email=email, password=password, status=status, team=None,
+                          card=None)
+        db.session.add(student)
+        db.session.commit()
 
-        name_q = "SELECT name FROM teams_list;"
-        name_db = c.execute(name_q)
-        conn.commit()
-        teams_list = []
+    @staticmethod
+    def edit_student(student_id, name, surname, email):
+        student = db.session.query(Student).get(student_id)
+        student.name = name
+        student.surname = surname
+        student.email = email
+        db.session.commit()
 
-        for row in name_db:
-            name = row[0]
-            teams_list.append(name)
-        conn.close()
-        return teams_list
+    @staticmethod
+    def remove_student(student_id):
+        student = db.session.query(Student).get(student_id)
+        db.session.delete(student)
+        db.session.commit()
 
     @staticmethod
     def add_attendance_to_student(attendances_obj_list):
