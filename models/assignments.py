@@ -1,7 +1,10 @@
 from main import db
+from sqlalchemy.orm import sessionmaker
+Session = sessionmaker(bind=db)
+session = Session()
 
 
-class Assignments:
+class Assignments(db.Model):
     """
     Class Assignments
     handle assignments objects (assignment list)
@@ -10,7 +13,7 @@ class Assignments:
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     start_date = db.Column(db.String, nullable=False)
     end_date = db.Column(db.String, nullable=False)
-    name = db.Column(db.String, nullable=False)
+    assignment_name = db.Column(db.String, nullable=False)
     link = db.Column(db.String, nullable=False)
 
     def __init__(self, start_date, end_date, assignment_name, link):
@@ -22,3 +25,9 @@ class Assignments:
 
     def __repr__(self):
         return '{} {} {} {}'.format(self.start_date, self.end_date, self.assignment_name, self.link)
+
+    @staticmethod
+    def add_assignment(start_date, end_date, assignment_name, link):
+        assignment = Assignments(start_date=start_date, end_date=end_date, assignment_name=assignment_name, link=link)
+        db.session.add(assignment)
+        db.session.commit()
