@@ -69,6 +69,13 @@ class Student(db.Model):
         db.session.commit()
 
     @staticmethod
+    def remove_student_team(student_id):
+        """ Remove student from team, and update database """
+        student = db.session.query(Student).filter_by(id=student_id).first()
+        student.team = None
+        db.session.commit()
+
+    @staticmethod
     def add_attendance_to_student(attendances_obj_list):
         """
         Returns attendances of select students.
