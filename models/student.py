@@ -93,18 +93,21 @@ class Student(db.Model):
 
     @staticmethod
     def count_days():
-        dates = []
-        conn = sqlite3.connect("database.db")
-        with conn:
-            c = conn.cursor()
-            days = c.execute("SELECT * FROM attendance;")
+        pass
 
-            for day in days.fetchall():
-                if day[1] not in dates:
-                    dates.append(day[1])
-            conn.commit()
 
-        return len(dates)
+        # dates = []
+        # conn = sqlite3.connect("database.db")
+        # with conn:
+        #     c = conn.cursor()
+        #     days = c.execute("SELECT * FROM attendance;")
+        #
+        #     for day in days.fetchall():
+        #         if day[1] not in dates:
+        #             dates.append(day[1])
+        #     conn.commit()
+        #
+        # return len(dates)
 
     @staticmethod
     def student_presence(attendance_list, all_students):
