@@ -1,5 +1,9 @@
-from models.user import User
 from main import db
+from sqlalchemy.orm import sessionmaker
+
+
+Session = sessionmaker(bind=db)
+session = Session()
 
 
 class Employee(db.Model):
@@ -23,5 +27,4 @@ class Employee(db.Model):
         self.status = status
 
     def __repr__(self):
-        return '{} {} {} {} {} {}'.format(self.id, self.name, self.surname, self.email, self.password,
-                                                self.status)
+        return '{} {} {} {} {} {}'.format(self.id, self.name, self.surname, self.email, self.password, self.status)
