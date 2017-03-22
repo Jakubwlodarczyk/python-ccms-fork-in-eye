@@ -68,11 +68,11 @@ def students_list():
         Model.update_students_team(student_id, team, card)
         return redirect(url_for('students_list'))
     else:
-        teams = Team.all()
-        # teams = Model.create_teams_list()
-        students = Model.students_get_all()
+        teams = db.session.query(Team).all()
+        students = db.session.query(Student).all()
         cards = ['green', 'yellow', 'red']
-        return render_template("show_students_list.html", students=students, teams=teams, cards=cards, user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
+        return render_template("show_students_list.html", students=students, teams=teams, cards=cards,
+                               user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
 
 
 @app.route("/students-attendance", methods=['GET', 'POST'])
@@ -211,7 +211,7 @@ def teams_list():
 @app.route("/assignments")
 def assignments_list():
     """ Shows list of students """
-    assignments = Assignments.assignments_all()
+    assignments = db.session.query(Assignments).all()
     return render_template("show_assignments.html", assignments=assignments, user_id=log_in['user_id'],
                            user_status=log_in['user_status'], user=log_in['user'])
 
