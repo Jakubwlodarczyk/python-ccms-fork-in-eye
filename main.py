@@ -14,6 +14,7 @@ from models.team import *
 from models.assignments import *
 from models.model import *
 from models.submission import *
+from models.attendance import *
 
 
 @app.route('/')
@@ -77,14 +78,16 @@ def students_list():
 
 @app.route("/students-attendance", methods=['GET', 'POST'])
 def students_attendance():
-    students_bad = Model.students_get_all()
-    attendances = Attendance.create_objects_list_from_database()
+    students_bad = db.session.query(Student).all()
+    attendances = db.session.query(Attendance).all()
     students = Student.student_presence(attendances, students_bad)
-    counted_days = Student.count_days()  # Student.counted_days
+    counted_days = Student.count_days()
     Student.current_score(students)
 
     if request.method == "GET":
-        return render_template("student_show_attendence.html", students=students, attendances=attendances, counted_days=counted_days, user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
+        return render_template("student_show_attendence.html", students=students, attendances=attendances,
+                               counted_days=counted_days, user_id=log_in['user_id'], user_status=log_in['user_status'],
+                               user=log_in['user'])
     else:
         values = []
         for index, student in enumerate(students):
@@ -113,24 +116,23 @@ def edit_student(student_id):
     If the method was POST it should update student data in database.
     """
     if request.method == 'GET':
-        student = Model.get_student_by_id(student_id)
+        student = db.session.query(Student).filter_by(id=student_id).first()
         old_name = student.name
         old_surname = student.surname
         old_email = student.email
         return render_template('edit_person_data.html', old_name=old_name, old_surname=old_surname, old_email=old_email)
     elif request.method == 'POST':
-        student = Model.get_student_by_id(student_id)
         new_name = request.form['new_fname']
         new_surname = request.form['new_lname']
         new_email = request.form['new_email']
-        Model.update_student_data(student_id, new_name, new_surname, new_email)
+        Student.edit_student(student_id, new_name, new_surname, new_email)
     return redirect(url_for('students_list'))
 
 
 @app.route("/remove_student/<student_id>")
 def remove_student(student_id):
     """ Removes student with selected id from the database """
-    Model.delete_student(student_id)
+    Student.remove_student(student_id)
     return redirect(url_for('students_list'))
 
 

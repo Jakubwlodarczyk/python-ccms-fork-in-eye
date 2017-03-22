@@ -28,3 +28,8 @@ class Attendance(db.Model):
         attendance = Attendance(date=date, status=status, student_id=student_id)
         db.session.add(attendance)
         db.session.commit()
+
+    @staticmethod
+    def get_all():
+        """ Return a list of objects """
+        return db.session.query(Attendance).all()

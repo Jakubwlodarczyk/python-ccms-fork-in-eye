@@ -76,6 +76,11 @@ class Student(db.Model):
         db.session.commit()
 
     @staticmethod
+    def get_all():
+        """ Return a list of objects """
+        return db.session.query(Student).all()
+
+    @staticmethod
     def add_attendance_to_student(attendances_obj_list):
         """
         Returns attendances of select students.
@@ -125,7 +130,6 @@ class Student(db.Model):
 
     @staticmethod
     def student_presence(attendance_list, all_students):
-
         for day in attendance_list:
             Student.counted_days += 1
             for student in all_students:

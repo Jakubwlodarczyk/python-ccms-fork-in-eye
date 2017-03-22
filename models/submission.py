@@ -29,8 +29,7 @@ class Submission(db.Model):
         self.github_link = github_link
 
     def __repr__(self):
-        return "{} {} {} {} {}".format(self.start_date, 
-        self.grade, self.name, self.github_link, self.student_id)
+        return "{} {} {} {} {}".format(self.start_date, self.grade, self.name, self.github_link, self.student_id)
 
     @staticmethod
     def add_submission(send_date, grade, name, github_link, student_id):
@@ -38,4 +37,9 @@ class Submission(db.Model):
                                 github_link=github_link, student_id=student_id)
         db.session.add(submission)
         db.session.commit()
+
+    @staticmethod
+    def get_all():
+        """ Return a list of objects """
+        return db.session.query(Submission).all()
 
