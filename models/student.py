@@ -1,11 +1,13 @@
 from main import db
 from sqlalchemy import and_, func
 from sqlalchemy.orm import sessionmaker
+from models.attendance import Attendance
 
 Session = sessionmaker(bind=db)
 session = Session()
 
 from models.submission import *
+
 
 class Student(db.Model):
     """
@@ -120,16 +122,10 @@ class Student(db.Model):
     @staticmethod
     def count_days():
         dates = []
-        conn = sqlite3.connect("database.db")
-        with conn:
-            c = conn.cursor()
-            days = c.execute("SELECT * FROM attendance;")
-
-            for day in days.fetchall():
-                if day[1] not in dates:
-                    dates.append(day[1])
-            conn.commit()
-
+        attendance = Attendance.get_all()
+        for data in attendance:
+            if data.date not in dates:
+                dates.append(data.date)
         return len(dates)
 
     @staticmethod
