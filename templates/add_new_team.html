@@ -12,6 +12,7 @@
 {% endblock %}
 
 {% block content %}
+{% if session['user_status'] == 'mentor'%}
        	<section class='content'>
             <form class="add-team-form" name="add-team-form" method="post">
                 <label for="new-team-name" class="add-team-form-element">Team name</label><br/>

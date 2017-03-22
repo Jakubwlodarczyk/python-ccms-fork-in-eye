@@ -12,6 +12,7 @@
 {% endblock %}
 
 {% block content %}
+{% if session['user_status'] == 'mentor'%}
         <section class='content team'>
             <a href="{{ url_for('add_team') }}">
                 <button class="add-team" type="button" value="send">Add a new team</button>

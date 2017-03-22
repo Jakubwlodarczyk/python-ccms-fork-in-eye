@@ -40,3 +40,8 @@ class Team(db.Model):
         team = db.session.query(Team).filter_by(name=old_name)
         team.name = new_name
         db.session.commit()
+
+    @staticmethod
+    def get_all():
+        """ Return a list of objects """
+        return db.session.query(Team).all()
