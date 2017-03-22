@@ -274,12 +274,9 @@ def add_team():
 @app.route("/remove_student_team")
 def remove_student_from_team():
     """ Remove student from a team"""
-    students = Model.students_get_all()
     student_id = request.args['student_id']
     student_id = int(student_id)
-    for student in students:
-        if student.id == student_id:
-            Model.remove_student_team(student_id)
+    Student.remove_student_team(student_id)
     return redirect(url_for('teams_list'))
 
 
