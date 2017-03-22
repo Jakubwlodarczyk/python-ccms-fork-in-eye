@@ -227,14 +227,15 @@ def assignments_list():
 def add_assignment():
     """ add assignment to db """
     if request.method == "GET":
-        return render_template("add_assignment.html",user_status=session['user_status'],
-                               user=session['user'])
+        return render_template("add_assignment.html",user_status=log_in['user_status'],
+                               user=log_in['user'])
 
     elif request.method == "POST":
-        assignment = []
-        assignment.append([request.form["start_date"], request.form["end_date"],
-                       request.form["assignment_name"], request.form['assignment_link']])
-        Model.save_new_assignment(assignment)
+        start_date = request.form["start_date"]
+        end_date = request.form["end_date"]
+        assignment_name = request.form["assignment_name"]
+        assignment_link = request.form['assignment_link']
+        Assignments.add_assignment(start_date, end_date, assignment_name, assignment_link)
         return redirect(url_for('assignments_list'))
 
 
