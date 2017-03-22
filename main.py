@@ -116,7 +116,7 @@ def edit_student(student_id):
     If the method was POST it should update student data in database.
     """
     if request.method == 'GET':
-        student = db.session.query(Student).filter_by(id=student_id).first()
+        student = Student.get_by_id(student_id)
         old_name = student.name
         old_surname = student.surname
         old_email = student.email
@@ -181,7 +181,7 @@ def edit_mentor(mentor_id):
     If the method was POST it should update mentor data in database.
     """
     if request.method == 'GET':
-        mentor = db.session.query(Mentor).get(mentor_id)
+        mentor = Mentor.get_by_id(mentor_id)
         old_name = mentor.name
         old_surname = mentor.surname
         old_email = mentor.email

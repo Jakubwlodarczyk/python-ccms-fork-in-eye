@@ -81,6 +81,11 @@ class Student(db.Model):
         return db.session.query(Student).all()
 
     @staticmethod
+    def get_by_id(student_id):
+        """ Return object of student found by ID"""
+        return db.session.query(Student).get(student_id)
+
+    @staticmethod
     def add_attendance_to_student(attendances_obj_list):
         """
         Returns attendances of select students.
