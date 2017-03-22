@@ -1,5 +1,10 @@
 from main import db
 from models.student import *
+from sqlalchemy.orm import sessionmaker
+
+
+Session = sessionmaker(bind=db)
+session = Session()
 
 
 class Submission(db.Model):
@@ -25,7 +30,7 @@ class Submission(db.Model):
         self.github_link = github_link
 
     def __repr__(self):
-        return "{} {} {} {} {}".format(self.start_date, self.grade, self.name, self.github_link, self.student_id)
+        return "{} {} {} {} {}".format(self.send_date, self.grade, self.name, self.github_link, self.student_id)
 
     @staticmethod
     def add_submission(send_date, grade, name, github_link, student_id):
