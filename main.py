@@ -140,7 +140,11 @@ def mentors_list():
 @app.route("/submissions", methods=['POST', "GET"])
 def submissions_list():
     """Shows list of submissions"""
-    options = Model.submission_list_distinct()
+    # options = Model.submission_list_distinct()
+
+
+    options = db.session.query(Submission).all()
+
     submissions = Submission.submission_all()
     students = Model.students_get_all()
     if request.method == "GET":
@@ -207,9 +211,10 @@ def teams_list():
 @app.route("/assignments")
 def assignments_list():
     """ Shows list of students """
-    assignments = Assignments.assignments_all()
-    return render_template("show_assignments.html", assignments=assignments, user_id=session['user_id'],
-                           user_status=session['user_status'], user=session['user'])
+    # assignments = Assignments.assignments_all()
+    assignments = db.session.query(Assignments).all()
+    return render_template("show_assignments.html", assignments=assignments, user_id=log_in['user_id'],
+                           user_status=log_in['user_status'], user=log_in['user'])
 
 
 @app.route("/add_assignment", methods=['POST', "GET"])
@@ -297,25 +302,35 @@ def submit_assignment():
 
     student_example = Student("the_id", "name", "surname", "email", "password", "status", "green", "Miszczowie")
     students = Model.students_get_all()
+    students = db.session.query(Student).all()
     name = request.form["submission_name"]
     link = request.form["submission_link"]
     end_date = request.form["submission_end_date"]
     if request.method == 'POST':
         if request.form["select_form"] == "Submit assignment":
             my_submission = Submission(end_date, '0', name, link, student_example.id)
-            submission_status = Submission.add_submission(my_submission)
+            my_submission = Submission.add_submission(my_submission.send_date, my_submission.grade, 
+            
+            my_submission.name, my_submission.github_link, my_submission.student_id)
+            
             return render_template("submit_assignment_information.html", submission_status=submission_status,
                                    user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
         else:
             my_submission = Submission(end_date, '0', name, link, student_example.id)
-            Model.add_submission(my_submission)
-            Model.create_submission_list()
+            Submission.add_submission(my_submission.send_date, my_submission_grade, 
+            my_submission.name, my_submission.github_link, my_submission.student_id)
+           
+
+
+            
             for student in students:
                 if student.team == student_example.team:
                     my_submission = Submission(end_date, '0', name, link, student.id)
-                    submission_status = Submission.add_submission(my_submission)
+                    submission_status = Submission.add_submission(my_submission.send_date, my_submission_grade, 
+            my_submission.name, my_submission.github_link, my_submission.student_id)
             return render_template("submit_assignment_information.html", submission_status=submission_status,
                                    user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
+
 
 
 @app.route("/update_grade", methods=['POST'])
