@@ -1,11 +1,13 @@
-from flask import Flask, render_template, request, redirect, url_for, session, abort
-import os
-from models.model import Model
-# from models.submission import Submission
+from flask import Flask, render_template, request, redirect, url_for, abort, session
+
+from models.submission import Submission
 # from models.assignments import Assignments
 import datetime
 from flask_sqlalchemy import SQLAlchemy
+import os
 
+
+from models.model import Model
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../database.db'
@@ -298,7 +300,7 @@ def submit_assignment():
     if request.method == 'POST':
         if request.form["select_form"] == "Submit assignment":
             my_submission = Submission(end_date, '0', name, link, student_example.id)
-            submission_status = Model.add_submission(my_submission)
+            submission_status = Submission.add_submission(my_submission)
             return render_template("submit_assignment_information.html", submission_status=submission_status,
                                    user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
         else:
@@ -308,7 +310,7 @@ def submit_assignment():
             for student in students:
                 if student.team == student_example.team:
                     my_submission = Submission(end_date, '0', name, link, student.id)
-                    submission_status = Model.add_submission(my_submission)
+                    submission_status = Submission.add_submission(my_submission)
             return render_template("submit_assignment_information.html", submission_status=submission_status,
                                    user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
 

@@ -38,9 +38,31 @@ class Submission(db.Model):
     def add_submission(send_date, grade, name, github_link, student_id):
         submission = Submission(send_date=send_date, grade=grade, name=name,
         github_link=github_link, student_id=student_id)
-
-        db.session.add(submission)
+        submission_list = db.session.query(Submission)
+        db.session.add(submission_list)
         db.session.commit()
+
+
+
+
+    # @classmethod
+    # def add_submission(cls, submission):
+
+    #     data = sqlite3.connect("database.db")
+    #     cursor = data.cursor()
+
+        
+    #     for sub in submission_list:
+    #         if sub.name == submission.name:
+    #             if sub.student_id == submission.student_id:
+    #                 return False
+
+
+        # cursor.execute("INSERT INTO submission (send_date, grade, name, github_link, student_id) VALUES (?, ?, ?, ?, ?)",
+        # [submission.send_date, submission.grade, submission.name, submission.github_link, submission.student_id])
+        # data.commit()
+        # data.close()
+        # return True
 
 
     @classmethod
