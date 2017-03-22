@@ -1,7 +1,7 @@
-import os
 import datetime
 from flask import Flask, render_template, request, redirect, url_for, session as log_in
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 
 app = Flask(__name__)
@@ -9,9 +9,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+
 from models.team import *
 from models.assignments import *
 from models.model import *
+from models.submission import *
+
 
 @app.route('/')
 def home():
@@ -208,6 +211,21 @@ def assignments_list():
                            user_status=log_in['user_status'], user=log_in['user'])
 
 
+@app.route("/add_assignment", methods=['POST', "GET"])
+def add_assignment():
+    """ add assignment to db """
+    if request.method == "GET":
+        return render_template("add_assignment.html",user_status=session['user_status'],
+                               user=session['user'])
+
+    elif request.method == "POST":
+        assignment = []
+        assignment.append([request.form["start_date"], request.form["end_date"],
+                       request.form["assignment_name"], request.form['assignment_link']])
+        Model.save_new_assignment(assignment)
+        return redirect(url_for('assignments_list'))
+
+
 @app.route("/edit_team_name", methods=['GET', 'POST'])
 def edit_team_name():
     """ Edit name of team"""
@@ -284,7 +302,7 @@ def submit_assignment():
     if request.method == 'POST':
         if request.form["select_form"] == "Submit assignment":
             my_submission = Submission(end_date, '0', name, link, student_example.id)
-            submission_status = Model.add_submission(my_submission)
+            submission_status = Submission.add_submission(my_submission)
             return render_template("submit_assignment_information.html", submission_status=submission_status,
                                    user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
         else:
@@ -294,7 +312,7 @@ def submit_assignment():
             for student in students:
                 if student.team == student_example.team:
                     my_submission = Submission(end_date, '0', name, link, student.id)
-                    submission_status = Model.add_submission(my_submission)
+                    submission_status = Submission.add_submission(my_submission)
             return render_template("submit_assignment_information.html", submission_status=submission_status,
                                    user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
 

@@ -5,6 +5,7 @@ from sqlalchemy.orm import sessionmaker
 Session = sessionmaker(bind=db)
 session = Session()
 
+
 class Manager(db.Model):
     """
     Class manager representing manager.
