@@ -28,3 +28,8 @@ class Employee(db.Model):
 
     def __repr__(self):
         return '{} {} {} {} {} {}'.format(self.id, self.name, self.surname, self.email, self.password, self.status)
+
+    @staticmethod
+    def get_all():
+        """ Return a list of objects """
+        return db.session.query(Employee).all()
