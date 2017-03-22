@@ -210,7 +210,7 @@ def remove_mentor(mentor_id):
 def teams_list():
     """ Shows list of teams"""
     teams = Team.get_all()
-    students = Model.students_get_all()
+    students = Student.get_all()
     return render_template("teams.html", teams=teams, students=students, user_id=log_in['user_id'],
                            user_status=log_in['user_status'], user=log_in['user'])
 
