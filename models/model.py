@@ -255,7 +255,9 @@ class Model:
 
         if chosen_date in dates:
             for student_id, value in status_id_dict.items():
-                c.execute('UPDATE attendance SET status = {} WHERE date = "{}" AND student_id = {};'.format(value, chosen_date, student_id))
+                c.execute('UPDATE attendance SET status = {} WHERE date = "{}" AND student_id = {};'.format(value,
+                                                                                                            chosen_date,
+                                                                                                            student_id))
         else:
             for student_id, value in status_id_dict.items():
                 c.execute('INSERT INTO attendance (date, status, student_id) VALUES ("{}", {}, {});'.format(chosen_date,
