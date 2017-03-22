@@ -1,7 +1,6 @@
 from main import db
 from sqlalchemy.orm import sessionmaker
 
-
 Session = sessionmaker(bind=db)
 session = Session()
 
@@ -111,7 +110,6 @@ class Student(db.Model):
     @staticmethod
     def count_days():
         pass
-
 
         # dates = []
         # conn = sqlite3.connect("database.db")
