@@ -343,11 +343,12 @@ def update_grade():
     return redirect(url_for('submissions_list'))
 
 
-@app.route("/remove_team", methods=["POST"])
-def remove_team():
-    team_name = request.form['team_name']
-    team_id = request.form['team_id']
-    Team.remove_team(team_id, team_name)
+@app.route("/remove_team/<team_id>")
+def remove_team(team_id):
+    """
+    Removes whole team with members
+    """
+    Team.remove_team(team_id)
     return redirect(url_for('teams_list'))
 
 

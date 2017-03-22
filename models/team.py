@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 Session = sessionmaker(bind=db)
 session = Session()
-
+from models.student import *
 
 class Team(db.Model):
     __tablename__ = 'teams_list'
@@ -25,11 +25,11 @@ class Team(db.Model):
 
 
     @staticmethod
-    def remove_team(team_id, team_name):
+    def remove_team(team_id):
         team = db.session.query(Team).get(team_id)
-        students_list_in_deleting_team = db.session.query(Student).filter_by(team=team_name)
+        students_list_in_deleting_team = db.session.query(Student).filter_by(team=team.name)
         for student in students_list_in_deleting_team:
-            student.team = "none"
+            student.team = None
         db.session.delete(team)
         db.session.commit()
 

@@ -18,10 +18,5 @@
                 <input name="name" class="add-person-form-input" type="text" placeholder="{{ old_name }}">
                 <button type="submit">RENAME</button>
             </form>
-                <form method="POST" action="/remove_team">
-                    <input type="hidden" value="{{ team_name }}" name="team_name">
-                    <input type="hidden" value="{{ team_id }}" name="team_id">
-                    <button type="submit">DELETE</button>
-                </form>
 		</section>
 {% endblock %}
