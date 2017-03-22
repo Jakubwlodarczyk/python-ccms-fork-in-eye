@@ -202,7 +202,7 @@ def teams_list():
 @app.route("/assignments")
 def assignments_list():
     """ Shows list of students """
-    assignments = Assignments.assignments_all()
+    assignments = db.session.query(Assignments).all()
     return render_template("show_assignments.html", assignments=assignments, user_id=session['user_id'],
                            user_status=session['user_status'], user=session['user'])
 
