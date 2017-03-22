@@ -1,5 +1,6 @@
 from main import db
 from sqlalchemy.orm import sessionmaker
+from models.attendance import Attendance
 
 Session = sessionmaker(bind=db)
 session = Session()
@@ -114,20 +115,12 @@ class Student(db.Model):
 
     @staticmethod
     def count_days():
-        pass
-
-        # dates = []
-        # conn = sqlite3.connect("database.db")
-        # with conn:
-        #     c = conn.cursor()
-        #     days = c.execute("SELECT * FROM attendance;")
-        #
-        #     for day in days.fetchall():
-        #         if day[1] not in dates:
-        #             dates.append(day[1])
-        #     conn.commit()
-        #
-        # return len(dates)
+        dates = []
+        attendance = Attendance.get_all()
+        for data in attendance:
+            if data.date not in dates:
+                dates.append(data.date)
+        return len(dates)
 
     @staticmethod
     def student_presence(attendance_list, all_students):
