@@ -13,9 +13,9 @@
 
 {% block content %}
        	<section class='content'>
-            <form class="add-team-form" name="add-team-form" method="post">
+            <form class="add-team-form" name="add-team-form" method="POST">
                 <label class="add-team-form-element">New team name</label><br/>
-                <input name="name" class="add-person-form-input" type="text" placeholder="{{ team_name }}">
+                <input name="name" class="add-person-form-input" type="text" placeholder="{{ old_name }}">
                 <button type="submit">RENAME</button>
             </form>
                 <form method="POST" action="/remove_team">

@@ -22,7 +22,7 @@
                 <thead>
                     <tr>
                         <th>{{ loop.index }}</th>
-                        <th><a href="{{ url_for('edit_team_name', team_id=team.id, team_name=team.name) }}">
+                        <th><a href="{{ url_for('edit_team_name', team_id=team.id) }}">
                             {{ team.name }}</a></th>
                     </tr>
                 </thead>

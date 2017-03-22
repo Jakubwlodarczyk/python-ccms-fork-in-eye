@@ -8,11 +8,10 @@ session = Session()
 
 class Team(db.Model):
     __tablename__ = 'teams_list'
-    id = db.Column(db.Integer, primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String, nullable=False)
 
-    def __init__(self, id, name):
-        self.id = id
+    def __init__(self, name):
         self.name = name
 
     def __repr__(self):
@@ -36,8 +35,8 @@ class Team(db.Model):
 
 
     @staticmethod
-    def edit_team(old_name, new_name):
-        team = db.session.query(Team).filter_by(name=old_name)
+    def edit_team(team_id, new_name):
+        team = db.session.query(Team).get(team_id)
         team.name = new_name
         db.session.commit()
 
@@ -45,3 +44,7 @@ class Team(db.Model):
     def get_all():
         """ Return a list of objects """
         return db.session.query(Team).all()
+
+    @staticmethod
+    def get_by_id(team_id):
+        return db.session.query(Team).get(team_id)

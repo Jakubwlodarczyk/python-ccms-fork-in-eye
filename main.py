@@ -240,18 +240,17 @@ def add_assignment():
         return redirect(url_for('assignments_list'))
 
 
-@app.route("/edit_team_name", methods=['GET', 'POST'])
-def edit_team_name():
+@app.route("/edit_team_name/<team_id>", methods=['GET', 'POST'])
+def edit_team_name(team_id):
     """ Edit name of team"""
     if request.method == "POST":
-        old_name = request.args['team_name']
         new_name = request.form['name']
-        Team.edit_team(old_name, new_name)
+        Team.edit_team(team_id, new_name)
         return redirect(url_for('teams_list'))
-    else:
-        team_id = request.args['team_id']
-        team_name = request.args['team_name']
-        return render_template("edit_team_name.html", team_id=team_id, team_name=team_name, )
+    elif request.method == "GET":
+        team = Team.get_by_id(team_id)
+        old_name = team.name
+        return render_template("edit_team_name.html", old_name=old_name)
 
 
 @app.route("/add_student", methods=['POST', "GET"])
