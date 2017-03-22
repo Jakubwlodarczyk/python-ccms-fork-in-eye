@@ -30,7 +30,6 @@ def user_check():
     username = request.form['username']
     password = request.form['password']
     status = request.form['status']
-    students = db.session.query(Student).all()
     person = Model.find_user(username, password, status)
     if not person:
         return render_template('error_login.html')
@@ -60,11 +59,11 @@ def students_list():
         Model.update_students_team(student_id, team, card)
         return redirect(url_for('students_list'))
     else:
-        teams = Team.all()
-        # teams = Model.create_teams_list()
-        students = Model.students_get_all()
+        teams = db.session.query(Team).all()
+        students = db.session.query(Student).all()
         cards = ['green', 'yellow', 'red']
-        return render_template("show_students_list.html", students=students, teams=teams, cards=cards, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
+        return render_template("show_students_list.html", students=students, teams=teams, cards=cards,
+                               user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
 
 
 @app.route("/students-attendance", methods=['GET', 'POST'])
