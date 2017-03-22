@@ -260,10 +260,10 @@ def add_student():
         return render_template("add.html", user_id=log_in['user_id'], user_status=log_in['user_status'],
                                user=log_in['user'])
     elif request.method == "POST":
-        person = []
-        person.append([request.form["fname"], request.form["lname"],
-                       request.form["email"]])
-        Model.save_new_student(person)
+        name = request.form["fname"]
+        surname = request.form["lname"]
+        email = request.form["email"]
+        Student.add_student(name, surname, email)
         return redirect(url_for('students_list'))
 
 
