@@ -18,7 +18,6 @@ from models.model import *
 from models.submission import *
 
 
-
 @app.route('/')
 def home():
     if not log_in.get('logged_in'):
@@ -33,6 +32,7 @@ def user_check():
     username = request.form['username']
     password = request.form['password']
     status = request.form['status']
+    students = db.session.query(Student).all()
     person = Model.find_user(username, password, status)
     if not person:
         return render_template('error_login.html')

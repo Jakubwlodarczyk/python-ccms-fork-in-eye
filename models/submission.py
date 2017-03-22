@@ -91,4 +91,3 @@ class Submission(db.Model):
         return submission_list
 
 
-Submission.add_submission('fjkdsa', 'fdkaj', 'fkjdsja', 'fjka', 'l')

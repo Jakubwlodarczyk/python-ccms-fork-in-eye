@@ -32,4 +32,3 @@ class Assignments(db.Model):
         assignment = Assignments(start_date=start_date, end_date=end_date, assignment_name=assignment_name, link=link)
         db.session.add(assignment)
         db.session.commit()
-

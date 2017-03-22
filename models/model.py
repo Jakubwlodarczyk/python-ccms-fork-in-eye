@@ -7,10 +7,8 @@ from main import db
 from sqlalchemy.orm import sessionmaker
 
 
-
 Session = sessionmaker(bind=db)
 session = Session()
-
 
 class Model:
     @staticmethod
@@ -23,6 +21,7 @@ class Model:
         Checks if given username and password exists in database
         Returns: person with given username and password
         """
+
         if status == 'student':
             try:
                 student = db.session.query(Student).filter_by(email=username, password=password).first()

@@ -5,7 +5,6 @@ from sqlalchemy.orm import sessionmaker
 Session = sessionmaker(bind=db)
 session = Session()
 
-
 class Manager(db.Model):
     """
     Class manager representing manager.
@@ -27,5 +26,4 @@ class Manager(db.Model):
         self.status = status
 
     def __repr__(self):
-        return '{} {} {} {} {} {}'.format(self.id, self.name, self.surname, self.email, self.password,
-                                          self.status)
+        return '{} {} {} {} {} {}'.format(self.id, self.name, self.surname, self.email, self.password, self.status)
