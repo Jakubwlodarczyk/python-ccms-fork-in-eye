@@ -69,8 +69,8 @@ def students_list():
         Student.edit_student_team_card(student_id, team, card)
         return redirect(url_for('students_list'))
     else:
-        teams = db.session.query(Team).all()
-        students = db.session.query(Student).all()
+        teams = Team.get_all()
+        students = Student.get_all()
         cards = ['green', 'yellow', 'red']
         return render_template("show_students_list.html", students=students, teams=teams, cards=cards,
                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
@@ -78,8 +78,8 @@ def students_list():
 
 @app.route("/students-attendance", methods=['GET', 'POST'])
 def students_attendance():
-    students_bad = db.session.query(Student).all()
-    attendances = db.session.query(Attendance).all()
+    students_bad = Student.get_all()
+    attendances = Attendance.get_all()
     students = Student.student_presence(attendances, students_bad)
     counted_days = Student.count_days()
     Student.current_score(students)
@@ -139,7 +139,7 @@ def remove_student(student_id):
 @app.route("/mentors")
 def mentors_list():
     """ Shows list of mentors """
-    mentors = db.session.query(Mentor).all()
+    mentors = Mentor.get_all()
     return render_template("show_mentors_list.html", mentors=mentors, user_id=log_in['user_id'],
                            user_status=log_in['user_status'], user=log_in['user'])
 
@@ -204,7 +204,7 @@ def remove_mentor(mentor_id):
 @app.route("/teams")
 def teams_list():
     """ Shows list of teams"""
-    teams = db.session.query(Team).all()
+    teams = Team.get_all()
     students = Model.students_get_all()
     return render_template("teams.html", teams=teams, students=students, user_id=log_in['user_id'],
                            user_status=log_in['user_status'], user=log_in['user'])
@@ -213,7 +213,7 @@ def teams_list():
 @app.route("/assignments")
 def assignments_list():
     """ Shows list of students """
-    assignments = db.session.query(Assignments).all()
+    assignments = Assignments.get_all()
     return render_template("show_assignments.html", assignments=assignments, user_id=log_in['user_id'],
                            user_status=log_in['user_status'], user=log_in['user'])
 
