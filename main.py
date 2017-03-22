@@ -59,7 +59,7 @@ def students_list():
         student_id = request.form['student_id']
         card = request.form['select-card']
         team = request.form['select-team']
-        Model.update_students_team(student_id, team, card)
+        Student.edit_student_team_card(student_id, team, card)
         return redirect(url_for('students_list'))
     else:
         teams = db.session.query(Team).all()
