@@ -7,6 +7,7 @@ session = Session()
 
 
 class Attendance(db.Model):
+    """ Class handle Attendance objects read from database"""
     __tablename__ = 'attendance'
     id = db.Column(db.Integer, primary_key=True, unique=True)
     date = db.Column(db.String)
@@ -23,6 +24,7 @@ class Attendance(db.Model):
 
     @staticmethod
     def add_attendance(date, status, student_id):
+        """ Create an attendance object and add to database """
         attendance = Attendance(date=date, status=status, student_id=student_id)
         db.session.add(attendance)
         db.session.commit()

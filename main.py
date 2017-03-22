@@ -18,6 +18,9 @@ from models.submission import *
 
 @app.route('/')
 def home():
+    """
+    Handles redirecting for home page based on whenever user is logged or not.
+    """
     if not log_in.get('logged_in'):
         return render_template('login.html')
     else:
@@ -27,6 +30,9 @@ def home():
 
 @app.route('/login', methods=['POST'])
 def user_check():
+    """
+    Checks for user in database based on given username and password.
+    """
     username = request.form['username']
     password = request.form['password']
     status = request.form['status']
@@ -43,7 +49,7 @@ def user_check():
 @app.route("/logout")
 def logout():
     """
-
+    Drops the session.
     """
     log_in['logged_in'] = False
     log_in['user_id'] = None
@@ -59,7 +65,7 @@ def students_list():
         student_id = request.form['student_id']
         card = request.form['select-card']
         team = request.form['select-team']
-        Model.update_students_team(student_id, team, card)
+        Student.edit_student_team_card(student_id, team, card)
         return redirect(url_for('students_list'))
     else:
         teams = db.session.query(Team).all()
@@ -162,7 +168,7 @@ def add_mentor():
         name = request.form['fname']
         surname = request.form['lname']
         email = request.form['email']
-        Model.add_new_mentor(name, surname, email)
+        Mentor.add_mentor(name, surname, email)
         return redirect(url_for('mentors_list'))
 
 
@@ -173,31 +179,30 @@ def edit_mentor(mentor_id):
     If the method was POST it should update mentor data in database.
     """
     if request.method == 'GET':
-        mentor = Model.get_mentor_by_id(mentor_id)
+        mentor = db.session.query(Mentor).get(mentor_id)
         old_name = mentor.name
         old_surname = mentor.surname
         old_email = mentor.email
         return render_template('edit_person_data.html', old_name=old_name, old_surname=old_surname, old_email=old_email)
     elif request.method == 'POST':
-        mentor = Model.get_mentor_by_id(mentor_id)
         new_name = request.form['new_fname']
         new_surname = request.form['new_lname']
         new_email = request.form['new_email']
-        Model.update_mentor_data(mentor_id, new_name, new_surname, new_email)
+        Mentor.edit_mentor(mentor_id, new_name, new_surname, new_email)
         return redirect(url_for('mentors_list'))
 
 
 @app.route("/remove_mentor/<mentor_id>")
 def remove_mentor(mentor_id):
     """ Removes student with selected id from the database """
-    Model.delete_mentor(mentor_id)
+    Mentor.remove_mentor(mentor_id)
     return redirect(url_for('mentors_list'))
 
 
 @app.route("/teams")
 def teams_list():
     """ Shows list of teams"""
-    teams = Team.all()
+    teams = db.session.query(Team).all()
     students = Model.students_get_all()
     return render_template("teams.html", teams=teams, students=students, user_id=log_in['user_id'],
                            user_status=log_in['user_status'], user=log_in['user'])
@@ -269,12 +274,9 @@ def add_team():
 @app.route("/remove_student_team")
 def remove_student_from_team():
     """ Remove student from a team"""
-    students = Model.students_get_all()
     student_id = request.args['student_id']
     student_id = int(student_id)
-    for student in students:
-        if student.id == student_id:
-            Model.remove_student_team(student_id)
+    Student.remove_student_team(student_id)
     return redirect(url_for('teams_list'))
 
 
