@@ -18,11 +18,11 @@
           <form class="add-person-form"
                 name="add-person-form" method="POST">
             <label for="new_email" class="add-person-form-element"> Email</label>
-              <input name="new_email" class="add-person-form-input" placeholder= "{{ old_email }}" required>
+              <input name="new_email" class="add-person-form-input" value= "{{ old_email }}" required>
             <label for="new_fname" class="add-person-form-element">First name</label>
-              <input name="new_fname" class="add-person-form-input" type="text" placeholder="{{ old_name }}">
+              <input name="new_fname" class="add-person-form-input" type="text" value="{{ old_name }}">
             <label for="new_lname" class="add-person-form-element">Last name</label>
-              <input name="new_lname" class="add-person-form-input" type="text" placeholder="{{ old_surname }}">
+              <input name="new_lname" class="add-person-form-input" type="text" value="{{ old_surname }}">
 			  <button type="submit" name="action">SAVE</button>
          </form>
          </section>
