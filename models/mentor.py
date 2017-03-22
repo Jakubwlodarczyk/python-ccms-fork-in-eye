@@ -61,3 +61,8 @@ class Mentor(db.Model):
     def get_all():
         """ Return a list of objects """
         return db.session.query(Mentor).all()
+
+    @staticmethod
+    def get_by_id(mentor_id):
+        """ Return object of mentor found by ID """
+        return db.session.query(Mentor).get(mentor_id)
