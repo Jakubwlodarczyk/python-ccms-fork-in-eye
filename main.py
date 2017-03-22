@@ -340,7 +340,7 @@ def update_grade():
     """ Update grade of student submission in database """
     grade = request.form['grade']
     student_id = request.form['student_id']
-    Model.update_grades(student_id, grade)
+    # UPGRADE GRADE
     return redirect(url_for('submissions_list'))
 
 

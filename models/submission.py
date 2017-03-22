@@ -63,3 +63,10 @@ class Submission(db.Model):
     def get_all():
         """ Return a list of objects """
         return db.session.query(Submission).all()
+
+    @staticmethod
+    def upgrade_grade():
+        """
+        Upgrade grade in db
+        """
+        pass
