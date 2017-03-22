@@ -18,3 +18,11 @@ class Attendance(db.Model):
         self.status = status
         self.student_id = student_id
 
+    def __repr__(self):
+        return '{} {} {}'.format(self.date, self.status, self.student_id)
+
+    @staticmethod
+    def add_attendance(date, status, student_id):
+        attendance = Attendance(date=date, status=status, student_id=student_id)
+        db.session.add(attendance)
+        db.session.commit()

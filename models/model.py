@@ -1,9 +1,11 @@
+
 from models.student import *
 from models.mentor import *
 from models.employee import *
 from models.manager import *
 from main import db
 from sqlalchemy.orm import sessionmaker
+
 
 Session = sessionmaker(bind=db)
 session = Session()
@@ -110,6 +112,20 @@ class Model:
         conn.commit()
         conn.close()
 
+
+    @classmethod
+    def save_new_assignment(cls, assignment):
+        """
+        save new assignment to the database.
+        """
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        for assign in assignment:
+            params = [assign[0], assign[1], assign[2], assign[3]]
+        c.execute("INSERT INTO assignments (start_date, end_date, name, link) VALUES (?, ?, ?, ?);", params)
+        conn.commit()
+        conn.close()
+
     @classmethod
     def submission_list_distinct(cls):  # from database
         """
@@ -158,27 +174,7 @@ class Model:
         data.commit()
         data.close()
 
-    @classmethod
-    def add_submission(cls, submission):
-
-
-
-
-        data = sqlite3.connect("database.db")
-        cursor = data.cursor()
-        submission_list = cls.create_submission_list()
-        print(submission.name)
-        print(submission.student_id)
-        for sub in submission_list:
-            if sub.name == submission.name:
-                if sub.student_id == submission.student_id:
-                    return False
-
-        cursor.execute("INSERT INTO submission (send_date, grade, name, github_link, student_id) VALUES (?, ?, ?, ?, ?)",
-        [submission.send_date, submission.grade, submission.name, submission.github_link, submission.student_id])
-        data.commit()
-        data.close()
-        return True
+    
 
 
     @classmethod
