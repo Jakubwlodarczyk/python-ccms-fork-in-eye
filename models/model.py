@@ -1,4 +1,3 @@
-
 from models.student import *
 from models.mentor import *
 from models.employee import *
@@ -9,6 +8,7 @@ from sqlalchemy.orm import sessionmaker
 
 Session = sessionmaker(bind=db)
 session = Session()
+
 
 class Model:
     @staticmethod

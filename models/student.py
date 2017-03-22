@@ -36,6 +36,7 @@ class Student(db.Model):
 
     @staticmethod
     def add_student(name, surname, email):
+        """ Create object of student class and add it to database"""
         password = name.lower()
         status = 'student'
         student = Student(name=name, surname=surname, email=email, password=password, status=status, team=None,
@@ -45,6 +46,7 @@ class Student(db.Model):
 
     @staticmethod
     def edit_student(student_id, name, surname, email):
+        """ Edit object of student class and update it in database"""
         student = db.session.query(Student).get(student_id)
         student.name = name
         student.surname = surname
@@ -53,10 +55,25 @@ class Student(db.Model):
 
     @staticmethod
     def remove_student(student_id):
+        """ Remove object of student class and update it in database"""
         student = db.session.query(Student).get(student_id)
         db.session.delete(student)
         db.session.commit()
         
+    @staticmethod
+    def edit_student_team_card(student_id, team, card):
+        """ Edit student team, and card , and update it in database"""
+        student = db.session.query(Student).filter_by(id=student_id).first()
+        student.team = team
+        student.card = card
+        db.session.commit()
+
+    @staticmethod
+    def remove_student_team(student_id):
+        """ Remove student from team, and update database """
+        student = db.session.query(Student).filter_by(id=student_id).first()
+        student.team = None
+        db.session.commit()
 
     @staticmethod
     def add_attendance_to_student(attendances_obj_list):
