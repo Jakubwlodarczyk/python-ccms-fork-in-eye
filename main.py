@@ -14,6 +14,7 @@ from models.team import *
 from models.assignments import *
 from models.model import *
 from models.submission import *
+from models.student import *
 
 
 @app.route('/')
@@ -291,45 +292,44 @@ def submission_form():
         sub_link = request.form["submission_link"]
         sub_start_date = request.form["submission_start_date"]
         sub_end_date = request.form["submission_end_date"]
+
         return render_template("submission_form.html", sub_name=sub_name, sub_link=sub_link,
                                sub_start_date=sub_start_date, sub_end_date=sub_end_date,
-                               user_id=['user_id'], user_status=log_in['user_status'], user=log_in['user'])
+                               user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
 
 
-@app.route("/submit_assignment", methods=['POST'])
-def submit_assignment():
+@app.route("/submit_assignment/<user_id>", methods=['POST'])
+def submit_assignment(user_id):
     """ Add submission to submission list"""
 
-    student_example = Student("the_id", "name", "surname", "email", "password", "status", "green", "Miszczowie")
-    students = Model.students_get_all()
+    # student_example = Student("name", "surname", "email", "password", "status", "green", "Miszczowie")
+    
     students = db.session.query(Student).all()
     name = request.form["submission_name"]
     link = request.form["submission_link"]
     end_date = request.form["submission_end_date"]
     if request.method == 'POST':
         if request.form["select_form"] == "Submit assignment":
-            my_submission = Submission(end_date, '0', name, link, student_example.id)
-            my_submission = Submission.add_submission(my_submission.send_date, my_submission.grade, 
-            
+            my_submission = Submission(end_date, '0', name, link, user_id)
+            submission_status = Submission.add_submission(my_submission.send_date, my_submission.grade,
             my_submission.name, my_submission.github_link, my_submission.student_id)
             
             return render_template("submit_assignment_information.html", submission_status=submission_status,
                                    user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
         else:
-            my_submission = Submission(end_date, '0', name, link, student_example.id)
-            Submission.add_submission(my_submission.send_date, my_submission_grade, 
-            my_submission.name, my_submission.github_link, my_submission.student_id)
-           
+            same_teams = Submission.submit_as_team(user_id)
+
+            for same_team_student in same_teams:
 
 
-            
-            for student in students:
-                if student.team == student_example.team:
-                    my_submission = Submission(end_date, '0', name, link, student.id)
-                    submission_status = Submission.add_submission(my_submission.send_date, my_submission_grade, 
-            my_submission.name, my_submission.github_link, my_submission.student_id)
-            return render_template("submit_assignment_information.html", submission_status=submission_status,
-                                   user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
+                for student in students:
+                    if student.team == same_team_student.team:
+                
+                        my_submission = Submission(end_date, '0', name, link, student.id)
+                        submission_status = Submission.add_submission(my_submission.send_date, my_submission.grade, 
+                        my_submission.name, my_submission.github_link, my_submission.student_id)
+                return render_template("submit_assignment_information.html", submission_status=submission_status,
+                                               user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
 
 
 
