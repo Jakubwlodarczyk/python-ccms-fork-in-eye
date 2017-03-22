@@ -319,11 +319,15 @@ def submit_assignment(user_id):
             return render_template("submit_assignment_information.html", submission_status=submission_status,
                                    user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
         else:
-            same_teams = Submission.submit_as_team(user_id)
+            # same_teams = Submission.submit_as_team(user_id)
+            same_team = []
+            student_searched = db.session.query(Student).get(user_id) # student with needed id
+            students = db.session.query(Student).all()  # list of all students
+            for student in students:
+                if student.team == student_searched.team:
+                    same_team.append(student)
 
-            for same_team_student in same_teams:
-
-
+            for same_team_student in same_team:
                 for student in students:
                     if student.team == same_team_student.team:
 
@@ -339,6 +343,9 @@ def update_grade():
     """ Update grade of student submission in database """
     grade = request.form['grade']
     student_id = request.form['student_id']
+    submission_name = request.form["submission_name"]
+    Submission.upgrade_grade(grade, student_id, submission_name)
+
     # UPGRADE GRADE
     return redirect(url_for('submissions_list'))
 
@@ -364,6 +371,7 @@ def show_students_grades():
         start = request.form['start_date']
         end = request.form['end_date']
         student_id = request.form['student_id']
+        
         performance = Model.get_performance(student_id, start, end)
         if performance:
             return render_template("get_performance.html", performance=performance, user_id=log_in['user_id'],

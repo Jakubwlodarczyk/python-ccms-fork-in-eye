@@ -1,13 +1,14 @@
 from main import db
-
 from sqlalchemy.orm import sessionmaker
+from models.student import *
+
 
 
 Session = sessionmaker(bind=db)
 session = Session()
 
 
-from models.student import *
+
 
 class Submission(db.Model):
     """
@@ -67,8 +68,18 @@ class Submission(db.Model):
         return db.session.query(Submission).all()
 
     @staticmethod
-    def upgrade_grade():
+    def upgrade_grade(my_grade, my_id, submission_name):
         """
         Upgrade grade in db
         """
-        pass
+        list_of_subm = db.session.query(Submission).all()
+        for submission in list_of_subm:
+            if submission.student_id == int(my_id):
+                if submission.name == submission_name:
+                    submission.grade = my_grade
+                    db.session.commit()
+
+
+        # student_searched = db.session.query(Submission).get(user_id)
+
+            
