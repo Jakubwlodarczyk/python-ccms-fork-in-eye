@@ -343,8 +343,8 @@ def remove_team():
 def show_students_grades():
     """ Shows students grades """
     if request.method == "GET":
-        students = Model.students_get_all()
-        grades = Model.get_average()
+        students = Student.students_get_all()
+        grades = Student.get_average()
         return render_template("show_grades.html", students=students, grades=grades, user_id=log_in['user_id'],
                                user_status=log_in['user_status'], user=log_in['user'])
     elif request.method == 'POST':
