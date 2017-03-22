@@ -22,15 +22,17 @@
                 <thead>
                     <tr>
                         <th>{{ loop.index }}</th>
-                        <th><a href="{{ url_for('edit_team_name', team_id=team.id, team_name=team.name) }}">
-                            {{ team.name }}</a></th>
+                        <th>{{ team.name }}
+                            <a href="{{ url_for('edit_team_name', team_id=team.id) }}">Edit</a>
+                            <a href="{{ url_for('remove_team', team_id=team.id)}}">Delete</a>
+                        </th>
                     </tr>
                 </thead>
                     {% for student in students %}
                         {% if student.team == team.name %}
                             <tr>
                                 <td><a href="{{ url_for('remove_student_from_team', student_id=student.id) }}" >
-                                    <button class="little-button button-to-remove">Remove</button></a></td>
+                                    Remove</a></td>
                                 <td>{{ student.name }} {{ student.surname }}</td>
                             </tr>
 
