@@ -1,9 +1,12 @@
 from main import db
+from sqlalchemy import and_, func
 from sqlalchemy.orm import sessionmaker
 from models.attendance import Attendance
 
 Session = sessionmaker(bind=db)
 session = Session()
+
+from models.submission import *
 
 
 class Student(db.Model):
@@ -59,7 +62,7 @@ class Student(db.Model):
         student = db.session.query(Student).get(student_id)
         db.session.delete(student)
         db.session.commit()
-        
+
     @staticmethod
     def edit_student_team_card(student_id, team, card):
         """ Edit student team, and card , and update it in database"""
@@ -96,7 +99,6 @@ class Student(db.Model):
                 if attendance.id == student.id:
                     student.attendance_list.append(attendance)
 
-
     def view_grades(self):
         '''
         Allows to view grades for all student's assignments.
@@ -106,7 +108,6 @@ class Student(db.Model):
             if sub.student_id == self.id:
                 my_submiss.append(sub)
         return my_submiss
-
 
     def check_attendence(self, data):
         """
@@ -150,3 +151,18 @@ class Student(db.Model):
             points += (student.late * 80)
 
             student.score = (points / Student.count_days())
+
+    @staticmethod
+    def get_average():
+        """ Gets averages of all students """
+
+        data = (db.session.query(Student.id, (func.round(func.avg(Submission.grade), 2)))
+                .join(Submission, and_(Submission.student_id == Student.id))
+                .group_by(Submission.student_id)).all()
+
+        grades = {}
+
+        for record in data:
+            grades[record[0]] = record[1]
+
+        return grades
