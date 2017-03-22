@@ -62,7 +62,7 @@ def students_list():
         Model.update_students_team(student_id, team, card)
         return redirect(url_for('students_list'))
     else:
-        teams = Team.all()
+        teams = db.session.query(Team).all()
         # teams = Model.create_teams_list()
         students = Model.students_get_all()
         cards = ['green', 'yellow', 'red']
@@ -198,7 +198,7 @@ def remove_mentor(mentor_id):
 @app.route("/teams")
 def teams_list():
     """ Shows list of teams"""
-    teams = Team.all()
+    teams = db.session.query(Team).all()
     students = Model.students_get_all()
     return render_template("teams.html", teams=teams, students=students, user_id=session['user_id'],
                            user_status=session['user_status'], user=session['user'])
