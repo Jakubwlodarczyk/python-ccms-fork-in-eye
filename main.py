@@ -305,7 +305,6 @@ def submit_assignment(user_id):
     """ Add submission to submission list"""
 
     student_example = Student("name", "surname", "email", "password", "status", "green", "Miszczowie")
-    
     students = db.session.query(Student).all()
     name = request.form["submission_name"]
     link = request.form["submission_link"]
@@ -315,7 +314,7 @@ def submit_assignment(user_id):
             my_submission = Submission(end_date, '0', name, link, user_id)
             submission_status = Submission.add_submission(my_submission.send_date, my_submission.grade,
             my_submission.name, my_submission.github_link, my_submission.student_id)
-            
+
             return render_template("submit_assignment_information.html", submission_status=submission_status,
                                    user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
         else:
@@ -326,9 +325,9 @@ def submit_assignment(user_id):
 
                 for student in students:
                     if student.team == same_team_student.team:
-                
+
                         my_submission = Submission(end_date, '0', name, link, student.id)
-                        submission_status = Submission.add_submission(my_submission.send_date, my_submission.grade, 
+                        submission_status = Submission.add_submission(my_submission.send_date, my_submission.grade,
                         my_submission.name, my_submission.github_link, my_submission.student_id)
                 return render_template("submit_assignment_information.html", submission_status=submission_status,
                                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
@@ -355,8 +354,8 @@ def remove_team():
 def show_students_grades():
     """ Shows students grades """
     if request.method == "GET":
-        students = Model.students_get_all()
-        grades = Model.get_average()
+        students = Student.get_all()
+        grades = Student.get_average()
         return render_template("show_grades.html", students=students, grades=grades, user_id=log_in['user_id'],
                                user_status=log_in['user_status'], user=log_in['user'])
     elif request.method == 'POST':
