@@ -304,7 +304,7 @@ def submission_form():
 def submit_assignment(user_id):
     """ Add submission to submission list"""
 
-    # student_example = Student("name", "surname", "email", "password", "status", "green", "Miszczowie")
+    student_example = Student("name", "surname", "email", "password", "status", "green", "Miszczowie")
     
     students = db.session.query(Student).all()
     name = request.form["submission_name"]
@@ -332,7 +332,6 @@ def submit_assignment(user_id):
                         my_submission.name, my_submission.github_link, my_submission.student_id)
                 return render_template("submit_assignment_information.html", submission_status=submission_status,
                                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
-
 
 
 @app.route("/update_grade", methods=['POST'])

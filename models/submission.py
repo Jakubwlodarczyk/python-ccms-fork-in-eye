@@ -1,9 +1,5 @@
 from main import db
-from sqlalchemy.orm import sessionmaker
 from models.student import *
-
-Session = sessionmaker(bind=db)
-session = Session()
 
 
 class Submission(db.Model):
@@ -56,8 +52,6 @@ class Submission(db.Model):
             if student.team == student_searched.team:
                 same_team.append(student)
         return same_team
-                
-            
 
     @staticmethod
     def get_all():
