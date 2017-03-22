@@ -1,15 +1,15 @@
 import sqlite3
-from models.student import Student
-from models.mentor import Mentor
-from models.team import Team
-from models.submission import Submission
-from models.user import User
+from main import db
+from sqlalchemy.orm import sessionmaker
+from models.student import *
 
 
+Session = sessionmaker(bind=db)
+session = Session()
 
 class Model:
-    @classmethod
-    def find_user(cls, username, password, status):
+    @staticmethod
+    def find_user(username, password, status):
         """
         Args:
         username: str, data from form
@@ -18,7 +18,18 @@ class Model:
         Checks if given username and password exists in database
         Returns: person with given username and password
         """
-        pass
+
+        if status == "student":
+
+            student = db.session.query(Student).filter_by(email=username, password=password)
+            return student
+
+        elif status == "mentor":
+            pass
+        elif status == "manager":
+            pass
+        elif status == "employee":
+            pass
 
     @classmethod
     def update_student_data(cls, student_id, new_name, new_surname, new_email):

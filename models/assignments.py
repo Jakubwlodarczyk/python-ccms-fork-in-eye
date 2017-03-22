@@ -10,7 +10,7 @@ class Assignments:
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     start_date = db.Column(db.String, nullable=False)
     end_date = db.Column(db.String, nullable=False)
-    name = db.Column(db.String. nullable=False)
+    name = db.Column(db.String, nullable=False)
     link = db.Column(db.String, nullable=False)
 
     def __init__(self, start_date, end_date, assignment_name, link):

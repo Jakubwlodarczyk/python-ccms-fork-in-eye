@@ -1,27 +1,29 @@
-from flask import Flask, render_template, request, redirect, url_for, session, abort
+from flask import Flask, render_template, request, redirect, url_for
+from flask import session as log_in
 import os
-from models.model import Model
-from models.submission import Submission
-from models.assignments import Assignments
+
+
 import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 from models.student import *
 from models.attendance import *
-
+from models.model import Model
+from models.submission import Submission
+from models.assignments import Assignments
 
 @app.route('/')
 def home():
-    if not session.get('logged_in'):
+    if not log_in.get('logged_in'):
         return render_template('login.html')
     else:
-        return render_template('home.html', user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
+        return render_template('home.html', user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
 
 
 @app.route('/login', methods=['POST'])
@@ -29,13 +31,14 @@ def user_check():
     username = request.form['username']
     password = request.form['password']
     status = request.form['status']
+    students = db.session.query(Student).all()
     person = Model.find_user(username, password, status)
     if not person:
         return render_template('error_login.html')
-    session['logged_in'] = True
-    session['user_id'] = person.id
-    session['user_status'] = person.status
-    session['user'] = person.name + ' ' + person.surname
+    log_in['logged_in'] = True
+    log_in['user_id'] = person.id
+    log_in['user_status'] = person.status
+    log_in['user'] = person.name + ' ' + person.surname
     return home()
 
 
