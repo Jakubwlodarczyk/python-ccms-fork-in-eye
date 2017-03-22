@@ -1,15 +1,20 @@
-import sqlite3
-# from models.student import Student
-# from models.mentor import Mentor
-# from models.team import Team
-# from models.submission import Submission
-# from models.user import User
 
+from models.student import *
+from models.mentor import *
+from models.employee import *
+from models.manager import *
+from main import db
+from sqlalchemy.orm import sessionmaker
+
+
+
+Session = sessionmaker(bind=db)
+session = Session()
 
 
 class Model:
-    @classmethod
-    def find_user(cls, username, password, status):
+    @staticmethod
+    def find_user(username, password, status):
         """
         Args:
         username: str, data from form
@@ -18,7 +23,30 @@ class Model:
         Checks if given username and password exists in database
         Returns: person with given username and password
         """
-        pass
+        if status == 'student':
+            try:
+                student = db.session.query(Student).filter_by(email=username, password=password).first()
+                return student
+            except:
+                return None
+        elif status == 'mentor':
+            try:
+                student = db.session.query(Mentor).filter_by(email=username, password=password).first()
+                return student
+            except:
+                return None
+        elif status == 'employee':
+            try:
+                student = db.session.query(Employee).filter_by(email=username, password=password).first()
+                return student
+            except:
+                return None
+        elif status == 'manager':
+            try:
+                student = db.session.query(Manager).filter_by(email=username, password=password).first()
+                return student
+            except:
+                return None
 
     @classmethod
     def update_student_data(cls, student_id, new_name, new_surname, new_email):
@@ -70,18 +98,6 @@ class Model:
         database = c.execute(query)
         conn.commit()
         conn.close()
-
-    @classmethod
-    def update_team_name(cls, old_name, new_name):
-        """ Update team name in database """
-        if new_name == '':
-            new_name = "_"
-        data = sqlite3.connect("database.db")
-        cursor = data.cursor()
-        cursor.execute("UPDATE teams_list SET name = '{}' WHERE name = '{}'".format(new_name, old_name))
-        cursor.execute("UPDATE student SET team = '{}' WHERE team = '{}'".format(new_name, old_name))
-        data.commit()
-        data.close()
 
     @classmethod
     def save_new_student(cls, students):
@@ -151,17 +167,6 @@ class Model:
 
 
     @classmethod
-    def add_team(cls, team_name):
-        """ Adds new team to database """
-        if team_name == '':
-            team_name = '_'
-        data = sqlite3.connect("database.db")
-        cursor = data.cursor()
-        cursor.execute("INSERT INTO teams_list (name) VALUES ('{}')".format(team_name))
-        data.commit()
-        data.close()
-
-    @classmethod
     def remove_student_team(cls, student_id):
         """ Remove student from team"""
         data = sqlite3.connect("database.db")
@@ -225,15 +230,6 @@ class Model:
         data.commit()
         data.close()
 
-    @classmethod
-    def delete_team(cls, team_id, team_name):
-        """ Delete team from database """
-        data = sqlite3.connect("database.db")
-        cursor = data.cursor()
-        cursor.execute("DELETE FROM teams_list WHERE ID = '{}';".format(team_id))
-        cursor.execute("UPDATE student SET team = 'None' WHERE team = '{}'".format(team_name))
-        data.commit()
-        data.close()
 
     @staticmethod
     def create_attendance(values, chosen_date, ids): # values = list, date = str (2017-03-15), ids = list

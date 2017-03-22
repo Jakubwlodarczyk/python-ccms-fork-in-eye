@@ -1,4 +1,4 @@
-import sqlite3
+
 from main import db
 from sqlalchemy.orm import sessionmaker
 
@@ -89,3 +89,6 @@ class Submission(db.Model):
 
         conn.close()
         return submission_list
+
+
+Submission.add_submission('fjkdsa', 'fdkaj', 'fkjdsja', 'fjka', 'l')

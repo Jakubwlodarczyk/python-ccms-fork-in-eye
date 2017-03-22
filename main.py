@@ -1,29 +1,31 @@
-from flask import Flask, render_template, request, redirect, url_for, abort, session
-
-from models.submission import Submission
-# from models.assignments import Assignments
 import datetime
+from flask import Flask, render_template, request, redirect, url_for, session as log_in
 from flask_sqlalchemy import SQLAlchemy
 import os
 
 
-from models.model import Model
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# from models.student import *
-# from models.attendance import *
+
+
+from models.team import *
+from models.assignments import *
+from models.model import *
+from models.submission import *
+
 
 
 @app.route('/')
 def home():
-    if not session.get('logged_in'):
+    if not log_in.get('logged_in'):
         return render_template('login.html')
     else:
-        return render_template('home.html', user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
+        return render_template('home.html', user_id=log_in['user_id'], user_status=log_in['user_status'],
+                               user=log_in['user'])
 
 
 @app.route('/login', methods=['POST'])
@@ -34,19 +36,19 @@ def user_check():
     person = Model.find_user(username, password, status)
     if not person:
         return render_template('error_login.html')
-    session['logged_in'] = True
-    session['user_id'] = person.id
-    session['user_status'] = person.status
-    session['user'] = person.name + ' ' + person.surname
+    log_in['logged_in'] = True
+    log_in['user_id'] = person.id
+    log_in['user_status'] = person.status
+    log_in['user'] = person.name + ' ' + person.surname
     return home()
 
 
 @app.route("/logout")
 def logout():
-    session['logged_in'] = False
-    session['user_id'] = None
-    session['user_status'] = None
-    session['user'] = None
+    log_in['logged_in'] = False
+    log_in['user_id'] = None
+    log_in['user_status'] = None
+    log_in['user'] = None
     return home()
 
 
@@ -60,7 +62,8 @@ def students_list():
         Model.update_students_team(student_id, team, card)
         return redirect(url_for('students_list'))
     else:
-        teams = Model.create_teams_list()
+        teams = Team.all()
+        # teams = Model.create_teams_list()
         students = Model.students_get_all()
         cards = ['green', 'yellow', 'red']
         return render_template("show_students_list.html", students=students, teams=teams, cards=cards, user_id=session['user_id'], user_status=session['user_status'], user=session['user'])
@@ -195,7 +198,7 @@ def remove_mentor(mentor_id):
 @app.route("/teams")
 def teams_list():
     """ Shows list of teams"""
-    teams = Model.create_teams_list()
+    teams = Team.all()
     students = Model.students_get_all()
     return render_template("teams.html", teams=teams, students=students, user_id=session['user_id'],
                            user_status=session['user_status'], user=session['user'])
@@ -230,7 +233,7 @@ def edit_team_name():
     if request.method == "POST":
         old_name = request.args['team_name']
         new_name = request.form['name']
-        Model.update_team_name(old_name, new_name)
+        Team.edit_team(old_name, new_name)
         return redirect(url_for('teams_list'))
     else:
         team_id = request.args['team_id']
@@ -260,7 +263,7 @@ def add_team():
                                user=session['user'])
     else:
         team_name = request.form['new-team-name']
-        Model.add_team(team_name)
+        Team.add_team(team_name)
         return redirect(url_for('teams_list'))
 
 
@@ -328,7 +331,7 @@ def update_grade():
 def remove_team():
     team_name = request.form['team_name']
     team_id = request.form['team_id']
-    Model.delete_team(team_id, team_name)
+    Team.remove_team(team_id, team_name)
     return redirect(url_for('teams_list'))
 
 

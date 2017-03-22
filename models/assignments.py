@@ -1,5 +1,7 @@
 from main import db
 from sqlalchemy.orm import sessionmaker
+
+
 Session = sessionmaker(bind=db)
 session = Session()
 
@@ -22,7 +24,6 @@ class Assignments(db.Model):
         self.assignment_name = str(assignment_name)
         self.link = link
 
-
     def __repr__(self):
         return '{} {} {} {}'.format(self.start_date, self.end_date, self.assignment_name, self.link)
 
@@ -31,3 +32,4 @@ class Assignments(db.Model):
         assignment = Assignments(start_date=start_date, end_date=end_date, assignment_name=assignment_name, link=link)
         db.session.add(assignment)
         db.session.commit()
+

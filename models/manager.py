@@ -1,8 +1,12 @@
-from models.user import User
 from main import db
+from sqlalchemy.orm import sessionmaker
 
 
-class Manager(User):
+Session = sessionmaker(bind=db)
+session = Session()
+
+
+class Manager(db.Model):
     """
     Class manager representing manager.
     Reads data from database.
@@ -15,13 +19,13 @@ class Manager(User):
     password = db.Column(db.String, nullable=False)
     status = db.Column(db.String)
 
-    def __init__(self, name, surname, email, password, status, card, team):
+    def __init__(self, name, surname, email, password, status='manager'):
         self.name = name
         self.surname = surname
         self.email = email
         self.password = password
-        self.status = 'manager'
+        self.status = status
 
     def __repr__(self):
-        return '{} {} {} {} {} {} {} {}'.format(self.id, self.name, self.surname, self.email, self.password,
-                                                self.status)
+        return '{} {} {} {} {} {}'.format(self.id, self.name, self.surname, self.email, self.password,
+                                          self.status)
