@@ -13,7 +13,7 @@
 
 {% block content %}
     {% if session['user_status'] == 'mentor'%}
-        <table>
+
             <thead>
             <tr>
                 <th>Full name</th>
@@ -76,7 +76,9 @@
 
         </table>
         <a href="{{ url_for('show_all_grades')}}">
-        <button type="button" name="button">Show all grades</button>
+        <center>
+            <button type="button" name="button">Show all grades</button>
+        </center>
         </a>
 {% endblock %}
     </body>
