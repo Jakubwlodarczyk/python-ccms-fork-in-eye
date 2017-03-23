@@ -15,7 +15,7 @@
 
     {% block content %}
         <section class="section-add-person-form">
-            <form class="add-person-form"
+            <form class="add-person-form" id="add-person-form"
                 name="add-person-form" method="post">
                 <label for="email" class="add-person-form-element"> Email</label>
                     <input name="email" email="email" class="add-person-form-input"
@@ -27,6 +27,7 @@
                 <button>SAVE</button>
             </form>
         </section>
+    <!--<script type="text/javascript" src="static/js/validation.js"></script>-->
     {% endblock %}
 
 {% endif %}
