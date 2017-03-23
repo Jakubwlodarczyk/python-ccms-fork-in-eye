@@ -148,9 +148,6 @@ def mentors_list():
 @app.route("/submissions", methods=['POST', "GET"])
 def submissions_list():
     """Shows list of submissions"""
-    # options = Model.submission_list_distinct()
-
-
     options = db.session.query(Submission).all()
 
     submissions = Submission.get_all()
