@@ -149,17 +149,18 @@ def mentors_list():
 def submissions_list():
     """Shows list of submissions"""
     submissions = db.session.query(Submission).all()
+    options = Submission.get_sub_distinct()
 
     students = Student.get_all()
     if request.method == "GET":
-        return render_template("submission_table.html", submissions=submissions, options=[submission.name for submission in submissions] , students=students,
+        return render_template("submission_table.html", submissions=submissions, options=[option.name for option in options] , students=students,
                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
-
+        
     if request.method == "POST":
         option = request.form["select-submission"]
         select_option = "--select--"
         return render_template("submission_table.html", submissions=submissions, option=option,
-                               options=[submission.name for submission in submissions], select_option=select_option, students=students,
+                               options=[option.name for option in options], select_option=select_option, students=students,
                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
 
 
@@ -341,7 +342,6 @@ def update_grade():
     submission_name = request.form["submission_name"]
     Submission.upgrade_grade(grade, student_id, submission_name)
 
-    # UPGRADE GRADE
     return redirect(url_for('submissions_list'))
 
 
