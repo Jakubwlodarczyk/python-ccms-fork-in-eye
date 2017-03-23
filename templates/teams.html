@@ -23,8 +23,8 @@
                     <tr>
                         <th>{{ loop.index }}</th>
                         <th>{{ team.name }}
-                            <a href="{{ url_for('edit_team_name', team_id=team.id) }}">Edit</a>
-                            <a href="{{ url_for('remove_team', team_id=team.id)}}">Delete</a>
+                            <a href="{{ url_for('edit_team_name', team_id=team.id) }}"><img class="small" src="{{ url_for('static', filename='edit.png')}}"></a>
+                            <a href="{{ url_for('remove_team', team_id=team.id)}}"><img class="small" src="{{ url_for('static', filename='trash.png')}}"></a>
                         </th>
                     </tr>
                 </thead>
