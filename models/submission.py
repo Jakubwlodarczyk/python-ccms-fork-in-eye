@@ -82,6 +82,12 @@ class Submission(db.Model):
                     db.session.commit()
 
 
-        # student_searched = db.session.query(Submission).get(user_id)
+    @classmethod
+    def get_sub_distinct(cls):
+        """
+        get distinct list of submissions
+        """
+        return db.session.query(cls.name).distinct()
+
 
             
