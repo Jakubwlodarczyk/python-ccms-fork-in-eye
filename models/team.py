@@ -7,6 +7,7 @@ session = Session()
 from models.student import *
 
 class Team(db.Model):
+    """Student's teams"""
     __tablename__ = 'teams_list'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String, nullable=False)
@@ -19,6 +20,7 @@ class Team(db.Model):
 
     @staticmethod
     def add_team(name):
+        """Add a new team"""
         team = Team(name=name)
         db.session.add(team)
         db.session.commit()
@@ -26,6 +28,7 @@ class Team(db.Model):
 
     @staticmethod
     def remove_team(team_id):
+        """Remove a team"""
         team = db.session.query(Team).get(team_id)
         students_list_in_deleting_team = db.session.query(Student).filter_by(team=team.name)
         for student in students_list_in_deleting_team:
@@ -36,6 +39,7 @@ class Team(db.Model):
 
     @staticmethod
     def edit_team(team_id, new_name):
+        """Edit team's name"""
         team = db.session.query(Team).get(team_id)
         team.name = new_name
         db.session.commit()
@@ -47,4 +51,5 @@ class Team(db.Model):
 
     @staticmethod
     def get_by_id(team_id):
+        """Get a team by it's id"""
         return db.session.query(Team).get(team_id)

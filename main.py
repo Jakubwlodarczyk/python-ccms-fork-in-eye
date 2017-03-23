@@ -366,8 +366,7 @@ def show_students_grades():
         start = request.form['start_date']
         end = request.form['end_date']
         student_id = request.form['student_id']
-        
-        performance = Model.get_performance(student_id, start, end)
+        performance = Student.get_performance(student_id, start, end)
         if performance:
             return render_template("get_performance.html", performance=performance, user_id=log_in['user_id'],
                                    user_status=log_in['user_status'], user=log_in['user'])
