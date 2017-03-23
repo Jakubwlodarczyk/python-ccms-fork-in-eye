@@ -11,9 +11,10 @@ class Submission(db.Model):
     class Submission
     Reads data from database.
     """
+
     __tablename__ = 'submission'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    start_date = db.Column(db.String, nullable=False) 
+    send_date = db.Column(db.String, nullable=False)
     grade = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String, nullable=False)
     github_link = db.Column(db.String, nullable=False)
@@ -29,7 +30,7 @@ class Submission(db.Model):
         self.github_link = github_link
 
     def __repr__(self):
-        return "{} {} {} {} {}".format(self.start_date, 
+        return "{} {} {} {} {}".format(self.send_date,
         self.grade, self.name, self.github_link, self.student_id)
 
     @staticmethod

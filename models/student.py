@@ -1,10 +1,13 @@
-from main import db
+from sqlalchemy import and_, func
 from sqlalchemy.orm import sessionmaker
+from main import db
 
 
 Session = sessionmaker(bind=db)
 session = Session()
 
+
+from models.submission import *
 
 class Student(db.Model):
     """
@@ -147,3 +150,24 @@ class Student(db.Model):
             points += (student.late * 80)
 
             student.score = (points / Student.count_days())
+
+
+
+    @classmethod
+    def get_performance(cls, student_id, start_date, end_date):
+        """ Gets averages of all students """
+
+        results = db.session.query(Submission.send_date, Submission.name, Submission.grade).join\
+            (Student, and_(Submission.student_id == Student.id)).filter\
+            (Submission.send_date > start_date, Submission.send_date < end_date, Student.id == student_id).all()
+
+        return results
+
+
+if __name__ == "__main__":
+    Student.get_average()
+
+
+
+
+
