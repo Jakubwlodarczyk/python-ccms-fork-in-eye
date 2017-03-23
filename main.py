@@ -79,11 +79,10 @@ def students_list():
 
 @app.route("/students-attendance", methods=['GET', 'POST'])
 def students_attendance():
-    students_bad = Student.get_all()
+    students = Student.get_all()
     attendances = Attendance.get_all()
-    students = Student.student_presence(attendances, students_bad)
     counted_days = Student.count_days()
-    Student.current_score(students)
+    # Student.current_score(students)
 
     if request.method == "GET":
         return render_template("student_show_attendence.html", students=students, attendances=attendances,
@@ -101,13 +100,13 @@ def students_attendance():
         return redirect(url_for("students_attendance"))
 
 
-@app.route("/check_attendance", methods=['GET', 'POST'])
-def check_attendance():
-    students_bad = Model.students_get_all()
-    attendances = Attendance.create_objects_list_from_database()
-    students = Student.student_presence(attendances, students_bad)
-    current_date = str(datetime.date.today())
-    return render_template("attendance.html", students=students, current_date=current_date)
+# @app.route("/check_attendance", methods=['GET', 'POST'])
+# def check_attendance():
+#     students_bad = Model.students_get_all()
+#     attendances = Attendance.create_objects_list_from_database()
+#     students = Student.student_presence(attendances, students_bad)
+#     current_date = str(datetime.date.today())
+#     return render_template("attendance.html", students=students, current_date=current_date)
 
 
 @app.route("/edit_student/<student_id>", methods=['GET', 'POST'])
