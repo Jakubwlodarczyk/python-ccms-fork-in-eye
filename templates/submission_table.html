@@ -20,7 +20,7 @@
 
             <label for="select-class">Choose assignment: </label>
 
-            <form  method="post" action="/submissions">
+            <form  method="POST" action="/submissions">
 
                 <select name="select-submission" class="select_submission1">
                     <option selected>--select--</option>
@@ -61,7 +61,7 @@
                         <td>{{ submission.github_link}}</td>
                         <td>{{ submission.grade }}</td>
                         <td>
-                            <form method="POST" action="/update_grade" name="grade">
+                            <form method="POST" action="{{url_for('update_grade')}}">
                                 {% for student in students %}
                                     {% if student.id == submission.student_id %}
                                         <input type="hidden" value="{{ student.id }}" name="student_id">
@@ -90,10 +90,11 @@
                                 <td>{{ submission.github_link}}</td>
                                 <td>{{ submission.grade }}</td>
                                 <td>
-                                    <form method="POST" action="/update_grade" name="grade">
+                                    <form method="POST" action="{{url_for('update_grade')}}">
                                         {% for student in students %}
                                             {% if student.id == submission.student_id %}
                                                 <input name="grade" class="little-input" type="text">
+                                                <input type="hidden" value="{{ submission.name }}" name="submission_name">
                                                 <input type="hidden" value="{{ student.id }}" name="student_id">
                                                 <button class="little-button" type="submit">Grade</button>
                                             {% endif %}
