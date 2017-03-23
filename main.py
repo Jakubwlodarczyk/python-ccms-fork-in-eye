@@ -110,25 +110,17 @@ def check_attendance():
     return render_template("attendance.html", students=students, current_date=current_date)
 
 
-@app.route("/edit_student/<student_id>", methods=['GET', 'POST'])
+@app.route("/edit_student/<student_id>", methods=['POST'])
 def edit_student(student_id):
     """ Edits student with selected id in the database
     If the method was GET it shows edit student form.
     If the method was POST it should update student data in database.
     """
-    if request.method == 'GET':
-        student = Student.get_by_id(student_id)
-        old_name = student.name
-        old_surname = student.surname
-        old_email = student.email
-        return render_template('edit_person_data.html', old_name=old_name, old_surname=old_surname, old_email=old_email)
-    elif request.method == 'POST':
-        new_name = request.form['new_fname']
-        new_surname = request.form['new_lname']
-        new_email = request.form['new_email']
-        Student.edit_student(student_id, new_name, new_surname, new_email)
+    new_name = request.form['new_fname']
+    new_surname = request.form['new_lname']
+    new_email = request.form['new_email']
+    Student.edit_student(student_id, new_name, new_surname, new_email)
     return redirect(url_for('students_list'))
-
 
 @app.route("/remove_student/<student_id>")
 def remove_student(student_id):

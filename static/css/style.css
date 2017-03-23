@@ -129,7 +129,7 @@ table.two_button_table {
         width: 100%;
     }
 
-    table th, td {border: 1px solid}
+    table th, td {border: 1px solid #E1CCCC}
 
     table th {
     background-color: #e1dfdf;
@@ -468,4 +468,8 @@ select.large-select {
 }
 #add-person {
     display: none;
+}
+
+.edit-person {
+    display:none;
 }
