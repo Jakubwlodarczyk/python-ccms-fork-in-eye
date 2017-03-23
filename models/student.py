@@ -90,15 +90,22 @@ class Student(db.Model):
         return db.session.query(Student).get(student_id)
 
     @staticmethod
-    def add_attendance_to_student(attendances_obj_list):
+    def add_student_attendance(date, status, student_id):
+        """ If attendance object exist (with same date and student ID) it update object status
+            If object do not exist it creates new one
         """
-        Returns attendances of select students.
-        :param table_name
-        """
-        for student in Student.student_list:
-            for attendance in attendances_obj_list:
-                if attendance.id == student.id:
-                    student.attendance_list.append(attendance)
+        if status == 'Present':
+            status = 100
+        elif status == 'Late':
+            status = 80
+        else:
+            status = 0
+        att_obj = Attendance.get_by_date_id(date, student_id)
+        if att_obj:
+            att_obj.status = status
+            db.session.commit()
+        else:
+            Attendance.add_attendance(date, status, student_id)
 
     def view_grades(self):
         '''
@@ -110,39 +117,15 @@ class Student(db.Model):
                 my_submiss.append(sub)
         return my_submiss
 
-    def check_attendence(self, data):
-        """
-        change attendance of students
-        """
-        table = []
-        for row in data:
-            if row.id == self.id:
-                table.append([row.data, row.status])
-        return table
-
     @staticmethod
     def count_days():
+        """ Count days of attendance """
         dates = []
         attendance = Attendance.get_all()
         for data in attendance:
             if data.date not in dates:
                 dates.append(data.date)
         return len(dates)
-
-    @staticmethod
-    def student_presence(attendance_list, all_students):
-        for day in attendance_list:
-            Student.counted_days += 1
-            for student in all_students:
-                if day.status == 80 and day.id == student.id:
-                    student.late += 1
-
-                if day.status == 100 and day.id == student.id:
-                    student.present += 1
-
-                if day.status == 0 and day.id == student.id:
-                    student.absent += 1
-        return all_students
 
     @staticmethod
     def current_score(all_students):

@@ -79,33 +79,32 @@ def students_list():
 
 @app.route("/students-attendance", methods=['GET', 'POST'])
 def students_attendance():
-    students_bad = Student.get_all()
+    """ Check attendance of students :
+        if method is get - shows students attendance
+        if method is post - check students attendance
+    """
+    students = Student.get_all()
     attendances = Attendance.get_all()
-    students = Student.student_presence(attendances, students_bad)
     counted_days = Student.count_days()
-    Student.current_score(students)
 
     if request.method == "GET":
         return render_template("student_show_attendence.html", students=students, attendances=attendances,
                                counted_days=counted_days, user_id=log_in['user_id'], user_status=log_in['user_status'],
                                user=log_in['user'])
     else:
-        values = []
-        for index, student in enumerate(students):
-            option = request.form[str(index + 1)]
-            values.append(option)
-        student_ids = []
+        index = 0
         for student in students:
-            student_ids.append(student.id)
-        Model.create_attendance(values, request.form['choose-date'], student_ids)
+            index += 1
+            status = request.form[str(index)]
+            date = request.form['choose-date']
+            student_id = request.form['student_id'+str(index)]
+            Student.add_student_attendance(date, status, student_id)
         return redirect(url_for("students_attendance"))
 
 
 @app.route("/check_attendance", methods=['GET', 'POST'])
 def check_attendance():
-    students_bad = Model.students_get_all()
-    attendances = Attendance.create_objects_list_from_database()
-    students = Student.student_presence(attendances, students_bad)
+    students = Student.get_all()
     current_date = str(datetime.date.today())
     return render_template("attendance.html", students=students, current_date=current_date)
 
@@ -156,7 +155,7 @@ def submissions_list():
                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
 
 
-@app.route("/add_mentor", methods=['POST', "GET"])
+@app.route("/add_mentor", methods=['POST'])
 def add_mentor():
     """Shows list of submissions"""
     if request.method == 'GET':
@@ -175,18 +174,11 @@ def edit_mentor(mentor_id):
     If the method was GET it shows edit mentor form.
     If the method was POST it should update mentor data in database.
     """
-    if request.method == 'GET':
-        mentor = Mentor.get_by_id(mentor_id)
-        old_name = mentor.name
-        old_surname = mentor.surname
-        old_email = mentor.email
-        return render_template('edit_person_data.html', old_name=old_name, old_surname=old_surname, old_email=old_email)
-    elif request.method == 'POST':
-        new_name = request.form['new_fname']
-        new_surname = request.form['new_lname']
-        new_email = request.form['new_email']
-        Mentor.edit_mentor(mentor_id, new_name, new_surname, new_email)
-        return redirect(url_for('mentors_list'))
+    new_name = request.form['new_fname']
+    new_surname = request.form['new_lname']
+    new_email = request.form['new_email']
+    Mentor.edit_mentor(mentor_id, new_name, new_surname, new_email)
+    return redirect(url_for('mentors_list'))
 
 
 @app.route("/remove_mentor/<mentor_id>")

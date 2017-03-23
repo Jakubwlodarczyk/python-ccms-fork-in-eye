@@ -9,7 +9,10 @@
 {% block solid_component %}
 {{ super() }}
 {% endblock %}
-{% block content %}
+{% block content
+
+{% if session['user_status'] == 'mentor'%}
+
 <label>Date:</label>
 
     <form action="/students-attendance" method="POST">
@@ -40,6 +43,7 @@
                 <input id="radio-absent" class="attendance-radio" type="radio" name="{{ loop.index }}" value="Absent">
                 <label for="radio-absent">Absent</label>
             </td>
+            <input type="hidden" value="{{ student.id }}" name="student_id{{ loop.index }}">
         </tr>
         {% endfor %}
     </table>
@@ -67,4 +71,5 @@ $('#btn').click(function(event) {
     }
 });
     </script>
+{% endif %}
 {% endblock %}
