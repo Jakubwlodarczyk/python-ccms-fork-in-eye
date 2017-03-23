@@ -11,9 +11,21 @@
 {% endblock%}
 
 {% block content %}
-            <a href="/add_mentor">
-                <button class="add-person-form-button right" type="button" value="send">Add a new mentor</button>
-            </a>
+
+<a href="#add-person" rel="modal:open">
+    <div id="add-person">
+        <form class="add-person-form"
+            name="add-person-form" method="POST" action="{{ url_for('add_mentor')}}">
+                <input id="email" name="email" email="email" class="add-person-form-input"
+                placeholder="EMAIL" name="email">
+                <input id="name" name="fname" class="add-person-form-input" type="text" placeholder="FIRST NAME">
+                <input id="lname" name="lname" class="add-person-form-input" type="text" placeholder="LAST NAME">
+            <button>SAVE</button>
+        </form>
+        <script type="text/javascript" src="static/js/validation.js"></script>
+    </div>
+    <button class="add-person-form-button right">Add a new mentor</button>
+</a>
 
 
             <table>
