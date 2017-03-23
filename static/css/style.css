@@ -330,7 +330,7 @@ label {
     margin: 0px 0px 10px 0px;
     padding: 5px;
     transition: all .3s ease-in;
-    width: 500px;
+    width: 300px;
 }
 
     .add-person-form-input:focus {background-color: #D2D3D4;
@@ -367,8 +367,6 @@ label {
     top: 50px;
 }
 
-/*TUTAJ ZNOWU ZACZELAM*/
-
 input[type=date]{
     background: #f1f1f1;
     border-radius: 5px;
@@ -380,7 +378,7 @@ input[type=date]{
     padding: 5px;
     transition: all .3s ease-in;
     vertical-align: middle;
-    width: 500px;
+    width: 200px;
 }
 
 #dateinputatt {
@@ -460,7 +458,6 @@ select.large-select {
     vertical-align: middle;
     width: 60%;
     right: -25em;
-
     }
 
 .small {
@@ -468,4 +465,7 @@ select.large-select {
     margin-right: 10px;
     margin-left: 10px;
     width: 25px;
+}
+#add-person {
+    display: none;
 }
