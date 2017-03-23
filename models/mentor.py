@@ -56,3 +56,13 @@ class Mentor(db.Model):
         mentor = db.session.query(Mentor).get(mentor_id)
         db.session.delete(mentor)
         db.session.commit()
+
+    @staticmethod
+    def get_all():
+        """ Return a list of objects """
+        return db.session.query(Mentor).all()
+
+    @staticmethod
+    def get_by_id(mentor_id):
+        """ Return object of mentor found by ID """
+        return db.session.query(Mentor).get(mentor_id)

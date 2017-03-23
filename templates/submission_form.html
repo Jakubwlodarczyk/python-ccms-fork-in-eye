@@ -17,7 +17,7 @@
 {% if session['user_status'] == 'student'%}
 
     <form class="Submission_form"
-    method="POST" action='/submit_assignment'>
+    method="POST" action='/submit_assignment/{{user_id}}'>
     <table>
         <tr><td>Submission name</td><td>{{sub_name}}</td></tr>
         <tr><td>Submission link</td>

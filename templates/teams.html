@@ -12,6 +12,7 @@
 {% endblock %}
 
 {% block content %}
+{% if session['user_status'] == 'mentor'%}
         <section class='content team'>
             <a href="{{ url_for('add_team') }}">
                 <button class="add-team" type="button" value="send">Add a new team</button>
@@ -21,15 +22,17 @@
                 <thead>
                     <tr>
                         <th>{{ loop.index }}</th>
-                        <th><a href="{{ url_for('edit_team_name', team_id=team.id, team_name=team.name) }}">
-                            {{ team.name }}</a></th>
+                        <th>{{ team.name }}
+                            <a href="{{ url_for('edit_team_name', team_id=team.id) }}"><img class="small" src="{{ url_for('static', filename='edit.png')}}"></a>
+                            <a href="{{ url_for('remove_team', team_id=team.id)}}"><img class="small" src="{{ url_for('static', filename='trash.png')}}"></a>
+                        </th>
                     </tr>
                 </thead>
                     {% for student in students %}
                         {% if student.team == team.name %}
                             <tr>
                                 <td><a href="{{ url_for('remove_student_from_team', student_id=student.id) }}" >
-                                    <button class="little-button button-to-remove">Remove</button></a></td>
+                                    Remove</a></td>
                                 <td>{{ student.name }} {{ student.surname }}</td>
                             </tr>
 
@@ -38,4 +41,5 @@
                     {% endfor %}
             </table>
         </section>
+{% endif %}
 {% endblock %}

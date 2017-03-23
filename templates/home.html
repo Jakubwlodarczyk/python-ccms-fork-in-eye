@@ -1,33 +1,30 @@
-<!-- TO BEZ ZMIAN -->
 {% extends "layout.html" %}
 {% block head %}
 {{ super() }}
 {% endblock %}
 
-{% block header %}
-<!-- TUTAJ TYTUŁ PODSTRONY -->
-<h1> Codecool Management System</h1>
-{% endblock %}
-
-<!-- TUTAJ TEŻ BEZ ZMIAN-->
 {% block solid_component %}
 {{ super() }}
 {% endblock%}
 
-{% block content %}
 
-<section class="content home">
+    {% block header %}
+    <h1> Codecool Management System</h1>
+    {% endblock %}
+
+    {% block content %}
+
     <a class="aleft"><h2>Welcome in the best programmers school in Kraków </h2></a>
     <img src="../static/codecool_krk.jpg" width="50%" height="auto" align="right" class="logo">
-</section>
 
-<section class="content home">
-    <h3>
-        Please find the house rules of the Kraków office here:
-        <a
-           href="https://drive.google.com/file/d/0B3QkEXs7PRbpcHVrSGdrSWtSSm8/view" class="link-to-pdf">HouseRules.pdf
-        </a>
-    </h3>
-</section>
 
-{% endblock %}
+    <section class="content home">
+        <h3>
+            Please find the house rules of the Kraków office here:
+            <a
+               href="https://drive.google.com/file/d/0B3QkEXs7PRbpcHVrSGdrSWtSSm8/view" class="link-to-pdf">HouseRules.pdf
+            </a>
+        </h3>
+    </section>
+
+    {% endblock %}

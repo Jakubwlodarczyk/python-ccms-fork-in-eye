@@ -54,6 +54,7 @@
                             {% for student in students %}
                                 {% if student.id == submission.student_id %}
                                     <input type="hidden" value="{{ student.id }}" name="student_id">
+                                    <input type="hidden" value="{{ submission.name }}" name="submission_name">
                                     <input name="grade" class="little-input" type="text">
                                     <button class="little-button" type="submit">Grade</button>
                             {% endif %}

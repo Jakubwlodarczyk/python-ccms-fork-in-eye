@@ -3,24 +3,21 @@
 <head>
     {% block head %}
     <meta charset="utf-8">
+    <meta name="viewpoint" content="witdh=device-width, initial-scale=1"/>
     <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nova+Mono" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='icon.png')}}">
     <title>Codecool Management System</title>
     {% endblock %}
 </head>
 
   <body>
+      {% block solid_component %}
+      <aside class='solid_component'>
 
-      <header class="header-menu">
-          {% block header %}
-          {% endblock %}
-      </header>
-
-      <section class='solid_component'>
-          {% block solid_component %}
           <div class='welcome_user'>
-               <img src="http://bociek.blog.onet.pl/wp-content/blogs.dir/710479/files/blog_re_4728262_7216640_tr_gawron.jpg" width=100% height=100% alt='User'/>
+               <img src="{{url_for('static', filename='icon.png')}}" alt="User"/>
               <h3> Logged as {{ user }} </h3>
 
 
@@ -85,13 +82,24 @@
 
         {% endif%}
         {% endblock %}
-          </section>
+    </aside>
 
+    <div id="container">
+        {% block container %}
 
-    <div class="content">
-        {% block content %}
-        {% endblock %}
+        <header class="header-menu">
+            {% block header %}
+            {% endblock %}
+        </header>
+
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+    {% endblock %}
     </div>
+
 
   </div>
 

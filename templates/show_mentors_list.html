@@ -32,11 +32,11 @@
                 <td>{{ mentor.email }}</td>
                 <td>
                     <a href="{{  url_for('edit_mentor', mentor_id=mentor.id)  }}">
-                        <button class="little-button">Edit</button>
+                        <img class="small" src="{{ url_for('static', filename='edit.png')}}">
                     </a>
                     <br>
                     <a href="{{  url_for('remove_mentor', mentor_id=mentor.id)  }}">
-                        <button class="little-button">Remove</button>
+                        <img class="small" src="{{ url_for('static', filename='trash.png')}}">
                     </a>
                 </td>
             {% endfor %}

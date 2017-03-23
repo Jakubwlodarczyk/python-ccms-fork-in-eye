@@ -1,13 +1,14 @@
+from main import db
 from sqlalchemy import and_, func
 from sqlalchemy.orm import sessionmaker
-from main import db
+from models.attendance import Attendance
 
 
 Session = sessionmaker(bind=db)
 session = Session()
 
-
 from models.submission import *
+
 
 class Student(db.Model):
     """
@@ -62,7 +63,7 @@ class Student(db.Model):
         student = db.session.query(Student).get(student_id)
         db.session.delete(student)
         db.session.commit()
-        
+
     @staticmethod
     def edit_student_team_card(student_id, team, card):
         """ Edit student team, and card , and update it in database"""
@@ -79,6 +80,16 @@ class Student(db.Model):
         db.session.commit()
 
     @staticmethod
+    def get_all():
+        """ Return a list of objects """
+        return db.session.query(Student).all()
+
+    @staticmethod
+    def get_by_id(student_id):
+        """ Return object of student found by ID"""
+        return db.session.query(Student).get(student_id)
+
+    @staticmethod
     def add_attendance_to_student(attendances_obj_list):
         """
         Returns attendances of select students.
@@ -89,7 +100,6 @@ class Student(db.Model):
                 if attendance.id == student.id:
                     student.attendance_list.append(attendance)
 
-
     def view_grades(self):
         '''
         Allows to view grades for all student's assignments.
@@ -99,7 +109,6 @@ class Student(db.Model):
             if sub.student_id == self.id:
                 my_submiss.append(sub)
         return my_submiss
-
 
     def check_attendence(self, data):
         """
@@ -114,21 +123,14 @@ class Student(db.Model):
     @staticmethod
     def count_days():
         dates = []
-        conn = sqlite3.connect("database.db")
-        with conn:
-            c = conn.cursor()
-            days = c.execute("SELECT * FROM attendance;")
-
-            for day in days.fetchall():
-                if day[1] not in dates:
-                    dates.append(day[1])
-            conn.commit()
-
+        attendance = Attendance.get_all()
+        for data in attendance:
+            if data.date not in dates:
+                dates.append(data.date)
         return len(dates)
 
     @staticmethod
     def student_presence(attendance_list, all_students):
-
         for day in attendance_list:
             Student.counted_days += 1
             for student in all_students:
@@ -152,22 +154,27 @@ class Student(db.Model):
             student.score = (points / Student.count_days())
 
 
-
     @classmethod
     def get_performance(cls, student_id, start_date, end_date):
-        """ Gets averages of all students """
+        """ Gets performance of student between given dates. """
 
         results = db.session.query(Submission.send_date, Submission.name, Submission.grade).join\
             (Student, and_(Submission.student_id == Student.id)).filter\
             (Submission.send_date > start_date, Submission.send_date < end_date, Student.id == student_id).all()
-
         return results
 
 
-if __name__ == "__main__":
-    Student.get_average()
+    @staticmethod
+    def get_average():
+        """ Gets averages of all students """
 
+        data = (db.session.query(Student.id, (func.round(func.avg(Submission.grade), 2)))
+                .join(Submission, and_(Submission.student_id == Student.id))
+                .group_by(Submission.student_id)).all()
 
+        grades = {}
 
+        for record in data:
+            grades[record[0]] = record[1]
 
-
+        return grades
