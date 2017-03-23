@@ -152,8 +152,8 @@ table.two_button_table {
     display: block;
     flex: 1;
     margin: 0 auto;
-    min-width: 230px;
-    max-width: 1000px;
+    min-width: 20%;
+    max-width: 70%;
     position: relative;
 }
 
@@ -223,7 +223,7 @@ label {
     left: 10px;
     float: left;
     display: block;
-    width:  300px;
+    width:  15%;
 }
 
     .solid_component .welcome_user img {
@@ -391,7 +391,7 @@ input[type=date]{
 /*TO NAJWIDOCZNIEJ TRZYMA OBWAŻANKA W RYZACH XDDD*/
 
 .header-menu {
-    height: 300px;
+    height: 10%;
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
