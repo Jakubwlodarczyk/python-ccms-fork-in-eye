@@ -25,7 +25,9 @@
         </form>
         <script type="text/javascript" src="static/js/validation.js"></script>
     </div>
-    <button class="add-person-form-button right">Add a new mentor</button>
+    <center>
+        <button class="add-person-form-button right">Add a new mentor</button>
+    </center>
 </a>
 
 
@@ -52,8 +54,6 @@
                               <input name="new_lname" class="add-person-form-input" type="text" value="{{ mentor.surname }}">
                               <button type="submit">SAVE</button>
                             </form>
-
-                            <script type="text/javascript" src="static/js/validation.js"></script>
 
                             </div>
                      <img class="small" src="{{ url_for('static', filename='pictures/edit.png')}}">

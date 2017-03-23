@@ -13,7 +13,6 @@ db = SQLAlchemy(app)
 from models.team import *
 from models.assignments import *
 from models.model import *
-from models.submission import *
 from models.student import *
 from models.attendance import *
 
@@ -121,6 +120,7 @@ def edit_student(student_id):
     Student.edit_student(student_id, new_name, new_surname, new_email)
     return redirect(url_for('students_list'))
 
+
 @app.route("/remove_student/<student_id>")
 def remove_student(student_id):
     """ Removes student with selected id from the database """
@@ -139,7 +139,7 @@ def mentors_list():
 @app.route("/submissions", methods=['POST', "GET"])
 def submissions_list():
     """Shows list of submissions"""
-    submissions = db.session.query(Submission).all()
+    submissions = Submission.get_all()
     options = Submission.get_sub_distinct()
 
     students = Student.get_all()
@@ -227,7 +227,6 @@ def edit_team_name(team_id):
     new_name = request.form['name']
     Team.edit_team(team_id, new_name)
     return redirect(url_for('teams_list'))
-
 
 
 @app.route("/add_student", methods=['POST', "GET"])
@@ -353,6 +352,7 @@ def show_students_grades():
         flash('No grades were found between provided dates')
         return redirect(url_for('show_students_grades'))
 
+
 @app.route("/grades", methods=["GET"])
 def show_all_grades():
     """
@@ -361,7 +361,6 @@ def show_all_grades():
     submissions = Submission.get_all()
     return render_template("grades.html", submissions=submissions, user_id=log_in['user_id'],
                            user_status=log_in['user_status'], user=log_in['user'])
-
 
 
 if __name__ == "__main__":

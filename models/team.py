@@ -4,7 +4,10 @@ from sqlalchemy.orm import sessionmaker
 
 Session = sessionmaker(bind=db)
 session = Session()
+
+
 from models.student import *
+
 
 class Team(db.Model):
     """Student's teams"""
@@ -25,7 +28,6 @@ class Team(db.Model):
         db.session.add(team)
         db.session.commit()
 
-
     @staticmethod
     def remove_team(team_id):
         """Remove a team"""
@@ -35,7 +37,6 @@ class Team(db.Model):
             student.team = None
         db.session.delete(team)
         db.session.commit()
-
 
     @staticmethod
     def edit_team(team_id, new_name):

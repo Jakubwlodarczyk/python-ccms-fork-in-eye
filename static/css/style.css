@@ -34,7 +34,7 @@ header {
 
 h1 {
     color: #EC4545;
-    font:  6rem 'Nova Mono';
+    font:  4rem 'Nova Mono';
     text-align: center;
 }
 
@@ -175,7 +175,7 @@ table.two_button_table {
 
     .content.home {
         display: table;
-        width: 80%;
+        width: 94%;
         margin-top: 20px;
     }
 

@@ -107,16 +107,6 @@ class Student(db.Model):
         else:
             Attendance.add_attendance(date, status, student_id)
 
-    def view_grades(self):
-        '''
-        Allows to view grades for all student's assignments.
-        '''
-        my_submiss = []
-        for sub in Submission.submission_list:
-            if sub.student_id == self.id:
-                my_submiss.append(sub)
-        return my_submiss
-
     @staticmethod
     def count_days():
         """ Count days of attendance """
@@ -127,16 +117,6 @@ class Student(db.Model):
                 dates.append(data.date)
         return len(dates)
 
-    @staticmethod
-    def current_score(all_students):
-        for student in all_students:
-            points = 0
-            points += (student.present * 100)
-            points += (student.late * 80)
-
-            student.score = (points / Student.count_days())
-
-
     @classmethod
     def get_performance(cls, student_id, start_date, end_date):
         """ Gets performance of student between given dates. """
@@ -146,18 +126,13 @@ class Student(db.Model):
             (Submission.send_date > start_date, Submission.send_date < end_date, Student.id == student_id).all()
         return results
 
-
     @staticmethod
     def get_average():
         """ Gets averages of all students """
-
         data = (db.session.query(Student.id, (func.round(func.avg(Submission.grade), 2)))
                 .join(Submission, and_(Submission.student_id == Student.id))
                 .group_by(Submission.student_id)).all()
-
         grades = {}
-
         for record in data:
             grades[record[0]] = record[1]
-
         return grades
