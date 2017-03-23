@@ -148,20 +148,18 @@ def mentors_list():
 @app.route("/submissions", methods=['POST', "GET"])
 def submissions_list():
     """Shows list of submissions"""
-    options = db.session.query(Submission).all()
-
-    submissions = Submission.get_all()
+    submissions = db.session.query(Submission).all()
 
     students = Student.get_all()
     if request.method == "GET":
-        return render_template("submission_table.html", submissions=submissions, options=options, students=students,
+        return render_template("submission_table.html", submissions=submissions, options=[submission.name for submission in submissions] , students=students,
                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
 
     if request.method == "POST":
         option = request.form["select-submission"]
         select_option = "--select--"
         return render_template("submission_table.html", submissions=submissions, option=option,
-                               options=options, select_option=select_option, students=students,
+                               options=[submission.name for submission in submissions], select_option=select_option, students=students,
                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
 
 
