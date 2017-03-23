@@ -79,33 +79,32 @@ def students_list():
 
 @app.route("/students-attendance", methods=['GET', 'POST'])
 def students_attendance():
-    students_bad = Student.get_all()
+    """ Check attendance of students :
+        if method is get - shows students attendance
+        if method is post - check students attendance
+    """
+    students = Student.get_all()
     attendances = Attendance.get_all()
-    students = Student.student_presence(attendances, students_bad)
     counted_days = Student.count_days()
-    Student.current_score(students)
 
     if request.method == "GET":
         return render_template("student_show_attendence.html", students=students, attendances=attendances,
                                counted_days=counted_days, user_id=log_in['user_id'], user_status=log_in['user_status'],
                                user=log_in['user'])
     else:
-        values = []
-        for index, student in enumerate(students):
-            option = request.form[str(index + 1)]
-            values.append(option)
-        student_ids = []
+        index = 0
         for student in students:
-            student_ids.append(student.id)
-        Model.create_attendance(values, request.form['choose-date'], student_ids)
+            index += 1
+            status = request.form[str(index)]
+            date = request.form['choose-date']
+            student_id = request.form['student_id'+str(index)]
+            Student.add_student_attendance(date, status, student_id)
         return redirect(url_for("students_attendance"))
 
 
 @app.route("/check_attendance", methods=['GET', 'POST'])
 def check_attendance():
-    students_bad = Model.students_get_all()
-    attendances = Attendance.create_objects_list_from_database()
-    students = Student.student_presence(attendances, students_bad)
+    students = Student.get_all()
     current_date = str(datetime.date.today())
     return render_template("attendance.html", students=students, current_date=current_date)
 
@@ -147,7 +146,7 @@ def submissions_list():
     if request.method == "GET":
         return render_template("submission_table.html", submissions=submissions, options=[option.name for option in options] , students=students,
                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
-        
+
     if request.method == "POST":
         option = request.form["select-submission"]
         select_option = "--select--"
@@ -232,14 +231,10 @@ def add_assignment():
 @app.route("/edit_team_name/<team_id>", methods=['GET', 'POST'])
 def edit_team_name(team_id):
     """ Edit name of team"""
-    if request.method == "POST":
-        new_name = request.form['name']
-        Team.edit_team(team_id, new_name)
-        return redirect(url_for('teams_list'))
-    elif request.method == "GET":
-        team = Team.get_by_id(team_id)
-        old_name = team.name
-        return render_template("edit_team_name.html", old_name=old_name)
+    new_name = request.form['name']
+    Team.edit_team(team_id, new_name)
+    return redirect(url_for('teams_list'))
+
 
 
 @app.route("/add_student", methods=['POST', "GET"])

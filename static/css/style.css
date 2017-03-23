@@ -71,7 +71,7 @@ button {
     width: 250px;
 }
 
-    button.little-button {
+    .little-button {
         background-color: #EC4545;
         display:flex;
         margin-bottom: 0;
@@ -469,7 +469,9 @@ select.large-select {
 #add-person {
     display: none;
 }
-
-.edit-person {
+#add-team {
+    display:none;
+}
+.edit {
     display:none;
 }
