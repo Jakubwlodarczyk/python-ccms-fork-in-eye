@@ -12,6 +12,7 @@
 
 {% block content %}
 
+{% if session ['user_status'] == 'manager' %}
 <a href="#add-person" rel="modal:open">
     <div id="add-person">
         <form class="add-person-form"
@@ -53,4 +54,5 @@
                 </td>
             {% endfor %}
         </table>
+{% endif%}
 {% endblock %}
