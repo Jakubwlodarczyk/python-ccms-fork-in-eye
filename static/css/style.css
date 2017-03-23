@@ -55,12 +55,12 @@ h3 {
 
 
 button {
+    font-weight: bold;
     background-color: #EC4545;
     border: none;
     border-radius: 8px;
     box-shadow: 5px 5px 2px #E1CCCC;
     color: white;
-    display: table;
     font-size: 20px;
     margin: auto;
     margin-bottom: 50px;
@@ -423,7 +423,7 @@ input[type=date]{
 
 
 .select_button_filter {
-    float: left;
+    display: block;
 }
 
 
@@ -468,4 +468,12 @@ select.large-select {
 }
 #add-person {
     display: none;
+}
+
+#add-assignment {
+    display: none;
+}
+
+.width100 {
+    width:100% !important;
 }
