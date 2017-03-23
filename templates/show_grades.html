@@ -33,10 +33,10 @@
             <td> {{ value }} </td>
             <td>
                 <form class='performance' method='POST'>
-                    Start date
-                    <input class='little-input' name='start_date' type='date'><br/>
-                    End date
-                    <input class='little-input' name='end_date' type='date'>
+                    <label for="start_date">Start date</label>
+                    <input class='little-select' id="start_date" name='start_date' type='date'><br/>
+                    <label for="end_date">End date</label>
+                    <input class='little-select' name='end_date' type='date'>
                     <input type='hidden' value="{{  student.id }}" name='student_id'>
                     <br>
                     <br>

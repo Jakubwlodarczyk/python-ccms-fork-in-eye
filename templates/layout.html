@@ -4,10 +4,13 @@
     {% block head %}
     <meta charset="utf-8">
     <meta name="viewpoint" content="witdh=device-width, initial-scale=1"/>
-    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Nova+Mono" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='icon.png')}}">
+    <link href="https://fonts.googleapis.com/css?family=Abel|Nova+Mono" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ url_for('static', filename='js/jquery.modal.js') }}" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.modal.css')  }}" type="text/css" media="screen"/>
+    <link rel="icon" href="{{ url_for('static', filename='pictues/icon.png')}}">
     <title>Codecool Management System</title>
     {% endblock %}
 </head>
@@ -17,7 +20,7 @@
       <aside class='solid_component'>
 
           <div class='welcome_user'>
-               <img src="{{url_for('static', filename='icon.png')}}" alt="User"/>
+               <img src="{{url_for('static', filename='pictures/icon.png')}}" alt="User"/>
               <h3> Logged as {{ user }} </h3>
 
 
