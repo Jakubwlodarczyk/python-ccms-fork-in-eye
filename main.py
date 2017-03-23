@@ -79,6 +79,10 @@ def students_list():
 
 @app.route("/students-attendance", methods=['GET', 'POST'])
 def students_attendance():
+    """ Check attendance of students :
+        if method is get - shows students attendance
+        if method is post - check students attendance
+    """
     students = Student.get_all()
     attendances = Attendance.get_all()
     counted_days = Student.count_days()
@@ -88,24 +92,21 @@ def students_attendance():
                                counted_days=counted_days, user_id=log_in['user_id'], user_status=log_in['user_status'],
                                user=log_in['user'])
     else:
-        values = []
-        for index, student in enumerate(students):
-            option = request.form[str(index + 1)]
-            values.append(option)
-        student_ids = []
+        index = 0
         for student in students:
-            student_ids.append(student.id)
-        Model.create_attendance(values, request.form['choose-date'], student_ids)
+            index += 1
+            status = request.form[str(index)]
+            date = request.form['choose-date']
+            student_id = request.form['student_id'+str(index)]
+            Student.add_student_attendance(date, status, student_id)
         return redirect(url_for("students_attendance"))
 
 
-# @app.route("/check_attendance", methods=['GET', 'POST'])
-# def check_attendance():
-#     students_bad = Model.students_get_all()
-#     attendances = Attendance.create_objects_list_from_database()
-#     students = Student.student_presence(attendances, students_bad)
-#     current_date = str(datetime.date.today())
-#     return render_template("attendance.html", students=students, current_date=current_date)
+@app.route("/check_attendance", methods=['GET', 'POST'])
+def check_attendance():
+    students = Student.get_all()
+    current_date = str(datetime.date.today())
+    return render_template("attendance.html", students=students, current_date=current_date)
 
 
 @app.route("/edit_student/<student_id>", methods=['GET', 'POST'])

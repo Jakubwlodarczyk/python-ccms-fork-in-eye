@@ -89,15 +89,22 @@ class Student(db.Model):
         return db.session.query(Student).get(student_id)
 
     @staticmethod
-    def add_attendance_to_student(attendances_obj_list):
+    def add_student_attendance(date, status, student_id):
+        """ If attendance object exist (with same date and student ID) it update object status
+            If object do not exist it creates new one
         """
-        Returns attendances of select students.
-        :param table_name
-        """
-        for student in Student.student_list:
-            for attendance in attendances_obj_list:
-                if attendance.id == student.id:
-                    student.attendance_list.append(attendance)
+        if status == 'Present':
+            status = 100
+        elif status == 'Late':
+            status = 80
+        else:
+            status = 0
+        att_obj = Attendance.get_by_date_id(date, student_id)
+        if att_obj:
+            att_obj.status = status
+            db.session.commit()
+        else:
+            Attendance.add_attendance(date, status, student_id)
 
     def view_grades(self):
         '''
