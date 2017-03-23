@@ -16,7 +16,7 @@ function validateContactData(evt) {
 
 
   var x = document.forms['add-person-form'].email.value;
-  alert('email ' + x + '!');
+  alert('Correct email: ' + x + '!');
 
   addForm.submit();
 }
