@@ -40,9 +40,11 @@
                 <input id="radio-absent" class="attendance-radio" type="radio" name="{{ loop.index }}" value="Absent">
                 <label for="radio-absent">Absent</label>
             </td>
+            <input type="hidden" value="{{ student.id }}" name="student_id{{ loop.index }}">
         </tr>
         {% endfor %}
     </table>
+
         <button id="btn" type="submit" value="submit" >SAVE</button>
     </form>
 

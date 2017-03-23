@@ -71,7 +71,7 @@ button {
     width: 250px;
 }
 
-    button.little-button {
+    .little-button {
         background-color: #EC4545;
         display:flex;
         margin-bottom: 0;
@@ -129,7 +129,7 @@ table.two_button_table {
         width: 100%;
     }
 
-    table th, td {border: 1px solid}
+    table th, td {border: 1px solid #E1CCCC}
 
     table th {
     background-color: #e1dfdf;
@@ -422,9 +422,10 @@ input[type=date]{
 }
 
 
-.select_button_filter {
-    display: block;
-}
+table.filter_table {
+    text-align: center;
+    border-style: 0;
+    }
 
 
 .submit_assignment_select{
@@ -476,4 +477,11 @@ select.large-select {
 
 .width100 {
     width:100% !important;
+}
+
+#add-team {
+    display:none;
+}
+.edit {
+    display:none;
 }

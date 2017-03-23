@@ -11,23 +11,29 @@
 {% endblock%}
 
 {% block content %}
-            <h2>fdvdfv
-                Total: <em> average %</em>dfvdfv
-            </h2>fdvdfv
-            <br>dfvdfv
-            <center><label for="select-class">Choose assignment: </label></center>dfvdfv
-            <form  method="post" action="/submissions">dfvdfv
-                <select name="select-submission" class="select_submission1">dfvdfv
-                    <option selected>--select--</option>dfvdfv
-                        {% for opt in options %}dfvfdvdfv
-                            <center><option value="{{ opt }}">{{ opt }}</option></center>dfvdfv
-                        {% endfor %}dfvdfv
-                </select>dfvdfv
-<br>dfvdfv
-                    <button  class="select_button_filter" type="submit" value="send">Filter</button>dfvfdv
 
-
-            </form>
+            <h2>
+                Total: <em> average %</em>
+            </h2>
+            <table class="filter_table">
+                <tr><td>
+            <label for="select-class">Choose assignment: </label>
+                </tr></td>
+            <form  method="post" action="/submissions">
+                <tr><td>
+                <select name="select-submission" class="select_submission1">
+                    <option selected>--select--</option>
+                        {% for opt in options %}
+                            <option value="{{ opt }}">{{ opt }}</option>
+                        {% endfor %}
+                </select>
+                </tr></td>
+                <tr><td>
+                   <button  class="select_button_filter" type="submit" value="send">Filter</button>
+                </form>
+                </tr></td>
+            
+            </table>
 
             <table>
             <thead>

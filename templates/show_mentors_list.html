@@ -11,9 +11,22 @@
 {% endblock%}
 
 {% block content %}
-            <a href="/add_mentor">
-                <button class="add-person-form-button right" type="button" value="send">Add a new mentor</button>
-            </a>
+
+{% if session ['user_status'] == 'manager' %}
+<a href="#add-person" rel="modal:open">
+    <div id="add-person">
+        <form class="add-person-form"
+            name="add-person-form" method="POST" action="{{ url_for('add_mentor')}}">
+                <input id="email" name="email" email="email" class="add-person-form-input"
+                placeholder="EMAIL" name="email">
+                <input id="name" name="fname" class="add-person-form-input" type="text" placeholder="FIRST NAME">
+                <input id="lname" name="lname" class="add-person-form-input" type="text" placeholder="LAST NAME">
+            <button>SAVE</button>
+        </form>
+        <script type="text/javascript" src="static/js/validation.js"></script>
+    </div>
+    <button class="add-person-form-button right">Add a new mentor</button>
+</a>
 
 
             <table>
@@ -31,14 +44,25 @@
                 <td>{{ mentor.name }} {{ mentor.surname }}</td>
                 <td>{{ mentor.email }}</td>
                 <td>
-                    <a href="{{  url_for('edit_mentor', mentor_id=mentor.id)  }}">
-                        <img class="small" src="{{ url_for('static', filename='edit.png')}}">
+                    <a href="#edit-person-{{mentor.id}}" rel="modal:open">
+                        <div class="edit-person" id="edit-person-{{mentor.id}}">
+                            <form method="POST" action="{{ url_for('edit_mentor', mentor_id=mentor.id) }}" class="add-person-form" name="add-person-form">
+                              <input name="new_email" class="add-person-form-input" value= "{{ mentor.email }}" required>
+                              <input name="new_fname" class="add-person-form-input" type="text" value="{{ mentor.name }}">
+                              <input name="new_lname" class="add-person-form-input" type="text" value="{{ mentor.surname }}">
+                              <button type="submit">SAVE</button>
+                            </form>
+                            <script type="text/javascript" src="static/js/validation.js"></script>
+                            </div>
+                     <img class="small" src="{{ url_for('static', filename='pictures/edit.png')}}">
                     </a>
+
                     <br>
                     <a href="{{  url_for('remove_mentor', mentor_id=mentor.id)  }}">
-                        <img class="small" src="{{ url_for('static', filename='trash.png')}}">
+                        <img class="small" src="{{ url_for('static', filename='pictures/trash.png')}}">
                     </a>
                 </td>
             {% endfor %}
         </table>
+{% endif%}
 {% endblock %}
