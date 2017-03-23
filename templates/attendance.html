@@ -9,7 +9,10 @@
 {% block solid_component %}
 {{ super() }}
 {% endblock %}
-{% block content %}
+{% block content
+
+{% if session['user_status'] == 'mentor'%}
+
 <label>Date:</label>
 
     <form action="/students-attendance" method="POST">
@@ -68,4 +71,5 @@ $('#btn').click(function(event) {
     }
 });
     </script>
+{% endif %}
 {% endblock %}
