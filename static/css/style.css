@@ -471,7 +471,6 @@ select.large-select {
 #add-person {
     display: none;
 }
-<<<<<<< HEAD
 
 #add-assignment {
     display: none;
@@ -481,8 +480,6 @@ select.large-select {
     width:100% !important;
 }
 
-=======
->>>>>>> ae30f5acbe80683c635188cfe87c85d09e84ccfc
 #add-team {
     display:none;
 }
