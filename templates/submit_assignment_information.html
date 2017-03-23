@@ -2,18 +2,21 @@
 {% if session['user_status'] == 'student' %}
     <head>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}">
+        <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='css/style.css')  }}">
         <title>Submission</title>
     </head>
     <body>
-        <h2 class="submited_assignment">{% if submission_status %}
+        <h2 class="submited_assignment">
+            {% if submission_status %}
             Assignment succesfully submitted
             {% else %}
             Assignment already submitted
             {% endif %}
         </h2>
          <form action="/assignments" method="get">
-  <button type="submit">back to assignments</button><br>
-</form> 
+         <center>
+            <button type="submit">back to assignments</button><br>
+         </center>
+</form>
     </body>
 {% endif %}
