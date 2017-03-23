@@ -49,6 +49,7 @@
         {% endfor %}
 
     {% elif session['user_status'] == 'student'%}
+    <h2>General overview</h2>
         <table>
             <thead>
             <tr>
@@ -74,6 +75,9 @@
     {% endif%}
 
         </table>
+        <a href="{{ url_for('show_all_grades')}}">
+        <button type="button" name="button">Show all grades</button>
+        </a>
 {% endblock %}
     </body>
 </html>

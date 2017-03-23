@@ -155,7 +155,7 @@ def submissions_list():
                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
 
 
-@app.route("/add_mentor", methods=['POST', "GET"])
+@app.route("/add_mentor", methods=['POST'])
 def add_mentor():
     """Shows list of submissions"""
     if request.method == 'GET':
@@ -174,18 +174,11 @@ def edit_mentor(mentor_id):
     If the method was GET it shows edit mentor form.
     If the method was POST it should update mentor data in database.
     """
-    if request.method == 'GET':
-        mentor = Mentor.get_by_id(mentor_id)
-        old_name = mentor.name
-        old_surname = mentor.surname
-        old_email = mentor.email
-        return render_template('edit_person_data.html', old_name=old_name, old_surname=old_surname, old_email=old_email)
-    elif request.method == 'POST':
-        new_name = request.form['new_fname']
-        new_surname = request.form['new_lname']
-        new_email = request.form['new_email']
-        Mentor.edit_mentor(mentor_id, new_name, new_surname, new_email)
-        return redirect(url_for('mentors_list'))
+    new_name = request.form['new_fname']
+    new_surname = request.form['new_lname']
+    new_email = request.form['new_email']
+    Mentor.edit_mentor(mentor_id, new_name, new_surname, new_email)
+    return redirect(url_for('mentors_list'))
 
 
 @app.route("/remove_mentor/<mentor_id>")
@@ -358,6 +351,16 @@ def show_students_grades():
             return render_template("get_performance.html", performance=performance, user_id=log_in['user_id'],
                                    user_status=log_in['user_status'], user=log_in['user'])
         return redirect(url_for('show_students_grades'))
+
+@app.route("/grades", methods=["GET"])
+def show_all_grades():
+    """
+    Shows all grades for individual student.
+    """
+    submissions = Submission.get_all()
+    return render_template("grades.html", submissions=submissions, user_id=log_in['user_id'],
+                           user_status=log_in['user_status'], user=log_in['user'])
+
 
 
 if __name__ == "__main__":

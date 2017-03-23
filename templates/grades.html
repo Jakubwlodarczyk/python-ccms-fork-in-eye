@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block header %}
+<h1> Your grades</h1>
+{% endblock %}
+
+{% block solid_component %}
+{{ super() }}
+{% endblock%}
+
+{% block content %}
+    {% if session['user_status'] == 'student'%}
+    <table>
+        <thead>
+        <tr>
+            <th>Assignment</th>
+            <th>Send date</th>
+            <th>Repository link</th>
+            <th>Grade</th>
+        </tr>
+        </thead>
+        <tr>
+            {% for submission in submissions %}
+                {% if submission.student_id == session['user_id'] %}
+                <td>{{submission.name}}</td>
+                <td>{{submission.send_date}}</td>
+                <td>{{submission.github_link}}</td>
+                <td>{{submission.grade}}</td>
+        </tr>
+
+
+                {% endif %}
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
+</body>
+</html>
