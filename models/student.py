@@ -121,36 +121,13 @@ class Student(db.Model):
 
     @staticmethod
     def count_days():
+        """ Count days of attendance """
         dates = []
         attendance = Attendance.get_all()
         for data in attendance:
             if data.date not in dates:
                 dates.append(data.date)
         return len(dates)
-
-    # @staticmethod
-    # def student_presence(attendance_list, all_students):
-    #     for day in attendance_list:
-    #         Student.counted_days += 1
-    #         for student in all_students:
-    #             if day.status == 80 and day.id == student.id:
-    #                 student.late += 1
-    #
-    #             if day.status == 100 and day.id == student.id:
-    #                 student.present += 1
-    #
-    #             if day.status == 0 and day.id == student.id:
-    #                 student.absent += 1
-    #     return all_students
-
-    # @staticmethod
-    # def current_score(all_students):
-    #     for student in all_students:
-    #         points = 0
-    #         points += (student.present * 100)
-    #         points += (student.late * 80)
-    #
-    #         student.score = (points / Student.count_days())
 
     @staticmethod
     def get_average():

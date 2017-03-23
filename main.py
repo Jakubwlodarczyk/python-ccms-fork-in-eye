@@ -82,7 +82,6 @@ def students_attendance():
     students = Student.get_all()
     attendances = Attendance.get_all()
     counted_days = Student.count_days()
-    # Student.current_score(students)
 
     if request.method == "GET":
         return render_template("student_show_attendence.html", students=students, attendances=attendances,

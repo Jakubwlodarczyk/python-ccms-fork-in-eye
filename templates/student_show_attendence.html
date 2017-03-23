@@ -32,6 +32,8 @@
                 {% set present = [0] %}
                 {% set late = [0] %}
                 {% set absent = [0] %}
+                {% set score = 0 %}
+                {% set count_days = 0 %}
                 <tr class="person_to_show">
                     <td><b>{{student.name}} {{student.surname}}</b> </td>
                     <td><center><b>{{counted_days}}</b></center></td>
@@ -46,10 +48,12 @@
                                 {% endif %}
                             {% endif %}
                         {% endfor %}
+                    {% set count_days = present[0] + late[0] + absent[0] %}
+                    {% set score = (present[0] * 100 + late[0] * 80) / count_days %}
                     <td><center><b>{{present[0]}}</b></center></td>
                     <td><center><b>{{late[0]}}</b></center></td>
                     <td><center><b>{{absent[0]}}</b></center></td>
-                    <td><center><b>{{score}}</b></center></td>
+                    <td><center><b>{{'%0.2f'| format(score|float)}}</b></center></td>
                 </tr>
             {% endfor %}
             </table>
@@ -69,14 +73,33 @@
             </tr>
         </thead>
             {% for student in students %}
+                {% set present = [0] %}
+                {% set late = [0] %}
+                {% set absent = [0] %}
+                {% set score = 0 %}
+                {% set count_days = 0 %}
+
                 {% if student.id == user_id %}
                     <tr class="person_to_show">
                     <td><b>{{student.name}} {{student.surname}}</b> </td>
+                        {% for day in attendances %}
+                            {% if day.student_id == student.id %}
+                                {% if day.status == 100 %}
+                                    {% set _ = present.append(present.pop()+1) %}
+                                {% elif day.status == 80 %}
+                                    {% set _ = late.append(late.pop()+1) %}
+                                {% elif day.status == 0 %}
+                                    {% set _ = absent.append(absent.pop()+1) %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% set count_days = present[0] + late[0] + absent[0] %}
+                    {% set score = (present[0] * 100 + late[0] * 80) / count_days %}
                     <td><center><b>{{counted_days}}</b></center></td>
-                    <td><center><b>{{present}}</b></center></td>
-                    <td><center><b>{{late}}</b></center></td>
-                    <td><center><b>{{absent}}</b></center></td>
-                    <td><center><b>{{score}}</b></center></td>
+                    <td><center><b>{{present[0]}}</b></center></td>
+                    <td><center><b>{{late[0]}}</b></center></td>
+                    <td><center><b>{{absent[0]}}</b></center></td>
+                    <td><center><b>{{'%0.2f'| format(score|float)}}</b></center></td>
                     </tr>
                 {% endif %}
             {% endfor %}
