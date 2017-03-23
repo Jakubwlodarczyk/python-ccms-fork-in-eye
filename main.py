@@ -1,5 +1,5 @@
 import datetime
-from flask import Flask, render_template, request, redirect, url_for, session as log_in
+from flask import Flask, flash, render_template, request, redirect, url_for, session as log_in
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -349,6 +349,7 @@ def show_students_grades():
         if performance:
             return render_template("get_performance.html", performance=performance, user_id=log_in['user_id'],
                                    user_status=log_in['user_status'], user=log_in['user'])
+        flash('No grades were found between provided dates')
         return redirect(url_for('show_students_grades'))
 
 
