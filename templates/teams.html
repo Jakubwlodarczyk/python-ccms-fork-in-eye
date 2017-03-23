@@ -13,33 +13,48 @@
 
 {% block content %}
 {% if session['user_status'] == 'mentor'%}
-        <section class='content team'>
-            <a href="{{ url_for('add_team') }}">
-                <button class="add-team" type="button" value="send">Add a new team</button>
-            </a>
-            <table class="team-table">
-                {% for team in teams %}
-                <thead>
-                    <tr>
-                        <th>{{ loop.index }}</th>
-                        <th>{{ team.name }}
-                            <a href="{{ url_for('edit_team_name', team_id=team.id) }}"><img class="small" src="{{ url_for('static', filename='edit.png')}}"></a>
-                            <a href="{{ url_for('remove_team', team_id=team.id)}}"><img class="small" src="{{ url_for('static', filename='trash.png')}}"></a>
-                        </th>
-                    </tr>
-                </thead>
-                    {% for student in students %}
-                        {% if student.team == team.name %}
-                            <tr>
-                                <td><a href="{{ url_for('remove_student_from_team', student_id=student.id) }}" >
-                                    Remove</a></td>
-                                <td>{{ student.name }} {{ student.surname }}</td>
-                            </tr>
+<a href="#add-team" rel="modal:open">
+<div id="add-team">
+    <form method="POST" action="{{ url_for('add_team')}}" class="add-team-form" name="add-team-form">
+        <input name="new-team-name" class="add-person-form-input" type="text" placeholder="Team Name">
+        <button class="little-button" type="submit">ADD</button>
+    </form>
+    <script type="text/javascript" src="static/js/validation.js"></script>
+</div>
+<button class="add-person-form-button right">Add a new team</button>
+</a>
 
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
-            </table>
-        </section>
+    <table class="team-table">
+        {% for team in teams %}
+        <thead>
+            <tr>
+                <th>{{ loop.index }}</th>
+                <th>{{ team.name }}
+                    <a href="#edit-team-{{team.id}}" rel="modal:open">
+                        <div class="edit" id="edit-team-{{team.id}}">
+                            <form method="POST" action="{{ url_for('edit_team_name', team_id=team.id) }}" class="add-person-form" name="add-person-form">
+                              <input name="name" class="add-person-form-input" value= "{{ team.name }}" required>
+                              <button type="submit">RENAME</button>
+                            </form>
+                       </div>
+                        <img class="small" src="{{ url_for('static', filename='pictures/edit.png')}}">
+                    </a>
+                    <a href="{{ url_for('remove_team', team_id=team.id)}}"><img class="small" src="{{ url_for('static', filename='pictures/trash.png')}}"></a>
+                </th>
+            </tr>
+        </thead>
+            {% for student in students %}
+                {% if student.team == team.name %}
+                    <tr>
+                        <td><a href="{{ url_for('remove_student_from_team', student_id=student.id) }}" >
+                            Remove</a></td>
+                        <td>{{ student.name }} {{ student.surname }}</td>
+                    </tr>
+
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+    </table>
+
 {% endif %}
 {% endblock %}

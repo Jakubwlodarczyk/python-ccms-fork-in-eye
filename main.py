@@ -147,7 +147,7 @@ def submissions_list():
     if request.method == "GET":
         return render_template("submission_table.html", submissions=submissions, options=[option.name for option in options] , students=students,
                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
-        
+
     if request.method == "POST":
         option = request.form["select-submission"]
         select_option = "--select--"
@@ -232,14 +232,10 @@ def add_assignment():
 @app.route("/edit_team_name/<team_id>", methods=['GET', 'POST'])
 def edit_team_name(team_id):
     """ Edit name of team"""
-    if request.method == "POST":
-        new_name = request.form['name']
-        Team.edit_team(team_id, new_name)
-        return redirect(url_for('teams_list'))
-    elif request.method == "GET":
-        team = Team.get_by_id(team_id)
-        old_name = team.name
-        return render_template("edit_team_name.html", old_name=old_name)
+    new_name = request.form['name']
+    Team.edit_team(team_id, new_name)
+    return redirect(url_for('teams_list'))
+
 
 
 @app.route("/add_student", methods=['POST', "GET"])
