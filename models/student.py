@@ -3,6 +3,7 @@ from sqlalchemy import and_, func
 from sqlalchemy.orm import sessionmaker
 from models.attendance import Attendance
 
+
 Session = sessionmaker(bind=db)
 session = Session()
 
@@ -151,6 +152,17 @@ class Student(db.Model):
             points += (student.late * 80)
 
             student.score = (points / Student.count_days())
+
+
+    @classmethod
+    def get_performance(cls, student_id, start_date, end_date):
+        """ Gets performance of student between given dates. """
+
+        results = db.session.query(Submission.send_date, Submission.name, Submission.grade).join\
+            (Student, and_(Submission.student_id == Student.id)).filter\
+            (Submission.send_date > start_date, Submission.send_date < end_date, Student.id == student_id).all()
+        return results
+
 
     @staticmethod
     def get_average():

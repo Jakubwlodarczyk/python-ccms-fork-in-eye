@@ -15,6 +15,7 @@ class Submission(db.Model):
     class Submission
     Reads data from database.
     """
+
     __tablename__ = 'submission'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     send_date = db.Column(db.String, nullable=False)
@@ -34,6 +35,7 @@ class Submission(db.Model):
 
     def __repr__(self):
         return "{} {} {} {} {}".format(self.send_date, self.grade, self.name, self.github_link, self.student_id)
+
 
     @staticmethod
     def add_submission(send_date, grade, name, github_link, student_id):
