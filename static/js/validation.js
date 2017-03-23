@@ -14,9 +14,18 @@ function validateContactData(evt) {
     return false;
   }
 
+  if (addForm.fname.value.length < 3 || addForm.lname.value.length < 3) {
+      alert('Name is too short!');
+      addForm.fname.focus();
+      addForm.lname.focus();
+      return false;
+    }
 
-  var x = document.forms['add-person-form'].email.value;
-  alert('Correct email: ' + x + '!');
+   if (addForm.fname.value == "dupa" || addForm.fname.value == "Dupa") {
+      alert('Seriously?');
+      addForm.fname.focus();
+      return false;
+    }
 
   addForm.submit();
 }
