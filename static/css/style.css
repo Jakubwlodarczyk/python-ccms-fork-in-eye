@@ -34,7 +34,7 @@ header {
 
 h1 {
     color: #EC4545;
-    font:  6rem 'Nova Mono';
+    font:  4rem 'Nova Mono';
     text-align: center;
 }
 
@@ -55,12 +55,12 @@ h3 {
 
 
 button {
+    font-weight: bold;
     background-color: #EC4545;
     border: none;
     border-radius: 8px;
     box-shadow: 5px 5px 2px #E1CCCC;
     color: white;
-    display: table;
     font-size: 20px;
     margin: auto;
     margin-bottom: 50px;
@@ -71,7 +71,7 @@ button {
     width: 250px;
 }
 
-    button.little-button {
+    .little-button {
         background-color: #EC4545;
         display:flex;
         margin-bottom: 0;
@@ -129,7 +129,7 @@ table.two_button_table {
         width: 100%;
     }
 
-    table th, td {border: 1px solid}
+    table th, td {border: 1px solid #E1CCCC}
 
     table th {
     background-color: #e1dfdf;
@@ -152,8 +152,8 @@ table.two_button_table {
     display: block;
     flex: 1;
     margin: 0 auto;
-    min-width: 230px;
-    max-width: 1000px;
+    min-width: 20%;
+    max-width: 70%;
     position: relative;
 }
 
@@ -175,7 +175,7 @@ table.two_button_table {
 
     .content.home {
         display: table;
-        width: 80%;
+        width: 94%;
         margin-top: 20px;
     }
 
@@ -223,7 +223,7 @@ label {
     left: 10px;
     float: left;
     display: block;
-    width:  300px;
+    width:  15%;
 }
 
     .solid_component .welcome_user img {
@@ -391,7 +391,7 @@ input[type=date]{
 /*TO NAJWIDOCZNIEJ TRZYMA OBWAŻANKA W RYZACH XDDD*/
 
 .header-menu {
-    height: 300px;
+    height: 10%;
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
@@ -421,10 +421,12 @@ input[type=date]{
 
 }
 
+
 table.filter_table {
     text-align: center;
     border-style: 0;
 }
+
 
 
 .submit_assignment_select{
@@ -468,4 +470,19 @@ select.large-select {
 }
 #add-person {
     display: none;
+}
+
+#add-assignment {
+    display: none;
+}
+
+.width100 {
+    width:100% !important;
+}
+
+#add-team {
+    display:none;
+}
+.edit {
+    display:none;
 }

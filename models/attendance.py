@@ -33,3 +33,8 @@ class Attendance(db.Model):
     def get_all():
         """ Return a list of objects """
         return db.session.query(Attendance).all()
+
+    @staticmethod
+    def get_by_date_id(date, student_id):
+        """ Return an object of attendance, found by ID """
+        return db.session.query(Attendance).filter(Attendance.date == date, Attendance.student_id == student_id).first()

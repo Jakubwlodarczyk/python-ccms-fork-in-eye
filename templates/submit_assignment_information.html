@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+{% if session['user_status'] == 'student' %}
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='style.css')  }}">
@@ -16,3 +16,4 @@
   <button type="submit">back to assignments</button><br>
 </form> 
     </body>
+{% endif %}

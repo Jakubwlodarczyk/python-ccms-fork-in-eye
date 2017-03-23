@@ -7,6 +7,8 @@
 {{ super() }}
 {% endblock%}
 
+{% if session['user_status'] == 'mentor' or session['user_status'] == 'manager' or session['user_status'] == 'student'
+or session['user_status'] == 'employee' %}
 
     {% block header %}
     <h1> Codecool Management System</h1>
@@ -15,7 +17,7 @@
     {% block content %}
 
     <a class="aleft"><h2>Welcome in the best programmers school in Kraków </h2></a>
-    <img src="../static/codecool_krk.jpg" width="50%" height="auto" align="right" class="logo">
+    <img src="../static/pictures/codecool_krk.jpg" width="50%" height="auto" align="right" class="logo">
 
 
     <section class="content home">
@@ -28,3 +30,4 @@
     </section>
 
     {% endblock %}
+{% endif %}

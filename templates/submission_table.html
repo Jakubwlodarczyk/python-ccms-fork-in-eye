@@ -11,28 +11,31 @@
 {% endblock%}
 
 {% block content %}
+
+{% if session['user_status'] == 'mentor' %}
+            <center>
             <h2>
                 Total: <em> average %</em>
             </h2>
-            <table class="filter_table">
-                <tr><td>
+
             <label for="select-class">Choose assignment: </label>
-                </tr></td>
+
             <form  method="post" action="/submissions">
-                <tr><td>
+
                 <select name="select-submission" class="select_submission1">
                     <option selected>--select--</option>
                         {% for opt in options %}
                             <option value="{{ opt }}">{{ opt }}</option>
                         {% endfor %}
                 </select>
-                </tr></td>
-                <tr><td>
-                   <button  class="select_button_filter" type="submit" value="send">Filter</button>
+
+                <div><button  class="select_button_filter" type="submit" value="send">Filter</button></div>
+
                 </form>
-                </tr></td>
-            
-            </table>
+
+            </center>
+
+
             <table>
             <thead>
                 <tr>
@@ -45,62 +48,63 @@
                     <th>Action</th>
             </thead>
                 {% if option == select_option %}
-                {% for submission in submissions %}
-                <tr class="person_to_show">
-                    <td>{{ loop.index }}</td>
-                    <td>{{ submission.name }}</td>
-                    <td>{{ submission.send_date }}</td>
-                    {% for student in students %}
-                        {% if student.id == submission.student_id %}
-                            <td>{{ student.name }} {{ student.surname }}</td>
+                    {% for submission in submissions %}
+                    <tr class="person_to_show">
+                        <td>{{ loop.index }}</td>
+                        <td>{{ submission.name }}</td>
+                        <td>{{ submission.send_date }}</td>
+                        {% for student in students %}
+                            {% if student.id == submission.student_id %}
+                                <td>{{ student.name }} {{ student.surname }}</td>
                             {% endif %}
                         {% endfor %}
-                    <td>{{ submission.github_link}}</td>
-                    <td>{{ submission.grade }}</td>
-                    <td>
-                        <form method="POST" action="/update_grade" name="grade">
-                            {% for student in students %}
-                                {% if student.id == submission.student_id %}
-                                    <input type="hidden" value="{{ student.id }}" name="student_id">
-                                    <input type="hidden" value="{{ submission.name }}" name="submission_name">
-                                    <input name="grade" class="little-input" type="text">
-                                    <button class="little-button" type="submit">Grade</button>
-                            {% endif %}
-                            {% endfor %}
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
+                        <td>{{ submission.github_link}}</td>
+                        <td>{{ submission.grade }}</td>
+                        <td>
+                            <form method="POST" action="/update_grade" name="grade">
+                                {% for student in students %}
+                                    {% if student.id == submission.student_id %}
+                                        <input type="hidden" value="{{ student.id }}" name="student_id">
+                                        <input type="hidden" value="{{ submission.name }}" name="submission_name">
+                                        <input name="grade" class="little-input" type="text">
+                                        <button class="little-button" type="submit">Grade</button>
+                                    {% endif %}
+                                {% endfor %}
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
                 {% else %}
-                {% for submission in submissions %}
-                {% if submission.name == option %}
-                <tr class="person_to_show">
-                    <td>{{ loop.index }}</td>
-                    <td>{{ submission.name }}</td>
-                    <td>{{ submission.send_date }}</td>
-                    {% for student in students %}
-                       {% if student.id == submission.student_id %}
-                            <td>{{ student.name }} {{ student.surname }}</td>
-                            {% endif %}
-                       
-                        {% endfor %}
-                    <td>{{ submission.github_link}}</td>
-                    <td>{{ submission.grade }}</td>
-                    <td>
-                        <form method="POST" action="/update_grade" name="grade">
-                            {% for student in students %}
-                                {% if student.id == submission.student_id %}
-                                    <input name="grade" class="little-input" type="text">
-                                    <input type="hidden" value="{{ student.id }}" name="student_id">
-                                    <button class="little-button" type="submit">Grade</button>
-                            {% endif %}
-                            {% endfor %}
-                        </form>
-                    </td>
-                </tr>
+                    {% for submission in submissions %}
+                        {% if submission.name == option %}
+                            <tr class="person_to_show">
+                                <td>{{ loop.index }}</td>
+                                <td>{{ submission.name }}</td>
+                                <td>{{ submission.send_date }}</td>
+                                {% for student in students %}
+                                   {% if student.id == submission.student_id %}
+                                        <td>{{ student.name }} {{ student.surname }}</td>
+                                   {% endif %}
+
+                                {% endfor %}
+                                <td>{{ submission.github_link}}</td>
+                                <td>{{ submission.grade }}</td>
+                                <td>
+                                    <form method="POST" action="/update_grade" name="grade">
+                                        {% for student in students %}
+                                            {% if student.id == submission.student_id %}
+                                                <input name="grade" class="little-input" type="text">
+                                                <input type="hidden" value="{{ student.id }}" name="student_id">
+                                                <button class="little-button" type="submit">Grade</button>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
-                {% endfor %}
-                 {% endif %}
         	</table>
     	<br>
+{% endif %}
 {% endblock %}
