@@ -22,10 +22,49 @@ function validateContactData(evt) {
     }
 
    if (addForm.fname.value == "dupa" || addForm.fname.value == "Dupa") {
-      alert('Seriously?');
+      alert('Theres no such name dupa');
       addForm.fname.focus();
       return false;
     }
 
   addForm.submit();
+}
+
+function process_performance_check_request(data, textStatus, jqXHR) {
+  alert("request processed");
+} 
+ 
+
+
+$(document).ready(function(){
+  $('.button-grade').function(){
+    console.log($(this));
+
+
+
+
+  });
+});
+function check_Date_form() {
+//  $.ajax("/get_performance")
+//   .done(function() {
+//     alert( "success" );
+//   })
+//   .fail(function() {
+//     alert( "error" );
+//   })
+//   .always(function() {
+//     alert( "complete" );
+//   });
+  
+
+  $.ajax({
+    type: "POST",
+    url: "/get_performance",
+    data: 
+    var date_form = ,
+    success: process_performance_check_request(),
+    dataType: dataType
+  });
+  return alert("You have entered an invalid email address!");
 }

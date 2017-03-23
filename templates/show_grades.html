@@ -32,7 +32,8 @@
             <td>{{ student.card  }}</td>
             <td> {{ value }} </td>
             <td>
-                <form class='performance' method='POST'>
+                <form class='performance' method='POST' action="/students_grades">
+                
                     <label for="start_date">Start date</label>
                     <input class='little-select' id="start_date" name='start_date' type='date'><br/>
                     <label for="end_date">End date</label>
@@ -40,7 +41,10 @@
                     <input type='hidden' value="{{  student.id }}" name='student_id'>
                     <br>
                     <br>
-                    <button class='little-button' type='submit'>show</button>
+                    <a href="#" class="button-grade">
+                        <button type='submit' 
+                    >show</button> onsubmit="" </a>
+                    
 
                 </form>
         </tr>

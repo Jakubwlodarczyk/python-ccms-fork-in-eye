@@ -178,3 +178,10 @@ class Student(db.Model):
             grades[record[0]] = record[1]
 
         return grades
+
+        
+    @staticmethod
+    def show_alert():
+        """ Show alert message """
+        
+        pass
