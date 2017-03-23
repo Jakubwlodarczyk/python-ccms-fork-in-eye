@@ -360,6 +360,16 @@ def show_students_grades():
                                    user_status=log_in['user_status'], user=log_in['user'])
         return redirect(url_for('show_students_grades'))
 
+@app.route("/grades", methods=["GET"])
+def show_all_grades():
+    """
+    Shows all grades for individual student.
+    """
+    submissions = Submission.get_all()
+    return render_template("grades.html", submissions=submissions, user_id=log_in['user_id'],
+                           user_status=log_in['user_status'], user=log_in['user'])
+
+
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
