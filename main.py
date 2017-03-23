@@ -109,25 +109,17 @@ def check_attendance():
     return render_template("attendance.html", students=students, current_date=current_date)
 
 
-@app.route("/edit_student/<student_id>", methods=['GET', 'POST'])
+@app.route("/edit_student/<student_id>", methods=['POST'])
 def edit_student(student_id):
     """ Edits student with selected id in the database
     If the method was GET it shows edit student form.
     If the method was POST it should update student data in database.
     """
-    if request.method == 'GET':
-        student = Student.get_by_id(student_id)
-        old_name = student.name
-        old_surname = student.surname
-        old_email = student.email
-        return render_template('edit_person_data.html', old_name=old_name, old_surname=old_surname, old_email=old_email)
-    elif request.method == 'POST':
-        new_name = request.form['new_fname']
-        new_surname = request.form['new_lname']
-        new_email = request.form['new_email']
-        Student.edit_student(student_id, new_name, new_surname, new_email)
+    new_name = request.form['new_fname']
+    new_surname = request.form['new_lname']
+    new_email = request.form['new_email']
+    Student.edit_student(student_id, new_name, new_surname, new_email)
     return redirect(url_for('students_list'))
-
 
 @app.route("/remove_student/<student_id>")
 def remove_student(student_id):
@@ -147,20 +139,19 @@ def mentors_list():
 @app.route("/submissions", methods=['POST', "GET"])
 def submissions_list():
     """Shows list of submissions"""
-    options = db.session.query(Submission).all()
-
-    submissions = Submission.get_all()
+    submissions = db.session.query(Submission).all()
+    options = Submission.get_sub_distinct()
 
     students = Student.get_all()
     if request.method == "GET":
-        return render_template("submission_table.html", submissions=submissions, options=options, students=students,
+        return render_template("submission_table.html", submissions=submissions, options=[option.name for option in options] , students=students,
                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
 
     if request.method == "POST":
         option = request.form["select-submission"]
         select_option = "--select--"
         return render_template("submission_table.html", submissions=submissions, option=option,
-                               options=options, select_option=select_option, students=students,
+                               options=[option.name for option in options], select_option=select_option, students=students,
                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
 
 
@@ -240,14 +231,10 @@ def add_assignment():
 @app.route("/edit_team_name/<team_id>", methods=['GET', 'POST'])
 def edit_team_name(team_id):
     """ Edit name of team"""
-    if request.method == "POST":
-        new_name = request.form['name']
-        Team.edit_team(team_id, new_name)
-        return redirect(url_for('teams_list'))
-    elif request.method == "GET":
-        team = Team.get_by_id(team_id)
-        old_name = team.name
-        return render_template("edit_team_name.html", old_name=old_name)
+    new_name = request.form['name']
+    Team.edit_team(team_id, new_name)
+    return redirect(url_for('teams_list'))
+
 
 
 @app.route("/add_student", methods=['POST', "GET"])
@@ -342,7 +329,6 @@ def update_grade():
     submission_name = request.form["submission_name"]
     Submission.upgrade_grade(grade, student_id, submission_name)
 
-    # UPGRADE GRADE
     return redirect(url_for('submissions_list'))
 
 
@@ -367,8 +353,7 @@ def show_students_grades():
         start = request.form['start_date']
         end = request.form['end_date']
         student_id = request.form['student_id']
-        
-        performance = Model.get_performance(student_id, start, end)
+        performance = Student.get_performance(student_id, start, end)
         if performance:
             return render_template("get_performance.html", performance=performance, user_id=log_in['user_id'],
                                    user_status=log_in['user_status'], user=log_in['user'])

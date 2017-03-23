@@ -15,11 +15,22 @@
 {% block content %}
 
 {% if session['user_status'] == 'mentor'%}
-<form class="add-person-form" name="add-person-form" action="/add_student">
-    <a>
-        <button class="add-person-form-button right" value="send">Add a new student</button>
-    </a>
-</form>
+
+<a href="#add-person" rel="modal:open">
+    <div id="add-person">
+        <form class="add-person-form"
+            name="add-person-form" method="POST" action="{{ url_for('add_student')}}">
+                <input id="email" name="email" email="email" class="add-person-form-input"
+                placeholder="EMAIL" name="email">
+                <input id="name" name="fname" class="add-person-form-input" type="text" placeholder="FIRST NAME">
+                <input id="lname" name="lname" class="add-person-form-input" type="text" placeholder="LAST NAME">
+            <button>SAVE</button>
+        </form>
+        <script type="text/javascript" src="static/js/validation.js"></script>
+    </div>
+    <button class="add-person-form-button right">Add a new student</button>
+</a>
+
     <table>
         <thead>
         <tr>
@@ -35,20 +46,43 @@
         <td>{{ student.name }} {{ student.surname }}</td>
         <td>{{ student.email }}</td>
         <td>
-            <a href="{{  url_for('edit_student', student_id=student.id)  }}">| Edit</a>
+            <a href="#edit-person-{{student.id}}" rel="modal:open">
+                <div class="edit" id="edit-person-{{student.id}}">
+                    <form method="POST" action="{{ url_for('edit_student', student_id=student.id) }}" class="add-person-form" name="add-person-form">
+                      <input name="new_email" class="add-person-form-input" value= "{{ student.email }}" required>
+                      <input name="new_fname" class="add-person-form-input" type="text" value="{{ student.name }}">
+                      <input name="new_lname" class="add-person-form-input" type="text" value="{{ student.surname }}">
+                      <button type="submit">SAVE</button>
+                    </form>
+
+               </div>
+                <img class="small" src="{{ url_for('static', filename='pictures/edit.png')}}">
+            </a>
+
+
             <a href="{{  url_for('remove_student', student_id=student.id)  }}">
-            | Remove |</a>
+            <img class="small" src="{{ url_for('static', filename='pictures/trash.png')}}">
+            </a>
 
             <form method="post">
                 <select class="add-person-form-input add-person-form-select mentor-show-students" name="select-team">
+                {% if student.team == None %}
+                    <option selected>--team--</option>
+                {% else %}
                     <option selected>{{ student.team }}</option>
+                {% endif %}
                         {% for team in teams %}
                             <option>{{ team }}</option>
+
                             {% endfor %}
                 </select>
-                |
+
                 <select class="add-person-form-input add-person-form-select mentor-show-students mentor-give-card" name="select-card">
+                {% if student.card == None %}
+                    <option selected>--card--</option>
+                {% else %}
                     <option selected>{{ student.card }}</option>
+                {% endif %}
                         {% for card in cards %}
                             <option name="card">{{ card }}</option>
                             {% endfor %}
