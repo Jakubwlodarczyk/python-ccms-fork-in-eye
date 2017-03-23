@@ -29,6 +29,7 @@ class Assignments(db.Model):
 
     @staticmethod
     def add_assignment(start_date, end_date, assignment_name, link):
+        """ Create object of Assignments class, and save it in database """
         assignment = Assignments(start_date=start_date, end_date=end_date, assignment_name=assignment_name, link=link)
         db.session.add(assignment)
         db.session.commit()

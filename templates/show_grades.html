@@ -3,16 +3,27 @@
 {{ super() }}
 {% endblock %}
 
-{% block header %}
-<h1> Students grades</h1>
-{% endblock %}
-
 {% block solid_component %}
 {{ super() }}
 {% endblock%}
 
+{% block header %}
+<h1> Students grades</h1>
+{% endblock %}
+
+
 {% block content %}
     {% if session['user_status'] == 'mentor'%}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class=flashes>
+        {% for message in messages %}
+          <h2>{{ message }}</h2>
+        {% endfor %}
+    </div>
+      {% endif %}
+    {% endwith %}
+
         <table>
             <thead>
             <tr>
@@ -47,6 +58,7 @@
                 {% endif %}
             {% endfor %}
         {% endfor %}
+    </table>
 
     {% elif session['user_status'] == 'student'%}
     <h2>General overview</h2>
@@ -76,7 +88,9 @@
 
         </table>
         <a href="{{ url_for('show_all_grades')}}">
-        <button type="button" name="button">Show all grades</button>
+        <center>
+            <button type="button" name="button">Show all grades</button>
+        </center>
         </a>
 {% endblock %}
     </body>
