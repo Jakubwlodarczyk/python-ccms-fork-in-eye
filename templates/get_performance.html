@@ -15,7 +15,7 @@
 {% if session['user_status'] == 'mentor'%}
     
     
- {% if performance %}   
+   
     
     <a href= "{{  url_for('show_students_grades')  }}">
         <button>Go back</button>
@@ -41,11 +41,7 @@
 
 
 
-{% else %}
-    <h2>Records were not found</h2>
 
-
-{% endif %}
 {% endif %}
 {% endblock %}
 

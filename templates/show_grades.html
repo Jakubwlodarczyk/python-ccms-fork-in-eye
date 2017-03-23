@@ -3,17 +3,28 @@
 {{ super() }}
 {% endblock %}
 
-{% block header %}
-<h1> Students grades</h1>
-{% endblock %}
-
 {% block solid_component %}
 {{ super() }}
 {% endblock%}
 
+{% block header %}
+<h1> Students grades</h1>
+{% endblock %}
+
+
 {% block content %}
     {% if session['user_status'] == 'mentor'%}
-    <table>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class=flashes>
+        {% for message in messages %}
+          <h2>{{ message }}</h2>
+        {% endfor %}
+    </div>
+      {% endif %}
+    {% endwith %}
+
+        <table>
             <thead>
             <tr>
                 <th>Full name</th>
@@ -43,7 +54,7 @@
                     <br>
                     <a href="#" class="button-grade">
                         <button type='submit' 
-                    >show</button> onsubmit="" </a>
+                    >show</button></a>
                     
 
                 </form>

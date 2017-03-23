@@ -1,5 +1,5 @@
 import datetime
-from flask import Flask, render_template, request, redirect, url_for, session as log_in
+from flask import Flask, flash, render_template, request, redirect, url_for, session as log_in
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -345,12 +345,10 @@ def show_students_grades():
         start = request.form['start_date']
         end = request.form['end_date']
         student_id = request.form['student_id']
-        print(start, end, student_id)
-        print(start, end, student_id)
+        
         performance = Student.get_performance(student_id, start, end)
-        for i in performance:
-            print(i)
-        print("this is performance: ", performance)
+
+   
         # if performance:
         return render_template("get_performance.html", performance=performance, user_id=log_in['user_id'],
                                 user_status=log_in['user_status'], user=log_in['user'])
@@ -365,9 +363,15 @@ def is_performance():
     start = request.form['start_date']
     end = request.form['end_date']
     student_id = request.form['student_id']
-    print(start, end, student_id)
-    print(start, end, student_id)
+    
     performance = Student.get_performance(student_id, start, end)
+    if performance:
+        return render_template("get_performance.html", performance=performance, user_id=log_in['user_id'],
+                                user_status=log_in['user_status'], user=log_in['user'])
+    flash('No grades were found between provided dates')
+    return redirect(url_for('show_students_grades'))
+
+
 
 @app.route("/grades", methods=["GET"])
 def show_all_grades():
