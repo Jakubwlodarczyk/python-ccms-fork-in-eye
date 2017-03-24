@@ -48,52 +48,69 @@
 
            </thead>
            <tbody>
-
-
                <tr class="person_to_show">
                     {% for assignment in assignments %}
-                   <td>{{ loop.index }}</td>
-                   <td>{{assignment.assignment_name}}</td>
-                   <td>{{assignment.link}}</td>
-                   <td>{{assignment.start_date}}</td>
-                   <td>{{assignment.end_date}}</td>
-                   {% if session['user_status'] == 'student'%}<td>
-                       <form method="post"
+                        <td>{{ loop.index }}</td>
+                        <td>{{assignment.assignment_name}}</td>
+                        <td>{{assignment.link}}</td>
+                        <td>{{assignment.start_date}}</td>
+                        <td>{{assignment.end_date}}</td>
+                        {% if session['user_status'] == 'student'%}<td>
+                        <form method="post" action="/submit_form">
+                            <input type="hidden" value="{{assignment.assignment_name}}" name="submission_name">
+                            <input type="hidden" value="{{assignment.link}}" name="submission_link">
+                            <input type="hidden" value="{{assignment.start_date}}" name="submission_start_date">
+                            <input type="hidden" value="{{assignment.end_date}}" name="submission_end_date">
+                            <a href="#submit-assignment-{{ loop.index }}" rel="modal:open">
+                            <button class='little-button' name="select_submit_assignment"
+                            type="submit" value="send">Submit</button>
+                            </a>
+                        </form>
+                        </td>
+                       {% endif %}
 
-                   action="/submit_form">
-                   <input type="hidden" value="{{assignment.assignment_name}}" name="submission_name">
-                   <input type="hidden" value="{{assignment.link}}" name="submission_link">
-                   <input type="hidden" value="{{assignment.start_date}}" name="submission_start_date">
-                   <input type="hidden" value="{{assignment.end_date}}" name="submission_end_date">
-                       <button class='little-button' name="select_submit_assignment"
-                       type="submit" value="send">Submit</button>
-                       </form>
-                   </td>
-                   {% endif %}
+                       <div id="submit-assignment-{{ loop.index }}" class="hideIt">
+
+                            <form class="Submission_form" method="POST" action='submit_assignment/{{user_id}}' >
+                                <input type="hidden" name="submission_name" value="{{assignment.assignment_name}}">
+                                <input type="hidden" name="submission_start_date" value="{{assignment.start_date}}">
+                                <input type="hidden" name="submission_end_date" value="{{assignment.end_date}}">
+                                <label class="add-person-form-element">Submission link:</label>
+                                <input type="text" name="submission_link" class="add-person-form-input width100" required>
+                                <label class="add-person-form-element">Submit as:</label>
+                                <select class ="submit_assignment_select" name="select_form">
+                                    <option value="Submit assignment">As me</option>
+                                    <option value="Submit as a team">As a team</option>
+                                </select>
+                                <br>
+                                <center>
+                                <button type="submit" name="submit_as_one" class="displayTable">Submit</button>
+                                </center>
+                            </form>
+                    </div>
                </tr>
                     {% endfor %}
            </tbody>
        </table>
 
-    <div id="add-assignment">
 
+    <div id="add-assignment">
             <form name="add-person-form" method="POST" action="{{ url_for('add_assignment')}}">
-                <label for="start_date" class="add-person-form-element">Start date</label>
+                <label class="add-person-form-element">Start date</label>
                     <input name="start_date" class="add-person-form-input width100"
                     placeholder="Start date" type="date" name="start_date" style="width:100%;">
                 <br><br>
-                <label for="end_date" class="add-person-form-element">End date</label>
+                <label class="add-person-form-element">End date</label>
                     <input name="end_date" class="add-person-form-input width100" type="date" placeholder="End date">
                 <br><br>
-                <label for="assignment_name" class="add-person-form-element">Assignment name</label>
+                <label class="add-person-form-element">Assignment name</label>
                     <input name="assignment_name" class="add-person-form-input width100" type="text" placeholder="Assignment name">
                 <br><br>
-                <label for="assignment_link" class="add-person-form-element width100">Link</label>
+                <label class="add-person-form-element width100">Link</label>
                     <input name="assignment_link" class="add-person-form-input width100" type="text" placeholder="Link">
                 <br><br>
                 <button>SAVE</button>
             </form>
-
     </div>
 
 
