@@ -1,5 +1,5 @@
 import datetime
-from flask import Flask, render_template, request, redirect, url_for, session as log_in
+from flask import Flask, flash, render_template, request, redirect, url_for, session as log_in
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -13,7 +13,6 @@ db = SQLAlchemy(app)
 from models.team import *
 from models.assignments import *
 from models.model import *
-from models.submission import *
 from models.student import *
 from models.attendance import *
 
@@ -62,7 +61,9 @@ def logout():
 
 @app.route("/students", methods=['GET', 'POST'])
 def students_list():
-    """ Shows list of students """
+    """
+    Shows list of students
+    """
     if request.method == "POST":
         student_id = request.form['student_id']
         card = request.form['select-card']
@@ -79,9 +80,10 @@ def students_list():
 
 @app.route("/students-attendance", methods=['GET', 'POST'])
 def students_attendance():
-    """ Check attendance of students :
-        if method is get - shows students attendance
-        if method is post - check students attendance
+    """
+    Check attendance of students :
+    if method is get - shows students attendance
+    if method is post - check students attendance
     """
     students = Student.get_all()
     attendances = Attendance.get_all()
@@ -104,6 +106,9 @@ def students_attendance():
 
 @app.route("/check_attendance", methods=['GET', 'POST'])
 def check_attendance():
+    """
+    Checking attendance.
+    """
     students = Student.get_all()
     current_date = str(datetime.date.today())
     return render_template("attendance.html", students=students, current_date=current_date)
@@ -111,9 +116,8 @@ def check_attendance():
 
 @app.route("/edit_student/<student_id>", methods=['POST'])
 def edit_student(student_id):
-    """ Edits student with selected id in the database
-    If the method was GET it shows edit student form.
-    If the method was POST it should update student data in database.
+    """
+    Edits student with selected id in the database
     """
     new_name = request.form['new_fname']
     new_surname = request.form['new_lname']
@@ -121,16 +125,21 @@ def edit_student(student_id):
     Student.edit_student(student_id, new_name, new_surname, new_email)
     return redirect(url_for('students_list'))
 
+
 @app.route("/remove_student/<student_id>")
 def remove_student(student_id):
-    """ Removes student with selected id from the database """
+    """
+    Removes student with selected id from the database
+    """
     Student.remove_student(student_id)
     return redirect(url_for('students_list'))
 
 
 @app.route("/mentors")
 def mentors_list():
-    """ Shows list of mentors """
+    """
+    Shows list of mentors
+    """
     mentors = Mentor.get_all()
     return render_template("show_mentors_list.html", mentors=mentors, user_id=log_in['user_id'],
                            user_status=log_in['user_status'], user=log_in['user'])
@@ -138,41 +147,41 @@ def mentors_list():
 
 @app.route("/submissions", methods=['POST', "GET"])
 def submissions_list():
-    """Shows list of submissions"""
-    submissions = db.session.query(Submission).all()
+    """
+    Shows list of submissions
+    """
+    submissions = Submission.get_all()
     options = Submission.get_sub_distinct()
-
     students = Student.get_all()
     if request.method == "GET":
-        return render_template("submission_table.html", submissions=submissions, options=[option.name for option in options] , students=students,
+        return render_template("submission_table.html", submissions=submissions,
+                               options=[option.name for option in options], students=students,
                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
-
     if request.method == "POST":
         option = request.form["select-submission"]
         select_option = "--select--"
         return render_template("submission_table.html", submissions=submissions, option=option,
-                               options=[option.name for option in options], select_option=select_option, students=students,
-                               user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
+                               options=[option.name for option in options], select_option=select_option,
+                               students=students, user_id=log_in['user_id'], user_status=log_in['user_status'],
+                               user=log_in['user'])
 
 
 @app.route("/add_mentor", methods=['POST'])
 def add_mentor():
-    """Shows list of submissions"""
-    if request.method == 'GET':
-        return render_template('add.html')
-    elif request.method == 'POST':
-        name = request.form['fname']
-        surname = request.form['lname']
-        email = request.form['email']
-        Mentor.add_mentor(name, surname, email)
-        return redirect(url_for('mentors_list'))
+    """
+    Adds new mentor to database.
+    """
+    name = request.form['fname']
+    surname = request.form['lname']
+    email = request.form['email']
+    Mentor.add_mentor(name, surname, email)
+    return redirect(url_for('mentors_list'))
 
 
 @app.route("/edit_mentor/<mentor_id>", methods=['GET', 'POST'])
 def edit_mentor(mentor_id):
-    """ Edits mentor with selected id in the database
-    If the method was GET it shows edit mentor form.
-    If the method was POST it should update mentor data in database.
+    """
+    Edits mentor with selected id in the database.
     """
     new_name = request.form['new_fname']
     new_surname = request.form['new_lname']
@@ -183,14 +192,18 @@ def edit_mentor(mentor_id):
 
 @app.route("/remove_mentor/<mentor_id>")
 def remove_mentor(mentor_id):
-    """ Removes student with selected id from the database """
+    """
+    Removes student with selected id from the database
+    """
     Mentor.remove_mentor(mentor_id)
     return redirect(url_for('mentors_list'))
 
 
 @app.route("/teams")
 def teams_list():
-    """ Shows list of teams"""
+    """
+    Shows list of teams
+    """
     teams = Team.get_all()
     students = Student.get_all()
     return render_template("teams.html", teams=teams, students=students, user_id=log_in['user_id'],
@@ -199,7 +212,9 @@ def teams_list():
 
 @app.route("/assignments")
 def assignments_list():
-    """ Shows list of students """
+    """
+    Shows list of assignments
+    """
     assignments = Assignments.get_all()
     return render_template("show_assignments.html", assignments=assignments, user_id=log_in['user_id'],
                            user_status=log_in['user_status'], user=log_in['user'])
@@ -207,9 +222,11 @@ def assignments_list():
 
 @app.route("/add_assignment", methods=['POST', "GET"])
 def add_assignment():
-    """ add assignment to db """
+    """
+    Adds assignment to db
+    """
     if request.method == "GET":
-        return render_template("add_assignment.html",user_status=log_in['user_status'],
+        return render_template("add_assignment.html", user_status=log_in['user_status'],
                                user=log_in['user'])
 
     elif request.method == "POST":
@@ -223,42 +240,41 @@ def add_assignment():
 
 @app.route("/edit_team_name/<team_id>", methods=['GET', 'POST'])
 def edit_team_name(team_id):
-    """ Edit name of team"""
+    """
+    Edits name of team
+    """
     new_name = request.form['name']
     Team.edit_team(team_id, new_name)
     return redirect(url_for('teams_list'))
 
 
-
-@app.route("/add_student", methods=['POST', "GET"])
+@app.route("/add_student", methods=['POST'])
 def add_student():
-    """ Add student to database """
-    if request.method == "GET":
-        return render_template("add.html", user_id=log_in['user_id'], user_status=log_in['user_status'],
-                               user=log_in['user'])
-    elif request.method == "POST":
-        name = request.form["fname"]
-        surname = request.form["lname"]
-        email = request.form["email"]
-        Student.add_student(name, surname, email)
-        return redirect(url_for('students_list'))
+    """
+    Add student to database
+    """
+    name = request.form["fname"]
+    surname = request.form["lname"]
+    email = request.form["email"]
+    Student.add_student(name, surname, email)
+    return redirect(url_for('students_list'))
 
 
 @app.route("/add_team", methods=['GET', 'POST'])
 def add_team():
-    """ Add new team """
-    if request.method == 'GET':
-        return render_template("add_new_team.html", user_id=log_in['user_id'], user_status=log_in['user_status'],
-                               user=log_in['user'])
-    else:
-        team_name = request.form['new-team-name']
-        Team.add_team(team_name)
-        return redirect(url_for('teams_list'))
+    """
+    Adds new team
+    """
+    team_name = request.form['new-team-name']
+    Team.add_team(team_name)
+    return redirect(url_for('teams_list'))
 
 
 @app.route("/remove_student_team")
 def remove_student_from_team():
-    """ Remove student from a team"""
+    """
+    Removes student from a team
+    """
     student_id = request.args['student_id']
     student_id = int(student_id)
     Student.remove_student_team(student_id)
@@ -272,7 +288,6 @@ def submission_form():
         sub_link = request.form["submission_link"]
         sub_start_date = request.form["submission_start_date"]
         sub_end_date = request.form["submission_end_date"]
-
         return render_template("submission_form.html", sub_name=sub_name, sub_link=sub_link,
                                sub_start_date=sub_start_date, sub_end_date=sub_end_date,
                                user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
@@ -280,7 +295,9 @@ def submission_form():
 
 @app.route("/submit_assignment/<user_id>", methods=['POST'])
 def submit_assignment(user_id):
-    """ Add submission to submission list"""
+    """
+    Adds submission to submission list
+    """
     students = Student.get_all()
     name = request.form["submission_name"]
     link = request.form["submission_link"]
@@ -291,7 +308,8 @@ def submit_assignment(user_id):
         if request.form["select_form"] == "Submit assignment":
             my_submission = Submission(end_date, 0, name, link, user_id)
             submission_status = Submission.add_submission(my_submission.send_date, my_submission.grade,
-            my_submission.name, my_submission.github_link, my_submission.student_id)
+                                                          my_submission.name, my_submission.github_link,
+                                                          my_submission.student_id)
 
             return render_template("submit_assignment_information.html", submission_status=submission_status,
                                    user_id=log_in['user_id'], user_status=log_in['user_status'], user=log_in['user'])
@@ -308,7 +326,8 @@ def submit_assignment(user_id):
 
                         my_submission = Submission(end_date, 0, name, link, student.id)
                         submission_status = Submission.add_submission(my_submission.send_date, my_submission.grade,
-                        my_submission.name, my_submission.github_link, my_submission.student_id)
+                                                                      my_submission.name, my_submission.github_link,
+                                                                      my_submission.student_id)
                 return render_template("submit_assignment_information.html", submission_status=submission_status,
                                        user_id=log_in['user_id'], user_status=log_in['user_status'],
                                        user=log_in['user'])
@@ -316,12 +335,13 @@ def submit_assignment(user_id):
 
 @app.route("/update_grade", methods=['POST'])
 def update_grade():
-    """ Update grade of student submission in database """
+    """
+    Update grade of student submission in database
+    """
     grade = request.form['grade']
     student_id = request.form['student_id']
     submission_name = request.form["submission_name"]
     Submission.upgrade_grade(grade, student_id, submission_name)
-
     return redirect(url_for('submissions_list'))
 
 
@@ -336,7 +356,9 @@ def remove_team(team_id):
 
 @app.route("/students_grades", methods=['GET', 'POST'])
 def show_students_grades():
-    """ Shows students grades """
+    """
+    Shows students grades
+    """
     if request.method == "GET":
         students = Student.get_all()
         grades = Student.get_average()
@@ -346,11 +368,33 @@ def show_students_grades():
         start = request.form['start_date']
         end = request.form['end_date']
         student_id = request.form['student_id']
+        
         performance = Student.get_performance(student_id, start, end)
-        if performance:
-            return render_template("get_performance.html", performance=performance, user_id=log_in['user_id'],
-                                   user_status=log_in['user_status'], user=log_in['user'])
-        return redirect(url_for('show_students_grades'))
+
+   
+        # if performance:
+        return render_template("get_performance.html", performance=performance, user_id=log_in['user_id'],
+                                user_status=log_in['user_status'], user=log_in['user'])
+        
+        # else:
+        #     Student.show_alert()
+        #     return redirect(url_for('show_students_grades'))
+
+@app.route("/get_performance", methods = ['POST'])
+def is_performance():
+    """check the performance"""
+    start = request.form['start_date']
+    end = request.form['end_date']
+    student_id = request.form['student_id']
+    
+    performance = Student.get_performance(student_id, start, end)
+    if performance:
+        return render_template("get_performance.html", performance=performance, user_id=log_in['user_id'],
+                                user_status=log_in['user_status'], user=log_in['user'])
+    flash('No grades were found between provided dates')
+    return redirect(url_for('show_students_grades'))
+
+
 
 @app.route("/grades", methods=["GET"])
 def show_all_grades():
@@ -360,7 +404,6 @@ def show_all_grades():
     submissions = Submission.get_all()
     return render_template("grades.html", submissions=submissions, user_id=log_in['user_id'],
                            user_status=log_in['user_status'], user=log_in['user'])
-
 
 
 if __name__ == "__main__":

@@ -3,16 +3,27 @@
 {{ super() }}
 {% endblock %}
 
-{% block header %}
-<h1> Students grades</h1>
-{% endblock %}
-
 {% block solid_component %}
 {{ super() }}
 {% endblock%}
 
+{% block header %}
+<h1> Students grades</h1>
+{% endblock %}
+
+
 {% block content %}
     {% if session['user_status'] == 'mentor'%}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class=flashes>
+        {% for message in messages %}
+          <h2>{{ message }}</h2>
+        {% endfor %}
+    </div>
+      {% endif %}
+    {% endwith %}
+
         <table>
             <thead>
             <tr>
@@ -32,7 +43,8 @@
             <td>{{ student.card  }}</td>
             <td> {{ value }} </td>
             <td>
-                <form class='performance' method='POST'>
+                <form class='performance' method='POST' action="/students_grades">
+                
                     <label for="start_date">Start date</label>
                     <input class='little-select' id="start_date" name='start_date' type='date'><br/>
                     <label for="end_date">End date</label>
@@ -40,13 +52,17 @@
                     <input type='hidden' value="{{  student.id }}" name='student_id'>
                     <br>
                     <br>
-                    <button class='little-button' type='submit'>show</button>
+                    <a href="#" class="button-grade">
+                        <button type='submit' 
+                    >show</button></a>
+                    
 
                 </form>
         </tr>
                 {% endif %}
             {% endfor %}
         {% endfor %}
+    </table>
 
     {% elif session['user_status'] == 'student'%}
     <h2>General overview</h2>
@@ -76,7 +92,9 @@
 
         </table>
         <a href="{{ url_for('show_all_grades')}}">
-        <button type="button" name="button">Show all grades</button>
+        <center>
+            <button type="button" name="button">Show all grades</button>
+        </center>
         </a>
 {% endblock %}
     </body>

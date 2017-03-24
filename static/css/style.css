@@ -34,7 +34,7 @@ header {
 
 h1 {
     color: #EC4545;
-    font:  6rem 'Nova Mono';
+    font:  4rem 'Nova Mono';
     text-align: center;
 }
 
@@ -152,8 +152,8 @@ table.two_button_table {
     display: block;
     flex: 1;
     margin: 0 auto;
-    min-width: 230px;
-    max-width: 1000px;
+    min-width: 20%;
+    max-width: 70%;
     position: relative;
 }
 
@@ -175,7 +175,7 @@ table.two_button_table {
 
     .content.home {
         display: table;
-        width: 80%;
+        width: 94%;
         margin-top: 20px;
     }
 
@@ -223,7 +223,7 @@ label {
     left: 10px;
     float: left;
     display: block;
-    width:  300px;
+    width:  15%;
 }
 
     .solid_component .welcome_user img {
@@ -336,8 +336,6 @@ label {
     .add-person-form-input:focus {background-color: #D2D3D4;
 }
 
-/*TUTAJ SKONCZYLAM, NIE MAM SILY XD ~Ania */
-/*proszę to uporządkować. czy te wszystkie klasy są potrzebne?*/
 
 .add-person-form-input.add-person-form-select.mentor-show-students {
 
@@ -386,12 +384,8 @@ input[type=date]{
 }
 
 
-/*FATEFUL SPINNING BAGEL :///*/
-
-/*TO NAJWIDOCZNIEJ TRZYMA OBWAŻANKA W RYZACH XDDD*/
-
 .header-menu {
-    height: 300px;
+    height:20rem;
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
@@ -471,7 +465,6 @@ select.large-select {
 #add-person {
     display: none;
 }
-
 
 #add-assignment {
     display: none;

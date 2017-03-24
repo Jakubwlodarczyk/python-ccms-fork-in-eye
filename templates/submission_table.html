@@ -13,29 +13,28 @@
 {% block content %}
 
 {% if session['user_status'] == 'mentor' %}
-
+            <center>
             <h2>
                 Total: <em> average %</em>
             </h2>
-            <table class="filter_table">
-                <tr><td>
+
             <label for="select-class">Choose assignment: </label>
-                </tr></td>
-            <form  method="post" action="/submissions">
-                <tr><td>
+
+            <form  method="POST" action="/submissions">
+
                 <select name="select-submission" class="select_submission1">
                     <option selected>--select--</option>
                         {% for opt in options %}
                             <option value="{{ opt }}">{{ opt }}</option>
                         {% endfor %}
                 </select>
-                </tr></td>
-                <tr><td>
-                   <button  class="select_button_filter" type="submit" value="send">Filter</button>
+
+                <div><button  class="select_button_filter" type="submit" value="send">Filter</button></div>
+
                 </form>
-                </tr></td>
-            
-            </table>
+
+            </center>
+
 
             <table>
             <thead>
@@ -62,7 +61,7 @@
                         <td>{{ submission.github_link}}</td>
                         <td>{{ submission.grade }}</td>
                         <td>
-                            <form method="POST" action="/update_grade" name="grade">
+                            <form method="POST" action="{{url_for('update_grade')}}">
                                 {% for student in students %}
                                     {% if student.id == submission.student_id %}
                                         <input type="hidden" value="{{ student.id }}" name="student_id">
@@ -91,10 +90,11 @@
                                 <td>{{ submission.github_link}}</td>
                                 <td>{{ submission.grade }}</td>
                                 <td>
-                                    <form method="POST" action="/update_grade" name="grade">
+                                    <form method="POST" action="{{url_for('update_grade')}}">
                                         {% for student in students %}
                                             {% if student.id == submission.student_id %}
                                                 <input name="grade" class="little-input" type="text">
+                                                <input type="hidden" value="{{ submission.name }}" name="submission_name">
                                                 <input type="hidden" value="{{ student.id }}" name="student_id">
                                                 <button class="little-button" type="submit">Grade</button>
                                             {% endif %}
