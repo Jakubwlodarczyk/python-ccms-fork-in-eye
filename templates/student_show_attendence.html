@@ -51,7 +51,7 @@
                             {% endif %}
                         {% endfor %}
                     {% set count_days = present[0] + late[0] + absent[0] %}
-                    {% set score = (present[0] * 100 + late[0] * 80) / count_days %}
+                    {% set score = (present[0] * 100 + late[0] * 80) / 3 %}
                     <td><center><b>{{present[0]}}</b></center></td>
                     <td><center><b>{{late[0]}}</b></center></td>
                     <td><center><b>{{absent[0]}}</b></center></td>

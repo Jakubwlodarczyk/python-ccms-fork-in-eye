@@ -391,7 +391,7 @@ input[type=date]{
 /*TO NAJWIDOCZNIEJ TRZYMA OBWAŻANKA W RYZACH XDDD*/
 
 .header-menu {
-    height: 10%;
+    height:20rem;
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
