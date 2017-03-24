@@ -22,10 +22,35 @@ function validateContactData(evt) {
     }
 
    if (addForm.fname.value == "dupa" || addForm.fname.value == "Dupa") {
-      alert('Seriously?');
+      alert('Theres no such name dupa');
       addForm.fname.focus();
       return false;
     }
 
   addForm.submit();
 }
+
+function remove(student_id){
+console.log('asdfs')
+    $.confirm({
+        title: 'Please confirm!',
+        content: 'Do you really want remove this student?',
+        buttons: {
+            Yes: function () {
+                $.ajax({
+                    type: "POST",
+                    url: 'remove_student/{{student_id}}',
+                    data: "student_id=" + student_id,
+                    success : function(response){
+                        $.alert('Item deleted!');
+                    }
+                });
+            },
+            cancel: function () {
+
+            },
+        }
+    });
+
+}
+

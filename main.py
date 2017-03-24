@@ -368,12 +368,32 @@ def show_students_grades():
         start = request.form['start_date']
         end = request.form['end_date']
         student_id = request.form['student_id']
+        
         performance = Student.get_performance(student_id, start, end)
-        if performance:
-            return render_template("get_performance.html", performance=performance, user_id=log_in['user_id'],
-                                   user_status=log_in['user_status'], user=log_in['user'])
-        flash('No grades were found between provided dates')
-        return redirect(url_for('show_students_grades'))
+
+   
+        # if performance:
+        return render_template("get_performance.html", performance=performance, user_id=log_in['user_id'],
+                                user_status=log_in['user_status'], user=log_in['user'])
+        
+        # else:
+        #     Student.show_alert()
+        #     return redirect(url_for('show_students_grades'))
+
+@app.route("/get_performance", methods = ['POST'])
+def is_performance():
+    """check the performance"""
+    start = request.form['start_date']
+    end = request.form['end_date']
+    student_id = request.form['student_id']
+    
+    performance = Student.get_performance(student_id, start, end)
+    if performance:
+        return render_template("get_performance.html", performance=performance, user_id=log_in['user_id'],
+                                user_status=log_in['user_status'], user=log_in['user'])
+    flash('No grades were found between provided dates')
+    return redirect(url_for('show_students_grades'))
+
 
 
 @app.route("/grades", methods=["GET"])
