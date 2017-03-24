@@ -1,8 +1,12 @@
 from main import db
-from models.student import *
+from sqlalchemy.orm import sessionmaker
+
 
 Session = sessionmaker(bind=db)
 session = Session()
+
+
+from models.student import *
 
 
 class Submission(db.Model):
