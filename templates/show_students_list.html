@@ -52,8 +52,8 @@
                 <div class="edit" id="edit-person-{{student.id}}">
                     <form method="POST" action="{{ url_for('edit_student', student_id=student.id) }}" class="add-person-form" name="add-person-form">
                       <input name="new_email" type="email" class="add-person-form-input" value= "{{ student.email }}" required>
-                      <input name="new_fname" class="add-person-form-input" type="text" value="{{ student.name }}">
-                      <input name="new_lname" class="add-person-form-input" type="text" value="{{ student.surname }}">
+                      <input name="new_fname" class="add-person-form-input" type="text" value="{{ student.name }}" required>
+                      <input name="new_lname" class="add-person-form-input" type="text" value="{{ student.surname }}" required>
                       <button type="submit">SAVE</button>
                     </form>
 
