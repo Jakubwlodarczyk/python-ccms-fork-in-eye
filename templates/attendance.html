@@ -12,12 +12,14 @@
 {% block content %}
 
 {% if session['user_status'] == 'mentor'%}
-
-<label>Date:</label>
-
+<center>
+    <label>Date:</label>
+</center>
     <form action="/students-attendance" method="POST">
+<center>
     <input name='choose-date' type="date" id="dateinputatt" max="{{current_date}}" required>
-
+    <br>
+</center>
     <table>
         <thead>
             <tr>
