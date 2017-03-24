@@ -59,12 +59,13 @@
 
                </div>
                 <img class="small" src="{{ url_for('static', filename='pictures/edit.png')}}">
-            </a>
+                 </a>
 
+           <img class="small" src="{{ url_for('static', filename=
+           'pictures/trash.png')}}" onclick="remove({{ student.id }})">
 
-            <a href="{{  url_for('remove_student', student_id=student.id)  }}">
-            <img class="small" src="{{ url_for('static', filename='pictures/trash.png')}}">
-            </a>
+         
+             
 
             <form method="post">
                 <select class="add-person-form-input add-person-form-select mentor-show-students" name="select-team">
@@ -117,6 +118,25 @@
     {% endfor %}
 </table>
 {% endif%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.1.1/jquery-confirm.min.js"></script>
+  <script>
 
+function remove(student_id){
 
+    $.confirm({
+        title: 'Please confirm!',
+        content: 'Do you really want remove this student?',
+        buttons: {
+            Yes: function () {
+                window.location.href='/remove_student/'+student_id;
+            },
+            cancel: function () {
+
+            },
+        }
+    });
+
+}
+ </script>
 {% endblock %}

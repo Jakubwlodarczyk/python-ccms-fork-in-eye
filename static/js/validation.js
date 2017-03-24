@@ -30,41 +30,27 @@ function validateContactData(evt) {
   addForm.submit();
 }
 
-function process_performance_check_request(data, textStatus, jqXHR) {
-  alert("request processed");
-} 
- 
+function remove(student_id){
+console.log('asdfs')
+    $.confirm({
+        title: 'Please confirm!',
+        content: 'Do you really want remove this student?',
+        buttons: {
+            Yes: function () {
+                $.ajax({
+                    type: "POST",
+                    url: 'remove_student/{{student_id}}',
+                    data: "student_id=" + student_id,
+                    success : function(response){
+                        $.alert('Item deleted!');
+                    }
+                });
+            },
+            cancel: function () {
 
+            },
+        }
+    });
 
-$(document).ready(function(){
-  $('.button-grade').function(){
-    console.log($(this));
-
-
-
-
-  });
-});
-function check_Date_form() {
-//  $.ajax("/get_performance")
-//   .done(function() {
-//     alert( "success" );
-//   })
-//   .fail(function() {
-//     alert( "error" );
-//   })
-//   .always(function() {
-//     alert( "complete" );
-//   });
-  
-
-  $.ajax({
-    type: "POST",
-    url: "/get_performance",
-    data: 
-    var date_form = ,
-    success: process_performance_check_request(),
-    dataType: dataType
-  });
-  return alert("You have entered an invalid email address!");
 }
+
